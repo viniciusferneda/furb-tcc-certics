@@ -1,0 +1,187 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+
+	<ui:define name="body">
+		<h:form prependId="false">
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton value="#{messages['button.save']}" action="#{organizacaoSolicitanteEditMB.insert}"
+						rendered="#{!organizacaoSolicitanteEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.save']}" action="#{organizacaoSolicitanteEditMB.update}"
+						rendered="#{organizacaoSolicitanteEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
+						rendered="#{organizacaoSolicitanteEditMB.updateMode}" type="button" immediate="true" ajax="false" />
+					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{organizacaoSolicitanteEditMB.delete}" immediate="true"
+							ajax="false" />
+						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<br />
+
+			<p:fieldset legend="#{messages['organizacaoSolicitante.label']}" toggleable="true" toggleSpeed="500">
+				<h:panelGrid id="fieldsorganizacaoSolicitante" columns="3">
+				
+					<h:outputLabel value="#{messages['organizacaoSolicitante.label.id']}: " for="id" styleClass="text-input" />
+										
+					<h:outputText id="id" value="#{organizacaoSolicitanteEditMB.bean.id}" />
+					
+					<p:message for="id" />
+						
+					<h:outputLabel value="#{messages['organizacaoSolicitante.label.nome']}: " for="nome" styleClass="text-input" />
+					
+					<h:inputText id="nome" value="#{organizacaoSolicitanteEditMB.bean.nome}"
+						title="#{messages['organizacaoSolicitante.alt.nome']}" />
+					
+					<p:message for="nome" />
+						
+					<h:outputLabel value="#{messages['organizacaoSolicitante.label.razaoSocial']}: " for="razaoSocial" styleClass="text-input" />
+					
+					<h:inputText id="razaoSocial" value="#{organizacaoSolicitanteEditMB.bean.razaoSocial}"
+						title="#{messages['organizacaoSolicitante.alt.razaoSocial']}" />
+					
+					<p:message for="razaoSocial" />
+						
+					<h:outputLabel value="#{messages['organizacaoSolicitante.label.cnpj']}: " for="cnpj" styleClass="text-input" />
+					
+					<h:inputText id="cnpj" value="#{organizacaoSolicitanteEditMB.bean.cnpj}"
+						title="#{messages['organizacaoSolicitante.alt.cnpj']}" />
+					
+					<p:message for="cnpj" />
+						
+					<h:outputLabel value="#{messages['organizacaoSolicitante.label.fone1']}: " for="fone1" styleClass="text-input" />
+					
+					<h:inputText id="fone1" value="#{organizacaoSolicitanteEditMB.bean.fone1}"
+						title="#{messages['organizacaoSolicitante.alt.fone1']}" />
+					
+					<p:message for="fone1" />
+						
+					<h:outputLabel value="#{messages['organizacaoSolicitante.label.fone2']}: " for="fone2" styleClass="text-input" />
+					
+					<h:inputText id="fone2" value="#{organizacaoSolicitanteEditMB.bean.fone2}"
+						title="#{messages['organizacaoSolicitante.alt.fone2']}" />
+					
+					<p:message for="fone2" />
+						
+					<h:outputLabel value="#{messages['endereco.label']}: " for="endereco" styleClass="text-input" />
+				    <p:selectOneMenu id="endereco" value="#{organizacaoSolicitanteEditMB.bean.endereco}"  effect="fade" converter="ConversorEndereco">
+						<f:selectItem itemLabel="Selecione" itemValue="" />
+						<f:selectItems value="#{organizacaoSolicitanteEditMB.enderecoList}" var="varEndereco" itemLabel="#{varEndereco.id}"  itemValue="#{varEndereco}" />						
+					</p:selectOneMenu>
+					<p:message for="endereco" />								  
+								 
+				</h:panelGrid>
+			</p:fieldset>
+			
+		<p:fieldset legend="#{messages['profissional.label']}" toggleable="true" toggleSpeed="500">
+			<h:panelGrid id="fieldsprofissional" columns="1"> 
+				<p:commandButton value="#{messages['button.new']}" action="#{organizacaoSolicitanteEditMB.addProfissional}" update="listProfissional"/>
+				<p:dataTable id="listProfissional" var="profissional" value="#{organizacaoSolicitanteEditMB.profissionalList}" rowIndexVar="index">
+						
+			        <p:column>
+  			           <h:outputLabel value="#{messages['profissional.label.vinculoAtual']}: " for="vinculoAtual" styleClass="text-input" />
+						    
+			           <h:inputText id="vinculoAtual" value="#{profissional.vinculoAtual}"
+				          title="#{messages['profissional.alt.vinculoAtual']}" />
+						                   
+					   <p:message for="vinculoAtual" />
+			  	   </p:column>					  
+				
+			        <p:column>
+  			           <h:outputLabel value="#{messages['profissional.label.responsavelOrganizacao']}: " for="responsavelOrganizacao" styleClass="text-input" />
+						    
+			           <h:inputText id="responsavelOrganizacao" value="#{profissional.responsavelOrganizacao}"
+				          title="#{messages['profissional.alt.responsavelOrganizacao']}" />
+						                   
+					   <p:message for="responsavelOrganizacao" />
+			  	   </p:column>					  
+				
+			        <p:column>
+  			           <h:outputLabel value="#{messages['profissional.label.id']}: " for="id" styleClass="text-input" />
+						    
+			           <h:outputText id="id" value="#{profissional.id}" />
+				             
+					   <p:message for="id" />
+			  	   </p:column>					  
+				
+			        <p:column>
+  			           <h:outputLabel value="#{messages['profissional.label.nome']}: " for="nome" styleClass="text-input" />
+						    
+			           <h:inputText id="nome" value="#{profissional.nome}"
+				          title="#{messages['profissional.alt.nome']}" />
+						                   
+					   <p:message for="nome" />
+			  	   </p:column>					  
+				
+			        <p:column>
+  			           <h:outputLabel value="#{messages['profissional.label.cpf']}: " for="cpf" styleClass="text-input" />
+						    
+			           <h:inputText id="cpf" value="#{profissional.cpf}"
+				          title="#{messages['profissional.alt.cpf']}" />
+						                   
+					   <p:message for="cpf" />
+			  	   </p:column>					  
+				
+			        <p:column>
+  			           <h:outputLabel value="#{messages['profissional.label.rg']}: " for="rg" styleClass="text-input" />
+						    
+			           <h:inputText id="rg" value="#{profissional.rg}"
+				          title="#{messages['profissional.alt.rg']}" />
+						                   
+					   <p:message for="rg" />
+			  	   </p:column>					  
+				
+			        <p:column>
+  			           <h:outputLabel value="#{messages['profissional.label.sexo']}: " for="sexo" styleClass="text-input" />
+						    
+					   <p:selectOneMenu id="sexo" value="#{profissional.sexo}" effect="fade">
+						   <f:selectItems value="#{profissionalEditMB.sexo}" />
+					   </p:selectOneMenu>
+					                       
+					   <p:message for="sexo" />
+			  	   </p:column>					  
+				
+			        <p:column>
+  			           <h:outputLabel value="#{messages['profissional.label.dataNascimento']}: " for="dataNascimento" styleClass="text-input" />
+						    
+			           <p:calendar id="dataNascimento" value="#{profissional.dataNascimento}"
+			  	          pattern="#{messages['label.date.pattern']}" navigator="true" showButtonPanel="true"
+				          locale="#{locales.currentLocale}" title="#{messages['profissional.alt.dataNascimento']}" />
+							        
+					   <p:message for="dataNascimento" />
+			  	   </p:column>					  
+				
+			        <p:column>
+  			           <h:outputLabel value="#{messages['profissional.label.fone1']}: " for="fone1" styleClass="text-input" />
+						    
+			           <h:inputText id="fone1" value="#{profissional.fone1}"
+				          title="#{messages['profissional.alt.fone1']}" />
+						                   
+					   <p:message for="fone1" />
+			  	   </p:column>					  
+				
+			        <p:column>
+  			           <h:outputLabel value="#{messages['profissional.label.fone2']}: " for="fone2" styleClass="text-input" />
+						    
+			           <h:inputText id="fone2" value="#{profissional.fone2}"
+				          title="#{messages['profissional.alt.fone2']}" />
+						                   
+					   <p:message for="fone2" />
+			  	   </p:column>					  
+				
+				   <p:column>
+					   <f:facet name="header">#{messages['label.action']}</f:facet>
+					   <p:commandButton value="#{messages['button.delete']}" action="#{organizacaoSolicitanteEditMB.deleteProfissional}" ajax="false"/>
+				   </p:column>
+				</p:dataTable>
+			</h:panelGrid>
+		</p:fieldset>
+						
+		</h:form>
+	</ui:define>
+</ui:composition>

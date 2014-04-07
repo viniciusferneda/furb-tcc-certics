@@ -1,0 +1,69 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+
+	<ui:define name="body">
+		<h:form prependId="false">
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton value="#{messages['button.save']}" action="#{licaoAprendidaEditMB.insert}"
+						rendered="#{!licaoAprendidaEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.save']}" action="#{licaoAprendidaEditMB.update}"
+						rendered="#{licaoAprendidaEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
+						rendered="#{licaoAprendidaEditMB.updateMode}" type="button" immediate="true" ajax="false" />
+					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{licaoAprendidaEditMB.delete}" immediate="true"
+							ajax="false" />
+						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<br />
+
+			<p:fieldset legend="#{messages['licaoAprendida.label']}" toggleable="true" toggleSpeed="500">
+				<h:panelGrid id="fieldslicaoAprendida" columns="3">
+				
+					<h:outputLabel value="#{messages['licaoAprendida.label.id']}: " for="id" styleClass="text-input" />
+										
+					<h:outputText id="id" value="#{licaoAprendidaEditMB.bean.id}" />
+					
+					<p:message for="id" />
+						
+					<h:outputLabel value="#{messages['licaoAprendida.label.pontosPositivos']}: " for="pontosPositivos" styleClass="text-input" />
+					
+					<h:inputText id="pontosPositivos" value="#{licaoAprendidaEditMB.bean.pontosPositivos}"
+						title="#{messages['licaoAprendida.alt.pontosPositivos']}" />
+					
+					<p:message for="pontosPositivos" />
+						
+					<h:outputLabel value="#{messages['licaoAprendida.label.pontosNegativos']}: " for="pontosNegativos" styleClass="text-input" />
+					
+					<h:inputText id="pontosNegativos" value="#{licaoAprendidaEditMB.bean.pontosNegativos}"
+						title="#{messages['licaoAprendida.alt.pontosNegativos']}" />
+					
+					<p:message for="pontosNegativos" />
+						
+					<h:outputLabel value="#{messages['licaoAprendida.label.melhoria']}: " for="melhoria" styleClass="text-input" />
+					
+					<h:inputText id="melhoria" value="#{licaoAprendidaEditMB.bean.melhoria}"
+						title="#{messages['licaoAprendida.alt.melhoria']}" />
+					
+					<p:message for="melhoria" />
+						
+					<h:outputLabel value="#{messages['avaliacao.label']}: " for="avaliacao" styleClass="text-input" />
+				    <p:selectOneMenu id="avaliacao" value="#{licaoAprendidaEditMB.bean.avaliacao}"  effect="fade" converter="ConversorAvaliacao">
+						<f:selectItem itemLabel="Selecione" itemValue="" />
+						<f:selectItems value="#{licaoAprendidaEditMB.avaliacaoList}" var="varAvaliacao" itemLabel="#{varAvaliacao.id}"  itemValue="#{varAvaliacao}" />						
+					</p:selectOneMenu>
+					<p:message for="avaliacao" />								  
+								 
+				</h:panelGrid>
+			</p:fieldset>
+			
+		</h:form>
+	</ui:define>
+</ui:composition>

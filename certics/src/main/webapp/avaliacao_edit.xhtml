@@ -1,0 +1,185 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+
+	<ui:define name="body">
+		<h:form prependId="false">
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton value="#{messages['button.save']}" action="#{avaliacaoEditMB.insert}"
+						rendered="#{!avaliacaoEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.save']}" action="#{avaliacaoEditMB.update}"
+						rendered="#{avaliacaoEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
+						rendered="#{avaliacaoEditMB.updateMode}" type="button" immediate="true" ajax="false" />
+					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{avaliacaoEditMB.delete}" immediate="true"
+							ajax="false" />
+						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<br />
+
+			<p:fieldset legend="#{messages['avaliacao.label']}" toggleable="true" toggleSpeed="500">
+				<h:panelGrid id="fieldsavaliacao" columns="3">
+				
+					<h:outputLabel value="#{messages['avaliacao.label.id']}: " for="id" styleClass="text-input" />
+										
+					<h:outputText id="id" value="#{avaliacaoEditMB.bean.id}" />
+					
+					<p:message for="id" />
+						
+					<h:outputLabel value="#{messages['avaliacao.label.versaoCertics']}: " for="versaoCertics" styleClass="text-input" />
+					
+					<p:selectOneMenu id="versaoCertics" effect="fade" value="#{avaliacaoEditMB.bean.versaoCertics}">
+						<f:selectItems value="#{avaliacaoEditMB.versaoCertics}" />
+					</p:selectOneMenu>					
+								
+					<p:message for="versaoCertics" />
+						
+					<h:outputLabel value="#{messages['avaliacao.label.pontuacao']}: " for="pontuacao" styleClass="text-input" />
+					
+					<p:selectOneMenu id="pontuacao" effect="fade" value="#{avaliacaoEditMB.bean.pontuacao}">
+						<f:selectItems value="#{avaliacaoEditMB.pontuacao}" />
+					</p:selectOneMenu>					
+								
+					<p:message for="pontuacao" />
+						
+					<h:outputLabel value="#{messages['avaliacao.label.dataAvaliacao']}: " for="dataAvaliacao" styleClass="text-input" />
+					
+					<p:calendar id="dataAvaliacao" value="#{avaliacaoEditMB.bean.dataAvaliacao}"
+					   pattern="#{messages['label.date.pattern']}" navigator="true" showButtonPanel="true"
+					   locale="#{locales.currentLocale}" title="#{messages['avaliacao.alt.dataAvaliacao']}" />
+							 
+					<p:message for="dataAvaliacao" />
+						
+					<h:outputLabel value="#{messages['software.label']}: " for="software" styleClass="text-input" />
+				    <p:selectOneMenu id="software" value="#{avaliacaoEditMB.bean.software}"  effect="fade" converter="ConversorSoftware">
+						<f:selectItem itemLabel="Selecione" itemValue="" />
+						<f:selectItems value="#{avaliacaoEditMB.softwareList}" var="varSoftware" itemLabel="#{varSoftware.id}"  itemValue="#{varSoftware}" />						
+					</p:selectOneMenu>
+					<p:message for="software" />								  
+								 
+					<h:outputLabel value="#{messages['avaliador.label']}: " for="avaliador" styleClass="text-input" />
+				    <p:selectOneMenu id="avaliador" value="#{avaliacaoEditMB.bean.avaliador}"  effect="fade" converter="ConversorAvaliador">
+						<f:selectItem itemLabel="Selecione" itemValue="" />
+						<f:selectItems value="#{avaliacaoEditMB.avaliadorList}" var="varAvaliador" itemLabel="#{varAvaliador.id}"  itemValue="#{varAvaliador}" />						
+					</p:selectOneMenu>
+					<p:message for="avaliador" />								  
+								 
+				</h:panelGrid>
+			</p:fieldset>
+			
+		<p:fieldset legend="#{messages['licaoAprendida.label']}" toggleable="true" toggleSpeed="500">
+			<h:panelGrid id="fieldslicaoAprendida" columns="1"> 
+				<p:commandButton value="#{messages['button.new']}" action="#{avaliacaoEditMB.addLicaoAprendida}" update="listLicaoAprendida"/>
+				<p:dataTable id="listLicaoAprendida" var="licaoAprendida" value="#{avaliacaoEditMB.licaoAprendidaList}" rowIndexVar="index">
+						
+			        <p:column>
+  			           <h:outputLabel value="#{messages['licaoAprendida.label.id']}: " for="id" styleClass="text-input" />
+						    
+			           <h:outputText id="id" value="#{licaoAprendida.id}" />
+				             
+					   <p:message for="id" />
+			  	   </p:column>					  
+				
+			        <p:column>
+  			           <h:outputLabel value="#{messages['licaoAprendida.label.pontosPositivos']}: " for="pontosPositivos" styleClass="text-input" />
+						    
+			           <h:inputText id="pontosPositivos" value="#{licaoAprendida.pontosPositivos}"
+				          title="#{messages['licaoAprendida.alt.pontosPositivos']}" />
+						                   
+					   <p:message for="pontosPositivos" />
+			  	   </p:column>					  
+				
+			        <p:column>
+  			           <h:outputLabel value="#{messages['licaoAprendida.label.pontosNegativos']}: " for="pontosNegativos" styleClass="text-input" />
+						    
+			           <h:inputText id="pontosNegativos" value="#{licaoAprendida.pontosNegativos}"
+				          title="#{messages['licaoAprendida.alt.pontosNegativos']}" />
+						                   
+					   <p:message for="pontosNegativos" />
+			  	   </p:column>					  
+				
+			        <p:column>
+  			           <h:outputLabel value="#{messages['licaoAprendida.label.melhoria']}: " for="melhoria" styleClass="text-input" />
+						    
+			           <h:inputText id="melhoria" value="#{licaoAprendida.melhoria}"
+				          title="#{messages['licaoAprendida.alt.melhoria']}" />
+						                   
+					   <p:message for="melhoria" />
+			  	   </p:column>					  
+				
+				   <p:column>
+					   <f:facet name="header">#{messages['label.action']}</f:facet>
+					   <p:commandButton value="#{messages['button.delete']}" action="#{avaliacaoEditMB.deleteLicaoAprendida}" ajax="false"/>
+				   </p:column>
+				</p:dataTable>
+			</h:panelGrid>
+		</p:fieldset>
+						
+		<p:fieldset legend="#{messages['respostaEvidencia.label']}" toggleable="true" toggleSpeed="500">
+			<h:panelGrid id="fieldsrespostaEvidencia" columns="1"> 
+				<p:commandButton value="#{messages['button.new']}" action="#{avaliacaoEditMB.addRespostaEvidencia}" update="listRespostaEvidencia"/>
+				<p:dataTable id="listRespostaEvidencia" var="respostaEvidencia" value="#{avaliacaoEditMB.respostaEvidenciaList}" rowIndexVar="index">
+						
+			        <p:column>
+  			           <h:outputLabel value="#{messages['respostaEvidencia.label.id']}: " for="id" styleClass="text-input" />
+						    
+			           <h:outputText id="id" value="#{respostaEvidencia.id}" />
+				             
+					   <p:message for="id" />
+			  	   </p:column>					  
+				
+			        <p:column>
+  			           <h:outputLabel value="#{messages['respostaEvidencia.label.pontuacao']}: " for="pontuacao" styleClass="text-input" />
+						    
+					   <p:selectOneMenu id="pontuacao" value="#{respostaEvidencia.pontuacao}" effect="fade">
+						   <f:selectItems value="#{respostaEvidenciaEditMB.pontuacao}" />
+					   </p:selectOneMenu>
+					                       
+					   <p:message for="pontuacao" />
+			  	   </p:column>					  
+				
+			        <p:column>
+  			           <h:outputLabel value="#{messages['respostaEvidencia.label.abrangencia']}: " for="abrangencia" styleClass="text-input" />
+						    
+			           <h:inputText id="abrangencia" value="#{respostaEvidencia.abrangencia}"
+				          title="#{messages['respostaEvidencia.alt.abrangencia']}" />
+						                   
+					   <p:message for="abrangencia" />
+			  	   </p:column>					  
+				
+			        <p:column>
+  			           <h:outputLabel value="#{messages['respostaEvidencia.label.motivo']}: " for="motivo" styleClass="text-input" />
+						    
+			           <h:inputText id="motivo" value="#{respostaEvidencia.motivo}"
+				          title="#{messages['respostaEvidencia.alt.motivo']}" />
+						                   
+					   <p:message for="motivo" />
+			  	   </p:column>					  
+				
+			        <p:column>
+  			           <h:outputLabel value="#{messages['respostaEvidencia.label.contribuicao']}: " for="contribuicao" styleClass="text-input" />
+						    
+			           <h:inputText id="contribuicao" value="#{respostaEvidencia.contribuicao}"
+				          title="#{messages['respostaEvidencia.alt.contribuicao']}" />
+						                   
+					   <p:message for="contribuicao" />
+			  	   </p:column>					  
+				
+				   <p:column>
+					   <f:facet name="header">#{messages['label.action']}</f:facet>
+					   <p:commandButton value="#{messages['button.delete']}" action="#{avaliacaoEditMB.deleteRespostaEvidencia}" ajax="false"/>
+				   </p:column>
+				</p:dataTable>
+			</h:panelGrid>
+		</p:fieldset>
+						
+		</h:form>
+	</ui:define>
+</ui:composition>

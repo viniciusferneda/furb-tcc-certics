@@ -1,0 +1,55 @@
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+
+	<ui:define name="body">
+		<h:form prependId="false">
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton value="#{messages['button.save']}" action="#{anexoEditMB.insert}"
+						rendered="#{!anexoEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.save']}" action="#{anexoEditMB.update}"
+						rendered="#{anexoEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
+						rendered="#{anexoEditMB.updateMode}" type="button" immediate="true" ajax="false" />
+					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{anexoEditMB.delete}" immediate="true"
+							ajax="false" />
+						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<br />
+
+			<p:fieldset legend="#{messages['anexo.label']}" toggleable="true" toggleSpeed="500">
+				<h:panelGrid id="fieldsanexo" columns="3">
+				
+					<h:outputLabel value="#{messages['anexo.label.id']}: " for="id" styleClass="text-input" />
+										
+					<h:outputText id="id" value="#{anexoEditMB.bean.id}" />
+					
+					<p:message for="id" />
+						
+					<h:outputLabel value="#{messages['anexo.label.arquivo']}: " for="arquivo" styleClass="text-input" />
+					
+					<h:inputText id="arquivo" value="#{anexoEditMB.bean.arquivo}"
+						title="#{messages['anexo.alt.arquivo']}" />
+					
+					<p:message for="arquivo" />
+						
+					<h:outputLabel value="#{messages['evidencia.label']}: " for="evidencia" styleClass="text-input" />
+				    <p:selectOneMenu id="evidencia" value="#{anexoEditMB.bean.evidencia}"  effect="fade" converter="ConversorEvidencia">
+						<f:selectItem itemLabel="Selecione" itemValue="" />
+						<f:selectItems value="#{anexoEditMB.evidenciaList}" var="varEvidencia" itemLabel="#{varEvidencia.id}"  itemValue="#{varEvidencia}" />						
+					</p:selectOneMenu>
+					<p:message for="evidencia" />								  
+								 
+				</h:panelGrid>
+			</p:fieldset>
+			
+		</h:form>
+	</ui:define>
+</ui:composition>

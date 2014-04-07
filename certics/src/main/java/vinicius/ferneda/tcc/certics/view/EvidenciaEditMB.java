@@ -1,0 +1,77 @@
+
+package vinicius.ferneda.tcc.certics.view;
+
+import java.util.List;
+
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
+import javax.inject.Inject;
+
+import vinicius.ferneda.tcc.certics.business.EvidenciaBC;
+import vinicius.ferneda.tcc.certics.business.RespostaEvidenciaBC;
+import vinicius.ferneda.tcc.certics.domain.Anexo;
+import vinicius.ferneda.tcc.certics.domain.Evidencia;
+import vinicius.ferneda.tcc.certics.domain.RespostaEvidencia;
+import br.gov.frameworkdemoiselle.annotation.PreviousView;
+import br.gov.frameworkdemoiselle.stereotype.ViewController;
+import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
+import br.gov.frameworkdemoiselle.transaction.Transactional;
+
+@ViewController
+@PreviousView("./evidencia_list.jsf")
+public class EvidenciaEditMB extends AbstractEditPageBean<Evidencia, Long> {
+
+	private static final long serialVersionUID = 1L;
+
+	@Inject
+	private EvidenciaBC evidenciaBC;
+	
+
+	@Inject
+	private RespostaEvidenciaBC respostaEvidenciaBC;
+	
+	public List<RespostaEvidencia> getRespostaEvidenciaList(){
+		return respostaEvidenciaBC.findAll();
+	}
+			
+	private DataModel<Anexo> anexoList;
+	
+	public void addAnexo() {
+		this.getBean().getAnexos().add(new Anexo());
+	}
+	public void deleteAnexo() {
+	   this.getBean().getAnexos().remove(getAnexoList().getRowData());
+	}
+	public DataModel<Anexo> getAnexoList() {
+	   if (anexoList == null) {
+		   anexoList = new ListDataModel<Anexo>(this.getBean().getAnexos());
+	   }
+	   return anexoList;
+	} 
+	
+	@Override
+	@Transactional
+	public String delete() {
+		this.evidenciaBC.delete(getId());
+		return getPreviousView();
+	}
+	
+	@Override
+	@Transactional
+	public String insert() {
+		this.evidenciaBC.insert(this.getBean());
+		return getPreviousView();
+	}
+	
+	@Override
+	@Transactional
+	public String update() {
+		this.evidenciaBC.update(this.getBean());
+		return getPreviousView();
+	}
+	
+	@Override
+	protected Evidencia handleLoad(Long id) {
+		return this.evidenciaBC.load(id);
+	}	
+}
