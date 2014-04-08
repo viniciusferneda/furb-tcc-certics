@@ -16,8 +16,6 @@ import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 
-// To remove unused imports press: Ctrl+Shift+o
-
 @ViewController
 @PreviousView("./areaCompetencia_list.jsf")
 public class AreaCompetenciaEditMB extends AbstractEditPageBean<AreaCompetencia, Long> {
@@ -26,19 +24,20 @@ public class AreaCompetenciaEditMB extends AbstractEditPageBean<AreaCompetencia,
 
 	@Inject
 	private AreaCompetenciaBC areaCompetenciaBC;
-	
+	private DataModel<ResultadoEsperado> resultadoEsperadoList;
 
 	public List<SelectItem> getVersaoCertics() {
 		return areaCompetenciaBC.getEnumVersaoCertics();
 	}
-	private DataModel<ResultadoEsperado> resultadoEsperadoList;
 	
 	public void addResultadoEsperado() {
 		this.getBean().getResultadosEsperados().add(new ResultadoEsperado());
 	}
+	
 	public void deleteResultadoEsperado() {
 	   this.getBean().getResultadosEsperados().remove(getResultadoEsperadoList().getRowData());
 	}
+	
 	public DataModel<ResultadoEsperado> getResultadoEsperadoList() {
 	   if (resultadoEsperadoList == null) {
 		   resultadoEsperadoList = new ListDataModel<ResultadoEsperado>(this.getBean().getResultadosEsperados());

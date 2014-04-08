@@ -75,7 +75,7 @@ public class UsuarioBCTest {
 		Usuario usuario3 = (Usuario)listOfUsuario.get(0);
 		
 		// alterar para tratar uma propriedade existente na Entidade Usuario
-		// assertEquals("novo valor", usuario3.getUmaPropriedade());
+		assertEquals("novo valor", usuario3.getEmail());
 	}
 
 }

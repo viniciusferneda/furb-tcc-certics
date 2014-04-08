@@ -76,7 +76,7 @@ public class LicaoAprendidaBCTest {
 		LicaoAprendida licaoAprendida3 = (LicaoAprendida)listOfLicaoAprendida.get(0);
 		
 		// alterar para tratar uma propriedade existente na Entidade LicaoAprendida
-		// assertEquals("novo valor", licaoAprendida3.getUmaPropriedade());
+		assertEquals("novo valor", licaoAprendida3.getAvaliacao());
 	}
 
 }

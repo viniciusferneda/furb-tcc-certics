@@ -30,7 +30,7 @@ public class Evidencia implements Serializable{
 	@Column(name="EVI_NOME", nullable=false, length=255)
 	private String nome;
 	
-	@Column(name="EVI_NOME", nullable=false, length=8000)
+	@Column(name="EVI_DESCRICAO", nullable=false, length=8000)
 	private String descricao;
 	
 	@ManyToOne 

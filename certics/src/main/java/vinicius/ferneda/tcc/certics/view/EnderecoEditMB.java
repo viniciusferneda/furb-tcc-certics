@@ -13,8 +13,6 @@ import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 
-// To remove unused imports press: Ctrl+Shift+o
-
 @ViewController
 @PreviousView("./endereco_list.jsf")
 public class EnderecoEditMB extends AbstractEditPageBean<Endereco, Long> {

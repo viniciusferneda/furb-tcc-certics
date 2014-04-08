@@ -76,7 +76,7 @@ public class EvidenciaBCTest {
 		Evidencia evidencia3 = (Evidencia)listOfEvidencia.get(0);
 		
 		// alterar para tratar uma propriedade existente na Entidade Evidencia
-		// assertEquals("novo valor", evidencia3.getUmaPropriedade());
+		assertEquals("novo valor", evidencia3.getNome());
 	}
 
 }

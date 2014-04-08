@@ -75,7 +75,7 @@ public class EnderecoBCTest {
 		Endereco endereco3 = (Endereco)listOfEndereco.get(0);
 		
 		// alterar para tratar uma propriedade existente na Entidade Endereco
-		// assertEquals("novo valor", endereco3.getUmaPropriedade());
+		assertEquals("novo valor", endereco3.getCep());
 	}
 
 }

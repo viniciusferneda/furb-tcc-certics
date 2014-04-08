@@ -78,7 +78,7 @@ public class AvaliadorBCTest {
 		Avaliador avaliador3 = (Avaliador)listOfAvaliador.get(0);
 		
 		// alterar para tratar uma propriedade existente na Entidade Avaliador
-		// assertEquals("novo valor", avaliador3.getUmaPropriedade());
+		assertEquals("novo valor", avaliador3.getCpf());
 	}
 
 }

@@ -42,7 +42,7 @@ public class OrganizacaoSolicitante implements Serializable{
 	@Column(name="ORS_FONE_2", length=20)
 	private String fone2;
 
-	@Column(name="ORS_ENDID")
+	@JoinColumn(name="ORS_ENDID", nullable=false)
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private Endereco endereco;
 	

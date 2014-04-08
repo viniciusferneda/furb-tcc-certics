@@ -76,7 +76,7 @@ public class AnexoBCTest {
 		Anexo anexo3 = (Anexo)listOfAnexo.get(0);
 		
 		// alterar para tratar uma propriedade existente na Entidade Anexo
-		// assertEquals("novo valor", anexo3.getUmaPropriedade());
+		assertEquals("novo valor", anexo3.getArquivo());
 	}
 
 }

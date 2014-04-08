@@ -20,7 +20,7 @@ public class RespostaEvidenciaBC extends DelegateCrud<RespostaEvidencia, Long, R
 	public List<SelectItem> getEnumPontuacaoEvidencia() {
 		List<SelectItem> varEnumPontuacaoEvidencia = new ArrayList<SelectItem>();
 		for (EnumPontuacaoEvidencia eachEnumPontuacaoEvidencia : EnumPontuacaoEvidencia.values()) {
-			varEnumPontuacaoEvidencia.add(new SelectItem(eachEnumPontuacaoEvidencia));
+			varEnumPontuacaoEvidencia.add(new SelectItem(eachEnumPontuacaoEvidencia.getNome()));
 		}
 		return varEnumPontuacaoEvidencia;
 	}

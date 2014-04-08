@@ -12,8 +12,6 @@ import vinicius.ferneda.tcc.certics.persistence.ResultadoEsperadoDAO;
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
 import br.gov.frameworkdemoiselle.template.DelegateCrud;
 
-// To remove unused imports press: Ctrl+Shift+o
-
 @BusinessController
 public class ResultadoEsperadoBC extends DelegateCrud<ResultadoEsperado, Long, ResultadoEsperadoDAO> {
 	private static final long serialVersionUID = 1L;
@@ -22,7 +20,7 @@ public class ResultadoEsperadoBC extends DelegateCrud<ResultadoEsperado, Long, R
 	public List<SelectItem> getEnumVersaoCertics() {
 		List<SelectItem> varEnumVersaoCertics = new ArrayList<SelectItem>();
 		for (EnumVersaoCertics eachEnumVersaoCertics : EnumVersaoCertics.values()) {
-			varEnumVersaoCertics.add(new SelectItem(eachEnumVersaoCertics));
+			varEnumVersaoCertics.add(new SelectItem(eachEnumVersaoCertics.getNome()));
 		}
 		return varEnumVersaoCertics;
 	}

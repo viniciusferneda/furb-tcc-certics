@@ -12,17 +12,14 @@ import vinicius.ferneda.tcc.certics.persistence.EnderecoDAO;
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
 import br.gov.frameworkdemoiselle.template.DelegateCrud;
 
-// To remove unused imports press: Ctrl+Shift+o
-
 @BusinessController
 public class EnderecoBC extends DelegateCrud<Endereco, Long, EnderecoDAO> {
 	private static final long serialVersionUID = 1L;
 	
-	
 	public List<SelectItem> getEnumUF() {
 		List<SelectItem> varEnumUF = new ArrayList<SelectItem>();
 		for (EnumUF eachEnumUF : EnumUF.values()) {
-			varEnumUF.add(new SelectItem(eachEnumUF));
+			varEnumUF.add(new SelectItem(eachEnumUF.getNome()));
 		}
 		return varEnumUF;
 	}

@@ -76,7 +76,7 @@ public class ConjuntoEvidenciasBCTest {
 		ConjuntoEvidencias conjuntoEvidencias3 = (ConjuntoEvidencias)listOfConjuntoEvidencias.get(0);
 		
 		// alterar para tratar uma propriedade existente na Entidade ConjuntoEvidencias
-		// assertEquals("novo valor", conjuntoEvidencias3.getUmaPropriedade());
+		assertEquals("novo valor", conjuntoEvidencias3.getResultadoEsperado());
 	}
 
 }

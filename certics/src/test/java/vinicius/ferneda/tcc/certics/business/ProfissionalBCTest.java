@@ -79,7 +79,7 @@ public class ProfissionalBCTest {
 		Profissional profissional3 = (Profissional)listOfProfissional.get(0);
 		
 		// alterar para tratar uma propriedade existente na Entidade Profissional
-		// assertEquals("novo valor", profissional3.getUmaPropriedade());
+		assertEquals("novo valor", profissional3.getCpf());
 	}
 
 }

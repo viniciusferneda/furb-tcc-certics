@@ -75,7 +75,7 @@ public class OrganizacaoSolicitanteBCTest {
 		OrganizacaoSolicitante organizacaoSolicitante3 = (OrganizacaoSolicitante)listOfOrganizacaoSolicitante.get(0);
 		
 		// alterar para tratar uma propriedade existente na Entidade OrganizacaoSolicitante
-		// assertEquals("novo valor", organizacaoSolicitante3.getUmaPropriedade());
+		assertEquals("novo valor", organizacaoSolicitante3.getCnpj());
 	}
 
 }

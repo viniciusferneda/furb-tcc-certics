@@ -76,7 +76,7 @@ public class AreaCompetenciaBCTest {
 		AreaCompetencia areaCompetencia3 = (AreaCompetencia)listOfAreaCompetencia.get(0);
 		
 		// alterar para tratar uma propriedade existente na Entidade AreaCompetencia
-		// assertEquals("novo valor", areaCompetencia3.getUmaPropriedade());
+		assertEquals("novo valor", areaCompetencia3.getVersaoCertics());
 	}
 
 }

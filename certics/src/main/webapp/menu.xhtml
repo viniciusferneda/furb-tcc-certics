@@ -4,6 +4,7 @@
 
 	<h:form>
 		<p:menubar>
+			<!--
 			<p:submenu label="#{messages['menu.anexo']}">
 				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/anexo_edit.jsf"></p:menuitem>
 				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/anexo_list.jsf"></p:menuitem>
@@ -29,21 +30,6 @@
 				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/conjuntoEvidencias_list.jsf"></p:menuitem>
 			</p:submenu>
 
-			<p:submenu label="#{messages['menu.usuario']}">
-				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/usuario_edit.jsf"></p:menuitem>
-				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/usuario_list.jsf"></p:menuitem>
-			</p:submenu>
-
-			<p:submenu label="#{messages['menu.avaliacao']}">
-				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/avaliacao_edit.jsf"></p:menuitem>
-				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/avaliacao_list.jsf"></p:menuitem>
-			</p:submenu>
-
-			<p:submenu label="#{messages['menu.licaoAprendida']}">
-				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/licaoAprendida_edit.jsf"></p:menuitem>
-				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/licaoAprendida_list.jsf"></p:menuitem>
-			</p:submenu>
-
 			<p:submenu label="#{messages['menu.avaliador']}">
 				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/avaliador_edit.jsf"></p:menuitem>
 				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/avaliador_list.jsf"></p:menuitem>
@@ -52,6 +38,22 @@
 			<p:submenu label="#{messages['menu.endereco']}">
 				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/endereco_edit.jsf"></p:menuitem>
 				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/endereco_list.jsf"></p:menuitem>
+			</p:submenu>
+			-->
+			
+			<p:submenu label="#{messages['menu.usuario']}">
+				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/usuario_edit.jsf"></p:menuitem>
+				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/usuario_list.jsf"></p:menuitem>
+			</p:submenu>
+
+			<p:submenu label="#{messages['menu.areaCompetencia']}">
+				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/areaCompetencia_edit.jsf"></p:menuitem>
+				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/areaCompetencia_list.jsf"></p:menuitem>
+			</p:submenu>
+
+			<p:submenu label="#{messages['menu.resultadoEsperado']}">
+				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/resultadoEsperado_edit.jsf"></p:menuitem>
+				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/resultadoEsperado_list.jsf"></p:menuitem>
 			</p:submenu>
 
 			<p:submenu label="#{messages['menu.organizacaoSolicitante']}">
@@ -69,27 +71,17 @@
 				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/software_list.jsf"></p:menuitem>
 			</p:submenu>
 
-			<p:submenu label="#{messages['menu.resultadoEsperado']}">
-				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/resultadoEsperado_edit.jsf"></p:menuitem>
-				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/resultadoEsperado_list.jsf"></p:menuitem>
+			<p:submenu label="#{messages['menu.avaliacao']}">
+				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/avaliacao_edit.jsf"></p:menuitem>
+				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/avaliacao_list.jsf"></p:menuitem>
 			</p:submenu>
 
-			<p:submenu label="#{messages['menu.areaCompetencia']}">
-				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/areaCompetencia_edit.jsf"></p:menuitem>
-				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/areaCompetencia_list.jsf"></p:menuitem>
+			<p:submenu label="#{messages['menu.licaoAprendida']}">
+				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/licaoAprendida_edit.jsf"></p:menuitem>
+				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/licaoAprendida_list.jsf"></p:menuitem>
 			</p:submenu>
 
-			<p:submenu label="#{messages['menu.bookmark']}">
-				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/bookmark_edit.jsf"></p:menuitem>
-				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/bookmark_list.jsf"></p:menuitem>
-			</p:submenu>
-
-			<p:submenu label="#{messages['menu.bookmark']}">
-				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/bookmark_edit.jsf" />
-				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/bookmark_list.jsf" />
-			</p:submenu>
-
-			<p:menuitem value="#{messages['menu.menuitem.quit']}" url="http://www.frameworkdemoiselle.gov.br/"
+			<p:menuitem value="#{messages['menu.menuitem.quit']}" url="http://localhost:8080/certics/"
 				action="#{securityContext.logout}" />
 		</p:menubar>
 	</h:form>

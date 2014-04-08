@@ -77,7 +77,7 @@ public class ResultadoEsperadoBCTest {
 		ResultadoEsperado resultadoEsperado3 = (ResultadoEsperado)listOfResultadoEsperado.get(0);
 		
 		// alterar para tratar uma propriedade existente na Entidade ResultadoEsperado
-		// assertEquals("novo valor", resultadoEsperado3.getUmaPropriedade());
+		assertEquals("novo valor", resultadoEsperado3.getVersaoCertics());
 	}
 
 }

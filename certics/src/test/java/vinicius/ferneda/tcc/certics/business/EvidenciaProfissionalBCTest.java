@@ -77,7 +77,7 @@ public class EvidenciaProfissionalBCTest {
 		EvidenciaProfissional evidenciaProfissional3 = (EvidenciaProfissional)listOfEvidenciaProfissional.get(0);
 		
 		// alterar para tratar uma propriedade existente na Entidade EvidenciaProfissional
-		// assertEquals("novo valor", evidenciaProfissional3.getUmaPropriedade());
+		assertEquals("novo valor", evidenciaProfissional3.getProfissional());
 	}
 
 }

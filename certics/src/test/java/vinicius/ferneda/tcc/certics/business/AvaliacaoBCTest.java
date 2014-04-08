@@ -80,7 +80,7 @@ public class AvaliacaoBCTest {
 		Avaliacao avaliacao3 = (Avaliacao)listOfAvaliacao.get(0);
 		
 		// alterar para tratar uma propriedade existente na Entidade Avaliacao
-		// assertEquals("novo valor", avaliacao3.getUmaPropriedade());
+		assertEquals("novo valor", avaliacao3.getAvaliador());
 	}
 
 }

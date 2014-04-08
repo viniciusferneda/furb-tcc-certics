@@ -76,7 +76,7 @@ public class SoftwareBCTest {
 		Software software3 = (Software)listOfSoftware.get(0);
 		
 		// alterar para tratar uma propriedade existente na Entidade Software
-		// assertEquals("novo valor", software3.getUmaPropriedade());
+		assertEquals("novo valor", software3.getNome());
 	}
 
 }

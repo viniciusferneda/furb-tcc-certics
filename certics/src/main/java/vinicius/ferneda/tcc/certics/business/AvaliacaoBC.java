@@ -13,8 +13,6 @@ import vinicius.ferneda.tcc.certics.persistence.AvaliacaoDAO;
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
 import br.gov.frameworkdemoiselle.template.DelegateCrud;
 
-// To remove unused imports press: Ctrl+Shift+o
-
 @BusinessController
 public class AvaliacaoBC extends DelegateCrud<Avaliacao, Long, AvaliacaoDAO> {
 	private static final long serialVersionUID = 1L;
@@ -23,7 +21,7 @@ public class AvaliacaoBC extends DelegateCrud<Avaliacao, Long, AvaliacaoDAO> {
 	public List<SelectItem> getEnumVersaoCertics() {
 		List<SelectItem> varEnumVersaoCertics = new ArrayList<SelectItem>();
 		for (EnumVersaoCertics eachEnumVersaoCertics : EnumVersaoCertics.values()) {
-			varEnumVersaoCertics.add(new SelectItem(eachEnumVersaoCertics));
+			varEnumVersaoCertics.add(new SelectItem(eachEnumVersaoCertics.getNome()));
 		}
 		return varEnumVersaoCertics;
 	}
@@ -31,7 +29,7 @@ public class AvaliacaoBC extends DelegateCrud<Avaliacao, Long, AvaliacaoDAO> {
 	public List<SelectItem> getEnumPontuacaoAvaliacao() {
 		List<SelectItem> varEnumPontuacaoAvaliacao = new ArrayList<SelectItem>();
 		for (EnumPontuacaoAvaliacao eachEnumPontuacaoAvaliacao : EnumPontuacaoAvaliacao.values()) {
-			varEnumPontuacaoAvaliacao.add(new SelectItem(eachEnumPontuacaoAvaliacao));
+			varEnumPontuacaoAvaliacao.add(new SelectItem(eachEnumPontuacaoAvaliacao.getNome()));
 		}
 		return varEnumPontuacaoAvaliacao;
 	}

@@ -48,7 +48,7 @@ public class Endereco implements Serializable {
 	
 	@Column(name="END_PAIS", nullable=false, length=255)
 	private String pais;
-
+	
 	public Endereco(){
 	}
 	
@@ -134,5 +134,4 @@ public class Endereco implements Serializable {
 	public void setPais(String pais) {
 		this.pais = pais;
 	}
-		
 }
