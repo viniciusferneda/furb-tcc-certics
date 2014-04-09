@@ -10,5 +10,4 @@ public class UsuarioDAO extends JPACrud<Usuario, Long> {
 
 	private static final long serialVersionUID = 1L;
 	
-
 }

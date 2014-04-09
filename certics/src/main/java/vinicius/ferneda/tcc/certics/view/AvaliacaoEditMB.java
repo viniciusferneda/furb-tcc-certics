@@ -1,4 +1,3 @@
-
 package vinicius.ferneda.tcc.certics.view;
 
 import java.util.List;
@@ -12,7 +11,7 @@ import vinicius.ferneda.tcc.certics.business.AvaliacaoBC;
 import vinicius.ferneda.tcc.certics.business.AvaliadorBC;
 import vinicius.ferneda.tcc.certics.business.SoftwareBC;
 import vinicius.ferneda.tcc.certics.domain.Avaliacao;
-import vinicius.ferneda.tcc.certics.domain.Avaliador;
+import vinicius.ferneda.tcc.certics.domain.AvaliadorEntity;
 import vinicius.ferneda.tcc.certics.domain.LicaoAprendida;
 import vinicius.ferneda.tcc.certics.domain.RespostaEvidencia;
 import vinicius.ferneda.tcc.certics.domain.Software;
@@ -47,7 +46,7 @@ public class AvaliacaoEditMB extends AbstractEditPageBean<Avaliacao, Long> {
 	@Inject
 	private AvaliadorBC avaliadorBC;
 	
-	public List<Avaliador> getAvaliadorList(){
+	public List<AvaliadorEntity> getAvaliadorList(){
 		return avaliadorBC.findAll();
 	}
 			

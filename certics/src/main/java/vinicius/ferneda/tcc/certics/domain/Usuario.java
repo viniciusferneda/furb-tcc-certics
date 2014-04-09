@@ -3,17 +3,15 @@ package vinicius.ferneda.tcc.certics.domain;
 import java.io.Serializable;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.MappedSuperclass;
 
-@Entity
-@Table(name="TB_USUARIO")
-public class Usuario implements Serializable{
+@MappedSuperclass
+public abstract class Usuario implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -34,17 +32,7 @@ public class Usuario implements Serializable{
 
 	@ManyToOne
 	@JoinColumn(name="USU_AVRID")
-	private Avaliador avaliador;
-
-	public Usuario(){
-	}
-	
-	public Usuario(String email, String senha, Profissional profissional, Avaliador avaliador) {
-		this.email = email;
-		this.senha = senha;
-		this.profissional = profissional;
-		this.avaliador = avaliador;
-	}
+	private AvaliadorEntity avaliador;
 
 	public Long getId() {
 		return id;
@@ -78,11 +66,11 @@ public class Usuario implements Serializable{
 		this.profissional = profissional;
 	}
 
-	public Avaliador getAvaliador() {
+	public AvaliadorEntity getAvaliador() {
 		return avaliador;
 	}
 
-	public void setAvaliador(Avaliador avaliador) {
+	public void setAvaliador(AvaliadorEntity avaliador) {
 		this.avaliador = avaliador;
 	}
 

@@ -1,4 +1,3 @@
-
 package vinicius.ferneda.tcc.certics.view;
 
 import java.util.List;
@@ -11,9 +10,9 @@ import javax.inject.Inject;
 import vinicius.ferneda.tcc.certics.business.AvaliadorBC;
 import vinicius.ferneda.tcc.certics.business.EnderecoBC;
 import vinicius.ferneda.tcc.certics.domain.Avaliacao;
-import vinicius.ferneda.tcc.certics.domain.Avaliador;
+import vinicius.ferneda.tcc.certics.domain.AvaliadorEntity;
 import vinicius.ferneda.tcc.certics.domain.Endereco;
-import vinicius.ferneda.tcc.certics.domain.Usuario;
+import vinicius.ferneda.tcc.certics.domain.UsuarioEntity;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
@@ -21,7 +20,7 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 @ViewController
 @PreviousView("./avaliador_list.jsf")
-public class AvaliadorEditMB extends AbstractEditPageBean<Avaliador, Long> {
+public class AvaliadorEditMB extends AbstractEditPageBean<AvaliadorEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -29,17 +28,17 @@ public class AvaliadorEditMB extends AbstractEditPageBean<Avaliador, Long> {
 	private AvaliadorBC avaliadorBC;
 	
 
-	private DataModel<Usuario> usuarioList;
+	private DataModel<UsuarioEntity> usuarioList;
 	
 	public void addUsuario() {
-		this.getBean().getUsuarios().add(new Usuario());
+		this.getBean().getUsuarios().add(new UsuarioEntity());
 	}
 	public void deleteUsuario() {
 	   this.getBean().getUsuarios().remove(getUsuarioList().getRowData());
 	}
-	public DataModel<Usuario> getUsuarioList() {
+	public DataModel<UsuarioEntity> getUsuarioList() {
 	   if (usuarioList == null) {
-		   usuarioList = new ListDataModel<Usuario>(this.getBean().getUsuarios());
+		   usuarioList = new ListDataModel<UsuarioEntity>(this.getBean().getUsuarios());
 	   }
 	   return usuarioList;
 	} 
@@ -90,7 +89,7 @@ public class AvaliadorEditMB extends AbstractEditPageBean<Avaliador, Long> {
 	}
 	
 	@Override
-	protected Avaliador handleLoad(Long id) {
+	protected AvaliadorEntity handleLoad(Long id) {
 		return this.avaliadorBC.load(id);
 	}	
 }

@@ -1,4 +1,3 @@
-
 package vinicius.ferneda.tcc.certics.view;
 
 import java.util.List;
@@ -15,7 +14,7 @@ import vinicius.ferneda.tcc.certics.domain.Endereco;
 import vinicius.ferneda.tcc.certics.domain.EvidenciaProfissional;
 import vinicius.ferneda.tcc.certics.domain.OrganizacaoSolicitante;
 import vinicius.ferneda.tcc.certics.domain.Profissional;
-import vinicius.ferneda.tcc.certics.domain.Usuario;
+import vinicius.ferneda.tcc.certics.domain.UsuarioEntity;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
@@ -29,7 +28,6 @@ public class ProfissionalEditMB extends AbstractEditPageBean<Profissional, Long>
 
 	@Inject
 	private ProfissionalBC profissionalBC;
-	
 
 	@Inject
 	private OrganizacaoSolicitanteBC organizacaoSolicitanteBC;
@@ -38,17 +36,17 @@ public class ProfissionalEditMB extends AbstractEditPageBean<Profissional, Long>
 		return organizacaoSolicitanteBC.findAll();
 	}
 			
-	private DataModel<Usuario> usuarioList;
+	private DataModel<UsuarioEntity> usuarioList;
 	
 	public void addUsuario() {
-		this.getBean().getUsuarios().add(new Usuario());
+		this.getBean().getUsuarios().add(new UsuarioEntity());
 	}
 	public void deleteUsuario() {
 	   this.getBean().getUsuarios().remove(getUsuarioList().getRowData());
 	}
-	public DataModel<Usuario> getUsuarioList() {
+	public DataModel<UsuarioEntity> getUsuarioList() {
 	   if (usuarioList == null) {
-		   usuarioList = new ListDataModel<Usuario>(this.getBean().getUsuarios());
+		   usuarioList = new ListDataModel<UsuarioEntity>(this.getBean().getUsuarios());
 	   }
 	   return usuarioList;
 	} 

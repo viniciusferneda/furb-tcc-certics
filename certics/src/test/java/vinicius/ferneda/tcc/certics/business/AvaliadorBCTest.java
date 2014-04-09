@@ -16,6 +16,7 @@ import org.junit.runner.RunWith;
 
 import vinicius.ferneda.tcc.certics.constant.EnumSexo;
 import vinicius.ferneda.tcc.certics.domain.Avaliador;
+import vinicius.ferneda.tcc.certics.domain.AvaliadorEntity;
 import vinicius.ferneda.tcc.certics.domain.Endereco;
 import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
 
@@ -37,9 +38,9 @@ public class AvaliadorBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		Avaliador avaliador = new Avaliador("nome","cpf","rg",EnumSexo.MASCULINO,new Date(),"fone1","fone2",new Endereco());
+		AvaliadorEntity avaliador = new AvaliadorEntity("nome","cpf","rg",EnumSexo.MASCULINO,new Date(),"fone1","fone2",new Endereco());
 		avaliadorBC.insert(avaliador);
-		List<Avaliador> listOfAvaliador = avaliadorBC.findAll();
+		List<AvaliadorEntity> listOfAvaliador = avaliadorBC.findAll();
 		assertNotNull(listOfAvaliador);
 		assertEquals(1, listOfAvaliador.size());
 	}	
@@ -48,10 +49,10 @@ public class AvaliadorBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		Avaliador avaliador = new Avaliador("nome","cpf","rg",EnumSexo.MASCULINO,new Date(),"fone1","fone2",new Endereco());
+		AvaliadorEntity avaliador = new AvaliadorEntity("nome","cpf","rg",EnumSexo.MASCULINO,new Date(),"fone1","fone2",new Endereco());
 		avaliadorBC.insert(avaliador);
 		
-		List<Avaliador> listOfAvaliador = avaliadorBC.findAll();
+		List<AvaliadorEntity> listOfAvaliador = avaliadorBC.findAll();
 		assertNotNull(listOfAvaliador);
 		assertEquals(1, listOfAvaliador.size());
 		
@@ -63,11 +64,11 @@ public class AvaliadorBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		Avaliador avaliador = new Avaliador("nome","cpf","rg",EnumSexo.MASCULINO,new Date(),"fone1","fone2",new Endereco());
+		AvaliadorEntity avaliador = new AvaliadorEntity("nome","cpf","rg",EnumSexo.MASCULINO,new Date(),"fone1","fone2",new Endereco());
 		avaliadorBC.insert(avaliador);
 		
-		List<Avaliador> listOfAvaliador = avaliadorBC.findAll();
-		Avaliador avaliador2 = (Avaliador)listOfAvaliador.get(0);
+		List<AvaliadorEntity> listOfAvaliador = avaliadorBC.findAll();
+		AvaliadorEntity avaliador2 = (AvaliadorEntity)listOfAvaliador.get(0);
 		assertNotNull(listOfAvaliador);
 
 		// alterar para tratar uma propriedade existente na Entidade Avaliador

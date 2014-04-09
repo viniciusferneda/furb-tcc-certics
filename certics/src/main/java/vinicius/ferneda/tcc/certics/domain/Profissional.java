@@ -34,7 +34,7 @@ public class Profissional extends PessoaFisica implements Serializable{
 
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="USU_PROID")
-	private List<Usuario> usuarios = new ArrayList<Usuario>();
+	private List<UsuarioEntity> usuarios = new ArrayList<UsuarioEntity>();
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="EPR_PROID")
@@ -75,11 +75,11 @@ public class Profissional extends PessoaFisica implements Serializable{
 		this.organizacaoSolicitante = organizacaoSolicitante;
 	}
 
-	public List<Usuario> getUsuarios() {
+	public List<UsuarioEntity> getUsuarios() {
 		return usuarios;
 	}
 
-	public void setUsuarios(List<Usuario> usuarios) {
+	public void setUsuarios(List<UsuarioEntity> usuarios) {
 		this.usuarios = usuarios;
 	}
 

@@ -1,5 +1,3 @@
-
-
 package vinicius.ferneda.tcc.certics.business;
 
 import static org.junit.Assert.assertEquals;
@@ -14,6 +12,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import vinicius.ferneda.tcc.certics.domain.Usuario;
+import vinicius.ferneda.tcc.certics.domain.UsuarioEntity;
 import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
 
 @RunWith(DemoiselleRunner.class)
@@ -34,7 +33,7 @@ public class UsuarioBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		Usuario usuario = new Usuario("email","senha",null,null);
+		Usuario usuario = new UsuarioEntity("email","senha",null,null);
 		usuarioBC.insert(usuario);
 		List<Usuario> listOfUsuario = usuarioBC.findAll();
 		assertNotNull(listOfUsuario);
@@ -45,7 +44,7 @@ public class UsuarioBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		Usuario usuario = new Usuario("email","senha",null,null);
+		Usuario usuario = new UsuarioEntity("email","senha",null,null);
 		usuarioBC.insert(usuario);
 		
 		List<Usuario> listOfUsuario = usuarioBC.findAll();
@@ -60,7 +59,7 @@ public class UsuarioBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		Usuario usuario = new Usuario("email","senha",null,null);
+		Usuario usuario = new UsuarioEntity("email","senha",null,null);
 		usuarioBC.insert(usuario);
 		
 		List<Usuario> listOfUsuario = usuarioBC.findAll();

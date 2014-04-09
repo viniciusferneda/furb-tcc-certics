@@ -53,7 +53,7 @@ public class Avaliacao implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name="AVA_AVRID", nullable=false)
-	private Avaliador avaliador;
+	private AvaliadorEntity avaliador;
 
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="LIA_AVAID")
@@ -66,7 +66,7 @@ public class Avaliacao implements Serializable{
 	public Avaliacao(){
 	}
 	
-	public Avaliacao(EnumVersaoCertics versaoCertics, EnumPontuacaoAvaliacao pontuacao, Date dataAvaliacao, Software software, Avaliador avaliador) {
+	public Avaliacao(EnumVersaoCertics versaoCertics, EnumPontuacaoAvaliacao pontuacao, Date dataAvaliacao, Software software, AvaliadorEntity avaliador) {
 		this.versaoCertics = versaoCertics;
 		this.pontuacao = pontuacao;
 		this.dataAvaliacao = dataAvaliacao;
@@ -114,11 +114,11 @@ public class Avaliacao implements Serializable{
 		this.software = software;
 	}
 
-	public Avaliador getAvaliador() {
+	public AvaliadorEntity getAvaliador() {
 		return avaliador;
 	}
 
-	public void setAvaliador(Avaliador avaliador) {
+	public void setAvaliador(AvaliadorEntity avaliador) {
 		this.avaliador = avaliador;
 	}
 

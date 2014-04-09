@@ -6,23 +6,21 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 import vinicius.ferneda.tcc.certics.constant.EnumSexo;
 
-@Entity
-@Table(name="TB_PESSOA_FISICA")
-public class Avaliador extends PessoaFisica implements Serializable{
+@MappedSuperclass
+public abstract class Avaliador extends PessoaFisica implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="USU_AVRID")
-	private List<Usuario> usuarios = new ArrayList<Usuario>();
+	private List<UsuarioEntity> usuarios = new ArrayList<UsuarioEntity>();
 
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="AVA_AVRID")
@@ -34,12 +32,12 @@ public class Avaliador extends PessoaFisica implements Serializable{
 	public Avaliador(String nome, String cpf, String rg, EnumSexo sexo, Date dataNascimento, String fone1, String fone2, Endereco endereco) {
 		super(nome, cpf, rg, sexo, dataNascimento, fone1, fone2, endereco);
 	}
-
-	public List<Usuario> getUsuarios() {
+	
+	public List<UsuarioEntity> getUsuarios() {
 		return usuarios;
 	}
 
-	public void setUsuarios(List<Usuario> usuarios) {
+	public void setUsuarios(List<UsuarioEntity> usuarios) {
 		this.usuarios = usuarios;
 	}
 
