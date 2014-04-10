@@ -15,6 +15,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import vinicius.ferneda.tcc.certics.domain.Software;
+import vinicius.ferneda.tcc.certics.domain.SoftwareEntity;
 import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
 
 @RunWith(DemoiselleRunner.class)
@@ -35,7 +36,7 @@ public class SoftwareBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		Software software = new Software("nome","descricao","historico","tecnologias","aspectInovador","release",new Date(),new Date());
+		Software software = new SoftwareEntity("nome","descricao","historico","tecnologias","aspectInovador","release",new Date(),new Date());
 		softwareBC.insert(software);
 		List<Software> listOfSoftware = softwareBC.findAll();
 		assertNotNull(listOfSoftware);
@@ -46,7 +47,7 @@ public class SoftwareBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		Software software = new Software("nome","descricao","historico","tecnologias","aspectInovador","release",new Date(),new Date());
+		Software software = new SoftwareEntity("nome","descricao","historico","tecnologias","aspectInovador","release",new Date(),new Date());
 		softwareBC.insert(software);
 		
 		List<Software> listOfSoftware = softwareBC.findAll();
@@ -61,7 +62,7 @@ public class SoftwareBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		Software software = new Software("nome","descricao","historico","tecnologias","aspectInovador","release",new Date(),new Date());
+		Software software = new SoftwareEntity("nome","descricao","historico","tecnologias","aspectInovador","release",new Date(),new Date());
 		softwareBC.insert(software);
 		
 		List<Software> listOfSoftware = softwareBC.findAll();

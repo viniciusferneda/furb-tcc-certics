@@ -14,8 +14,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import vinicius.ferneda.tcc.certics.domain.EvidenciaProfissional;
-import vinicius.ferneda.tcc.certics.domain.Profissional;
-import vinicius.ferneda.tcc.certics.domain.RespostaEvidencia;
+import vinicius.ferneda.tcc.certics.domain.EvidenciaProfissionalEntity;
+import vinicius.ferneda.tcc.certics.domain.ProfissionalEntity;
+import vinicius.ferneda.tcc.certics.domain.RespostaEvidenciaEntity;
 import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
 
 @RunWith(DemoiselleRunner.class)
@@ -36,7 +37,7 @@ public class EvidenciaProfissionalBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		EvidenciaProfissional evidenciaProfissional = new EvidenciaProfissional(Integer.valueOf(1),"envolvimento",new RespostaEvidencia(),new Profissional());
+		EvidenciaProfissional evidenciaProfissional = new EvidenciaProfissionalEntity(Integer.valueOf(1),"envolvimento",new RespostaEvidenciaEntity(),new ProfissionalEntity());
 		evidenciaProfissionalBC.insert(evidenciaProfissional);
 		List<EvidenciaProfissional> listOfEvidenciaProfissional = evidenciaProfissionalBC.findAll();
 		assertNotNull(listOfEvidenciaProfissional);
@@ -47,7 +48,7 @@ public class EvidenciaProfissionalBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		EvidenciaProfissional evidenciaProfissional = new EvidenciaProfissional(Integer.valueOf(1),"envolvimento",new RespostaEvidencia(),new Profissional());
+		EvidenciaProfissional evidenciaProfissional = new EvidenciaProfissionalEntity(Integer.valueOf(1),"envolvimento",new RespostaEvidenciaEntity(),new ProfissionalEntity());
 		evidenciaProfissionalBC.insert(evidenciaProfissional);
 		
 		List<EvidenciaProfissional> listOfEvidenciaProfissional = evidenciaProfissionalBC.findAll();
@@ -62,7 +63,7 @@ public class EvidenciaProfissionalBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		EvidenciaProfissional evidenciaProfissional = new EvidenciaProfissional(Integer.valueOf(1),"envolvimento",new RespostaEvidencia(),new Profissional());
+		EvidenciaProfissional evidenciaProfissional = new EvidenciaProfissionalEntity(Integer.valueOf(1),"envolvimento",new RespostaEvidenciaEntity(),new ProfissionalEntity());
 		evidenciaProfissionalBC.insert(evidenciaProfissional);
 		
 		List<EvidenciaProfissional> listOfEvidenciaProfissional = evidenciaProfissionalBC.findAll();

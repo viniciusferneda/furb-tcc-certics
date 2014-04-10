@@ -6,19 +6,17 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
-@Entity
-@Table(name="TB_ORGANIZACAO_SOLICITANTE")
-public class OrganizacaoSolicitante implements Serializable{
+@MappedSuperclass
+public abstract class OrganizacaoSolicitante implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -44,23 +42,11 @@ public class OrganizacaoSolicitante implements Serializable{
 
 	@JoinColumn(name="ORS_ENDID", nullable=false)
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	private Endereco endereco;
+	private EnderecoEntity endereco;
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="PES_ORSID")
-	private List<Profissional> profissionais = new ArrayList<Profissional>();
-
-	public OrganizacaoSolicitante(){
-	}
-	
-	public OrganizacaoSolicitante(String nome, String razaoSocial, String cnpj, String fone1, String fone2, Endereco endereco) {
-		this.nome = nome;
-		this.razaoSocial = razaoSocial;
-		this.cnpj = cnpj;
-		this.fone1 = fone1;
-		this.fone2 = fone2;
-		this.endereco = endereco;
-	}
+	private List<ProfissionalEntity> profissionais = new ArrayList<ProfissionalEntity>();
 
 	public Long getId() {
 		return id;
@@ -110,19 +96,19 @@ public class OrganizacaoSolicitante implements Serializable{
 		this.fone2 = fone2;
 	}
 
-	public Endereco getEndereco() {
+	public EnderecoEntity getEndereco() {
 		return endereco;
 	}
 
-	public void setEndereco(Endereco endereco) {
+	public void setEndereco(EnderecoEntity endereco) {
 		this.endereco = endereco;
 	}
 
-	public List<Profissional> getProfissionais() {
+	public List<ProfissionalEntity> getProfissionais() {
 		return profissionais;
 	}
 
-	public void setProfissionais(List<Profissional> profissionais) {
+	public void setProfissionais(List<ProfissionalEntity> profissionais) {
 		this.profissionais = profissionais;
 	}
 	

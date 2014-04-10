@@ -24,7 +24,7 @@ public abstract class Avaliador extends PessoaFisica implements Serializable{
 
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="AVA_AVRID")
-	private List<Avaliacao> avaliacoes = new ArrayList<Avaliacao>();
+	private List<AvaliacaoEntity> avaliacoes = new ArrayList<AvaliacaoEntity>();
 	
 	public Avaliador(){
 	}
@@ -41,11 +41,11 @@ public abstract class Avaliador extends PessoaFisica implements Serializable{
 		this.usuarios = usuarios;
 	}
 
-	public List<Avaliacao> getAvaliacoes() {
+	public List<AvaliacaoEntity> getAvaliacoes() {
 		return avaliacoes;
 	}
 
-	public void setAvaliacoes(List<Avaliacao> avaliacoes) {
+	public void setAvaliacoes(List<AvaliacaoEntity> avaliacoes) {
 		this.avaliacoes = avaliacoes;
 	}
 	

@@ -9,7 +9,7 @@ import javax.inject.Inject;
 
 import vinicius.ferneda.tcc.certics.business.EvidenciaBC;
 import vinicius.ferneda.tcc.certics.business.RespostaEvidenciaBC;
-import vinicius.ferneda.tcc.certics.domain.Anexo;
+import vinicius.ferneda.tcc.certics.domain.AnexoEntity;
 import vinicius.ferneda.tcc.certics.domain.Evidencia;
 import vinicius.ferneda.tcc.certics.domain.RespostaEvidencia;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
@@ -34,17 +34,17 @@ public class EvidenciaEditMB extends AbstractEditPageBean<Evidencia, Long> {
 		return respostaEvidenciaBC.findAll();
 	}
 			
-	private DataModel<Anexo> anexoList;
+	private DataModel<AnexoEntity> anexoList;
 	
 	public void addAnexo() {
-		this.getBean().getAnexos().add(new Anexo());
+		this.getBean().getAnexos().add(new AnexoEntity());
 	}
 	public void deleteAnexo() {
 	   this.getBean().getAnexos().remove(getAnexoList().getRowData());
 	}
-	public DataModel<Anexo> getAnexoList() {
+	public DataModel<AnexoEntity> getAnexoList() {
 	   if (anexoList == null) {
-		   anexoList = new ListDataModel<Anexo>(this.getBean().getAnexos());
+		   anexoList = new ListDataModel<AnexoEntity>(this.getBean().getAnexos());
 	   }
 	   return anexoList;
 	} 

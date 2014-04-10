@@ -13,8 +13,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import vinicius.ferneda.tcc.certics.domain.Avaliacao;
+import vinicius.ferneda.tcc.certics.domain.AvaliacaoEntity;
 import vinicius.ferneda.tcc.certics.domain.LicaoAprendida;
+import vinicius.ferneda.tcc.certics.domain.LicaoAprendidaEntity;
 import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
 
 @RunWith(DemoiselleRunner.class)
@@ -35,7 +36,7 @@ public class LicaoAprendidaBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		LicaoAprendida licaoAprendida = new LicaoAprendida("pontosPositivos","pontosNegativos","melhoria",new Avaliacao());
+		LicaoAprendida licaoAprendida = new LicaoAprendidaEntity("pontosPositivos","pontosNegativos","melhoria",new AvaliacaoEntity());
 		licaoAprendidaBC.insert(licaoAprendida);
 		List<LicaoAprendida> listOfLicaoAprendida = licaoAprendidaBC.findAll();
 		assertNotNull(listOfLicaoAprendida);
@@ -46,7 +47,7 @@ public class LicaoAprendidaBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		LicaoAprendida licaoAprendida = new LicaoAprendida("pontosPositivos","pontosNegativos","melhoria",new Avaliacao());
+		LicaoAprendida licaoAprendida = new LicaoAprendidaEntity("pontosPositivos","pontosNegativos","melhoria",new AvaliacaoEntity());
 		licaoAprendidaBC.insert(licaoAprendida);
 		
 		List<LicaoAprendida> listOfLicaoAprendida = licaoAprendidaBC.findAll();
@@ -61,7 +62,7 @@ public class LicaoAprendidaBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		LicaoAprendida licaoAprendida = new LicaoAprendida("pontosPositivos","pontosNegativos","melhoria",new Avaliacao());
+		LicaoAprendida licaoAprendida = new LicaoAprendidaEntity("pontosPositivos","pontosNegativos","melhoria",new AvaliacaoEntity());
 		licaoAprendidaBC.insert(licaoAprendida);
 		
 		List<LicaoAprendida> listOfLicaoAprendida = licaoAprendidaBC.findAll();

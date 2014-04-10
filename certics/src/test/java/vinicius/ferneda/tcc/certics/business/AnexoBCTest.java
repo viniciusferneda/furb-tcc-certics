@@ -14,7 +14,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import vinicius.ferneda.tcc.certics.domain.Anexo;
-import vinicius.ferneda.tcc.certics.domain.Evidencia;
+import vinicius.ferneda.tcc.certics.domain.AnexoEntity;
+import vinicius.ferneda.tcc.certics.domain.EvidenciaEntity;
 import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
 
 @RunWith(DemoiselleRunner.class)
@@ -35,7 +36,7 @@ public class AnexoBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		Anexo anexo = new Anexo(new Byte(""),new Evidencia());
+		Anexo anexo = new AnexoEntity(new Byte(""),new EvidenciaEntity());
 		anexoBC.insert(anexo);
 		List<Anexo> listOfAnexo = anexoBC.findAll();
 		assertNotNull(listOfAnexo);
@@ -46,7 +47,7 @@ public class AnexoBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		Anexo anexo = new Anexo(new Byte(""),new Evidencia());
+		Anexo anexo = new AnexoEntity(new Byte(""),new EvidenciaEntity());
 		anexoBC.insert(anexo);
 		
 		List<Anexo> listOfAnexo = anexoBC.findAll();
@@ -61,7 +62,7 @@ public class AnexoBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		Anexo anexo = new Anexo(new Byte(""),new Evidencia());
+		Anexo anexo = new AnexoEntity(new Byte(""),new EvidenciaEntity());
 		anexoBC.insert(anexo);
 		
 		List<Anexo> listOfAnexo = anexoBC.findAll();

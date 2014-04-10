@@ -10,7 +10,7 @@ import javax.inject.Inject;
 
 import vinicius.ferneda.tcc.certics.business.AreaCompetenciaBC;
 import vinicius.ferneda.tcc.certics.domain.AreaCompetencia;
-import vinicius.ferneda.tcc.certics.domain.ResultadoEsperado;
+import vinicius.ferneda.tcc.certics.domain.ResultadoEsperadoEntity;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
@@ -24,23 +24,23 @@ public class AreaCompetenciaEditMB extends AbstractEditPageBean<AreaCompetencia,
 
 	@Inject
 	private AreaCompetenciaBC areaCompetenciaBC;
-	private DataModel<ResultadoEsperado> resultadoEsperadoList;
+	private DataModel<ResultadoEsperadoEntity> resultadoEsperadoList;
 
 	public List<SelectItem> getVersaoCertics() {
 		return areaCompetenciaBC.getEnumVersaoCertics();
 	}
 	
 	public void addResultadoEsperado() {
-		this.getBean().getResultadosEsperados().add(new ResultadoEsperado());
+		this.getBean().getResultadosEsperados().add(new ResultadoEsperadoEntity());
 	}
 	
 	public void deleteResultadoEsperado() {
 	   this.getBean().getResultadosEsperados().remove(getResultadoEsperadoList().getRowData());
 	}
 	
-	public DataModel<ResultadoEsperado> getResultadoEsperadoList() {
+	public DataModel<ResultadoEsperadoEntity> getResultadoEsperadoList() {
 	   if (resultadoEsperadoList == null) {
-		   resultadoEsperadoList = new ListDataModel<ResultadoEsperado>(this.getBean().getResultadosEsperados());
+		   resultadoEsperadoList = new ListDataModel<ResultadoEsperadoEntity>(this.getBean().getResultadosEsperados());
 	   }
 	   return resultadoEsperadoList;
 	} 

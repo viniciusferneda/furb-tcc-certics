@@ -7,20 +7,18 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity
-@Table(name="TB_SOFTWARE")
-public class Software implements Serializable {
+@MappedSuperclass
+public abstract class Software implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -57,21 +55,7 @@ public class Software implements Serializable {
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="AVA_SOFID")
-	private List<Avaliacao> avaliacoes = new ArrayList<Avaliacao>();
-
-	public Software(){
-	}
-	
-	public Software(String nome, String descricao, String historico, String tecnologias, String aspectoInovador, String release, Date dataInicio, Date dataLiberacaoVersao) {
-		this.nome = nome;
-		this.descricao = descricao;
-		this.historico = historico;
-		this.tecnologias = tecnologias;
-		this.aspectoInovador = aspectoInovador;
-		this.release = release;
-		this.dataInicio = dataInicio;
-		this.dataLiberacaoVersao = dataLiberacaoVersao;
-	}
+	private List<AvaliacaoEntity> avaliacoes = new ArrayList<AvaliacaoEntity>();
 
 	public Long getId() {
 		return id;
@@ -145,11 +129,11 @@ public class Software implements Serializable {
 		this.dataLiberacaoVersao = dataLiberacaoVersao;
 	}
 
-	public List<Avaliacao> getAvaliacoes() {
+	public List<AvaliacaoEntity> getAvaliacoes() {
 		return avaliacoes;
 	}
 
-	public void setAvaliacoes(List<Avaliacao> avaliacoes) {
+	public void setAvaliacoes(List<AvaliacaoEntity> avaliacoes) {
 		this.avaliacoes = avaliacoes;
 	}
 	

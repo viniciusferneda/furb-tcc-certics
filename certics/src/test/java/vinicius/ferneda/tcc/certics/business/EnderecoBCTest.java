@@ -14,6 +14,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import vinicius.ferneda.tcc.certics.domain.Endereco;
+import vinicius.ferneda.tcc.certics.domain.EnderecoEntity;
 import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
 
 @RunWith(DemoiselleRunner.class)
@@ -34,7 +35,7 @@ public class EnderecoBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		Endereco endereco = new Endereco("cep","logradouro",Integer.valueOf(1),"complemento","bairro","cidade",null,"pais");
+		Endereco endereco = new EnderecoEntity("cep","logradouro",Integer.valueOf(1),"complemento","bairro","cidade",null,"pais");
 		enderecoBC.insert(endereco);
 		List<Endereco> listOfEndereco = enderecoBC.findAll();
 		assertNotNull(listOfEndereco);
@@ -45,7 +46,7 @@ public class EnderecoBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		Endereco endereco = new Endereco("cep","logradouro",Integer.valueOf(1),"complemento","bairro","cidade",null,"pais");
+		Endereco endereco = new EnderecoEntity("cep","logradouro",Integer.valueOf(1),"complemento","bairro","cidade",null,"pais");
 		enderecoBC.insert(endereco);
 		
 		List<Endereco> listOfEndereco = enderecoBC.findAll();
@@ -60,7 +61,7 @@ public class EnderecoBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		Endereco endereco = new Endereco("cep","logradouro",Integer.valueOf(1),"complemento","bairro","cidade",null,"pais");
+		Endereco endereco = new EnderecoEntity("cep","logradouro",Integer.valueOf(1),"complemento","bairro","cidade",null,"pais");
 		enderecoBC.insert(endereco);
 		
 		List<Endereco> listOfEndereco = enderecoBC.findAll();

@@ -8,8 +8,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name="TB_USUARIO")
 @NamedQueries({
-    @NamedQuery(name = "Usuario.findById", query = "SELECT u FROM UsuarioEntity u WHERE u.id = :id"),
-    @NamedQuery(name = "Usuario.findByEmail", query = "SELECT u FROM UsuarioEntity u WHERE u.email = :email")
+    @NamedQuery(name = "UsuarioEntity.findById", query = "SELECT u FROM UsuarioEntity u WHERE u.id = :id"),
+    @NamedQuery(name = "UsuarioEntity.findByEmail", query = "SELECT u FROM UsuarioEntity u WHERE u.email = :email")
 })
 public class UsuarioEntity extends Usuario{
 
@@ -18,7 +18,7 @@ public class UsuarioEntity extends Usuario{
 	public UsuarioEntity(){
 	}
 	
-	public UsuarioEntity(String email, String senha, Profissional profissional, AvaliadorEntity avaliador) {
+	public UsuarioEntity(String email, String senha, ProfissionalEntity profissional, AvaliadorEntity avaliador) {
 		setEmail(email);
 		setSenha(senha);
 		setProfissional(profissional);

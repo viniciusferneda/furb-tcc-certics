@@ -14,6 +14,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import vinicius.ferneda.tcc.certics.domain.OrganizacaoSolicitante;
+import vinicius.ferneda.tcc.certics.domain.OrganizacaoSolicitanteEntity;
 import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
 
 @RunWith(DemoiselleRunner.class)
@@ -34,7 +35,7 @@ public class OrganizacaoSolicitanteBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		OrganizacaoSolicitante organizacaoSolicitante = new OrganizacaoSolicitante("nome","razaoSocial","cnpj","fone1","fone2",null);
+		OrganizacaoSolicitante organizacaoSolicitante = new OrganizacaoSolicitanteEntity("nome","razaoSocial","cnpj","fone1","fone2",null);
 		organizacaoSolicitanteBC.insert(organizacaoSolicitante);
 		List<OrganizacaoSolicitante> listOfOrganizacaoSolicitante = organizacaoSolicitanteBC.findAll();
 		assertNotNull(listOfOrganizacaoSolicitante);
@@ -45,7 +46,7 @@ public class OrganizacaoSolicitanteBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		OrganizacaoSolicitante organizacaoSolicitante = new OrganizacaoSolicitante("nome","razaoSocial","cnpj","fone1","fone2",null);
+		OrganizacaoSolicitante organizacaoSolicitante = new OrganizacaoSolicitanteEntity("nome","razaoSocial","cnpj","fone1","fone2",null);
 		organizacaoSolicitanteBC.insert(organizacaoSolicitante);
 		
 		List<OrganizacaoSolicitante> listOfOrganizacaoSolicitante = organizacaoSolicitanteBC.findAll();
@@ -60,7 +61,7 @@ public class OrganizacaoSolicitanteBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		OrganizacaoSolicitante organizacaoSolicitante = new OrganizacaoSolicitante("nome","razaoSocial","cnpj","fone1","fone2",null);
+		OrganizacaoSolicitante organizacaoSolicitante = new OrganizacaoSolicitanteEntity("nome","razaoSocial","cnpj","fone1","fone2",null);
 		organizacaoSolicitanteBC.insert(organizacaoSolicitante);
 		
 		List<OrganizacaoSolicitante> listOfOrganizacaoSolicitante = organizacaoSolicitanteBC.findAll();

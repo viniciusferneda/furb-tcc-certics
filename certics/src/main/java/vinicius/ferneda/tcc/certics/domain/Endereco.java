@@ -3,19 +3,17 @@ package vinicius.ferneda.tcc.certics.domain;
 import java.io.Serializable;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.MappedSuperclass;
 
 import vinicius.ferneda.tcc.certics.constant.EnumUF;
 
-@Entity
-@Table(name="TB_ENDERECO")
-public class Endereco implements Serializable {
+@MappedSuperclass
+public abstract class Endereco implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -49,20 +47,6 @@ public class Endereco implements Serializable {
 	@Column(name="END_PAIS", nullable=false, length=255)
 	private String pais;
 	
-	public Endereco(){
-	}
-	
-	public Endereco(String cep, String logradouro, Integer numero, String complemento, String bairro, String cidade, EnumUF uf, String pais) {
-		this.cep = cep;
-		this.logradouro = logradouro;
-		this.numero = numero;
-		this.complemento = complemento;
-		this.bairro = bairro;
-		this.cidade = cidade;
-		this.uf = uf;
-		this.pais = pais;
-	}
-
 	public Long getId() {
 		return id;
 	}

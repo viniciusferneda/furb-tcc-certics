@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
@@ -14,14 +13,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 import vinicius.ferneda.tcc.certics.constant.EnumVersaoCertics;
 
-@Entity
-@Table(name="TB_AREA_COMPETENCIA")
-public class AreaCompetencia implements Serializable{
+@MappedSuperclass
+public abstract class AreaCompetencia implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -45,17 +43,7 @@ public class AreaCompetencia implements Serializable{
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="REV_ARCID")
-	private List<ResultadoEsperado> resultadosEsperados = new ArrayList<ResultadoEsperado>();
-
-	public AreaCompetencia(){
-	}
-	
-	public AreaCompetencia(String titulo, String perguntaChave, String descricao, EnumVersaoCertics versaoCertics) {
-		this.titulo = titulo;
-		this.perguntaChave = perguntaChave;
-		this.descricao = descricao;
-		this.versaoCertics = versaoCertics;
-	}
+	private List<ResultadoEsperadoEntity> resultadosEsperados = new ArrayList<ResultadoEsperadoEntity>();
 
 	public Long getId() {
 		return id;
@@ -97,11 +85,11 @@ public class AreaCompetencia implements Serializable{
 		this.versaoCertics = versaoCertics;
 	}
 
-	public List<ResultadoEsperado> getResultadosEsperados() {
+	public List<ResultadoEsperadoEntity> getResultadosEsperados() {
 		return resultadosEsperados;
 	}
 
-	public void setResultadosEsperados(List<ResultadoEsperado> resultadosEsperados) {
+	public void setResultadosEsperados(List<ResultadoEsperadoEntity> resultadosEsperados) {
 		this.resultadosEsperados = resultadosEsperados;
 	}
 	

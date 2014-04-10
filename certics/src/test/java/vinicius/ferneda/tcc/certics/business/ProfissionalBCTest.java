@@ -15,9 +15,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import vinicius.ferneda.tcc.certics.constant.EnumSexo;
-import vinicius.ferneda.tcc.certics.domain.Endereco;
-import vinicius.ferneda.tcc.certics.domain.OrganizacaoSolicitante;
+import vinicius.ferneda.tcc.certics.domain.EnderecoEntity;
+import vinicius.ferneda.tcc.certics.domain.OrganizacaoSolicitanteEntity;
 import vinicius.ferneda.tcc.certics.domain.Profissional;
+import vinicius.ferneda.tcc.certics.domain.ProfissionalEntity;
 import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
 
 @RunWith(DemoiselleRunner.class)
@@ -38,7 +39,7 @@ public class ProfissionalBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		Profissional profissional = new Profissional("vinculoAtual",Integer.valueOf(1),new OrganizacaoSolicitante(),"nome","cpf","rg",EnumSexo.MASCULINO,new Date(),"fone1","fone2",new Endereco());
+		Profissional profissional = new ProfissionalEntity("vinculoAtual",Integer.valueOf(1),new OrganizacaoSolicitanteEntity(),"nome","cpf","rg",EnumSexo.MASCULINO,new Date(),"fone1","fone2",new EnderecoEntity());
 		profissionalBC.insert(profissional);
 		List<Profissional> listOfProfissional = profissionalBC.findAll();
 		assertNotNull(listOfProfissional);
@@ -49,7 +50,7 @@ public class ProfissionalBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		Profissional profissional = new Profissional("vinculoAtual",Integer.valueOf(1),new OrganizacaoSolicitante(),"nome","cpf","rg",EnumSexo.MASCULINO,new Date(),"fone1","fone2",new Endereco());
+		Profissional profissional = new ProfissionalEntity("vinculoAtual",Integer.valueOf(1),new OrganizacaoSolicitanteEntity(),"nome","cpf","rg",EnumSexo.MASCULINO,new Date(),"fone1","fone2",new EnderecoEntity());
 		profissionalBC.insert(profissional);
 		
 		List<Profissional> listOfProfissional = profissionalBC.findAll();
@@ -64,7 +65,7 @@ public class ProfissionalBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		Profissional profissional = new Profissional("vinculoAtual",Integer.valueOf(1),new OrganizacaoSolicitante(),"nome","cpf","rg",EnumSexo.MASCULINO,new Date(),"fone1","fone2",new Endereco());
+		Profissional profissional = new ProfissionalEntity("vinculoAtual",Integer.valueOf(1),new OrganizacaoSolicitanteEntity(),"nome","cpf","rg",EnumSexo.MASCULINO,new Date(),"fone1","fone2",new EnderecoEntity());
 		profissionalBC.insert(profissional);
 		
 		List<Profissional> listOfProfissional = profissionalBC.findAll();

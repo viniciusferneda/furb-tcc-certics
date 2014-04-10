@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
@@ -16,17 +15,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import vinicius.ferneda.tcc.certics.constant.EnumPontuacaoAvaliacao;
 import vinicius.ferneda.tcc.certics.constant.EnumVersaoCertics;
 
-@Entity
-@Table(name="TB_AVALIACAO")
-public class Avaliacao implements Serializable{
+@MappedSuperclass
+public abstract class Avaliacao implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -49,7 +47,7 @@ public class Avaliacao implements Serializable{
 	
 	@ManyToOne 
 	@JoinColumn(name="AVA_SOFID", nullable=false)
-	private Software software;
+	private SoftwareEntity software;
 	
 	@ManyToOne
 	@JoinColumn(name="AVA_AVRID", nullable=false)
@@ -57,23 +55,12 @@ public class Avaliacao implements Serializable{
 
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="LIA_AVAID")
-	private List<LicaoAprendida> licoesAprendidas = new ArrayList<LicaoAprendida>();
+	private List<LicaoAprendidaEntity> licoesAprendidas = new ArrayList<LicaoAprendidaEntity>();
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="REV_AVAID")
-	private List<RespostaEvidencia> respostas = new ArrayList<RespostaEvidencia>();
+	private List<RespostaEvidenciaEntity> respostas = new ArrayList<RespostaEvidenciaEntity>();
 	
-	public Avaliacao(){
-	}
-	
-	public Avaliacao(EnumVersaoCertics versaoCertics, EnumPontuacaoAvaliacao pontuacao, Date dataAvaliacao, Software software, AvaliadorEntity avaliador) {
-		this.versaoCertics = versaoCertics;
-		this.pontuacao = pontuacao;
-		this.dataAvaliacao = dataAvaliacao;
-		this.software = software;
-		this.avaliador = avaliador;
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -106,11 +93,11 @@ public class Avaliacao implements Serializable{
 		this.dataAvaliacao = dataAvaliacao;
 	}
 
-	public Software getSoftware() {
+	public SoftwareEntity getSoftware() {
 		return software;
 	}
 
-	public void setSoftware(Software software) {
+	public void setSoftware(SoftwareEntity software) {
 		this.software = software;
 	}
 
@@ -122,19 +109,19 @@ public class Avaliacao implements Serializable{
 		this.avaliador = avaliador;
 	}
 
-	public List<LicaoAprendida> getLicoesAprendidas() {
+	public List<LicaoAprendidaEntity> getLicoesAprendidas() {
 		return licoesAprendidas;
 	}
 
-	public void setLicoesAprendidas(List<LicaoAprendida> licoesAprendidas) {
+	public void setLicoesAprendidas(List<LicaoAprendidaEntity> licoesAprendidas) {
 		this.licoesAprendidas = licoesAprendidas;
 	}
 
-	public List<RespostaEvidencia> getRespostas() {
+	public List<RespostaEvidenciaEntity> getRespostas() {
 		return respostas;
 	}
 
-	public void setRespostas(List<RespostaEvidencia> respostas) {
+	public void setRespostas(List<RespostaEvidenciaEntity> respostas) {
 		this.respostas = respostas;
 	}
 }

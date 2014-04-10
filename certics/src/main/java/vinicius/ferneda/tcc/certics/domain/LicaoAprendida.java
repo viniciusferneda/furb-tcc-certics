@@ -3,17 +3,15 @@ package vinicius.ferneda.tcc.certics.domain;
 import java.io.Serializable;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.MappedSuperclass;
 
-@Entity
-@Table(name="TB_LICAO_APRENDIDA")
-public class LicaoAprendida implements Serializable{
+@MappedSuperclass
+public abstract class LicaoAprendida implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -33,17 +31,7 @@ public class LicaoAprendida implements Serializable{
 	
 	@ManyToOne 
 	@JoinColumn(name="LIA_AVAID", nullable=false)
-	private Avaliacao avaliacao;
-
-	public LicaoAprendida(){
-	}
-	
-	public LicaoAprendida(String pontosPositivos, String pontosNegativos, String melhoria, Avaliacao avaliacao) {
-		this.pontosPositivos = pontosPositivos;
-		this.pontosNegativos = pontosNegativos;
-		this.melhoria = melhoria;
-		this.avaliacao = avaliacao;
-	}
+	private AvaliacaoEntity avaliacao;
 
 	public Long getId() {
 		return id;
@@ -77,11 +65,11 @@ public class LicaoAprendida implements Serializable{
 		this.melhoria = melhoria;
 	}
 
-	public Avaliacao getAvaliacao() {
+	public AvaliacaoEntity getAvaliacao() {
 		return avaliacao;
 	}
 
-	public void setAvaliacao(Avaliacao avaliacao) {
+	public void setAvaliacao(AvaliacaoEntity avaliacao) {
 		this.avaliacao = avaliacao;
 	}
 	

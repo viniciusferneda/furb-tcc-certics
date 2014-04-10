@@ -15,6 +15,7 @@ import org.junit.runner.RunWith;
 
 import vinicius.ferneda.tcc.certics.constant.EnumVersaoCertics;
 import vinicius.ferneda.tcc.certics.domain.AreaCompetencia;
+import vinicius.ferneda.tcc.certics.domain.AreaCompetenciaEntity;
 import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
 
 @RunWith(DemoiselleRunner.class)
@@ -35,7 +36,7 @@ public class AreaCompetenciaBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		AreaCompetencia areaCompetencia = new AreaCompetencia("titulo","perguntaChave","descricao",EnumVersaoCertics.V_1_0);
+		AreaCompetencia areaCompetencia = new AreaCompetenciaEntity("titulo","perguntaChave","descricao",EnumVersaoCertics.V_1_0);
 		areaCompetenciaBC.insert(areaCompetencia);
 		List<AreaCompetencia> listOfAreaCompetencia = areaCompetenciaBC.findAll();
 		assertNotNull(listOfAreaCompetencia);
@@ -46,7 +47,7 @@ public class AreaCompetenciaBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		AreaCompetencia areaCompetencia = new AreaCompetencia("titulo","perguntaChave","descricao",EnumVersaoCertics.V_1_0);
+		AreaCompetencia areaCompetencia = new AreaCompetenciaEntity("titulo","perguntaChave","descricao",EnumVersaoCertics.V_1_0);
 		areaCompetenciaBC.insert(areaCompetencia);
 		
 		List<AreaCompetencia> listOfAreaCompetencia = areaCompetenciaBC.findAll();
@@ -61,7 +62,7 @@ public class AreaCompetenciaBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		AreaCompetencia areaCompetencia = new AreaCompetencia("titulo","perguntaChave","descricao",EnumVersaoCertics.V_1_0);
+		AreaCompetencia areaCompetencia = new AreaCompetenciaEntity("titulo","perguntaChave","descricao",EnumVersaoCertics.V_1_0);
 		areaCompetenciaBC.insert(areaCompetencia);
 		
 		List<AreaCompetencia> listOfAreaCompetencia = areaCompetenciaBC.findAll();

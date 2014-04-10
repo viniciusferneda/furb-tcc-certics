@@ -17,7 +17,7 @@ import org.junit.runner.RunWith;
 import vinicius.ferneda.tcc.certics.constant.EnumSexo;
 import vinicius.ferneda.tcc.certics.domain.Avaliador;
 import vinicius.ferneda.tcc.certics.domain.AvaliadorEntity;
-import vinicius.ferneda.tcc.certics.domain.Endereco;
+import vinicius.ferneda.tcc.certics.domain.EnderecoEntity;
 import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
 
 @RunWith(DemoiselleRunner.class)
@@ -38,7 +38,7 @@ public class AvaliadorBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		AvaliadorEntity avaliador = new AvaliadorEntity("nome","cpf","rg",EnumSexo.MASCULINO,new Date(),"fone1","fone2",new Endereco());
+		AvaliadorEntity avaliador = new AvaliadorEntity("nome","cpf","rg",EnumSexo.MASCULINO,new Date(),"fone1","fone2",new EnderecoEntity());
 		avaliadorBC.insert(avaliador);
 		List<AvaliadorEntity> listOfAvaliador = avaliadorBC.findAll();
 		assertNotNull(listOfAvaliador);
@@ -49,7 +49,7 @@ public class AvaliadorBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		AvaliadorEntity avaliador = new AvaliadorEntity("nome","cpf","rg",EnumSexo.MASCULINO,new Date(),"fone1","fone2",new Endereco());
+		AvaliadorEntity avaliador = new AvaliadorEntity("nome","cpf","rg",EnumSexo.MASCULINO,new Date(),"fone1","fone2",new EnderecoEntity());
 		avaliadorBC.insert(avaliador);
 		
 		List<AvaliadorEntity> listOfAvaliador = avaliadorBC.findAll();
@@ -64,7 +64,7 @@ public class AvaliadorBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		AvaliadorEntity avaliador = new AvaliadorEntity("nome","cpf","rg",EnumSexo.MASCULINO,new Date(),"fone1","fone2",new Endereco());
+		AvaliadorEntity avaliador = new AvaliadorEntity("nome","cpf","rg",EnumSexo.MASCULINO,new Date(),"fone1","fone2",new EnderecoEntity());
 		avaliadorBC.insert(avaliador);
 		
 		List<AvaliadorEntity> listOfAvaliador = avaliadorBC.findAll();

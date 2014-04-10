@@ -6,7 +6,7 @@ import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 
 import vinicius.ferneda.tcc.certics.business.SoftwareBC;
-import vinicius.ferneda.tcc.certics.domain.Avaliacao;
+import vinicius.ferneda.tcc.certics.domain.AvaliacaoEntity;
 import vinicius.ferneda.tcc.certics.domain.Software;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
@@ -23,17 +23,17 @@ public class SoftwareEditMB extends AbstractEditPageBean<Software, Long> {
 	private SoftwareBC softwareBC;
 	
 
-	private DataModel<Avaliacao> avaliacaoList;
+	private DataModel<AvaliacaoEntity> avaliacaoList;
 	
 	public void addAvaliacao() {
-		this.getBean().getAvaliacoes().add(new Avaliacao());
+		this.getBean().getAvaliacoes().add(new AvaliacaoEntity());
 	}
 	public void deleteAvaliacao() {
 	   this.getBean().getAvaliacoes().remove(getAvaliacaoList().getRowData());
 	}
-	public DataModel<Avaliacao> getAvaliacaoList() {
+	public DataModel<AvaliacaoEntity> getAvaliacaoList() {
 	   if (avaliacaoList == null) {
-		   avaliacaoList = new ListDataModel<Avaliacao>(this.getBean().getAvaliacoes());
+		   avaliacaoList = new ListDataModel<AvaliacaoEntity>(this.getBean().getAvaliacoes());
 	   }
 	   return avaliacaoList;
 	} 

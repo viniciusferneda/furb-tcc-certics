@@ -28,7 +28,7 @@ public abstract class Usuario implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name="USU_PROID")
-	private Profissional profissional;
+	private ProfissionalEntity profissional;
 
 	@ManyToOne
 	@JoinColumn(name="USU_AVRID")
@@ -58,11 +58,11 @@ public abstract class Usuario implements Serializable{
 		this.senha = senha;
 	}
 
-	public Profissional getProfissional() {
+	public ProfissionalEntity getProfissional() {
 		return profissional;
 	}
 
-	public void setProfissional(Profissional profissional) {
+	public void setProfissional(ProfissionalEntity profissional) {
 		this.profissional = profissional;
 	}
 

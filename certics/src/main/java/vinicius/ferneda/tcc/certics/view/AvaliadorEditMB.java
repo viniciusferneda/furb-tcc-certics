@@ -9,7 +9,7 @@ import javax.inject.Inject;
 
 import vinicius.ferneda.tcc.certics.business.AvaliadorBC;
 import vinicius.ferneda.tcc.certics.business.EnderecoBC;
-import vinicius.ferneda.tcc.certics.domain.Avaliacao;
+import vinicius.ferneda.tcc.certics.domain.AvaliacaoEntity;
 import vinicius.ferneda.tcc.certics.domain.AvaliadorEntity;
 import vinicius.ferneda.tcc.certics.domain.Endereco;
 import vinicius.ferneda.tcc.certics.domain.UsuarioEntity;
@@ -42,17 +42,17 @@ public class AvaliadorEditMB extends AbstractEditPageBean<AvaliadorEntity, Long>
 	   }
 	   return usuarioList;
 	} 
-	private DataModel<Avaliacao> avaliacaoList;
+	private DataModel<AvaliacaoEntity> avaliacaoList;
 	
 	public void addAvaliacao() {
-		this.getBean().getAvaliacoes().add(new Avaliacao());
+		this.getBean().getAvaliacoes().add(new AvaliacaoEntity());
 	}
 	public void deleteAvaliacao() {
 	   this.getBean().getAvaliacoes().remove(getAvaliacaoList().getRowData());
 	}
-	public DataModel<Avaliacao> getAvaliacaoList() {
+	public DataModel<AvaliacaoEntity> getAvaliacaoList() {
 	   if (avaliacaoList == null) {
-		   avaliacaoList = new ListDataModel<Avaliacao>(this.getBean().getAvaliacoes());
+		   avaliacaoList = new ListDataModel<AvaliacaoEntity>(this.getBean().getAvaliacoes());
 	   }
 	   return avaliacaoList;
 	} 

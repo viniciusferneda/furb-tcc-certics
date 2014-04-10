@@ -14,7 +14,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import vinicius.ferneda.tcc.certics.domain.ConjuntoEvidencias;
-import vinicius.ferneda.tcc.certics.domain.ResultadoEsperado;
+import vinicius.ferneda.tcc.certics.domain.ConjuntoEvidenciasEntity;
+import vinicius.ferneda.tcc.certics.domain.ResultadoEsperadoEntity;
 import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
 
 @RunWith(DemoiselleRunner.class)
@@ -30,12 +31,11 @@ public class ConjuntoEvidenciasBCTest {
 		}
 	}	
 	
-	
 	@Test
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		ConjuntoEvidencias conjuntoEvidencias = new ConjuntoEvidencias("comentario",new ResultadoEsperado());
+		ConjuntoEvidencias conjuntoEvidencias = new ConjuntoEvidenciasEntity("comentario",new ResultadoEsperadoEntity());
 		conjuntoEvidenciasBC.insert(conjuntoEvidencias);
 		List<ConjuntoEvidencias> listOfConjuntoEvidencias = conjuntoEvidenciasBC.findAll();
 		assertNotNull(listOfConjuntoEvidencias);
@@ -46,7 +46,7 @@ public class ConjuntoEvidenciasBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		ConjuntoEvidencias conjuntoEvidencias = new ConjuntoEvidencias("comentario",new ResultadoEsperado());
+		ConjuntoEvidencias conjuntoEvidencias = new ConjuntoEvidenciasEntity("comentario",new ResultadoEsperadoEntity());
 		conjuntoEvidenciasBC.insert(conjuntoEvidencias);
 		
 		List<ConjuntoEvidencias> listOfConjuntoEvidencias = conjuntoEvidenciasBC.findAll();
@@ -61,7 +61,7 @@ public class ConjuntoEvidenciasBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		ConjuntoEvidencias conjuntoEvidencias = new ConjuntoEvidencias("comentario",new ResultadoEsperado());
+		ConjuntoEvidencias conjuntoEvidencias = new ConjuntoEvidenciasEntity("comentario",new ResultadoEsperadoEntity());
 		conjuntoEvidenciasBC.insert(conjuntoEvidencias);
 		
 		List<ConjuntoEvidencias> listOfConjuntoEvidencias = conjuntoEvidenciasBC.findAll();

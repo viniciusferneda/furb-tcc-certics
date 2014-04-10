@@ -12,13 +12,13 @@ import vinicius.ferneda.tcc.certics.constant.EnumSexo;
 @Entity
 @Table(name="TB_PESSOA_FISICA")
 @NamedQueries({
-    @NamedQuery(name="Avaliador.findById", 
+    @NamedQuery(name="AvaliadorEntity.findById", 
     	query = "SELECT avr FROM AvaliadorEntity avr WHERE avr.id = :id"),
     	
-    @NamedQuery(name="Avaliador.findByEmail",
+    @NamedQuery(name="AvaliadorEntity.findByEmail",
     	query = "SELECT avr FROM AvaliadorEntity avr WHERE avr.nome = :nome"),
     		
-    @NamedQuery(name="Avaliador.findByUsuarioId", 
+    @NamedQuery(name="AvaliadorEntity.findByUsuarioId", 
     	query = "SELECT avr "
     			+ " FROM AvaliadorEntity avr "
     			+ " inner join avr.usuarios usu "

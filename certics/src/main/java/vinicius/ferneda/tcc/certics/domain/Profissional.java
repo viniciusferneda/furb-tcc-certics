@@ -7,18 +7,16 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 import vinicius.ferneda.tcc.certics.constant.EnumSexo;
 
-@Entity
-@Table(name="TB_PESSOA_FISICA")
-public class Profissional extends PessoaFisica implements Serializable{
+@MappedSuperclass
+public abstract class Profissional extends PessoaFisica implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -30,7 +28,7 @@ public class Profissional extends PessoaFisica implements Serializable{
 	
 	@ManyToOne 
 	@JoinColumn(name="PES_ORSID", nullable=false)
-	private OrganizacaoSolicitante organizacaoSolicitante;
+	private OrganizacaoSolicitanteEntity organizacaoSolicitante;
 
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="USU_PROID")
@@ -38,12 +36,12 @@ public class Profissional extends PessoaFisica implements Serializable{
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="EPR_PROID")
-	private List<EvidenciaProfissional> profissionais = new ArrayList<EvidenciaProfissional>();
+	private List<EvidenciaProfissionalEntity> profissionais = new ArrayList<EvidenciaProfissionalEntity>();
 	
 	public Profissional(){
 	}
 	
-	public Profissional(String vinculoAtual, Integer responsavelOrganizacao, OrganizacaoSolicitante organizacaoSolicitante,
+	public Profissional(String vinculoAtual, Integer responsavelOrganizacao, OrganizacaoSolicitanteEntity organizacaoSolicitante,
 			String nome, String cpf, String rg, EnumSexo sexo, Date dataNascimento, String fone1, String fone2, Endereco endereco) {
 		super(nome, cpf, rg, sexo, dataNascimento, fone1, fone2, endereco);
 		this.vinculoAtual = vinculoAtual;
@@ -67,11 +65,11 @@ public class Profissional extends PessoaFisica implements Serializable{
 		this.responsavelOrganizacao = responsavelOrganizacao;
 	}
 
-	public OrganizacaoSolicitante getOrganizacaoSolicitante() {
+	public OrganizacaoSolicitanteEntity getOrganizacaoSolicitante() {
 		return organizacaoSolicitante;
 	}
 
-	public void setOrganizacaoSolicitante(OrganizacaoSolicitante organizacaoSolicitante) {
+	public void setOrganizacaoSolicitante(OrganizacaoSolicitanteEntity organizacaoSolicitante) {
 		this.organizacaoSolicitante = organizacaoSolicitante;
 	}
 
@@ -83,11 +81,11 @@ public class Profissional extends PessoaFisica implements Serializable{
 		this.usuarios = usuarios;
 	}
 
-	public List<EvidenciaProfissional> getProfissionais() {
+	public List<EvidenciaProfissionalEntity> getProfissionais() {
 		return profissionais;
 	}
 
-	public void setProfissionais(List<EvidenciaProfissional> profissionais) {
+	public void setProfissionais(List<EvidenciaProfissionalEntity> profissionais) {
 		this.profissionais = profissionais;
 	}
 	

@@ -11,7 +11,7 @@ import vinicius.ferneda.tcc.certics.business.EnderecoBC;
 import vinicius.ferneda.tcc.certics.business.OrganizacaoSolicitanteBC;
 import vinicius.ferneda.tcc.certics.business.ProfissionalBC;
 import vinicius.ferneda.tcc.certics.domain.Endereco;
-import vinicius.ferneda.tcc.certics.domain.EvidenciaProfissional;
+import vinicius.ferneda.tcc.certics.domain.EvidenciaProfissionalEntity;
 import vinicius.ferneda.tcc.certics.domain.OrganizacaoSolicitante;
 import vinicius.ferneda.tcc.certics.domain.Profissional;
 import vinicius.ferneda.tcc.certics.domain.UsuarioEntity;
@@ -50,17 +50,17 @@ public class ProfissionalEditMB extends AbstractEditPageBean<Profissional, Long>
 	   }
 	   return usuarioList;
 	} 
-	private DataModel<EvidenciaProfissional> evidenciaProfissionalList;
+	private DataModel<EvidenciaProfissionalEntity> evidenciaProfissionalList;
 	
 	public void addEvidenciaProfissional() {
-		this.getBean().getProfissionais().add(new EvidenciaProfissional());
+		this.getBean().getProfissionais().add(new EvidenciaProfissionalEntity());
 	}
 	public void deleteEvidenciaProfissional() {
 	   this.getBean().getProfissionais().remove(getEvidenciaProfissionalList().getRowData());
 	}
-	public DataModel<EvidenciaProfissional> getEvidenciaProfissionalList() {
+	public DataModel<EvidenciaProfissionalEntity> getEvidenciaProfissionalList() {
 	   if (evidenciaProfissionalList == null) {
-		   evidenciaProfissionalList = new ListDataModel<EvidenciaProfissional>(this.getBean().getProfissionais());
+		   evidenciaProfissionalList = new ListDataModel<EvidenciaProfissionalEntity>(this.getBean().getProfissionais());
 	   }
 	   return evidenciaProfissionalList;
 	} 

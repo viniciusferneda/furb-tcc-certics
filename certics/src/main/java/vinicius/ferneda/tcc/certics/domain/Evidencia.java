@@ -6,19 +6,17 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
-@Entity
-@Table(name="TB_EVIDENCIA")
-public class Evidencia implements Serializable{
+@MappedSuperclass
+public abstract class Evidencia implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -35,20 +33,11 @@ public class Evidencia implements Serializable{
 	
 	@ManyToOne 
 	@JoinColumn(name="EVI_REVID", nullable=false)
-	private RespostaEvidencia respostaEvidencia;
+	private RespostaEvidenciaEntity respostaEvidencia;
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="ANE_EVIID")
-	private List<Anexo> anexos = new ArrayList<Anexo>();
-
-	public Evidencia(){
-	}
-	
-	public Evidencia(String nome, String descricao, RespostaEvidencia respostaEvidencia) {
-		this.nome = nome;
-		this.descricao = descricao;
-		this.respostaEvidencia = respostaEvidencia;
-	}
+	private List<AnexoEntity> anexos = new ArrayList<AnexoEntity>();
 
 	public Long getId() {
 		return id;
@@ -74,19 +63,19 @@ public class Evidencia implements Serializable{
 		this.descricao = descricao;
 	}
 
-	public RespostaEvidencia getRespostaEvidencia() {
+	public RespostaEvidenciaEntity getRespostaEvidencia() {
 		return respostaEvidencia;
 	}
 
-	public void setRespostaEvidencia(RespostaEvidencia respostaEvidencia) {
+	public void setRespostaEvidencia(RespostaEvidenciaEntity respostaEvidencia) {
 		this.respostaEvidencia = respostaEvidencia;
 	}
 
-	public List<Anexo> getAnexos() {
+	public List<AnexoEntity> getAnexos() {
 		return anexos;
 	}
 
-	public void setAnexos(List<Anexo> anexos) {
+	public void setAnexos(List<AnexoEntity> anexos) {
 		this.anexos = anexos;
 	}
 	

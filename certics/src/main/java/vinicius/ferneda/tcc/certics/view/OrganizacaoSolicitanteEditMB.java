@@ -11,7 +11,7 @@ import vinicius.ferneda.tcc.certics.business.EnderecoBC;
 import vinicius.ferneda.tcc.certics.business.OrganizacaoSolicitanteBC;
 import vinicius.ferneda.tcc.certics.domain.Endereco;
 import vinicius.ferneda.tcc.certics.domain.OrganizacaoSolicitante;
-import vinicius.ferneda.tcc.certics.domain.Profissional;
+import vinicius.ferneda.tcc.certics.domain.ProfissionalEntity;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
@@ -34,17 +34,17 @@ public class OrganizacaoSolicitanteEditMB extends AbstractEditPageBean<Organizac
 		return enderecoBC.findAll();
 	}
 			
-	private DataModel<Profissional> profissionalList;
+	private DataModel<ProfissionalEntity> profissionalList;
 	
 	public void addProfissional() {
-		this.getBean().getProfissionais().add(new Profissional());
+		this.getBean().getProfissionais().add(new ProfissionalEntity());
 	}
 	public void deleteProfissional() {
 	   this.getBean().getProfissionais().remove(getProfissionalList().getRowData());
 	}
-	public DataModel<Profissional> getProfissionalList() {
+	public DataModel<ProfissionalEntity> getProfissionalList() {
 	   if (profissionalList == null) {
-		   profissionalList = new ListDataModel<Profissional>(this.getBean().getProfissionais());
+		   profissionalList = new ListDataModel<ProfissionalEntity>(this.getBean().getProfissionais());
 	   }
 	   return profissionalList;
 	} 

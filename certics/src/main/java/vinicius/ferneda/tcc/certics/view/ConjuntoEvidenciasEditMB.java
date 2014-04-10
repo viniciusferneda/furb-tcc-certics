@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import vinicius.ferneda.tcc.certics.business.ConjuntoEvidenciasBC;
 import vinicius.ferneda.tcc.certics.business.ResultadoEsperadoBC;
 import vinicius.ferneda.tcc.certics.domain.ConjuntoEvidencias;
-import vinicius.ferneda.tcc.certics.domain.RespostaEvidencia;
+import vinicius.ferneda.tcc.certics.domain.RespostaEvidenciaEntity;
 import vinicius.ferneda.tcc.certics.domain.ResultadoEsperado;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
@@ -34,17 +34,17 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<ConjuntoEvide
 		return resultadoEsperadoBC.findAll();
 	}
 			
-	private DataModel<RespostaEvidencia> respostaEvidenciaList;
+	private DataModel<RespostaEvidenciaEntity> respostaEvidenciaList;
 	
 	public void addRespostaEvidencia() {
-		this.getBean().getRespostas().add(new RespostaEvidencia());
+		this.getBean().getRespostas().add(new RespostaEvidenciaEntity());
 	}
 	public void deleteRespostaEvidencia() {
 	   this.getBean().getRespostas().remove(getRespostaEvidenciaList().getRowData());
 	}
-	public DataModel<RespostaEvidencia> getRespostaEvidenciaList() {
+	public DataModel<RespostaEvidenciaEntity> getRespostaEvidenciaList() {
 	   if (respostaEvidenciaList == null) {
-		   respostaEvidenciaList = new ListDataModel<RespostaEvidencia>(this.getBean().getRespostas());
+		   respostaEvidenciaList = new ListDataModel<RespostaEvidenciaEntity>(this.getBean().getRespostas());
 	   }
 	   return respostaEvidenciaList;
 	} 

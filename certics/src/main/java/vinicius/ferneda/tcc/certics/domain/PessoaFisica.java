@@ -51,7 +51,7 @@ public abstract class PessoaFisica{
 
 	@JoinColumn(name="PES_ENDID", nullable=false)
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	private Endereco endereco;
+	private EnderecoEntity endereco;
 	
 	public PessoaFisica(){
 	}
@@ -130,11 +130,11 @@ public abstract class PessoaFisica{
 		this.fone2 = fone2;
 	}
 
-	public Endereco getEndereco() {
+	public EnderecoEntity getEndereco() {
 		return endereco;
 	}
 
-	public void setEndereco(Endereco endereco) {
+	public void setEndereco(EnderecoEntity endereco) {
 		this.endereco = endereco;
 	}
 	

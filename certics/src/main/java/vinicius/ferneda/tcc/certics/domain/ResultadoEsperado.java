@@ -3,7 +3,6 @@ package vinicius.ferneda.tcc.certics.domain;
 import java.io.Serializable;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -11,13 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.MappedSuperclass;
 
 import vinicius.ferneda.tcc.certics.constant.EnumVersaoCertics;
 
-@Entity
-@Table(name="TB_RESULTADO_ESPERADO")
-public class ResultadoEsperado implements Serializable{
+@MappedSuperclass
+public abstract class ResultadoEsperado implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -34,21 +32,11 @@ public class ResultadoEsperado implements Serializable{
 	
 	@ManyToOne 
 	@JoinColumn(name="REV_ARCID", nullable=false)
-	private AreaCompetencia areaCompetencia;
+	private AreaCompetenciaEntity areaCompetencia;
 
 	@Column(name="REV_VERSAO_CERTICS", nullable=false, length=10)
 	@Enumerated(EnumType.STRING)
 	private EnumVersaoCertics versaoCertics;
-	
-	public ResultadoEsperado(){
-	}
-	
-	public ResultadoEsperado(String titulo, String descricao, EnumVersaoCertics versaoCertics, AreaCompetencia areaCompetencia) {
-		this.titulo = titulo;
-		this.descricao = descricao;
-		this.versaoCertics = versaoCertics;
-		this.areaCompetencia = areaCompetencia;
-	}
 
 	public Long getId() {
 		return id;
@@ -74,11 +62,11 @@ public class ResultadoEsperado implements Serializable{
 		this.descricao = descricao;
 	}
 
-	public AreaCompetencia getAreaCompetencia() {
+	public AreaCompetenciaEntity getAreaCompetencia() {
 		return areaCompetencia;
 	}
 
-	public void setAreaCompetencia(AreaCompetencia areaCompetencia) {
+	public void setAreaCompetencia(AreaCompetenciaEntity areaCompetencia) {
 		this.areaCompetencia = areaCompetencia;
 	}
 

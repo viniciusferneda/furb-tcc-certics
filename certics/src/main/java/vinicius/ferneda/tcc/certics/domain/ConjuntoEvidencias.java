@@ -6,19 +6,17 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
-@Entity
-@Table(name="TB_CONJUNTO_EVIDENCIAS")
-public class ConjuntoEvidencias implements Serializable{
+@MappedSuperclass
+public abstract class ConjuntoEvidencias implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -32,19 +30,11 @@ public class ConjuntoEvidencias implements Serializable{
 	
 	@JoinColumn(name="CEV_RESID", nullable=false)
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	private ResultadoEsperado resultadoEsperado;
+	private ResultadoEsperadoEntity resultadoEsperado;
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="EVI_REVID")
-	private List<RespostaEvidencia> respostas = new ArrayList<RespostaEvidencia>();
-
-	public ConjuntoEvidencias(){
-	}
-	
-	public ConjuntoEvidencias(String comentario, ResultadoEsperado resultadoEsperado) {
-		this.comentario = comentario;
-		this.resultadoEsperado = resultadoEsperado;
-	}
+	private List<RespostaEvidenciaEntity> respostas = new ArrayList<RespostaEvidenciaEntity>();
 
 	public Long getId() {
 		return id;
@@ -62,19 +52,19 @@ public class ConjuntoEvidencias implements Serializable{
 		this.comentario = comentario;
 	}
 
-	public ResultadoEsperado getResultadoEsperado() {
+	public ResultadoEsperadoEntity getResultadoEsperado() {
 		return resultadoEsperado;
 	}
 
-	public void setResultadoEsperado(ResultadoEsperado resultadoEsperado) {
+	public void setResultadoEsperado(ResultadoEsperadoEntity resultadoEsperado) {
 		this.resultadoEsperado = resultadoEsperado;
 	}
 
-	public List<RespostaEvidencia> getRespostas() {
+	public List<RespostaEvidenciaEntity> getRespostas() {
 		return respostas;
 	}
 
-	public void setRespostas(List<RespostaEvidencia> respostas) {
+	public void setRespostas(List<RespostaEvidenciaEntity> respostas) {
 		this.respostas = respostas;
 	}
 	

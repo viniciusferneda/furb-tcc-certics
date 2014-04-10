@@ -12,8 +12,8 @@ import vinicius.ferneda.tcc.certics.business.AvaliadorBC;
 import vinicius.ferneda.tcc.certics.business.SoftwareBC;
 import vinicius.ferneda.tcc.certics.domain.Avaliacao;
 import vinicius.ferneda.tcc.certics.domain.AvaliadorEntity;
-import vinicius.ferneda.tcc.certics.domain.LicaoAprendida;
-import vinicius.ferneda.tcc.certics.domain.RespostaEvidencia;
+import vinicius.ferneda.tcc.certics.domain.LicaoAprendidaEntity;
+import vinicius.ferneda.tcc.certics.domain.RespostaEvidenciaEntity;
 import vinicius.ferneda.tcc.certics.domain.Software;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
@@ -50,31 +50,31 @@ public class AvaliacaoEditMB extends AbstractEditPageBean<Avaliacao, Long> {
 		return avaliadorBC.findAll();
 	}
 			
-	private DataModel<LicaoAprendida> licaoAprendidaList;
+	private DataModel<LicaoAprendidaEntity> licaoAprendidaList;
 	
 	public void addLicaoAprendida() {
-		this.getBean().getLicoesAprendidas().add(new LicaoAprendida());
+		this.getBean().getLicoesAprendidas().add(new LicaoAprendidaEntity());
 	}
 	public void deleteLicaoAprendida() {
 	   this.getBean().getLicoesAprendidas().remove(getLicaoAprendidaList().getRowData());
 	}
-	public DataModel<LicaoAprendida> getLicaoAprendidaList() {
+	public DataModel<LicaoAprendidaEntity> getLicaoAprendidaList() {
 	   if (licaoAprendidaList == null) {
-		   licaoAprendidaList = new ListDataModel<LicaoAprendida>(this.getBean().getLicoesAprendidas());
+		   licaoAprendidaList = new ListDataModel<LicaoAprendidaEntity>(this.getBean().getLicoesAprendidas());
 	   }
 	   return licaoAprendidaList;
 	} 
-	private DataModel<RespostaEvidencia> respostaEvidenciaList;
+	private DataModel<RespostaEvidenciaEntity> respostaEvidenciaList;
 	
 	public void addRespostaEvidencia() {
-		this.getBean().getRespostas().add(new RespostaEvidencia());
+		this.getBean().getRespostas().add(new RespostaEvidenciaEntity());
 	}
 	public void deleteRespostaEvidencia() {
 	   this.getBean().getRespostas().remove(getRespostaEvidenciaList().getRowData());
 	}
-	public DataModel<RespostaEvidencia> getRespostaEvidenciaList() {
+	public DataModel<RespostaEvidenciaEntity> getRespostaEvidenciaList() {
 	   if (respostaEvidenciaList == null) {
-		   respostaEvidenciaList = new ListDataModel<RespostaEvidencia>(this.getBean().getRespostas());
+		   respostaEvidenciaList = new ListDataModel<RespostaEvidenciaEntity>(this.getBean().getRespostas());
 	   }
 	   return respostaEvidenciaList;
 	} 

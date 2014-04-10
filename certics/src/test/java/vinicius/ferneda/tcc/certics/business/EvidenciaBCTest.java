@@ -14,7 +14,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import vinicius.ferneda.tcc.certics.domain.Evidencia;
-import vinicius.ferneda.tcc.certics.domain.RespostaEvidencia;
+import vinicius.ferneda.tcc.certics.domain.EvidenciaEntity;
+import vinicius.ferneda.tcc.certics.domain.RespostaEvidenciaEntity;
 import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
 
 @RunWith(DemoiselleRunner.class)
@@ -35,7 +36,7 @@ public class EvidenciaBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		Evidencia evidencia = new Evidencia("nome","descricao",new RespostaEvidencia());
+		Evidencia evidencia = new EvidenciaEntity("nome","descricao",new RespostaEvidenciaEntity());
 		evidenciaBC.insert(evidencia);
 		List<Evidencia> listOfEvidencia = evidenciaBC.findAll();
 		assertNotNull(listOfEvidencia);
@@ -46,7 +47,7 @@ public class EvidenciaBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		Evidencia evidencia = new Evidencia("nome","descricao",new RespostaEvidencia());
+		Evidencia evidencia = new EvidenciaEntity("nome","descricao",new RespostaEvidenciaEntity());
 		evidenciaBC.insert(evidencia);
 		
 		List<Evidencia> listOfEvidencia = evidenciaBC.findAll();
@@ -61,7 +62,7 @@ public class EvidenciaBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		Evidencia evidencia = new Evidencia("nome","descricao",new RespostaEvidencia());
+		Evidencia evidencia = new EvidenciaEntity("nome","descricao",new RespostaEvidenciaEntity());
 		evidenciaBC.insert(evidencia);
 		
 		List<Evidencia> listOfEvidencia = evidenciaBC.findAll();

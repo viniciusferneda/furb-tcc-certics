@@ -3,17 +3,15 @@ package vinicius.ferneda.tcc.certics.domain;
 import java.io.Serializable;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.MappedSuperclass;
 
-@Entity
-@Table(name="TB_EVIDENCIA_PROFISSIONAL")
-public class EvidenciaProfissional implements Serializable{
+@MappedSuperclass
+public abstract class EvidenciaProfissional implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
@@ -30,21 +28,11 @@ public class EvidenciaProfissional implements Serializable{
 	
 	@ManyToOne 
 	@JoinColumn(name="EPR_REVID", nullable=false)
-	private RespostaEvidencia respostaEvidencia;
+	private RespostaEvidenciaEntity respostaEvidencia;
 	
 	@ManyToOne 
 	@JoinColumn(name="EPR_PROID", nullable=false)
-	private Profissional profissional;
-
-	public EvidenciaProfissional(){
-	}
-	
-	public EvidenciaProfissional(Integer fazParteOrganizacao, String envolvimento, RespostaEvidencia respostaEvidencia, Profissional profissional) {
-		this.fazParteOrganizacao = fazParteOrganizacao;
-		this.envolvimento = envolvimento;
-		this.respostaEvidencia = respostaEvidencia;
-		this.profissional = profissional;
-	}
+	private ProfissionalEntity profissional;
 
 	public Long getId() {
 		return id;
@@ -70,19 +58,19 @@ public class EvidenciaProfissional implements Serializable{
 		this.envolvimento = envolvimento;
 	}
 
-	public RespostaEvidencia getRespostaEvidencia() {
+	public RespostaEvidenciaEntity getRespostaEvidencia() {
 		return respostaEvidencia;
 	}
 
-	public void setRespostaEvidencia(RespostaEvidencia respostaEvidencia) {
+	public void setRespostaEvidencia(RespostaEvidenciaEntity respostaEvidencia) {
 		this.respostaEvidencia = respostaEvidencia;
 	}
 
-	public Profissional getProfissional() {
+	public ProfissionalEntity getProfissional() {
 		return profissional;
 	}
 
-	public void setProfissional(Profissional profissional) {
+	public void setProfissional(ProfissionalEntity profissional) {
 		this.profissional = profissional;
 	}
 	

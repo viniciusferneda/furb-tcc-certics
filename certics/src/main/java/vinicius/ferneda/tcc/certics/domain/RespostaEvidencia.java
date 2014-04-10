@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
@@ -15,14 +14,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 import vinicius.ferneda.tcc.certics.constant.EnumPontuacaoEvidencia;
 
-@Entity
-@Table(name="TB_RESPOSTA_EVIDENCIA")
-public class RespostaEvidencia implements Serializable{
+@MappedSuperclass
+public abstract class RespostaEvidencia implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -46,31 +44,19 @@ public class RespostaEvidencia implements Serializable{
 	
 	@ManyToOne 
 	@JoinColumn(name="REV_AVAID", nullable=false)
-	private Avaliacao avaliacao;
+	private AvaliacaoEntity avaliacao;
 	
 	@ManyToOne 
 	@JoinColumn(name="REV_CEVID", nullable=false)
-	private ConjuntoEvidencias conjuntoEvidencias;
+	private ConjuntoEvidenciasEntity conjuntoEvidencias;
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="EPR_REVID")
-	private List<EvidenciaProfissional> profissionais = new ArrayList<EvidenciaProfissional>();
+	private List<EvidenciaProfissionalEntity> profissionais = new ArrayList<EvidenciaProfissionalEntity>();
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="EVI_REVID")
-	private List<Evidencia> evidencias = new ArrayList<Evidencia>();
-
-	public RespostaEvidencia(){
-	}
-	
-	public RespostaEvidencia(EnumPontuacaoEvidencia pontuacao, String abrangencia, String motivo, String contribuicao, Avaliacao avaliacao, ConjuntoEvidencias conjuntoEvidencias) {
-		this.pontuacao = pontuacao;
-		this.abrangencia = abrangencia;
-		this.motivo = motivo;
-		this.contribuicao = contribuicao;
-		this.avaliacao = avaliacao;
-		this.conjuntoEvidencias = conjuntoEvidencias;
-	}
+	private List<EvidenciaEntity> evidencias = new ArrayList<EvidenciaEntity>();
 
 	public Long getId() {
 		return id;
@@ -112,35 +98,35 @@ public class RespostaEvidencia implements Serializable{
 		this.contribuicao = contribuicao;
 	}
 
-	public Avaliacao getAvaliacao() {
+	public AvaliacaoEntity getAvaliacao() {
 		return avaliacao;
 	}
 
-	public void setAvaliacao(Avaliacao avaliacao) {
+	public void setAvaliacao(AvaliacaoEntity avaliacao) {
 		this.avaliacao = avaliacao;
 	}
 	
-	public ConjuntoEvidencias getConjuntoEvidencias() {
+	public ConjuntoEvidenciasEntity getConjuntoEvidencias() {
 		return conjuntoEvidencias;
 	}
 
-	public void setConjuntoEvidencias(ConjuntoEvidencias conjuntoEvidencias) {
+	public void setConjuntoEvidencias(ConjuntoEvidenciasEntity conjuntoEvidencias) {
 		this.conjuntoEvidencias = conjuntoEvidencias;
 	}
 
-	public List<EvidenciaProfissional> getProfissionais() {
+	public List<EvidenciaProfissionalEntity> getProfissionais() {
 		return profissionais;
 	}
 
-	public void setProfissionais(List<EvidenciaProfissional> profissionais) {
+	public void setProfissionais(List<EvidenciaProfissionalEntity> profissionais) {
 		this.profissionais = profissionais;
 	}
 
-	public List<Evidencia> getEvidencias() {
+	public List<EvidenciaEntity> getEvidencias() {
 		return evidencias;
 	}
 
-	public void setEvidencias(List<Evidencia> evidencias) {
+	public void setEvidencias(List<EvidenciaEntity> evidencias) {
 		this.evidencias = evidencias;
 	}
 	
