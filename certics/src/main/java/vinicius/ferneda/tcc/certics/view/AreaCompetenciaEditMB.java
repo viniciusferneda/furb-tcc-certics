@@ -9,7 +9,7 @@ import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
 import vinicius.ferneda.tcc.certics.business.AreaCompetenciaBC;
-import vinicius.ferneda.tcc.certics.domain.AreaCompetencia;
+import vinicius.ferneda.tcc.certics.domain.AreaCompetenciaEntity;
 import vinicius.ferneda.tcc.certics.domain.ResultadoEsperadoEntity;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
@@ -18,7 +18,7 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 @ViewController
 @PreviousView("./areaCompetencia_list.jsf")
-public class AreaCompetenciaEditMB extends AbstractEditPageBean<AreaCompetencia, Long> {
+public class AreaCompetenciaEditMB extends AbstractEditPageBean<AreaCompetenciaEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -67,7 +67,7 @@ public class AreaCompetenciaEditMB extends AbstractEditPageBean<AreaCompetencia,
 	}
 	
 	@Override
-	protected AreaCompetencia handleLoad(Long id) {
+	protected AreaCompetenciaEntity handleLoad(Long id) {
 		return this.areaCompetenciaBC.load(id);
 	}	
 }

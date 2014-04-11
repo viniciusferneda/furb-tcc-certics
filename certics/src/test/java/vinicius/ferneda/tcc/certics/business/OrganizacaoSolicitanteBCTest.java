@@ -35,9 +35,9 @@ public class OrganizacaoSolicitanteBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		OrganizacaoSolicitante organizacaoSolicitante = new OrganizacaoSolicitanteEntity("nome","razaoSocial","cnpj","fone1","fone2",null);
+		OrganizacaoSolicitanteEntity organizacaoSolicitante = new OrganizacaoSolicitanteEntity("nome","razaoSocial","cnpj","fone1","fone2",null);
 		organizacaoSolicitanteBC.insert(organizacaoSolicitante);
-		List<OrganizacaoSolicitante> listOfOrganizacaoSolicitante = organizacaoSolicitanteBC.findAll();
+		List<OrganizacaoSolicitanteEntity> listOfOrganizacaoSolicitante = organizacaoSolicitanteBC.findAll();
 		assertNotNull(listOfOrganizacaoSolicitante);
 		assertEquals(1, listOfOrganizacaoSolicitante.size());
 	}	
@@ -46,10 +46,10 @@ public class OrganizacaoSolicitanteBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		OrganizacaoSolicitante organizacaoSolicitante = new OrganizacaoSolicitanteEntity("nome","razaoSocial","cnpj","fone1","fone2",null);
+		OrganizacaoSolicitanteEntity organizacaoSolicitante = new OrganizacaoSolicitanteEntity("nome","razaoSocial","cnpj","fone1","fone2",null);
 		organizacaoSolicitanteBC.insert(organizacaoSolicitante);
 		
-		List<OrganizacaoSolicitante> listOfOrganizacaoSolicitante = organizacaoSolicitanteBC.findAll();
+		List<OrganizacaoSolicitanteEntity> listOfOrganizacaoSolicitante = organizacaoSolicitanteBC.findAll();
 		assertNotNull(listOfOrganizacaoSolicitante);
 		assertEquals(1, listOfOrganizacaoSolicitante.size());
 		
@@ -61,11 +61,11 @@ public class OrganizacaoSolicitanteBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		OrganizacaoSolicitante organizacaoSolicitante = new OrganizacaoSolicitanteEntity("nome","razaoSocial","cnpj","fone1","fone2",null);
+		OrganizacaoSolicitanteEntity organizacaoSolicitante = new OrganizacaoSolicitanteEntity("nome","razaoSocial","cnpj","fone1","fone2",null);
 		organizacaoSolicitanteBC.insert(organizacaoSolicitante);
 		
-		List<OrganizacaoSolicitante> listOfOrganizacaoSolicitante = organizacaoSolicitanteBC.findAll();
-		OrganizacaoSolicitante organizacaoSolicitante2 = (OrganizacaoSolicitante)listOfOrganizacaoSolicitante.get(0);
+		List<OrganizacaoSolicitanteEntity> listOfOrganizacaoSolicitante = organizacaoSolicitanteBC.findAll();
+		OrganizacaoSolicitanteEntity organizacaoSolicitante2 = (OrganizacaoSolicitanteEntity)listOfOrganizacaoSolicitante.get(0);
 		assertNotNull(listOfOrganizacaoSolicitante);
 
 		// alterar para tratar uma propriedade existente na Entidade OrganizacaoSolicitante

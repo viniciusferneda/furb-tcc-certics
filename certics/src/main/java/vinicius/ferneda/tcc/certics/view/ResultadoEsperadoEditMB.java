@@ -8,8 +8,8 @@ import javax.inject.Inject;
 
 import vinicius.ferneda.tcc.certics.business.AreaCompetenciaBC;
 import vinicius.ferneda.tcc.certics.business.ResultadoEsperadoBC;
-import vinicius.ferneda.tcc.certics.domain.AreaCompetencia;
-import vinicius.ferneda.tcc.certics.domain.ResultadoEsperado;
+import vinicius.ferneda.tcc.certics.domain.AreaCompetenciaEntity;
+import vinicius.ferneda.tcc.certics.domain.ResultadoEsperadoEntity;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
@@ -17,7 +17,7 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 @ViewController
 @PreviousView("./resultadoEsperado_list.jsf")
-public class ResultadoEsperadoEditMB extends AbstractEditPageBean<ResultadoEsperado, Long> {
+public class ResultadoEsperadoEditMB extends AbstractEditPageBean<ResultadoEsperadoEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -28,7 +28,7 @@ public class ResultadoEsperadoEditMB extends AbstractEditPageBean<ResultadoEsper
 	@Inject
 	private AreaCompetenciaBC areaCompetenciaBC;
 	
-	public List<AreaCompetencia> getAreaCompetenciaList(){
+	public List<AreaCompetenciaEntity> getAreaCompetenciaList(){
 		return areaCompetenciaBC.findAll();
 	}
 			
@@ -58,7 +58,7 @@ public class ResultadoEsperadoEditMB extends AbstractEditPageBean<ResultadoEsper
 	}
 	
 	@Override
-	protected ResultadoEsperado handleLoad(Long id) {
+	protected ResultadoEsperadoEntity handleLoad(Long id) {
 		return this.resultadoEsperadoBC.load(id);
 	}	
 }

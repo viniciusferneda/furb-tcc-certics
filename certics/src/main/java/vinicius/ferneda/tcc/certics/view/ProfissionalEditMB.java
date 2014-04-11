@@ -11,10 +11,12 @@ import vinicius.ferneda.tcc.certics.business.EnderecoBC;
 import vinicius.ferneda.tcc.certics.business.OrganizacaoSolicitanteBC;
 import vinicius.ferneda.tcc.certics.business.ProfissionalBC;
 import vinicius.ferneda.tcc.certics.domain.Endereco;
+import vinicius.ferneda.tcc.certics.domain.EnderecoEntity;
 import vinicius.ferneda.tcc.certics.domain.EvidenciaProfissionalEntity;
-import vinicius.ferneda.tcc.certics.domain.OrganizacaoSolicitante;
+import vinicius.ferneda.tcc.certics.domain.OrganizacaoSolicitanteEntity;
 import vinicius.ferneda.tcc.certics.domain.Profissional;
 import vinicius.ferneda.tcc.certics.domain.UsuarioEntity;
+import vinicius.ferneda.tcc.certics.persistence.EnderecoDAO;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
@@ -32,7 +34,18 @@ public class ProfissionalEditMB extends AbstractEditPageBean<Profissional, Long>
 	@Inject
 	private OrganizacaoSolicitanteBC organizacaoSolicitanteBC;
 	
-	public List<OrganizacaoSolicitante> getOrganizacaoSolicitanteList(){
+	@Inject
+	private EnderecoDAO enderecoDAO;
+	
+	public EnderecoEntity getEndereco(){
+		if(getId() != null){
+			return enderecoDAO.findByOrgnizacaoSolicitanteID(getId());
+		}else{
+			return new EnderecoEntity();
+		}
+	}
+	
+	public List<OrganizacaoSolicitanteEntity> getOrganizacaoSolicitanteList(){
 		return organizacaoSolicitanteBC.findAll();
 	}
 			

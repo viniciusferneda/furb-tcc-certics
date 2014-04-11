@@ -2,19 +2,21 @@ package vinicius.ferneda.tcc.certics.view;
 
 import java.util.Iterator;
 import java.util.List;
+
 import javax.inject.Inject;
+
+import vinicius.ferneda.tcc.certics.business.UsuarioBC;
+import vinicius.ferneda.tcc.certics.domain.UsuarioEntity;
 import br.gov.frameworkdemoiselle.annotation.NextView;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractListPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
-import vinicius.ferneda.tcc.certics.business.UsuarioBC;
-import vinicius.ferneda.tcc.certics.domain.Usuario;
 
 @ViewController
 @NextView("./usuario_edit.jsf")
 @PreviousView("./usuario_list.jsf")
-public class UsuarioListMB extends AbstractListPageBean<Usuario, Long> {
+public class UsuarioListMB extends AbstractListPageBean<UsuarioEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -22,7 +24,7 @@ public class UsuarioListMB extends AbstractListPageBean<Usuario, Long> {
 	private UsuarioBC usuarioBC;
 	
 	@Override
-	protected List<Usuario> handleResultList() {
+	protected List<UsuarioEntity> handleResultList() {
 		return this.usuarioBC.findAll();
 	}
 	

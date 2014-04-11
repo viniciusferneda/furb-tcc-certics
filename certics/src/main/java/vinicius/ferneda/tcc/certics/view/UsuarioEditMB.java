@@ -7,8 +7,10 @@ import javax.inject.Inject;
 
 import vinicius.ferneda.tcc.certics.business.UsuarioBC;
 import vinicius.ferneda.tcc.certics.domain.AvaliadorEntity;
-import vinicius.ferneda.tcc.certics.domain.Usuario;
+import vinicius.ferneda.tcc.certics.domain.EnderecoEntity;
+import vinicius.ferneda.tcc.certics.domain.UsuarioEntity;
 import vinicius.ferneda.tcc.certics.persistence.AvaliadorDAO;
+import vinicius.ferneda.tcc.certics.persistence.EnderecoDAO;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
@@ -16,7 +18,7 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 @ViewController
 @PreviousView("./usuario_list.jsf")
-public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
+public class UsuarioEditMB extends AbstractEditPageBean<UsuarioEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -26,11 +28,22 @@ public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
 	@Inject
 	private AvaliadorDAO avaliadorDAO;
 	
+	@Inject
+	private EnderecoDAO enderecoDAO;
+	
 	public AvaliadorEntity getAvaliador(){
-		if(getId() == null){
-			return new AvaliadorEntity();
-		}else{
+		if(getId() != null){
 			return avaliadorDAO.findByUsuarioId(getId());
+		}else{
+			return new AvaliadorEntity();
+		}
+	}
+	
+	public EnderecoEntity getEndereco(){
+		if(getAvaliador() != null && getAvaliador().getId() != null){
+			return enderecoDAO.findByAvaliadorID(getAvaliador().getId());
+		}else{
+			return new EnderecoEntity();
 		}
 	}
 	
@@ -64,7 +77,7 @@ public class UsuarioEditMB extends AbstractEditPageBean<Usuario, Long> {
 	}
 	
 	@Override
-	protected Usuario handleLoad(Long id) {
+	protected UsuarioEntity handleLoad(Long id) {
 		return this.usuarioBC.load(id);
 	}	
 }

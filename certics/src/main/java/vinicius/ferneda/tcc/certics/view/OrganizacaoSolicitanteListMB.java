@@ -2,19 +2,21 @@ package vinicius.ferneda.tcc.certics.view;
 
 import java.util.Iterator;
 import java.util.List;
+
 import javax.inject.Inject;
+
+import vinicius.ferneda.tcc.certics.business.OrganizacaoSolicitanteBC;
+import vinicius.ferneda.tcc.certics.domain.OrganizacaoSolicitanteEntity;
 import br.gov.frameworkdemoiselle.annotation.NextView;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractListPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
-import vinicius.ferneda.tcc.certics.business.OrganizacaoSolicitanteBC;
-import vinicius.ferneda.tcc.certics.domain.OrganizacaoSolicitante;
 
 @ViewController
 @NextView("./organizacaoSolicitante_edit.jsf")
 @PreviousView("./organizacaoSolicitante_list.jsf")
-public class OrganizacaoSolicitanteListMB extends AbstractListPageBean<OrganizacaoSolicitante, Long> {
+public class OrganizacaoSolicitanteListMB extends AbstractListPageBean<OrganizacaoSolicitanteEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -22,7 +24,7 @@ public class OrganizacaoSolicitanteListMB extends AbstractListPageBean<Organizac
 	private OrganizacaoSolicitanteBC organizacaoSolicitanteBC;
 	
 	@Override
-	protected List<OrganizacaoSolicitante> handleResultList() {
+	protected List<OrganizacaoSolicitanteEntity> handleResultList() {
 		return this.organizacaoSolicitanteBC.findAll();
 	}
 	

@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import vinicius.ferneda.tcc.certics.business.EnderecoBC;
 import vinicius.ferneda.tcc.certics.business.OrganizacaoSolicitanteBC;
 import vinicius.ferneda.tcc.certics.domain.Endereco;
-import vinicius.ferneda.tcc.certics.domain.OrganizacaoSolicitante;
+import vinicius.ferneda.tcc.certics.domain.OrganizacaoSolicitanteEntity;
 import vinicius.ferneda.tcc.certics.domain.ProfissionalEntity;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
@@ -19,7 +19,7 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 @ViewController
 @PreviousView("./organizacaoSolicitante_list.jsf")
-public class OrganizacaoSolicitanteEditMB extends AbstractEditPageBean<OrganizacaoSolicitante, Long> {
+public class OrganizacaoSolicitanteEditMB extends AbstractEditPageBean<OrganizacaoSolicitanteEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -71,7 +71,7 @@ public class OrganizacaoSolicitanteEditMB extends AbstractEditPageBean<Organizac
 	}
 	
 	@Override
-	protected OrganizacaoSolicitante handleLoad(Long id) {
+	protected OrganizacaoSolicitanteEntity handleLoad(Long id) {
 		return this.organizacaoSolicitanteBC.load(id);
 	}	
 }

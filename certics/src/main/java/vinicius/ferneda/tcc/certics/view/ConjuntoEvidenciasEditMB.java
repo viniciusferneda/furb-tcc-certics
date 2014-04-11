@@ -11,7 +11,7 @@ import vinicius.ferneda.tcc.certics.business.ConjuntoEvidenciasBC;
 import vinicius.ferneda.tcc.certics.business.ResultadoEsperadoBC;
 import vinicius.ferneda.tcc.certics.domain.ConjuntoEvidencias;
 import vinicius.ferneda.tcc.certics.domain.RespostaEvidenciaEntity;
-import vinicius.ferneda.tcc.certics.domain.ResultadoEsperado;
+import vinicius.ferneda.tcc.certics.domain.ResultadoEsperadoEntity;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
@@ -30,7 +30,7 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<ConjuntoEvide
 	@Inject
 	private ResultadoEsperadoBC resultadoEsperadoBC;
 	
-	public List<ResultadoEsperado> getResultadoEsperadoList(){
+	public List<ResultadoEsperadoEntity> getResultadoEsperadoList(){
 		return resultadoEsperadoBC.findAll();
 	}
 			

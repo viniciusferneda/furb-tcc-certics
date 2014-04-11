@@ -36,9 +36,9 @@ public class AreaCompetenciaBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		AreaCompetencia areaCompetencia = new AreaCompetenciaEntity("titulo","perguntaChave","descricao",EnumVersaoCertics.V_1_0);
+		AreaCompetenciaEntity areaCompetencia = new AreaCompetenciaEntity("titulo","perguntaChave","descricao",EnumVersaoCertics.V_1_0);
 		areaCompetenciaBC.insert(areaCompetencia);
-		List<AreaCompetencia> listOfAreaCompetencia = areaCompetenciaBC.findAll();
+		List<AreaCompetenciaEntity> listOfAreaCompetencia = areaCompetenciaBC.findAll();
 		assertNotNull(listOfAreaCompetencia);
 		assertEquals(1, listOfAreaCompetencia.size());
 	}	
@@ -47,10 +47,10 @@ public class AreaCompetenciaBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		AreaCompetencia areaCompetencia = new AreaCompetenciaEntity("titulo","perguntaChave","descricao",EnumVersaoCertics.V_1_0);
+		AreaCompetenciaEntity areaCompetencia = new AreaCompetenciaEntity("titulo","perguntaChave","descricao",EnumVersaoCertics.V_1_0);
 		areaCompetenciaBC.insert(areaCompetencia);
 		
-		List<AreaCompetencia> listOfAreaCompetencia = areaCompetenciaBC.findAll();
+		List<AreaCompetenciaEntity> listOfAreaCompetencia = areaCompetenciaBC.findAll();
 		assertNotNull(listOfAreaCompetencia);
 		assertEquals(1, listOfAreaCompetencia.size());
 		
@@ -62,11 +62,11 @@ public class AreaCompetenciaBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		AreaCompetencia areaCompetencia = new AreaCompetenciaEntity("titulo","perguntaChave","descricao",EnumVersaoCertics.V_1_0);
+		AreaCompetenciaEntity areaCompetencia = new AreaCompetenciaEntity("titulo","perguntaChave","descricao",EnumVersaoCertics.V_1_0);
 		areaCompetenciaBC.insert(areaCompetencia);
 		
-		List<AreaCompetencia> listOfAreaCompetencia = areaCompetenciaBC.findAll();
-		AreaCompetencia areaCompetencia2 = (AreaCompetencia)listOfAreaCompetencia.get(0);
+		List<AreaCompetenciaEntity> listOfAreaCompetencia = areaCompetenciaBC.findAll();
+		AreaCompetenciaEntity areaCompetencia2 = (AreaCompetenciaEntity)listOfAreaCompetencia.get(0);
 		assertNotNull(listOfAreaCompetencia);
 
 		// alterar para tratar uma propriedade existente na Entidade AreaCompetencia

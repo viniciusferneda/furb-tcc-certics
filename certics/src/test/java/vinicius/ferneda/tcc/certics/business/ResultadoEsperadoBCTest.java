@@ -37,9 +37,9 @@ public class ResultadoEsperadoBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		ResultadoEsperado resultadoEsperado = new ResultadoEsperadoEntity("titulo","descricao",EnumVersaoCertics.V_1_0,new AreaCompetenciaEntity());
+		ResultadoEsperadoEntity resultadoEsperado = new ResultadoEsperadoEntity("titulo","descricao",EnumVersaoCertics.V_1_0,new AreaCompetenciaEntity());
 		resultadoEsperadoBC.insert(resultadoEsperado);
-		List<ResultadoEsperado> listOfResultadoEsperado = resultadoEsperadoBC.findAll();
+		List<ResultadoEsperadoEntity> listOfResultadoEsperado = resultadoEsperadoBC.findAll();
 		assertNotNull(listOfResultadoEsperado);
 		assertEquals(1, listOfResultadoEsperado.size());
 	}	
@@ -48,10 +48,10 @@ public class ResultadoEsperadoBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		ResultadoEsperado resultadoEsperado = new ResultadoEsperadoEntity("titulo","descricao",EnumVersaoCertics.V_1_0,new AreaCompetenciaEntity());
+		ResultadoEsperadoEntity resultadoEsperado = new ResultadoEsperadoEntity("titulo","descricao",EnumVersaoCertics.V_1_0,new AreaCompetenciaEntity());
 		resultadoEsperadoBC.insert(resultadoEsperado);
 		
-		List<ResultadoEsperado> listOfResultadoEsperado = resultadoEsperadoBC.findAll();
+		List<ResultadoEsperadoEntity> listOfResultadoEsperado = resultadoEsperadoBC.findAll();
 		assertNotNull(listOfResultadoEsperado);
 		assertEquals(1, listOfResultadoEsperado.size());
 		
@@ -63,11 +63,11 @@ public class ResultadoEsperadoBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		ResultadoEsperado resultadoEsperado = new ResultadoEsperadoEntity("titulo","descricao",EnumVersaoCertics.V_1_0,new AreaCompetenciaEntity());
+		ResultadoEsperadoEntity resultadoEsperado = new ResultadoEsperadoEntity("titulo","descricao",EnumVersaoCertics.V_1_0,new AreaCompetenciaEntity());
 		resultadoEsperadoBC.insert(resultadoEsperado);
 		
-		List<ResultadoEsperado> listOfResultadoEsperado = resultadoEsperadoBC.findAll();
-		ResultadoEsperado resultadoEsperado2 = (ResultadoEsperado)listOfResultadoEsperado.get(0);
+		List<ResultadoEsperadoEntity> listOfResultadoEsperado = resultadoEsperadoBC.findAll();
+		ResultadoEsperadoEntity resultadoEsperado2 = (ResultadoEsperadoEntity)listOfResultadoEsperado.get(0);
 		assertNotNull(listOfResultadoEsperado);
 
 		// alterar para tratar uma propriedade existente na Entidade ResultadoEsperado

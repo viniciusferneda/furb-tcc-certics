@@ -7,20 +7,19 @@ import java.util.List;
 import javax.faces.model.SelectItem;
 
 import vinicius.ferneda.tcc.certics.constant.EnumVersaoCertics;
-import vinicius.ferneda.tcc.certics.domain.AreaCompetencia;
+import vinicius.ferneda.tcc.certics.domain.AreaCompetenciaEntity;
 import vinicius.ferneda.tcc.certics.persistence.AreaCompetenciaDAO;
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
 import br.gov.frameworkdemoiselle.template.DelegateCrud;
 
 @BusinessController
-public class AreaCompetenciaBC extends DelegateCrud<AreaCompetencia, Long, AreaCompetenciaDAO> {
+public class AreaCompetenciaBC extends DelegateCrud<AreaCompetenciaEntity, Long, AreaCompetenciaDAO> {
 	private static final long serialVersionUID = 1L;
-	
 	
 	public List<SelectItem> getEnumVersaoCertics() {
 		List<SelectItem> varEnumVersaoCertics = new ArrayList<SelectItem>();
 		for (EnumVersaoCertics eachEnumVersaoCertics : EnumVersaoCertics.values()) {
-			varEnumVersaoCertics.add(new SelectItem(eachEnumVersaoCertics.getNome()));
+			varEnumVersaoCertics.add(new SelectItem(eachEnumVersaoCertics, eachEnumVersaoCertics.getNome()));
 		}
 		return varEnumVersaoCertics;
 	}

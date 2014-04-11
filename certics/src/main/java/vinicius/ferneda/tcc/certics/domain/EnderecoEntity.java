@@ -10,8 +10,28 @@ import vinicius.ferneda.tcc.certics.constant.EnumUF;
 @Entity
 @Table(name="TB_ENDERECO")
 @NamedQueries({
-    @NamedQuery(name = "EnderecoEntity.findById", query = "SELECT obj FROM EnderecoEntity obj WHERE obj.id = :id"),
-    @NamedQuery(name = "EnderecoEntity.findByCep", query = "SELECT obj FROM EnderecoEntity obj WHERE obj.cep = :cep")
+    @NamedQuery(name="EnderecoEntity.findById",
+    	query = "SELECT obj FROM EnderecoEntity obj "
+    			+ " WHERE obj.id = :id"),
+    
+    @NamedQuery(name="EnderecoEntity.findByCep",
+    	query = "SELECT obj FROM EnderecoEntity obj "
+    			+ " WHERE obj.cep = :cep"),
+    
+    @NamedQuery(name="EnderecoEntity.findByAvaliadorID", 
+    	query = "SELECT obj FROM EnderecoEntity obj "
+    			+ " inner join obj.avaliador avr "
+    			+ " WHERE avr.id = :avaliadorID"),
+    			
+	@NamedQuery(name="EnderecoEntity.findByProfissionalID", 
+		query = "SELECT obj FROM EnderecoEntity obj "
+			+ " inner join obj.profissional pro "
+			+ " WHERE pro.id = :profissionalID"),
+			
+	@NamedQuery(name="EnderecoEntity.findByOrgnizacaoSolicitanteID", 
+		query = "SELECT obj FROM EnderecoEntity obj "
+			+ " inner join obj.organizacaoSolicitante ors "
+			+ " WHERE ors.id = :organizacaoSolicitanteID")
 })
 public class EnderecoEntity extends Endereco {
 

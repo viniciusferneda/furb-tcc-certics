@@ -2,13 +2,17 @@ package vinicius.ferneda.tcc.certics.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 
 import vinicius.ferneda.tcc.certics.constant.EnumUF;
 
@@ -46,6 +50,18 @@ public abstract class Endereco implements Serializable {
 	
 	@Column(name="END_PAIS", nullable=false, length=255)
 	private String pais;
+	
+	@JoinColumn(name="PES_ENDID", nullable=false)
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private AvaliadorEntity avaliador;
+	
+	@JoinColumn(name="PES_ENDID", nullable=false)
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private ProfissionalEntity profissional;
+	
+	@JoinColumn(name="ORS_ENDID", nullable=false)
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private OrganizacaoSolicitanteEntity organizacaoSolicitante;
 	
 	public Long getId() {
 		return id;
@@ -118,4 +134,30 @@ public abstract class Endereco implements Serializable {
 	public void setPais(String pais) {
 		this.pais = pais;
 	}
+
+	public AvaliadorEntity getAvaliador() {
+		return avaliador;
+	}
+
+	public void setAvaliador(AvaliadorEntity avaliador) {
+		this.avaliador = avaliador;
+	}
+
+	public ProfissionalEntity getProfissional() {
+		return profissional;
+	}
+
+	public void setProfissional(ProfissionalEntity profissional) {
+		this.profissional = profissional;
+	}
+
+	public OrganizacaoSolicitanteEntity getOrganizacaoSolicitante() {
+		return organizacaoSolicitante;
+	}
+
+	public void setOrganizacaoSolicitante(
+			OrganizacaoSolicitanteEntity organizacaoSolicitante) {
+		this.organizacaoSolicitante = organizacaoSolicitante;
+	}
+	
 }

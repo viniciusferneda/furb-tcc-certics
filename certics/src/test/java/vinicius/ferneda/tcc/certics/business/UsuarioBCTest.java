@@ -33,9 +33,9 @@ public class UsuarioBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		Usuario usuario = new UsuarioEntity("email","senha",null,null);
+		UsuarioEntity usuario = new UsuarioEntity("email","senha",null,null);
 		usuarioBC.insert(usuario);
-		List<Usuario> listOfUsuario = usuarioBC.findAll();
+		List<UsuarioEntity> listOfUsuario = usuarioBC.findAll();
 		assertNotNull(listOfUsuario);
 		assertEquals(1, listOfUsuario.size());
 	}	
@@ -44,10 +44,10 @@ public class UsuarioBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		Usuario usuario = new UsuarioEntity("email","senha",null,null);
+		UsuarioEntity usuario = new UsuarioEntity("email","senha",null,null);
 		usuarioBC.insert(usuario);
 		
-		List<Usuario> listOfUsuario = usuarioBC.findAll();
+		List<UsuarioEntity> listOfUsuario = usuarioBC.findAll();
 		assertNotNull(listOfUsuario);
 		assertEquals(1, listOfUsuario.size());
 		
@@ -59,11 +59,11 @@ public class UsuarioBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		Usuario usuario = new UsuarioEntity("email","senha",null,null);
+		UsuarioEntity usuario = new UsuarioEntity("email","senha",null,null);
 		usuarioBC.insert(usuario);
 		
-		List<Usuario> listOfUsuario = usuarioBC.findAll();
-		Usuario usuario2 = (Usuario)listOfUsuario.get(0);
+		List<UsuarioEntity> listOfUsuario = usuarioBC.findAll();
+		UsuarioEntity usuario2 = (UsuarioEntity)listOfUsuario.get(0);
 		assertNotNull(listOfUsuario);
 
 		// alterar para tratar uma propriedade existente na Entidade Usuario
