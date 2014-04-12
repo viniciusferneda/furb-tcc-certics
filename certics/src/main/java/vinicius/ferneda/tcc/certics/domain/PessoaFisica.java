@@ -53,19 +53,6 @@ public abstract class PessoaFisica{
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private EnderecoEntity endereco;
 	
-	public PessoaFisica(){
-	}
-	
-	public PessoaFisica(String nome, String cpf, String rg, EnumSexo sexo, Date dataNascimento, String fone1, String fone2, Endereco endereco) {
-		this.nome = nome;
-		this.cpf = cpf;
-		this.rg = rg;
-		this.sexo = sexo;
-		this.dataNascimento = dataNascimento;
-		this.fone1 = fone1;
-		this.fone2 = fone2;
-	}
-
 	public Long getId() {
 		return id;
 	}

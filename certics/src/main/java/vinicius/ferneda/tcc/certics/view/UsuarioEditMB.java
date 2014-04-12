@@ -5,12 +5,12 @@ import java.util.List;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
+import vinicius.ferneda.tcc.certics.business.AvaliadorBC;
+import vinicius.ferneda.tcc.certics.business.EnderecoBC;
 import vinicius.ferneda.tcc.certics.business.UsuarioBC;
 import vinicius.ferneda.tcc.certics.domain.AvaliadorEntity;
 import vinicius.ferneda.tcc.certics.domain.EnderecoEntity;
 import vinicius.ferneda.tcc.certics.domain.UsuarioEntity;
-import vinicius.ferneda.tcc.certics.persistence.AvaliadorDAO;
-import vinicius.ferneda.tcc.certics.persistence.EnderecoDAO;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
@@ -21,31 +21,15 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 public class UsuarioEditMB extends AbstractEditPageBean<UsuarioEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	@Inject
 	private UsuarioBC usuarioBC;
 	
 	@Inject
-	private AvaliadorDAO avaliadorDAO;
+	private AvaliadorBC avaliadorBC;
 	
 	@Inject
-	private EnderecoDAO enderecoDAO;
-	
-	public AvaliadorEntity getAvaliador(){
-		if(getId() != null){
-			return avaliadorDAO.findByUsuarioId(getId());
-		}else{
-			return new AvaliadorEntity();
-		}
-	}
-	
-	public EnderecoEntity getEndereco(){
-		if(getAvaliador() != null && getAvaliador().getId() != null){
-			return enderecoDAO.findByAvaliadorID(getAvaliador().getId());
-		}else{
-			return new EnderecoEntity();
-		}
-	}
+	private EnderecoBC enderecoBC;
 	
 	public List<SelectItem> getSexo() {
 		return usuarioBC.getEnumSexo();
@@ -65,7 +49,15 @@ public class UsuarioEditMB extends AbstractEditPageBean<UsuarioEntity, Long> {
 	@Override
 	@Transactional
 	public String insert() {
+		//grava Endereco
+		this.enderecoBC.insert(this.getBean().getAvaliador().getEndereco());
+		
+		//grava Avaliador
+		this.avaliadorBC.insert(this.getBean().getAvaliador());
+		
+		//grava Usuario
 		this.usuarioBC.insert(this.getBean());
+		
 		return getPreviousView();
 	}
 	
@@ -79,5 +71,14 @@ public class UsuarioEditMB extends AbstractEditPageBean<UsuarioEntity, Long> {
 	@Override
 	protected UsuarioEntity handleLoad(Long id) {
 		return this.usuarioBC.load(id);
-	}	
+	}
+	
+	@Override
+	protected UsuarioEntity createBean() {
+		UsuarioEntity usuario = super.createBean();
+		usuario.setAvaliador(new AvaliadorEntity());
+		usuario.getAvaliador().setEndereco(new EnderecoEntity());
+		return usuario;
+	}
+	
 }

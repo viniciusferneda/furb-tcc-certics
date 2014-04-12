@@ -16,18 +16,18 @@ import javax.persistence.OneToMany;
 import vinicius.ferneda.tcc.certics.constant.EnumSexo;
 
 @MappedSuperclass
-public abstract class Profissional extends PessoaFisica implements Serializable{
+public abstract class Profissional extends PessoaFisicaEntity implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	@Column(name="PES_VINCULO_ATUAL", nullable=false, length=255)
+	@Column(name="PES_VINCULO_ATUAL", length=255)
 	private String vinculoAtual;
 
 	@Column(name="PES_RESORG", length=1)
 	private Integer responsavelOrganizacao;
 	
 	@ManyToOne 
-	@JoinColumn(name="PES_ORSID", nullable=false)
+	@JoinColumn(name="PES_ORSID")
 	private OrganizacaoSolicitanteEntity organizacaoSolicitante;
 
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)

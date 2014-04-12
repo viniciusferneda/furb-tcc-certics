@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 import vinicius.ferneda.tcc.certics.constant.EnumSexo;
 
 @MappedSuperclass
-public abstract class Avaliador extends PessoaFisica implements Serializable{
+public abstract class Avaliador extends PessoaFisicaEntity implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	

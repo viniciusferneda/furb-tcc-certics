@@ -51,15 +51,11 @@ public abstract class Endereco implements Serializable {
 	@Column(name="END_PAIS", nullable=false, length=255)
 	private String pais;
 	
-	@JoinColumn(name="PES_ENDID", nullable=false)
+	@JoinColumn(name="PES_ENDID")
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	private AvaliadorEntity avaliador;
+	private PessoaFisicaEntity pessoaFisica;
 	
-	@JoinColumn(name="PES_ENDID", nullable=false)
-	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	private ProfissionalEntity profissional;
-	
-	@JoinColumn(name="ORS_ENDID", nullable=false)
+	@JoinColumn(name="ORS_ENDID")
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private OrganizacaoSolicitanteEntity organizacaoSolicitante;
 	
@@ -135,20 +131,12 @@ public abstract class Endereco implements Serializable {
 		this.pais = pais;
 	}
 
-	public AvaliadorEntity getAvaliador() {
-		return avaliador;
+	public PessoaFisicaEntity getPessoaFisica() {
+		return pessoaFisica;
 	}
 
-	public void setAvaliador(AvaliadorEntity avaliador) {
-		this.avaliador = avaliador;
-	}
-
-	public ProfissionalEntity getProfissional() {
-		return profissional;
-	}
-
-	public void setProfissional(ProfissionalEntity profissional) {
-		this.profissional = profissional;
+	public void setPessoaFisica(PessoaFisicaEntity pessoaFisica) {
+		this.pessoaFisica = pessoaFisica;
 	}
 
 	public OrganizacaoSolicitanteEntity getOrganizacaoSolicitante() {

@@ -8,5 +8,5 @@ import br.gov.frameworkdemoiselle.template.JPACrud;
 public class UsuarioDAO extends JPACrud<UsuarioEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
-	
+
 }
