@@ -3,15 +3,13 @@ package vinicius.ferneda.tcc.certics.view;
 
 import java.util.List;
 
-import javax.faces.model.DataModel;
-import javax.faces.model.ListDataModel;
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
 import vinicius.ferneda.tcc.certics.business.EnderecoBC;
 import vinicius.ferneda.tcc.certics.business.OrganizacaoSolicitanteBC;
-import vinicius.ferneda.tcc.certics.domain.Endereco;
+import vinicius.ferneda.tcc.certics.domain.EnderecoEntity;
 import vinicius.ferneda.tcc.certics.domain.OrganizacaoSolicitanteEntity;
-import vinicius.ferneda.tcc.certics.domain.ProfissionalEntity;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
@@ -25,29 +23,13 @@ public class OrganizacaoSolicitanteEditMB extends AbstractEditPageBean<Organizac
 
 	@Inject
 	private OrganizacaoSolicitanteBC organizacaoSolicitanteBC;
-	
 
 	@Inject
 	private EnderecoBC enderecoBC;
 	
-	public List<Endereco> getEnderecoList(){
-		return enderecoBC.findAll();
+	public List<SelectItem> getUf() {
+		return organizacaoSolicitanteBC.getEnumUF();
 	}
-			
-	private DataModel<ProfissionalEntity> profissionalList;
-	
-	public void addProfissional() {
-		this.getBean().getProfissionais().add(new ProfissionalEntity());
-	}
-	public void deleteProfissional() {
-	   this.getBean().getProfissionais().remove(getProfissionalList().getRowData());
-	}
-	public DataModel<ProfissionalEntity> getProfissionalList() {
-	   if (profissionalList == null) {
-		   profissionalList = new ListDataModel<ProfissionalEntity>(this.getBean().getProfissionais());
-	   }
-	   return profissionalList;
-	} 
 	
 	@Override
 	@Transactional
@@ -59,6 +41,9 @@ public class OrganizacaoSolicitanteEditMB extends AbstractEditPageBean<Organizac
 	@Override
 	@Transactional
 	public String insert() {
+		//grava Endereco
+		this.enderecoBC.insert(this.getBean().getEndereco());
+				
 		this.organizacaoSolicitanteBC.insert(this.getBean());
 		return getPreviousView();
 	}
@@ -73,5 +58,12 @@ public class OrganizacaoSolicitanteEditMB extends AbstractEditPageBean<Organizac
 	@Override
 	protected OrganizacaoSolicitanteEntity handleLoad(Long id) {
 		return this.organizacaoSolicitanteBC.load(id);
-	}	
+	}
+	
+	@Override
+	protected OrganizacaoSolicitanteEntity createBean() {
+		OrganizacaoSolicitanteEntity organizacaoSolicitante = super.createBean();
+		organizacaoSolicitante.setEndereco(new EnderecoEntity());
+		return organizacaoSolicitante;
+	}
 }
