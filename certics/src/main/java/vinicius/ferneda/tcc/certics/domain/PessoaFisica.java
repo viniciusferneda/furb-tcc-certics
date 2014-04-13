@@ -22,8 +22,8 @@ import vinicius.ferneda.tcc.certics.constant.EnumSexo;
 public abstract class PessoaFisica{
 
 	@Id
+	@GeneratedValue(generator="PES_ID", strategy = GenerationType.AUTO)
 	@Column(name="PES_ID", nullable=false)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	
 	@Column(name="PES_NOME", nullable=false, length=255)

@@ -6,25 +6,9 @@
 	<!--
 	-->
 	<persistence-unit name="certics-ds" transaction-type="RESOURCE_LOCAL">
-		<non-jta-data-source>java:jboss/datasources/ExampleDS</non-jta-data-source>
+		
+		<non-jta-data-source>java:jboss/datasources/CerticsDS</non-jta-data-source>
 
-		<!--	
-		<class>vinicius.ferneda.tcc.certics.domain.AreaCompetencia</class>
-		<class>vinicius.ferneda.tcc.certics.domain.ResultadoEsperado</class>
-		<class>vinicius.ferneda.tcc.certics.domain.Software</class>
-		<class>vinicius.ferneda.tcc.certics.domain.Profissional</class>
-		<class>vinicius.ferneda.tcc.certics.domain.OrganizacaoSolicitante</class>
-		<class>vinicius.ferneda.tcc.certics.domain.Endereco</class>
-		<class>vinicius.ferneda.tcc.certics.domain.Avaliador</class>
-		<class>vinicius.ferneda.tcc.certics.domain.LicaoAprendida</class>
-		<class>vinicius.ferneda.tcc.certics.domain.Avaliacao</class>
-		<class>vinicius.ferneda.tcc.certics.domain.Usuario</class>
-		<class>vinicius.ferneda.tcc.certics.domain.ConjuntoEvidencias</class>
-		<class>vinicius.ferneda.tcc.certics.domain.EvidenciaProfissional</class>
-		<class>vinicius.ferneda.tcc.certics.domain.RespostaEvidencia</class>
-		<class>vinicius.ferneda.tcc.certics.domain.Evidencia</class>
-		<class>vinicius.ferneda.tcc.certics.domain.Anexo</class>
-		-->
 		<class>vinicius.ferneda.tcc.certics.domain.AreaCompetenciaEntity</class>
 		<class>vinicius.ferneda.tcc.certics.domain.ResultadoEsperadoEntity</class>
 		<class>vinicius.ferneda.tcc.certics.domain.SoftwareEntity</class>
@@ -42,10 +26,10 @@
 		<class>vinicius.ferneda.tcc.certics.domain.AnexoEntity</class>
 	
 		<properties>
-			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.format_sql" value="false" />
-			<property name="hibernate.hbm2ddl.auto" value="update" />
-			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+	      	<property name="hibernate.show_sql" value="true" />
+	      	<property name="hibernate.hbm2ddl.auto" value="create"/>
+	      	<property name="hibernate.connection.charSet" value="UTF-8" />
 		</properties>
 	</persistence-unit>
 

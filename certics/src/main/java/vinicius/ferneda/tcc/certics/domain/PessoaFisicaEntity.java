@@ -5,12 +5,14 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import vinicius.ferneda.tcc.certics.constant.EnumSexo;
 
 @Entity
 @Table(name="TB_PESSOA_FISICA")
+@SequenceGenerator(name="PES_ID", sequenceName="PES_ID")
 @NamedQueries({
 	@NamedQuery(name="PessoaFisicaEntity.findById", 
 	    	query = "SELECT avr FROM PessoaFisicaEntity avr WHERE avr.id = :id")
