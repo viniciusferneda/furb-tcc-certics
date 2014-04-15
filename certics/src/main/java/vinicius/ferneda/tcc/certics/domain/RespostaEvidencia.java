@@ -26,7 +26,7 @@ public abstract class RespostaEvidencia implements Serializable{
 	
 	@Id
 	@Column(name="REV_ID", nullable=false)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator="REV_ID", strategy=GenerationType.AUTO)
 	private Long id;
 	
 	@Column(name="REV_PONTUACAO", nullable=false)

@@ -33,7 +33,7 @@ public class UsuarioBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		UsuarioEntity usuario = new UsuarioEntity("email","senha",null,null);
+		UsuarioEntity usuario = new UsuarioEntity("email","senha");
 		usuarioBC.insert(usuario);
 		List<UsuarioEntity> listOfUsuario = usuarioBC.findAll();
 		assertNotNull(listOfUsuario);
@@ -44,7 +44,7 @@ public class UsuarioBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		UsuarioEntity usuario = new UsuarioEntity("email","senha",null,null);
+		UsuarioEntity usuario = new UsuarioEntity("email","senha");
 		usuarioBC.insert(usuario);
 		
 		List<UsuarioEntity> listOfUsuario = usuarioBC.findAll();
@@ -59,7 +59,7 @@ public class UsuarioBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		UsuarioEntity usuario = new UsuarioEntity("email","senha",null,null);
+		UsuarioEntity usuario = new UsuarioEntity("email","senha");
 		usuarioBC.insert(usuario);
 		
 		List<UsuarioEntity> listOfUsuario = usuarioBC.findAll();

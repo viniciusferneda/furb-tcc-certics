@@ -2,19 +2,21 @@ package vinicius.ferneda.tcc.certics.view;
 
 import java.util.Iterator;
 import java.util.List;
+
 import javax.inject.Inject;
+
+import vinicius.ferneda.tcc.certics.business.ProfissionalBC;
+import vinicius.ferneda.tcc.certics.domain.ProfissionalEntity;
 import br.gov.frameworkdemoiselle.annotation.NextView;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractListPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
-import vinicius.ferneda.tcc.certics.business.ProfissionalBC;
-import vinicius.ferneda.tcc.certics.domain.Profissional;
 
 @ViewController
 @NextView("./profissional_edit.jsf")
 @PreviousView("./profissional_list.jsf")
-public class ProfissionalListMB extends AbstractListPageBean<Profissional, Long> {
+public class ProfissionalListMB extends AbstractListPageBean<ProfissionalEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -22,7 +24,7 @@ public class ProfissionalListMB extends AbstractListPageBean<Profissional, Long>
 	private ProfissionalBC profissionalBC;
 	
 	@Override
-	protected List<Profissional> handleResultList() {
+	protected List<ProfissionalEntity> handleResultList() {
 		return this.profissionalBC.findAll();
 	}
 	

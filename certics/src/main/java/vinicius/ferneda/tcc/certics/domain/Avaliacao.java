@@ -30,7 +30,7 @@ public abstract class Avaliacao implements Serializable{
 	
 	@Id
 	@Column(name="AVA_ID", nullable=false)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator="AVA_ID", strategy = GenerationType.AUTO)
 	private Long id;
 	
 	@Column(name="AVA_VERSAO_CERTICS", nullable=false, length=10)

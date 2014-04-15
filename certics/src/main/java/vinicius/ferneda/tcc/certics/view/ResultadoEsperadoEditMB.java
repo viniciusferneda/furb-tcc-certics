@@ -23,7 +23,6 @@ public class ResultadoEsperadoEditMB extends AbstractEditPageBean<ResultadoEsper
 
 	@Inject
 	private ResultadoEsperadoBC resultadoEsperadoBC;
-	
 
 	@Inject
 	private AreaCompetenciaBC areaCompetenciaBC;

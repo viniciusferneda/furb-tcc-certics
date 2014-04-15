@@ -17,7 +17,7 @@ public abstract class EvidenciaProfissional implements Serializable{
 
 	@Id
 	@Column(name="EPR_ID", nullable=false)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator="EPR_ID", strategy=GenerationType.AUTO)
 	private Long id;
 	
 	@Column(name="EPR_FAZ_PARTE_ORG", length=1)

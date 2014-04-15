@@ -2,17 +2,13 @@ package vinicius.ferneda.tcc.certics.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.OneToOne;
 
 import vinicius.ferneda.tcc.certics.constant.EnumUF;
 
@@ -23,7 +19,7 @@ public abstract class Endereco implements Serializable {
 	
 	@Id
 	@Column(name="END_ID", nullable=false)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator="END_ID", strategy=GenerationType.AUTO)
 	private Long id;
 	
 	@Column(name="END_CEP", nullable=false, length=20)
@@ -50,14 +46,6 @@ public abstract class Endereco implements Serializable {
 	
 	@Column(name="END_PAIS", nullable=false, length=255)
 	private String pais;
-	
-	@JoinColumn(name="PES_ENDID")
-	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	private PessoaFisicaEntity pessoaFisica;
-	
-	@JoinColumn(name="ORS_ENDID")
-	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	private OrganizacaoSolicitanteEntity organizacaoSolicitante;
 	
 	public Long getId() {
 		return id;
@@ -129,23 +117,6 @@ public abstract class Endereco implements Serializable {
 
 	public void setPais(String pais) {
 		this.pais = pais;
-	}
-
-	public PessoaFisicaEntity getPessoaFisica() {
-		return pessoaFisica;
-	}
-
-	public void setPessoaFisica(PessoaFisicaEntity pessoaFisica) {
-		this.pessoaFisica = pessoaFisica;
-	}
-
-	public OrganizacaoSolicitanteEntity getOrganizacaoSolicitante() {
-		return organizacaoSolicitante;
-	}
-
-	public void setOrganizacaoSolicitante(
-			OrganizacaoSolicitanteEntity organizacaoSolicitante) {
-		this.organizacaoSolicitante = organizacaoSolicitante;
 	}
 	
 }

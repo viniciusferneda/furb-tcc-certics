@@ -22,7 +22,7 @@ public abstract class ConjuntoEvidencias implements Serializable{
 	
 	@Id
 	@Column(name="CEV_ID", nullable=false)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator="CEV_ID", strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Column(name="CEV_COMENTARIO", nullable=false, length=8000)

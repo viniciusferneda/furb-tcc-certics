@@ -22,7 +22,7 @@ public abstract class OrganizacaoSolicitante implements Serializable{
 	
 	@Id
 	@Column(name="ORS_ID", nullable=false)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator="ORS_ID", strategy=GenerationType.AUTO)
 	private Long id;
 	
 	@Column(name="ORS_NOME", nullable=false, length=255)
@@ -48,6 +48,10 @@ public abstract class OrganizacaoSolicitante implements Serializable{
 	@JoinColumn(name="PES_ORSID")
 	private List<ProfissionalEntity> profissionais = new ArrayList<ProfissionalEntity>();
 
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="SOF_ORSID")
+	private List<SoftwareEntity> softwares  = new ArrayList<SoftwareEntity>();
+	
 	public Long getId() {
 		return id;
 	}
@@ -110,6 +114,14 @@ public abstract class OrganizacaoSolicitante implements Serializable{
 
 	public void setProfissionais(List<ProfissionalEntity> profissionais) {
 		this.profissionais = profissionais;
+	}
+
+	public List<SoftwareEntity> getSoftwares() {
+		return softwares;
+	}
+
+	public void setSoftwares(List<SoftwareEntity> softwares) {
+		this.softwares = softwares;
 	}
 	
 }

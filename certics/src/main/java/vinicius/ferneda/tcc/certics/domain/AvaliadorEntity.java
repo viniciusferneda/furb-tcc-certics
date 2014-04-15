@@ -16,13 +16,8 @@ import vinicius.ferneda.tcc.certics.constant.EnumSexo;
     	query = "SELECT avr FROM AvaliadorEntity avr WHERE avr.id = :id"),
     	
     @NamedQuery(name="AvaliadorEntity.findByEmail",
-    	query = "SELECT avr FROM AvaliadorEntity avr WHERE avr.nome = :nome"),
+    	query = "SELECT avr FROM AvaliadorEntity avr WHERE avr.nome = :nome")
     		
-    @NamedQuery(name="AvaliadorEntity.findByUsuarioId", 
-    	query = "SELECT avr "
-    			+ " FROM AvaliadorEntity avr "
-    			+ " inner join avr.usuarios usu "
-    			+ " WHERE usu.id = :id"),
 })
 public class AvaliadorEntity extends Avaliador{
 

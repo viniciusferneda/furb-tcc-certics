@@ -9,7 +9,7 @@ import vinicius.ferneda.tcc.certics.business.EvidenciaProfissionalBC;
 import vinicius.ferneda.tcc.certics.business.ProfissionalBC;
 import vinicius.ferneda.tcc.certics.business.RespostaEvidenciaBC;
 import vinicius.ferneda.tcc.certics.domain.EvidenciaProfissional;
-import vinicius.ferneda.tcc.certics.domain.Profissional;
+import vinicius.ferneda.tcc.certics.domain.ProfissionalEntity;
 import vinicius.ferneda.tcc.certics.domain.RespostaEvidencia;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
@@ -36,7 +36,7 @@ public class EvidenciaProfissionalEditMB extends AbstractEditPageBean<EvidenciaP
 	@Inject
 	private ProfissionalBC profissionalBC;
 	
-	public List<Profissional> getProfissionalList(){
+	public List<ProfissionalEntity> getProfissionalList(){
 		return profissionalBC.findAll();
 	}
 			

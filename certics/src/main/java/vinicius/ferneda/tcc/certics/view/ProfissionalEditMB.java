@@ -2,21 +2,17 @@ package vinicius.ferneda.tcc.certics.view;
 
 import java.util.List;
 
-import javax.faces.model.DataModel;
-import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
 import vinicius.ferneda.tcc.certics.business.EnderecoBC;
 import vinicius.ferneda.tcc.certics.business.OrganizacaoSolicitanteBC;
 import vinicius.ferneda.tcc.certics.business.ProfissionalBC;
-import vinicius.ferneda.tcc.certics.domain.Endereco;
+import vinicius.ferneda.tcc.certics.business.UsuarioBC;
 import vinicius.ferneda.tcc.certics.domain.EnderecoEntity;
-import vinicius.ferneda.tcc.certics.domain.EvidenciaProfissionalEntity;
 import vinicius.ferneda.tcc.certics.domain.OrganizacaoSolicitanteEntity;
-import vinicius.ferneda.tcc.certics.domain.Profissional;
+import vinicius.ferneda.tcc.certics.domain.ProfissionalEntity;
 import vinicius.ferneda.tcc.certics.domain.UsuarioEntity;
-import vinicius.ferneda.tcc.certics.persistence.EnderecoDAO;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
@@ -24,7 +20,7 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 @ViewController
 @PreviousView("./profissional_list.jsf")
-public class ProfissionalEditMB extends AbstractEditPageBean<Profissional, Long> {
+public class ProfissionalEditMB extends AbstractEditPageBean<ProfissionalEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -35,58 +31,22 @@ public class ProfissionalEditMB extends AbstractEditPageBean<Profissional, Long>
 	private OrganizacaoSolicitanteBC organizacaoSolicitanteBC;
 	
 	@Inject
-	private EnderecoDAO enderecoDAO;
+	private EnderecoBC enderecoBC;
 	
-	public EnderecoEntity getEndereco(){
-		if(getId() != null){
-			return enderecoDAO.findByOrgnizacaoSolicitanteID(getId());
-		}else{
-			return new EnderecoEntity();
-		}
+	@Inject
+	private UsuarioBC usuarioBC;
+	
+	public List<SelectItem> getUf() {
+		return profissionalBC.getEnumUF();
+	}
+	
+	public List<SelectItem> getSexo() {
+		return profissionalBC.getEnumSexo();
 	}
 	
 	public List<OrganizacaoSolicitanteEntity> getOrganizacaoSolicitanteList(){
 		return organizacaoSolicitanteBC.findAll();
 	}
-			
-	private DataModel<UsuarioEntity> usuarioList;
-	
-	public void addUsuario() {
-		this.getBean().getUsuarios().add(new UsuarioEntity());
-	}
-	public void deleteUsuario() {
-	   this.getBean().getUsuarios().remove(getUsuarioList().getRowData());
-	}
-	public DataModel<UsuarioEntity> getUsuarioList() {
-	   if (usuarioList == null) {
-		   usuarioList = new ListDataModel<UsuarioEntity>(this.getBean().getUsuarios());
-	   }
-	   return usuarioList;
-	} 
-	private DataModel<EvidenciaProfissionalEntity> evidenciaProfissionalList;
-	
-	public void addEvidenciaProfissional() {
-		this.getBean().getProfissionais().add(new EvidenciaProfissionalEntity());
-	}
-	public void deleteEvidenciaProfissional() {
-	   this.getBean().getProfissionais().remove(getEvidenciaProfissionalList().getRowData());
-	}
-	public DataModel<EvidenciaProfissionalEntity> getEvidenciaProfissionalList() {
-	   if (evidenciaProfissionalList == null) {
-		   evidenciaProfissionalList = new ListDataModel<EvidenciaProfissionalEntity>(this.getBean().getProfissionais());
-	   }
-	   return evidenciaProfissionalList;
-	} 
-	public List<SelectItem> getSexo() {
-		return profissionalBC.getEnumSexo();
-	}
-	@Inject
-	private EnderecoBC enderecoBC;
-	
-	public List<Endereco> getEnderecoList(){
-		return enderecoBC.findAll();
-	}
-			
 	
 	@Override
 	@Transactional
@@ -98,6 +58,13 @@ public class ProfissionalEditMB extends AbstractEditPageBean<Profissional, Long>
 	@Override
 	@Transactional
 	public String insert() {
+		//grava Endereco
+		this.enderecoBC.insert(this.getBean().getEndereco());
+				
+		//grava Usuario
+		this.usuarioBC.insert(this.getBean().getUsuario());
+				
+		//grava profissional
 		this.profissionalBC.insert(this.getBean());
 		return getPreviousView();
 	}
@@ -110,7 +77,15 @@ public class ProfissionalEditMB extends AbstractEditPageBean<Profissional, Long>
 	}
 	
 	@Override
-	protected Profissional handleLoad(Long id) {
+	protected ProfissionalEntity handleLoad(Long id) {
 		return this.profissionalBC.load(id);
 	}	
+	
+	@Override
+	protected ProfissionalEntity createBean() {
+		ProfissionalEntity profissional = super.createBean();
+		profissional.setEndereco(new EnderecoEntity());
+		profissional.setUsuario(new UsuarioEntity());
+		return profissional;
+	}
 }

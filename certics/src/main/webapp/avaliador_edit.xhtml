@@ -84,105 +84,70 @@
 					
 					<p:message for="fone2" />
 						
-					<h:outputLabel value="#{messages['endereco.label']}: " for="endereco" styleClass="text-input" />
-				    <p:selectOneMenu id="endereco" value="#{avaliadorEditMB.bean.endereco}"  effect="fade" converter="ConversorEndereco">
-						<f:selectItem itemLabel="Selecione" itemValue="" />
-						<f:selectItems value="#{avaliadorEditMB.enderecoList}" var="varEndereco" itemLabel="#{varEndereco.id}"  itemValue="#{varEndereco}" />						
-					</p:selectOneMenu>
-					<p:message for="endereco" />								  
-								 
+					<h:outputLabel value="#{messages['endereco.label.cep']}: " for="cep" styleClass="text-input" />
+					
+					<h:inputText id="cep" value="#{avaliadorEditMB.bean.endereco.cep}" title="#{messages['endereco.alt.cep']}" />
+					
+					<p:message for="cep" />
+						
+					<h:outputLabel value="#{messages['endereco.label.logradouro']}: " for="logradouro" styleClass="text-input" />
+					
+					<h:inputText id="logradouro" value="#{avaliadorEditMB.bean.endereco.logradouro}" title="#{messages['endereco.alt.logradouro']}" />
+					
+					<p:message for="logradouro" />
+						
+					<h:outputLabel value="#{messages['endereco.label.numero']}: " for="numero" styleClass="text-input" />
+					
+					<h:inputText id="numero" value="#{avaliadorEditMB.bean.endereco.numero}" title="#{messages['endereco.alt.numero']}" />
+					
+					<p:message for="numero" />
+						
+					<h:outputLabel value="#{messages['endereco.label.complemento']}: " for="complemento" styleClass="text-input" />
+					
+					<h:inputText id="complemento" value="#{avaliadorEditMB.bean.endereco.complemento}" title="#{messages['endereco.alt.complemento']}" />
+					
+					<p:message for="complemento" />
+						
+					<h:outputLabel value="#{messages['endereco.label.bairro']}: " for="bairro" styleClass="text-input" />
+					
+					<h:inputText id="bairro" value="#{avaliadorEditMB.bean.endereco.bairro}" title="#{messages['endereco.alt.bairro']}" />
+					
+					<p:message for="bairro" />
+						
+					<h:outputLabel value="#{messages['endereco.label.cidade']}: " for="cidade" styleClass="text-input" />
+					
+					<h:inputText id="cidade" value="#{avaliadorEditMB.bean.endereco.cidade}" title="#{messages['endereco.alt.cidade']}" />
+					
+					<p:message for="cidade" />
+						
+					<h:outputLabel value="#{messages['endereco.label.uf']}: " for="uf" styleClass="text-input" />
+					
+					<p:selectOneMenu id="uf" effect="fade" value="#{avaliadorEditMB.bean.endereco.uf}">
+						<f:selectItems value="#{avaliadorEditMB.uf}" />
+					</p:selectOneMenu>					
+								
+					<p:message for="uf" />
+						
+					<h:outputLabel value="#{messages['endereco.label.pais']}: " for="pais" styleClass="text-input" />
+					
+					<h:inputText id="pais" value="#{avaliadorEditMB.bean.endereco.pais}" title="#{messages['endereco.alt.pais']}" />
+					
+					<p:message for="pais" />
+					
+					<h:outputLabel value="#{messages['usuario.label.email']}: " for="email" styleClass="text-input" />
+						    
+			        <h:inputText id="email" value="#{avaliadorEditMB.bean.usuario.email}" title="#{messages['usuario.alt.email']}" />
+						                   
+					<p:message for="email" />
+					
+					<h:outputLabel value="#{messages['usuario.label.senha']}: " for="senha" styleClass="text-input" />
+						    
+			        <h:inputText id="senha" value="#{avaliadorEditMB.bean.usuario.senha}" title="#{messages['usuario.alt.senha']}" />
+						                   
+					<p:message for="senha" />
+					
 				</h:panelGrid>
 			</p:fieldset>
-			
-		<p:fieldset legend="#{messages['usuario.label']}" toggleable="true" toggleSpeed="500">
-			<h:panelGrid id="fieldsusuario" columns="1"> 
-				<p:commandButton value="#{messages['button.new']}" action="#{avaliadorEditMB.addUsuario}" update="listUsuario"/>
-				<p:dataTable id="listUsuario" var="usuario" value="#{avaliadorEditMB.usuarioList}" rowIndexVar="index">
-						
-			        <p:column>
-  			           <h:outputLabel value="#{messages['usuario.label.id']}: " for="id" styleClass="text-input" />
-						    
-			           <h:outputText id="id" value="#{usuario.id}" />
-				             
-					   <p:message for="id" />
-			  	   </p:column>					  
-				
-			        <p:column>
-  			           <h:outputLabel value="#{messages['usuario.label.email']}: " for="email" styleClass="text-input" />
-						    
-			           <h:inputText id="email" value="#{usuario.email}"
-				          title="#{messages['usuario.alt.email']}" />
-						                   
-					   <p:message for="email" />
-			  	   </p:column>					  
-				
-			        <p:column>
-  			           <h:outputLabel value="#{messages['usuario.label.senha']}: " for="senha" styleClass="text-input" />
-						    
-			           <h:inputText id="senha" value="#{usuario.senha}"
-				          title="#{messages['usuario.alt.senha']}" />
-						                   
-					   <p:message for="senha" />
-			  	   </p:column>					  
-				
-				   <p:column>
-					   <f:facet name="header">#{messages['label.action']}</f:facet>
-					   <p:commandButton value="#{messages['button.delete']}" action="#{avaliadorEditMB.deleteUsuario}" ajax="false"/>
-				   </p:column>
-				</p:dataTable>
-			</h:panelGrid>
-		</p:fieldset>
-						
-		<p:fieldset legend="#{messages['avaliacao.label']}" toggleable="true" toggleSpeed="500">
-			<h:panelGrid id="fieldsavaliacao" columns="1"> 
-				<p:commandButton value="#{messages['button.new']}" action="#{avaliadorEditMB.addAvaliacao}" update="listAvaliacao"/>
-				<p:dataTable id="listAvaliacao" var="avaliacao" value="#{avaliadorEditMB.avaliacaoList}" rowIndexVar="index">
-						
-			        <p:column>
-  			           <h:outputLabel value="#{messages['avaliacao.label.id']}: " for="id" styleClass="text-input" />
-						    
-			           <h:outputText id="id" value="#{avaliacao.id}" />
-				             
-					   <p:message for="id" />
-			  	   </p:column>					  
-				
-			        <p:column>
-  			           <h:outputLabel value="#{messages['avaliacao.label.versaoCertics']}: " for="versaoCertics" styleClass="text-input" />
-						    
-					   <p:selectOneMenu id="versaoCertics" value="#{avaliacao.versaoCertics}" effect="fade">
-						   <f:selectItems value="#{avaliacaoEditMB.versaoCertics}" />
-					   </p:selectOneMenu>
-					                       
-					   <p:message for="versaoCertics" />
-			  	   </p:column>					  
-				
-			        <p:column>
-  			           <h:outputLabel value="#{messages['avaliacao.label.pontuacao']}: " for="pontuacao" styleClass="text-input" />
-						    
-					   <p:selectOneMenu id="pontuacao" value="#{avaliacao.pontuacao}" effect="fade">
-						   <f:selectItems value="#{avaliacaoEditMB.pontuacao}" />
-					   </p:selectOneMenu>
-					                       
-					   <p:message for="pontuacao" />
-			  	   </p:column>					  
-				
-			        <p:column>
-  			           <h:outputLabel value="#{messages['avaliacao.label.dataAvaliacao']}: " for="dataAvaliacao" styleClass="text-input" />
-						    
-			           <p:calendar id="dataAvaliacao" value="#{avaliacao.dataAvaliacao}"
-			  	          pattern="#{messages['label.date.pattern']}" navigator="true" showButtonPanel="true"
-				          locale="#{locales.currentLocale}" title="#{messages['avaliacao.alt.dataAvaliacao']}" />
-							        
-					   <p:message for="dataAvaliacao" />
-			  	   </p:column>					  
-				
-				   <p:column>
-					   <f:facet name="header">#{messages['label.action']}</f:facet>
-					   <p:commandButton value="#{messages['button.delete']}" action="#{avaliadorEditMB.deleteAvaliacao}" ajax="false"/>
-				   </p:column>
-				</p:dataTable>
-			</h:panelGrid>
-		</p:fieldset>
 						
 		</h:form>
 	</ui:define>

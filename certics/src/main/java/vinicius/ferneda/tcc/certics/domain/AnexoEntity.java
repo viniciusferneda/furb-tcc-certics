@@ -3,10 +3,12 @@ package vinicius.ferneda.tcc.certics.domain;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="TB_ANEXO")
+@SequenceGenerator(name="ANE_ID", sequenceName="ANE_ID")
 @NamedQueries({
     @NamedQuery(name = "AnexoEntity.findById", query = "SELECT obj FROM AnexoEntity obj WHERE obj.id = :id")
 })

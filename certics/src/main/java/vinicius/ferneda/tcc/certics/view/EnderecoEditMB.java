@@ -7,7 +7,7 @@ import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
 import vinicius.ferneda.tcc.certics.business.EnderecoBC;
-import vinicius.ferneda.tcc.certics.domain.Endereco;
+import vinicius.ferneda.tcc.certics.domain.EnderecoEntity;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
@@ -15,7 +15,7 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 @ViewController
 @PreviousView("./endereco_list.jsf")
-public class EnderecoEditMB extends AbstractEditPageBean<Endereco, Long> {
+public class EnderecoEditMB extends AbstractEditPageBean<EnderecoEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -49,7 +49,7 @@ public class EnderecoEditMB extends AbstractEditPageBean<Endereco, Long> {
 	}
 	
 	@Override
-	protected Endereco handleLoad(Long id) {
+	protected EnderecoEntity handleLoad(Long id) {
 		return this.enderecoBC.load(id);
 	}	
 }

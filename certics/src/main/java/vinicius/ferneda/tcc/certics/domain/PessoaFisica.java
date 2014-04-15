@@ -22,8 +22,8 @@ import vinicius.ferneda.tcc.certics.constant.EnumSexo;
 public abstract class PessoaFisica{
 
 	@Id
-	@GeneratedValue(generator="PES_ID", strategy = GenerationType.AUTO)
 	@Column(name="PES_ID", nullable=false)
+	@GeneratedValue(generator="PES_ID", strategy=GenerationType.AUTO)
 	private Long id;
 	
 	@Column(name="PES_NOME", nullable=false, length=255)
@@ -52,6 +52,10 @@ public abstract class PessoaFisica{
 	@JoinColumn(name="PES_ENDID", nullable=false)
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private EnderecoEntity endereco;
+	
+	@JoinColumn(name="PES_USUID")
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private UsuarioEntity usuario;
 	
 	public Long getId() {
 		return id;
@@ -123,6 +127,14 @@ public abstract class PessoaFisica{
 
 	public void setEndereco(EnderecoEntity endereco) {
 		this.endereco = endereco;
+	}
+
+	public UsuarioEntity getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(UsuarioEntity usuario) {
+		this.usuario = usuario;
 	}
 	
 }

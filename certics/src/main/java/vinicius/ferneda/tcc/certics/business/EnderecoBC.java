@@ -7,13 +7,13 @@ import java.util.List;
 import javax.faces.model.SelectItem;
 
 import vinicius.ferneda.tcc.certics.constant.EnumUF;
-import vinicius.ferneda.tcc.certics.domain.Endereco;
+import vinicius.ferneda.tcc.certics.domain.EnderecoEntity;
 import vinicius.ferneda.tcc.certics.persistence.EnderecoDAO;
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
 import br.gov.frameworkdemoiselle.template.DelegateCrud;
 
 @BusinessController
-public class EnderecoBC extends DelegateCrud<Endereco, Long, EnderecoDAO> {
+public class EnderecoBC extends DelegateCrud<EnderecoEntity, Long, EnderecoDAO> {
 	private static final long serialVersionUID = 1L;
 	
 	public List<SelectItem> getEnumUF() {

@@ -35,9 +35,9 @@ public class EnderecoBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		Endereco endereco = new EnderecoEntity("cep","logradouro",Integer.valueOf(1),"complemento","bairro","cidade",null,"pais");
+		EnderecoEntity endereco = new EnderecoEntity("cep","logradouro",Integer.valueOf(1),"complemento","bairro","cidade",null,"pais");
 		enderecoBC.insert(endereco);
-		List<Endereco> listOfEndereco = enderecoBC.findAll();
+		List<EnderecoEntity> listOfEndereco = enderecoBC.findAll();
 		assertNotNull(listOfEndereco);
 		assertEquals(1, listOfEndereco.size());
 	}	
@@ -46,10 +46,10 @@ public class EnderecoBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		Endereco endereco = new EnderecoEntity("cep","logradouro",Integer.valueOf(1),"complemento","bairro","cidade",null,"pais");
+		EnderecoEntity endereco = new EnderecoEntity("cep","logradouro",Integer.valueOf(1),"complemento","bairro","cidade",null,"pais");
 		enderecoBC.insert(endereco);
 		
-		List<Endereco> listOfEndereco = enderecoBC.findAll();
+		List<EnderecoEntity> listOfEndereco = enderecoBC.findAll();
 		assertNotNull(listOfEndereco);
 		assertEquals(1, listOfEndereco.size());
 		
@@ -61,11 +61,11 @@ public class EnderecoBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		Endereco endereco = new EnderecoEntity("cep","logradouro",Integer.valueOf(1),"complemento","bairro","cidade",null,"pais");
+		EnderecoEntity endereco = new EnderecoEntity("cep","logradouro",Integer.valueOf(1),"complemento","bairro","cidade",null,"pais");
 		enderecoBC.insert(endereco);
 		
-		List<Endereco> listOfEndereco = enderecoBC.findAll();
-		Endereco endereco2 = (Endereco)listOfEndereco.get(0);
+		List<EnderecoEntity> listOfEndereco = enderecoBC.findAll();
+		EnderecoEntity endereco2 = (EnderecoEntity)listOfEndereco.get(0);
 		assertNotNull(listOfEndereco);
 
 		// alterar para tratar uma propriedade existente na Entidade Endereco

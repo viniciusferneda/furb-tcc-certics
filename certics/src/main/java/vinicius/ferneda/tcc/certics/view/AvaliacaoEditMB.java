@@ -14,7 +14,7 @@ import vinicius.ferneda.tcc.certics.domain.Avaliacao;
 import vinicius.ferneda.tcc.certics.domain.AvaliadorEntity;
 import vinicius.ferneda.tcc.certics.domain.LicaoAprendidaEntity;
 import vinicius.ferneda.tcc.certics.domain.RespostaEvidenciaEntity;
-import vinicius.ferneda.tcc.certics.domain.Software;
+import vinicius.ferneda.tcc.certics.domain.SoftwareEntity;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
@@ -39,7 +39,7 @@ public class AvaliacaoEditMB extends AbstractEditPageBean<Avaliacao, Long> {
 	@Inject
 	private SoftwareBC softwareBC;
 	
-	public List<Software> getSoftwareList(){
+	public List<SoftwareEntity> getSoftwareList(){
 		return softwareBC.findAll();
 	}
 			

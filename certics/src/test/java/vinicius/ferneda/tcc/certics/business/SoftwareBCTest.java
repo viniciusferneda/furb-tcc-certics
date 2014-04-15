@@ -14,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import vinicius.ferneda.tcc.certics.domain.OrganizacaoSolicitanteEntity;
 import vinicius.ferneda.tcc.certics.domain.Software;
 import vinicius.ferneda.tcc.certics.domain.SoftwareEntity;
 import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
@@ -36,9 +37,9 @@ public class SoftwareBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		Software software = new SoftwareEntity("nome","descricao","historico","tecnologias","aspectInovador","release",new Date(),new Date());
+		SoftwareEntity software = new SoftwareEntity("nome","descricao","historico","tecnologias","aspectInovador","release",new Date(),new Date(), new OrganizacaoSolicitanteEntity());
 		softwareBC.insert(software);
-		List<Software> listOfSoftware = softwareBC.findAll();
+		List<SoftwareEntity> listOfSoftware = softwareBC.findAll();
 		assertNotNull(listOfSoftware);
 		assertEquals(1, listOfSoftware.size());
 	}	
@@ -47,10 +48,10 @@ public class SoftwareBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		Software software = new SoftwareEntity("nome","descricao","historico","tecnologias","aspectInovador","release",new Date(),new Date());
+		SoftwareEntity software = new SoftwareEntity("nome","descricao","historico","tecnologias","aspectInovador","release",new Date(),new Date(), new OrganizacaoSolicitanteEntity());
 		softwareBC.insert(software);
 		
-		List<Software> listOfSoftware = softwareBC.findAll();
+		List<SoftwareEntity> listOfSoftware = softwareBC.findAll();
 		assertNotNull(listOfSoftware);
 		assertEquals(1, listOfSoftware.size());
 		
@@ -62,11 +63,11 @@ public class SoftwareBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		Software software = new SoftwareEntity("nome","descricao","historico","tecnologias","aspectInovador","release",new Date(),new Date());
+		SoftwareEntity software = new SoftwareEntity("nome","descricao","historico","tecnologias","aspectInovador","release",new Date(),new Date(), new OrganizacaoSolicitanteEntity());
 		softwareBC.insert(software);
 		
-		List<Software> listOfSoftware = softwareBC.findAll();
-		Software software2 = (Software)listOfSoftware.get(0);
+		List<SoftwareEntity> listOfSoftware = softwareBC.findAll();
+		SoftwareEntity software2 = (SoftwareEntity)listOfSoftware.get(0);
 		assertNotNull(listOfSoftware);
 
 		// alterar para tratar uma propriedade existente na Entidade Software

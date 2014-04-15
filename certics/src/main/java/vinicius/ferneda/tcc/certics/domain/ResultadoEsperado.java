@@ -21,7 +21,7 @@ public abstract class ResultadoEsperado implements Serializable{
 	
 	@Id
 	@Column(name="RES_ID", nullable=false)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator="RES_ID", strategy=GenerationType.AUTO)
 	private Long id;
 
 	@Column(name="ARC_TITULO", nullable=false, length=255)

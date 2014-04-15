@@ -2,19 +2,21 @@ package vinicius.ferneda.tcc.certics.view;
 
 import java.util.Iterator;
 import java.util.List;
+
 import javax.inject.Inject;
+
+import vinicius.ferneda.tcc.certics.business.EnderecoBC;
+import vinicius.ferneda.tcc.certics.domain.EnderecoEntity;
 import br.gov.frameworkdemoiselle.annotation.NextView;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractListPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
-import vinicius.ferneda.tcc.certics.business.EnderecoBC;
-import vinicius.ferneda.tcc.certics.domain.Endereco;
 
 @ViewController
 @NextView("./endereco_edit.jsf")
 @PreviousView("./endereco_list.jsf")
-public class EnderecoListMB extends AbstractListPageBean<Endereco, Long> {
+public class EnderecoListMB extends AbstractListPageBean<EnderecoEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -22,7 +24,7 @@ public class EnderecoListMB extends AbstractListPageBean<Endereco, Long> {
 	private EnderecoBC enderecoBC;
 	
 	@Override
-	protected List<Endereco> handleResultList() {
+	protected List<EnderecoEntity> handleResultList() {
 		return this.enderecoBC.findAll();
 	}
 	

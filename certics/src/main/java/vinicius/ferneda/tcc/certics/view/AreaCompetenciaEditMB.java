@@ -9,6 +9,7 @@ import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
 import vinicius.ferneda.tcc.certics.business.AreaCompetenciaBC;
+import vinicius.ferneda.tcc.certics.business.ResultadoEsperadoBC;
 import vinicius.ferneda.tcc.certics.domain.AreaCompetenciaEntity;
 import vinicius.ferneda.tcc.certics.domain.ResultadoEsperadoEntity;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
@@ -24,6 +25,10 @@ public class AreaCompetenciaEditMB extends AbstractEditPageBean<AreaCompetenciaE
 
 	@Inject
 	private AreaCompetenciaBC areaCompetenciaBC;
+	
+	@Inject
+	private ResultadoEsperadoBC resultadoEsperadoBC;
+	
 	private DataModel<ResultadoEsperadoEntity> resultadoEsperadoList;
 
 	public List<SelectItem> getVersaoCertics() {
@@ -56,6 +61,10 @@ public class AreaCompetenciaEditMB extends AbstractEditPageBean<AreaCompetenciaE
 	@Transactional
 	public String insert() {
 		this.areaCompetenciaBC.insert(this.getBean());
+		for (ResultadoEsperadoEntity res : this.getBean().getResultadosEsperados()) {
+			res.setAreaCompetencia(this.getBean());
+			this.resultadoEsperadoBC.insert(res);
+		}
 		return getPreviousView();
 	}
 	

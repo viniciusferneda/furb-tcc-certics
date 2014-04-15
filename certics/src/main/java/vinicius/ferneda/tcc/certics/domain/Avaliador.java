@@ -17,10 +17,6 @@ import vinicius.ferneda.tcc.certics.constant.EnumSexo;
 public abstract class Avaliador extends PessoaFisicaEntity implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	@JoinColumn(name="USU_AVRID")
-	private List<UsuarioEntity> usuarios = new ArrayList<UsuarioEntity>();
 
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="AVA_AVRID")
@@ -31,14 +27,6 @@ public abstract class Avaliador extends PessoaFisicaEntity implements Serializab
 	
 	public Avaliador(String nome, String cpf, String rg, EnumSexo sexo, Date dataNascimento, String fone1, String fone2, Endereco endereco) {
 		super(nome, cpf, rg, sexo, dataNascimento, fone1, fone2, endereco);
-	}
-	
-	public List<UsuarioEntity> getUsuarios() {
-		return usuarios;
-	}
-
-	public void setUsuarios(List<UsuarioEntity> usuarios) {
-		this.usuarios = usuarios;
 	}
 
 	public List<AvaliacaoEntity> getAvaliacoes() {

@@ -17,7 +17,7 @@ public abstract class LicaoAprendida implements Serializable{
 	
 	@Id
 	@Column(name="LIA_ID", nullable=false)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator="LIA_ID", strategy=GenerationType.AUTO)
 	private Long id;
 	
 	@Column(name="LIA_PONTOS_POSITIVOS", nullable=false, length=8000)

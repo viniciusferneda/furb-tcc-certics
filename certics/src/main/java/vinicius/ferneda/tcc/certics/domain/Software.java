@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -24,7 +25,7 @@ public abstract class Software implements Serializable {
 	
 	@Id
 	@Column(name="SOF_ID", nullable=false)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator="SOF_ID", strategy=GenerationType.AUTO)
 	private Long id;
 	
 	@Column(name="SOF_NOME", nullable=false, length=255)
@@ -52,6 +53,10 @@ public abstract class Software implements Serializable {
 	@Column(name="SOF_DATA_LIBERACAO")
 	@Temporal(value=TemporalType.DATE)
 	private Date dataLiberacaoVersao;
+	
+	@ManyToOne 
+	@JoinColumn(name="SOF_ORSID", nullable=false)
+	private OrganizacaoSolicitanteEntity organizacaoSolicitante;
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="AVA_SOFID")
@@ -127,6 +132,14 @@ public abstract class Software implements Serializable {
 
 	public void setDataLiberacaoVersao(Date dataLiberacaoVersao) {
 		this.dataLiberacaoVersao = dataLiberacaoVersao;
+	}
+
+	public OrganizacaoSolicitanteEntity getOrganizacaoSolicitante() {
+		return organizacaoSolicitante;
+	}
+
+	public void setOrganizacaoSolicitante(OrganizacaoSolicitanteEntity organizacaoSolicitante) {
+		this.organizacaoSolicitante = organizacaoSolicitante;
 	}
 
 	public List<AvaliacaoEntity> getAvaliacoes() {

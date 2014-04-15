@@ -39,9 +39,9 @@ public class ProfissionalBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		Profissional profissional = new ProfissionalEntity("vinculoAtual",Integer.valueOf(1),new OrganizacaoSolicitanteEntity(),"nome","cpf","rg",EnumSexo.MASCULINO,new Date(),"fone1","fone2",new EnderecoEntity());
+		ProfissionalEntity profissional = new ProfissionalEntity("vinculoAtual",Integer.valueOf(1),new OrganizacaoSolicitanteEntity(),"nome","cpf","rg",EnumSexo.MASCULINO,new Date(),"fone1","fone2",new EnderecoEntity());
 		profissionalBC.insert(profissional);
-		List<Profissional> listOfProfissional = profissionalBC.findAll();
+		List<ProfissionalEntity> listOfProfissional = profissionalBC.findAll();
 		assertNotNull(listOfProfissional);
 		assertEquals(1, listOfProfissional.size());
 	}	
@@ -50,10 +50,10 @@ public class ProfissionalBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		Profissional profissional = new ProfissionalEntity("vinculoAtual",Integer.valueOf(1),new OrganizacaoSolicitanteEntity(),"nome","cpf","rg",EnumSexo.MASCULINO,new Date(),"fone1","fone2",new EnderecoEntity());
+		ProfissionalEntity profissional = new ProfissionalEntity("vinculoAtual",Integer.valueOf(1),new OrganizacaoSolicitanteEntity(),"nome","cpf","rg",EnumSexo.MASCULINO,new Date(),"fone1","fone2",new EnderecoEntity());
 		profissionalBC.insert(profissional);
 		
-		List<Profissional> listOfProfissional = profissionalBC.findAll();
+		List<ProfissionalEntity> listOfProfissional = profissionalBC.findAll();
 		assertNotNull(listOfProfissional);
 		assertEquals(1, listOfProfissional.size());
 		
@@ -65,11 +65,11 @@ public class ProfissionalBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		Profissional profissional = new ProfissionalEntity("vinculoAtual",Integer.valueOf(1),new OrganizacaoSolicitanteEntity(),"nome","cpf","rg",EnumSexo.MASCULINO,new Date(),"fone1","fone2",new EnderecoEntity());
+		ProfissionalEntity profissional = new ProfissionalEntity("vinculoAtual",Integer.valueOf(1),new OrganizacaoSolicitanteEntity(),"nome","cpf","rg",EnumSexo.MASCULINO,new Date(),"fone1","fone2",new EnderecoEntity());
 		profissionalBC.insert(profissional);
 		
-		List<Profissional> listOfProfissional = profissionalBC.findAll();
-		Profissional profissional2 = (Profissional)listOfProfissional.get(0);
+		List<ProfissionalEntity> listOfProfissional = profissionalBC.findAll();
+		ProfissionalEntity profissional2 = (ProfissionalEntity)listOfProfissional.get(0);
 		assertNotNull(listOfProfissional);
 
 		// alterar para tratar uma propriedade existente na Entidade Profissional

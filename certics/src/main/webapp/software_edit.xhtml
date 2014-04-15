@@ -33,6 +33,13 @@
 					
 					<p:message for="id" />
 						
+					<h:outputLabel value="#{messages['organizacaoSolicitante.label']}: " for="organizacaoSolicitante" styleClass="text-input" />
+				    <p:selectOneMenu id="organizacaoSolicitante" value="#{softwareEditMB.bean.organizacaoSolicitante}"  effect="fade" converter="ConversorOrganizacaoSolicitante">
+						<f:selectItem itemLabel="Selecione" itemValue="" />
+						<f:selectItems value="#{softwareEditMB.organizacaoSolicitanteList}" var="varOrganizacaoSolicitante" itemLabel="#{varOrganizacaoSolicitante.id}"  itemValue="#{varOrganizacaoSolicitante}" />						
+					</p:selectOneMenu>
+					<p:message for="organizacaoSolicitante" />
+					
 					<h:outputLabel value="#{messages['software.label.nome']}: " for="nome" styleClass="text-input" />
 					
 					<h:inputText id="nome" value="#{softwareEditMB.bean.nome}"
@@ -94,57 +101,6 @@
 				</h:panelGrid>
 			</p:fieldset>
 			
-		<p:fieldset legend="#{messages['avaliacao.label']}" toggleable="true" toggleSpeed="500">
-			<h:panelGrid id="fieldsavaliacao" columns="1"> 
-				<p:commandButton value="#{messages['button.new']}" action="#{softwareEditMB.addAvaliacao}" update="listAvaliacao"/>
-				<p:dataTable id="listAvaliacao" var="avaliacao" value="#{softwareEditMB.avaliacaoList}" rowIndexVar="index">
-						
-			        <p:column>
-  			           <h:outputLabel value="#{messages['avaliacao.label.id']}: " for="id" styleClass="text-input" />
-						    
-			           <h:outputText id="id" value="#{avaliacao.id}" />
-				             
-					   <p:message for="id" />
-			  	   </p:column>					  
-				
-			        <p:column>
-  			           <h:outputLabel value="#{messages['avaliacao.label.versaoCertics']}: " for="versaoCertics" styleClass="text-input" />
-						    
-					   <p:selectOneMenu id="versaoCertics" value="#{avaliacao.versaoCertics}" effect="fade">
-						   <f:selectItems value="#{avaliacaoEditMB.versaoCertics}" />
-					   </p:selectOneMenu>
-					                       
-					   <p:message for="versaoCertics" />
-			  	   </p:column>					  
-				
-			        <p:column>
-  			           <h:outputLabel value="#{messages['avaliacao.label.pontuacao']}: " for="pontuacao" styleClass="text-input" />
-						    
-					   <p:selectOneMenu id="pontuacao" value="#{avaliacao.pontuacao}" effect="fade">
-						   <f:selectItems value="#{avaliacaoEditMB.pontuacao}" />
-					   </p:selectOneMenu>
-					                       
-					   <p:message for="pontuacao" />
-			  	   </p:column>					  
-				
-			        <p:column>
-  			           <h:outputLabel value="#{messages['avaliacao.label.dataAvaliacao']}: " for="dataAvaliacao" styleClass="text-input" />
-						    
-			           <p:calendar id="dataAvaliacao" value="#{avaliacao.dataAvaliacao}"
-			  	          pattern="#{messages['label.date.pattern']}" navigator="true" showButtonPanel="true"
-				          locale="#{locales.currentLocale}" title="#{messages['avaliacao.alt.dataAvaliacao']}" />
-							        
-					   <p:message for="dataAvaliacao" />
-			  	   </p:column>					  
-				
-				   <p:column>
-					   <f:facet name="header">#{messages['label.action']}</f:facet>
-					   <p:commandButton value="#{messages['button.delete']}" action="#{softwareEditMB.deleteAvaliacao}" ajax="false"/>
-				   </p:column>
-				</p:dataTable>
-			</h:panelGrid>
-		</p:fieldset>
-						
 		</h:form>
 	</ui:define>
 </ui:composition>

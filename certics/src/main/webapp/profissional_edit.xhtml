@@ -26,6 +26,12 @@
 
 			<p:fieldset legend="#{messages['profissional.label']}" toggleable="true" toggleSpeed="500">
 				<h:panelGrid id="fieldsprofissional" columns="3">
+
+					<h:outputLabel value="#{messages['profissional.label.id']}: " for="id" styleClass="text-input" />
+										
+					<h:outputText id="id" value="#{profissionalEditMB.bean.id}" />
+					
+					<p:message for="id" />
 				
 					<h:outputLabel value="#{messages['profissional.label.vinculoAtual']}: " for="vinculoAtual" styleClass="text-input" />
 					
@@ -47,12 +53,6 @@
 						<f:selectItems value="#{profissionalEditMB.organizacaoSolicitanteList}" var="varOrganizacaoSolicitante" itemLabel="#{varOrganizacaoSolicitante.id}"  itemValue="#{varOrganizacaoSolicitante}" />						
 					</p:selectOneMenu>
 					<p:message for="organizacaoSolicitante" />								  
-								 
-					<h:outputLabel value="#{messages['profissional.label.id']}: " for="id" styleClass="text-input" />
-										
-					<h:outputText id="id" value="#{profissionalEditMB.bean.id}" />
-					
-					<p:message for="id" />
 						
 					<h:outputLabel value="#{messages['profissional.label.nome']}: " for="nome" styleClass="text-input" />
 					
@@ -105,94 +105,70 @@
 					
 					<p:message for="fone2" />
 						
-					<h:outputLabel value="#{messages['endereco.label']}: " for="endereco" styleClass="text-input" />
-				    <p:selectOneMenu id="endereco" value="#{profissionalEditMB.bean.endereco}"  effect="fade" converter="ConversorEndereco">
-						<f:selectItem itemLabel="Selecione" itemValue="" />
-						<f:selectItems value="#{profissionalEditMB.enderecoList}" var="varEndereco" itemLabel="#{varEndereco.id}"  itemValue="#{varEndereco}" />						
-					</p:selectOneMenu>
-					<p:message for="endereco" />								  
-								 
+					<h:outputLabel value="#{messages['endereco.label.cep']}: " for="cep" styleClass="text-input" />
+					
+					<h:inputText id="cep" value="#{profissionalEditMB.bean.endereco.cep}" title="#{messages['endereco.alt.cep']}" />
+					
+					<p:message for="cep" />
+						
+					<h:outputLabel value="#{messages['endereco.label.logradouro']}: " for="logradouro" styleClass="text-input" />
+					
+					<h:inputText id="logradouro" value="#{profissionalEditMB.bean.endereco.logradouro}" title="#{messages['endereco.alt.logradouro']}" />
+					
+					<p:message for="logradouro" />
+						
+					<h:outputLabel value="#{messages['endereco.label.numero']}: " for="numero" styleClass="text-input" />
+					
+					<h:inputText id="numero" value="#{profissionalEditMB.bean.endereco.numero}" title="#{messages['endereco.alt.numero']}" />
+					
+					<p:message for="numero" />
+						
+					<h:outputLabel value="#{messages['endereco.label.complemento']}: " for="complemento" styleClass="text-input" />
+					
+					<h:inputText id="complemento" value="#{profissionalEditMB.bean.endereco.complemento}" title="#{messages['endereco.alt.complemento']}" />
+					
+					<p:message for="complemento" />
+						
+					<h:outputLabel value="#{messages['endereco.label.bairro']}: " for="bairro" styleClass="text-input" />
+					
+					<h:inputText id="bairro" value="#{profissionalEditMB.bean.endereco.bairro}" title="#{messages['endereco.alt.bairro']}" />
+					
+					<p:message for="bairro" />
+						
+					<h:outputLabel value="#{messages['endereco.label.cidade']}: " for="cidade" styleClass="text-input" />
+					
+					<h:inputText id="cidade" value="#{profissionalEditMB.bean.endereco.cidade}" title="#{messages['endereco.alt.cidade']}" />
+					
+					<p:message for="cidade" />
+						
+					<h:outputLabel value="#{messages['endereco.label.uf']}: " for="uf" styleClass="text-input" />
+					
+					<p:selectOneMenu id="uf" effect="fade" value="#{profissionalEditMB.bean.endereco.uf}">
+						<f:selectItems value="#{profissionalEditMB.uf}" />
+					</p:selectOneMenu>					
+								
+					<p:message for="uf" />
+						
+					<h:outputLabel value="#{messages['endereco.label.pais']}: " for="pais" styleClass="text-input" />
+					
+					<h:inputText id="pais" value="#{profissionalEditMB.bean.endereco.pais}" title="#{messages['endereco.alt.pais']}" />
+					
+					<p:message for="pais" />
+					
+					<h:outputLabel value="#{messages['usuario.label.email']}: " for="email" styleClass="text-input" />
+						    
+			        <h:inputText id="email" value="#{profissionalEditMB.bean.usuario.email}" title="#{messages['usuario.alt.email']}" />
+						                   
+					<p:message for="email" />
+					
+					<h:outputLabel value="#{messages['usuario.label.senha']}: " for="senha" styleClass="text-input" />
+						    
+			        <h:inputText id="senha" value="#{profissionalEditMB.bean.usuario.senha}" title="#{messages['usuario.alt.senha']}" />
+						                   
+					<p:message for="senha" />
+					
 				</h:panelGrid>
 			</p:fieldset>
-			
-		<p:fieldset legend="#{messages['usuario.label']}" toggleable="true" toggleSpeed="500">
-			<h:panelGrid id="fieldsusuario" columns="1"> 
-				<p:commandButton value="#{messages['button.new']}" action="#{profissionalEditMB.addUsuario}" update="listUsuario"/>
-				<p:dataTable id="listUsuario" var="usuario" value="#{profissionalEditMB.usuarioList}" rowIndexVar="index">
-						
-			        <p:column>
-  			           <h:outputLabel value="#{messages['usuario.label.id']}: " for="id" styleClass="text-input" />
-						    
-			           <h:outputText id="id" value="#{usuario.id}" />
-				             
-					   <p:message for="id" />
-			  	   </p:column>					  
-				
-			        <p:column>
-  			           <h:outputLabel value="#{messages['usuario.label.email']}: " for="email" styleClass="text-input" />
-						    
-			           <h:inputText id="email" value="#{usuario.email}"
-				          title="#{messages['usuario.alt.email']}" />
-						                   
-					   <p:message for="email" />
-			  	   </p:column>					  
-				
-			        <p:column>
-  			           <h:outputLabel value="#{messages['usuario.label.senha']}: " for="senha" styleClass="text-input" />
-						    
-			           <h:inputText id="senha" value="#{usuario.senha}"
-				          title="#{messages['usuario.alt.senha']}" />
-						                   
-					   <p:message for="senha" />
-			  	   </p:column>					  
-				
-				   <p:column>
-					   <f:facet name="header">#{messages['label.action']}</f:facet>
-					   <p:commandButton value="#{messages['button.delete']}" action="#{profissionalEditMB.deleteUsuario}" ajax="false"/>
-				   </p:column>
-				</p:dataTable>
-			</h:panelGrid>
-		</p:fieldset>
-						
-		<p:fieldset legend="#{messages['evidenciaProfissional.label']}" toggleable="true" toggleSpeed="500">
-			<h:panelGrid id="fieldsevidenciaProfissional" columns="1"> 
-				<p:commandButton value="#{messages['button.new']}" action="#{profissionalEditMB.addEvidenciaProfissional}" update="listEvidenciaProfissional"/>
-				<p:dataTable id="listEvidenciaProfissional" var="evidenciaProfissional" value="#{profissionalEditMB.evidenciaProfissionalList}" rowIndexVar="index">
-						
-			        <p:column>
-  			           <h:outputLabel value="#{messages['evidenciaProfissional.label.id']}: " for="id" styleClass="text-input" />
-						    
-			           <h:outputText id="id" value="#{evidenciaProfissional.id}" />
-				             
-					   <p:message for="id" />
-			  	   </p:column>					  
-				
-			        <p:column>
-  			           <h:outputLabel value="#{messages['evidenciaProfissional.label.fazParteOrganizacao']}: " for="fazParteOrganizacao" styleClass="text-input" />
-						    
-			           <h:inputText id="fazParteOrganizacao" value="#{evidenciaProfissional.fazParteOrganizacao}"
-				          title="#{messages['evidenciaProfissional.alt.fazParteOrganizacao']}" />
-						                   
-					   <p:message for="fazParteOrganizacao" />
-			  	   </p:column>					  
-				
-			        <p:column>
-  			           <h:outputLabel value="#{messages['evidenciaProfissional.label.envolvimento']}: " for="envolvimento" styleClass="text-input" />
-						    
-			           <h:inputText id="envolvimento" value="#{evidenciaProfissional.envolvimento}"
-				          title="#{messages['evidenciaProfissional.alt.envolvimento']}" />
-						                   
-					   <p:message for="envolvimento" />
-			  	   </p:column>					  
-				
-				   <p:column>
-					   <f:facet name="header">#{messages['label.action']}</f:facet>
-					   <p:commandButton value="#{messages['button.delete']}" action="#{profissionalEditMB.deleteEvidenciaProfissional}" ajax="false"/>
-				   </p:column>
-				</p:dataTable>
-			</h:panelGrid>
-		</p:fieldset>
-						
 		</h:form>
 	</ui:define>
 </ui:composition>

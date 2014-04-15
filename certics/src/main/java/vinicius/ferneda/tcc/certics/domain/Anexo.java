@@ -17,7 +17,7 @@ public abstract class Anexo implements Serializable{
 	
 	@Id
 	@Column(name="ANE_ID", nullable=false)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator="ANE_ID", strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Column(name="ANE_ARQUIVO", nullable=false)

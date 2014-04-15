@@ -16,7 +16,6 @@ import br.gov.frameworkdemoiselle.template.DelegateCrud;
 public class ResultadoEsperadoBC extends DelegateCrud<ResultadoEsperadoEntity, Long, ResultadoEsperadoDAO> {
 	private static final long serialVersionUID = 1L;
 	
-	
 	public List<SelectItem> getEnumVersaoCertics() {
 		List<SelectItem> varEnumVersaoCertics = new ArrayList<SelectItem>();
 		for (EnumVersaoCertics eachEnumVersaoCertics : EnumVersaoCertics.values()) {

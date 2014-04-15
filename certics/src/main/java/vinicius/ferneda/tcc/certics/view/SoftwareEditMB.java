@@ -1,13 +1,14 @@
 
 package vinicius.ferneda.tcc.certics.view;
 
-import javax.faces.model.DataModel;
-import javax.faces.model.ListDataModel;
+import java.util.List;
+
 import javax.inject.Inject;
 
+import vinicius.ferneda.tcc.certics.business.OrganizacaoSolicitanteBC;
 import vinicius.ferneda.tcc.certics.business.SoftwareBC;
-import vinicius.ferneda.tcc.certics.domain.AvaliacaoEntity;
-import vinicius.ferneda.tcc.certics.domain.Software;
+import vinicius.ferneda.tcc.certics.domain.OrganizacaoSolicitanteEntity;
+import vinicius.ferneda.tcc.certics.domain.SoftwareEntity;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
@@ -15,28 +16,19 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 @ViewController
 @PreviousView("./software_list.jsf")
-public class SoftwareEditMB extends AbstractEditPageBean<Software, Long> {
+public class SoftwareEditMB extends AbstractEditPageBean<SoftwareEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private SoftwareBC softwareBC;
-	
 
-	private DataModel<AvaliacaoEntity> avaliacaoList;
+	@Inject
+	private OrganizacaoSolicitanteBC organizacaoSolicitanteBC;
 	
-	public void addAvaliacao() {
-		this.getBean().getAvaliacoes().add(new AvaliacaoEntity());
+	public List<OrganizacaoSolicitanteEntity> getOrganizacaoSolicitanteList(){
+		return organizacaoSolicitanteBC.findAll();
 	}
-	public void deleteAvaliacao() {
-	   this.getBean().getAvaliacoes().remove(getAvaliacaoList().getRowData());
-	}
-	public DataModel<AvaliacaoEntity> getAvaliacaoList() {
-	   if (avaliacaoList == null) {
-		   avaliacaoList = new ListDataModel<AvaliacaoEntity>(this.getBean().getAvaliacoes());
-	   }
-	   return avaliacaoList;
-	} 
 	
 	@Override
 	@Transactional
@@ -60,7 +52,8 @@ public class SoftwareEditMB extends AbstractEditPageBean<Software, Long> {
 	}
 	
 	@Override
-	protected Software handleLoad(Long id) {
+	protected SoftwareEntity handleLoad(Long id) {
 		return this.softwareBC.load(id);
 	}	
+	
 }

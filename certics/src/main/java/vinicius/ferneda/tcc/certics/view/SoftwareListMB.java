@@ -2,19 +2,21 @@ package vinicius.ferneda.tcc.certics.view;
 
 import java.util.Iterator;
 import java.util.List;
+
 import javax.inject.Inject;
+
+import vinicius.ferneda.tcc.certics.business.SoftwareBC;
+import vinicius.ferneda.tcc.certics.domain.SoftwareEntity;
 import br.gov.frameworkdemoiselle.annotation.NextView;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractListPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
-import vinicius.ferneda.tcc.certics.business.SoftwareBC;
-import vinicius.ferneda.tcc.certics.domain.Software;
 
 @ViewController
 @NextView("./software_edit.jsf")
 @PreviousView("./software_list.jsf")
-public class SoftwareListMB extends AbstractListPageBean<Software, Long> {
+public class SoftwareListMB extends AbstractListPageBean<SoftwareEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -22,7 +24,7 @@ public class SoftwareListMB extends AbstractListPageBean<Software, Long> {
 	private SoftwareBC softwareBC;
 	
 	@Override
-	protected List<Software> handleResultList() {
+	protected List<SoftwareEntity> handleResultList() {
 		return this.softwareBC.findAll();
 	}
 	

@@ -29,10 +29,6 @@ public abstract class Profissional extends PessoaFisicaEntity implements Seriali
 	@ManyToOne 
 	@JoinColumn(name="PES_ORSID")
 	private OrganizacaoSolicitanteEntity organizacaoSolicitante;
-
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	@JoinColumn(name="USU_PROID")
-	private List<UsuarioEntity> usuarios = new ArrayList<UsuarioEntity>();
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="EPR_PROID")
@@ -71,14 +67,6 @@ public abstract class Profissional extends PessoaFisicaEntity implements Seriali
 
 	public void setOrganizacaoSolicitante(OrganizacaoSolicitanteEntity organizacaoSolicitante) {
 		this.organizacaoSolicitante = organizacaoSolicitante;
-	}
-
-	public List<UsuarioEntity> getUsuarios() {
-		return usuarios;
-	}
-
-	public void setUsuarios(List<UsuarioEntity> usuarios) {
-		this.usuarios = usuarios;
 	}
 
 	public List<EvidenciaProfissionalEntity> getProfissionais() {

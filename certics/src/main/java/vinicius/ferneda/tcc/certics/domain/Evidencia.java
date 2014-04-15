@@ -22,7 +22,7 @@ public abstract class Evidencia implements Serializable{
 	
 	@Id
 	@Column(name="EVI_ID", nullable=false)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(generator="EVI_ID", strategy=GenerationType.AUTO)
 	private Long id;
 
 	@Column(name="EVI_NOME", nullable=false, length=255)

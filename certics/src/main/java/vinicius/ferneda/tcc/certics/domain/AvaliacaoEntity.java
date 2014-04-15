@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import vinicius.ferneda.tcc.certics.constant.EnumPontuacaoAvaliacao;
@@ -12,6 +13,7 @@ import vinicius.ferneda.tcc.certics.constant.EnumVersaoCertics;
 
 @Entity
 @Table(name="TB_AVALIACAO")
+@SequenceGenerator(name="AVA_ID", sequenceName="AVA_ID")
 @NamedQueries({
     @NamedQuery(name = "AvaliacaoEntity.findById", query = "SELECT obj FROM AvaliacaoEntity obj WHERE obj.id = :id")
 })
