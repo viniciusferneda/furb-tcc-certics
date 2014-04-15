@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import vinicius.ferneda.tcc.certics.business.AvaliacaoBC;
 import vinicius.ferneda.tcc.certics.business.ConjuntoEvidenciasBC;
 import vinicius.ferneda.tcc.certics.business.RespostaEvidenciaBC;
-import vinicius.ferneda.tcc.certics.domain.Avaliacao;
+import vinicius.ferneda.tcc.certics.domain.AvaliacaoEntity;
 import vinicius.ferneda.tcc.certics.domain.ConjuntoEvidencias;
 import vinicius.ferneda.tcc.certics.domain.EvidenciaEntity;
 import vinicius.ferneda.tcc.certics.domain.EvidenciaProfissionalEntity;
@@ -37,7 +37,7 @@ public class RespostaEvidenciaEditMB extends AbstractEditPageBean<RespostaEviden
 	@Inject
 	private AvaliacaoBC avaliacaoBC;
 	
-	public List<Avaliacao> getAvaliacaoList(){
+	public List<AvaliacaoEntity> getAvaliacaoList(){
 		return avaliacaoBC.findAll();
 	}
 			

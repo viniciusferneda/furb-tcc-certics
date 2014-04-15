@@ -8,13 +8,13 @@ import javax.faces.model.SelectItem;
 
 import vinicius.ferneda.tcc.certics.constant.EnumPontuacaoAvaliacao;
 import vinicius.ferneda.tcc.certics.constant.EnumVersaoCertics;
-import vinicius.ferneda.tcc.certics.domain.Avaliacao;
+import vinicius.ferneda.tcc.certics.domain.AvaliacaoEntity;
 import vinicius.ferneda.tcc.certics.persistence.AvaliacaoDAO;
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
 import br.gov.frameworkdemoiselle.template.DelegateCrud;
 
 @BusinessController
-public class AvaliacaoBC extends DelegateCrud<Avaliacao, Long, AvaliacaoDAO> {
+public class AvaliacaoBC extends DelegateCrud<AvaliacaoEntity, Long, AvaliacaoDAO> {
 	private static final long serialVersionUID = 1L;
 	
 	

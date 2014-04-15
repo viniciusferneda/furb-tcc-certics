@@ -1,12 +1,11 @@
 package vinicius.ferneda.tcc.certics.persistence;
 
+import vinicius.ferneda.tcc.certics.domain.AvaliacaoEntity;
 import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
 import br.gov.frameworkdemoiselle.template.JPACrud;
 
-import vinicius.ferneda.tcc.certics.domain.Avaliacao;
-
 @PersistenceController
-public class AvaliacaoDAO extends JPACrud<Avaliacao, Long> {
+public class AvaliacaoDAO extends JPACrud<AvaliacaoEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
 	

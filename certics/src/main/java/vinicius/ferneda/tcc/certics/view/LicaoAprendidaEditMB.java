@@ -7,7 +7,7 @@ import javax.inject.Inject;
 
 import vinicius.ferneda.tcc.certics.business.AvaliacaoBC;
 import vinicius.ferneda.tcc.certics.business.LicaoAprendidaBC;
-import vinicius.ferneda.tcc.certics.domain.Avaliacao;
+import vinicius.ferneda.tcc.certics.domain.AvaliacaoEntity;
 import vinicius.ferneda.tcc.certics.domain.LicaoAprendida;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
@@ -27,7 +27,7 @@ public class LicaoAprendidaEditMB extends AbstractEditPageBean<LicaoAprendida, L
 	@Inject
 	private AvaliacaoBC avaliacaoBC;
 	
-	public List<Avaliacao> getAvaliacaoList(){
+	public List<AvaliacaoEntity> getAvaliacaoList(){
 		return avaliacaoBC.findAll();
 	}
 			

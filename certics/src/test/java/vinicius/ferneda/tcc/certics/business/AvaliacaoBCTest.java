@@ -38,9 +38,9 @@ public class AvaliacaoBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		Avaliacao avaliacao = new AvaliacaoEntity(EnumVersaoCertics.V_1_0,EnumPontuacaoAvaliacao.REPROVADA,new Date(),new SoftwareEntity(),new AvaliadorEntity());
+		AvaliacaoEntity avaliacao = new AvaliacaoEntity(EnumVersaoCertics.V_1_0,EnumPontuacaoAvaliacao.REPROVADA,new Date(),new SoftwareEntity(),new AvaliadorEntity());
 		avaliacaoBC.insert(avaliacao);
-		List<Avaliacao> listOfAvaliacao = avaliacaoBC.findAll();
+		List<AvaliacaoEntity> listOfAvaliacao = avaliacaoBC.findAll();
 		assertNotNull(listOfAvaliacao);
 		assertEquals(1, listOfAvaliacao.size());
 	}	
@@ -49,10 +49,10 @@ public class AvaliacaoBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		Avaliacao avaliacao = new AvaliacaoEntity(EnumVersaoCertics.V_1_0,EnumPontuacaoAvaliacao.REPROVADA,new Date(),new SoftwareEntity(),new AvaliadorEntity());
+		AvaliacaoEntity avaliacao = new AvaliacaoEntity(EnumVersaoCertics.V_1_0,EnumPontuacaoAvaliacao.REPROVADA,new Date(),new SoftwareEntity(),new AvaliadorEntity());
 		avaliacaoBC.insert(avaliacao);
 		
-		List<Avaliacao> listOfAvaliacao = avaliacaoBC.findAll();
+		List<AvaliacaoEntity> listOfAvaliacao = avaliacaoBC.findAll();
 		assertNotNull(listOfAvaliacao);
 		assertEquals(1, listOfAvaliacao.size());
 		
@@ -64,11 +64,11 @@ public class AvaliacaoBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		Avaliacao avaliacao = new AvaliacaoEntity(EnumVersaoCertics.V_1_0,EnumPontuacaoAvaliacao.REPROVADA,new Date(),new SoftwareEntity(),new AvaliadorEntity());
+		AvaliacaoEntity avaliacao = new AvaliacaoEntity(EnumVersaoCertics.V_1_0,EnumPontuacaoAvaliacao.REPROVADA,new Date(),new SoftwareEntity(),new AvaliadorEntity());
 		avaliacaoBC.insert(avaliacao);
 		
-		List<Avaliacao> listOfAvaliacao = avaliacaoBC.findAll();
-		Avaliacao avaliacao2 = (Avaliacao)listOfAvaliacao.get(0);
+		List<AvaliacaoEntity> listOfAvaliacao = avaliacaoBC.findAll();
+		AvaliacaoEntity avaliacao2 = (AvaliacaoEntity)listOfAvaliacao.get(0);
 		assertNotNull(listOfAvaliacao);
 
 		// alterar para tratar uma propriedade existente na Entidade Avaliacao
