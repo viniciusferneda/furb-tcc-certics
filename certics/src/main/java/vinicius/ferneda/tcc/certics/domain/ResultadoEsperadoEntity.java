@@ -10,9 +10,17 @@ import vinicius.ferneda.tcc.certics.constant.EnumVersaoCertics;
 
 @Entity
 @Table(name="TB_RESULTADO_ESPERADO")
-@SequenceGenerator(name="RES_ID", sequenceName="RES_ID")
+@SequenceGenerator(name="RES_ID", sequenceName="RES_ID", allocationSize=1)
 @NamedQueries({
-    @NamedQuery(name="ResultadoEsperadoEntity.findById", query="SELECT obj FROM ResultadoEsperadoEntity obj WHERE obj.id = :id")
+    @NamedQuery(name="ResultadoEsperadoEntity.findById", 
+    		query="SELECT obj "
+    			+ " FROM ResultadoEsperadoEntity obj "
+    			+ " WHERE obj.id = :id"),
+    			
+    @NamedQuery(name="ResultadoEsperadoEntity.findByVersaoCertics",
+    		query="SELECT obj"
+    			+ " FROM ResultadoEsperadoEntity obj "
+    			+ " WHERE obj.versaoCertics = :versaoCertics")
 })
 public class ResultadoEsperadoEntity extends ResultadoEsperado {
 

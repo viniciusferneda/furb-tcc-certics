@@ -41,14 +41,6 @@
 								
 					<p:message for="versaoCertics" />
 						
-					<h:outputLabel value="#{messages['avaliacao.label.pontuacao']}: " for="pontuacao" styleClass="text-input" />
-					
-					<p:selectOneMenu id="pontuacao" effect="fade" value="#{avaliacaoEditMB.bean.pontuacao}">
-						<f:selectItems value="#{avaliacaoEditMB.pontuacao}" />
-					</p:selectOneMenu>					
-								
-					<p:message for="pontuacao" />
-						
 					<h:outputLabel value="#{messages['avaliacao.label.dataAvaliacao']}: " for="dataAvaliacao" styleClass="text-input" />
 					
 					<p:calendar id="dataAvaliacao" value="#{avaliacaoEditMB.bean.dataAvaliacao}"
@@ -70,6 +62,14 @@
 						<f:selectItems value="#{avaliacaoEditMB.avaliadorList}" var="varAvaliador" itemLabel="#{varAvaliador.id}"  itemValue="#{varAvaliador}" />						
 					</p:selectOneMenu>
 					<p:message for="avaliador" />								  
+
+					<h:outputLabel value="#{messages['avaliacao.label.pontuacao']}: " for="pontuacao" styleClass="text-input" />
+					
+					<p:selectOneMenu id="pontuacao" effect="fade" value="#{avaliacaoEditMB.bean.pontuacao}">
+						<f:selectItems value="#{avaliacaoEditMB.pontuacao}" />
+					</p:selectOneMenu>					
+								
+					<p:message for="pontuacao" />
 								 
 				</h:panelGrid>
 			</p:fieldset>

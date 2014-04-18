@@ -33,14 +33,6 @@
 					
 					<p:message for="id" />
 						
-					<h:outputLabel value="#{messages['respostaEvidencia.label.pontuacao']}: " for="pontuacao" styleClass="text-input" />
-					
-					<p:selectOneMenu id="pontuacao" effect="fade" value="#{respostaEvidenciaEditMB.bean.pontuacao}">
-						<f:selectItems value="#{respostaEvidenciaEditMB.pontuacao}" />
-					</p:selectOneMenu>					
-								
-					<p:message for="pontuacao" />
-						
 					<h:outputLabel value="#{messages['respostaEvidencia.label.abrangencia']}: " for="abrangencia" styleClass="text-input" />
 					
 					<h:inputText id="abrangencia" value="#{respostaEvidenciaEditMB.bean.abrangencia}"
@@ -62,13 +54,6 @@
 					
 					<p:message for="contribuicao" />
 						
-					<h:outputLabel value="#{messages['avaliacao.label']}: " for="avaliacao" styleClass="text-input" />
-				    <p:selectOneMenu id="avaliacao" value="#{respostaEvidenciaEditMB.bean.avaliacao}"  effect="fade" converter="ConversorAvaliacao">
-						<f:selectItem itemLabel="Selecione" itemValue="" />
-						<f:selectItems value="#{respostaEvidenciaEditMB.avaliacaoList}" var="varAvaliacao" itemLabel="#{varAvaliacao.id}"  itemValue="#{varAvaliacao}" />						
-					</p:selectOneMenu>
-					<p:message for="avaliacao" />								  
-								 
 					<h:outputLabel value="#{messages['conjuntoEvidencias.label']}: " for="conjuntoEvidencias" styleClass="text-input" />
 				    <p:selectOneMenu id="conjuntoEvidencias" value="#{respostaEvidenciaEditMB.bean.conjuntoEvidencias}"  effect="fade" converter="ConversorConjuntoEvidencias">
 						<f:selectItem itemLabel="Selecione" itemValue="" />

@@ -25,7 +25,7 @@ public abstract class AreaCompetencia implements Serializable{
 	
 	@Id
 	@Column(name="ARC_ID", nullable=false)
-	@GeneratedValue(generator="ARC_ID", strategy = GenerationType.AUTO)
+	@GeneratedValue(generator="ARC_ID", strategy=GenerationType.AUTO)
 	private Long id;
 
 	@Column(name="ARC_TITULO", nullable=false, length=255)

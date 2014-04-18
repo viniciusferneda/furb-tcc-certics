@@ -6,9 +6,11 @@ import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import vinicius.ferneda.tcc.certics.constant.EnumPontuacaoEvidencia;
+
 @Entity
 @Table(name="TB_CONJUNTO_EVIDENCIAS")
-@SequenceGenerator(name="CEV_ID", sequenceName="CEV_ID")
+@SequenceGenerator(name="CEV_ID", sequenceName="CEV_ID", allocationSize=1)
 @NamedQueries({
     @NamedQuery(name = "ConjuntoEvidenciasEntity.findById", query = "SELECT obj FROM ConjuntoEvidenciasEntity obj WHERE obj.id = :id")
 })
@@ -19,9 +21,15 @@ public class ConjuntoEvidenciasEntity extends ConjuntoEvidencias {
 	public ConjuntoEvidenciasEntity(){
 	}
 	
-	public ConjuntoEvidenciasEntity(String comentario, ResultadoEsperadoEntity resultadoEsperado) {
+	public ConjuntoEvidenciasEntity(EnumPontuacaoEvidencia pontuacao, String comentario, ResultadoEsperadoEntity resultadoEsperado) {
+		setPontuacao(pontuacao);
 		setComentario(comentario);
 		setResultadoEsperado(resultadoEsperado);
+	}
+
+	public ConjuntoEvidenciasEntity(AvaliacaoEntity avaliacaoEntity, ResultadoEsperadoEntity resultadoEsperadoEntity) {
+		setAvaliacao(avaliacaoEntity);
+		setResultadoEsperado(resultadoEsperadoEntity);
 	}
 	
 }

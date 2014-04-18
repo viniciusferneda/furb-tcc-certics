@@ -6,8 +6,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,8 +14,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
-
-import vinicius.ferneda.tcc.certics.constant.EnumPontuacaoEvidencia;
 
 @MappedSuperclass
 public abstract class RespostaEvidencia implements Serializable{
@@ -29,10 +25,6 @@ public abstract class RespostaEvidencia implements Serializable{
 	@GeneratedValue(generator="REV_ID", strategy=GenerationType.AUTO)
 	private Long id;
 	
-	@Column(name="REV_PONTUACAO", nullable=false)
-	@Enumerated(EnumType.STRING)
-	private EnumPontuacaoEvidencia pontuacao;
-	
 	@Column(name="REV_ABRANGENCIA", length=8000)
 	private String abrangencia;
 	
@@ -43,11 +35,7 @@ public abstract class RespostaEvidencia implements Serializable{
 	private String contribuicao;
 	
 	@ManyToOne 
-	@JoinColumn(name="REV_AVAID", nullable=false)
-	private AvaliacaoEntity avaliacao;
-	
-	@ManyToOne 
-	@JoinColumn(name="REV_CEVID", nullable=false)
+	@JoinColumn(name="REV_CEVID")
 	private ConjuntoEvidenciasEntity conjuntoEvidencias;
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
@@ -64,14 +52,6 @@ public abstract class RespostaEvidencia implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public EnumPontuacaoEvidencia getPontuacao() {
-		return pontuacao;
-	}
-
-	public void setPontuacao(EnumPontuacaoEvidencia pontuacao) {
-		this.pontuacao = pontuacao;
 	}
 
 	public String getAbrangencia() {
@@ -98,14 +78,6 @@ public abstract class RespostaEvidencia implements Serializable{
 		this.contribuicao = contribuicao;
 	}
 
-	public AvaliacaoEntity getAvaliacao() {
-		return avaliacao;
-	}
-
-	public void setAvaliacao(AvaliacaoEntity avaliacao) {
-		this.avaliacao = avaliacao;
-	}
-	
 	public ConjuntoEvidenciasEntity getConjuntoEvidencias() {
 		return conjuntoEvidencias;
 	}

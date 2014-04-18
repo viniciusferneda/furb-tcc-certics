@@ -9,21 +9,21 @@
 		
 		<non-jta-data-source>java:jboss/datasources/CerticsDS</non-jta-data-source>
 
+		<class>vinicius.ferneda.tcc.certics.domain.AnexoEntity</class>
 		<class>vinicius.ferneda.tcc.certics.domain.AreaCompetenciaEntity</class>
+		<class>vinicius.ferneda.tcc.certics.domain.AvaliacaoEntity</class>
+		<class>vinicius.ferneda.tcc.certics.domain.AvaliadorEntity</class>
+		<class>vinicius.ferneda.tcc.certics.domain.ConjuntoEvidenciasEntity</class>
+		<class>vinicius.ferneda.tcc.certics.domain.EnderecoEntity</class>
+		<class>vinicius.ferneda.tcc.certics.domain.EvidenciaEntity</class>
+		<class>vinicius.ferneda.tcc.certics.domain.EvidenciaProfissionalEntity</class>
+		<class>vinicius.ferneda.tcc.certics.domain.LicaoAprendidaEntity</class>
+		<class>vinicius.ferneda.tcc.certics.domain.OrganizacaoSolicitanteEntity</class>
+		<class>vinicius.ferneda.tcc.certics.domain.ProfissionalEntity</class>
+		<class>vinicius.ferneda.tcc.certics.domain.RespostaEvidenciaEntity</class>
 		<class>vinicius.ferneda.tcc.certics.domain.ResultadoEsperadoEntity</class>
 		<class>vinicius.ferneda.tcc.certics.domain.SoftwareEntity</class>
-		<class>vinicius.ferneda.tcc.certics.domain.ProfissionalEntity</class>
-		<class>vinicius.ferneda.tcc.certics.domain.OrganizacaoSolicitanteEntity</class>
-		<class>vinicius.ferneda.tcc.certics.domain.EnderecoEntity</class>
-		<class>vinicius.ferneda.tcc.certics.domain.AvaliadorEntity</class>
-		<class>vinicius.ferneda.tcc.certics.domain.LicaoAprendidaEntity</class>
-		<class>vinicius.ferneda.tcc.certics.domain.AvaliacaoEntity</class>
 		<class>vinicius.ferneda.tcc.certics.domain.UsuarioEntity</class>
-		<class>vinicius.ferneda.tcc.certics.domain.ConjuntoEvidenciasEntity</class>
-		<class>vinicius.ferneda.tcc.certics.domain.EvidenciaProfissionalEntity</class>
-		<class>vinicius.ferneda.tcc.certics.domain.RespostaEvidenciaEntity</class>
-		<class>vinicius.ferneda.tcc.certics.domain.EvidenciaEntity</class>
-		<class>vinicius.ferneda.tcc.certics.domain.AnexoEntity</class>
 	
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>

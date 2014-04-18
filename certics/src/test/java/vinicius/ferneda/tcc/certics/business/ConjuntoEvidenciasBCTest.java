@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import vinicius.ferneda.tcc.certics.constant.EnumPontuacaoEvidencia;
 import vinicius.ferneda.tcc.certics.domain.ConjuntoEvidencias;
 import vinicius.ferneda.tcc.certics.domain.ConjuntoEvidenciasEntity;
 import vinicius.ferneda.tcc.certics.domain.ResultadoEsperadoEntity;
@@ -35,9 +36,9 @@ public class ConjuntoEvidenciasBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		ConjuntoEvidencias conjuntoEvidencias = new ConjuntoEvidenciasEntity("comentario",new ResultadoEsperadoEntity());
+		ConjuntoEvidenciasEntity conjuntoEvidencias = new ConjuntoEvidenciasEntity(EnumPontuacaoEvidencia.F,"comentario",new ResultadoEsperadoEntity());
 		conjuntoEvidenciasBC.insert(conjuntoEvidencias);
-		List<ConjuntoEvidencias> listOfConjuntoEvidencias = conjuntoEvidenciasBC.findAll();
+		List<ConjuntoEvidenciasEntity> listOfConjuntoEvidencias = conjuntoEvidenciasBC.findAll();
 		assertNotNull(listOfConjuntoEvidencias);
 		assertEquals(1, listOfConjuntoEvidencias.size());
 	}	
@@ -46,10 +47,10 @@ public class ConjuntoEvidenciasBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		ConjuntoEvidencias conjuntoEvidencias = new ConjuntoEvidenciasEntity("comentario",new ResultadoEsperadoEntity());
+		ConjuntoEvidenciasEntity conjuntoEvidencias = new ConjuntoEvidenciasEntity(EnumPontuacaoEvidencia.F,"comentario",new ResultadoEsperadoEntity());
 		conjuntoEvidenciasBC.insert(conjuntoEvidencias);
 		
-		List<ConjuntoEvidencias> listOfConjuntoEvidencias = conjuntoEvidenciasBC.findAll();
+		List<ConjuntoEvidenciasEntity> listOfConjuntoEvidencias = conjuntoEvidenciasBC.findAll();
 		assertNotNull(listOfConjuntoEvidencias);
 		assertEquals(1, listOfConjuntoEvidencias.size());
 		
@@ -61,11 +62,11 @@ public class ConjuntoEvidenciasBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		ConjuntoEvidencias conjuntoEvidencias = new ConjuntoEvidenciasEntity("comentario",new ResultadoEsperadoEntity());
+		ConjuntoEvidenciasEntity conjuntoEvidencias = new ConjuntoEvidenciasEntity(EnumPontuacaoEvidencia.F,"comentario",new ResultadoEsperadoEntity());
 		conjuntoEvidenciasBC.insert(conjuntoEvidencias);
 		
-		List<ConjuntoEvidencias> listOfConjuntoEvidencias = conjuntoEvidenciasBC.findAll();
-		ConjuntoEvidencias conjuntoEvidencias2 = (ConjuntoEvidencias)listOfConjuntoEvidencias.get(0);
+		List<ConjuntoEvidenciasEntity> listOfConjuntoEvidencias = conjuntoEvidenciasBC.findAll();
+		ConjuntoEvidenciasEntity conjuntoEvidencias2 = (ConjuntoEvidenciasEntity)listOfConjuntoEvidencias.get(0);
 		assertNotNull(listOfConjuntoEvidencias);
 
 		// alterar para tratar uma propriedade existente na Entidade ConjuntoEvidencias

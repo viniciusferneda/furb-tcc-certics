@@ -10,6 +10,15 @@
 	</listener>
  	-->
 
+	<filter>
+        <filter-name>Character Encoding Filter</filter-name>
+		<filter-class>vinicius.ferneda.tcc.certics.util.CharacterEncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>Character Encoding Filter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
  	<!-- If you are using servlet 2.5 then uncomment this listener -->
  	<!--
 	<listener>

@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import vinicius.ferneda.tcc.certics.business.AvaliacaoBC;
 import vinicius.ferneda.tcc.certics.business.AvaliadorBC;
+import vinicius.ferneda.tcc.certics.business.ConjuntoEvidenciasBC;
 import vinicius.ferneda.tcc.certics.business.SoftwareBC;
 import vinicius.ferneda.tcc.certics.domain.AvaliacaoEntity;
 import vinicius.ferneda.tcc.certics.domain.AvaliadorEntity;
@@ -25,6 +26,8 @@ public class AvaliacaoEditMB extends AbstractEditPageBean<AvaliacaoEntity, Long>
 	@Inject
 	private AvaliacaoBC avaliacaoBC;
 	
+	@Inject
+	private ConjuntoEvidenciasBC conjuntoEvidenciasBC;
 
 	public List<SelectItem> getVersaoCertics() {
 		return avaliacaoBC.getEnumVersaoCertics();
@@ -57,6 +60,7 @@ public class AvaliacaoEditMB extends AbstractEditPageBean<AvaliacaoEntity, Long>
 	@Transactional
 	public String insert() {
 		this.avaliacaoBC.insert(this.getBean());
+		this.conjuntoEvidenciasBC.criarConjuntoEvidencias(this.getBean());
 		return getPreviousView();
 	}
 	
@@ -70,5 +74,6 @@ public class AvaliacaoEditMB extends AbstractEditPageBean<AvaliacaoEntity, Long>
 	@Override
 	protected AvaliacaoEntity handleLoad(Long id) {
 		return this.avaliacaoBC.load(id);
-	}	
+	}
+	
 }

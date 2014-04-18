@@ -13,7 +13,7 @@ import vinicius.ferneda.tcc.certics.constant.EnumVersaoCertics;
 
 @Entity
 @Table(name="TB_AVALIACAO")
-@SequenceGenerator(name="AVA_ID", sequenceName="AVA_ID")
+@SequenceGenerator(name="AVA_ID", sequenceName="AVA_ID", allocationSize=1)
 @NamedQueries({
     @NamedQuery(name = "AvaliacaoEntity.findById", query = "SELECT obj FROM AvaliacaoEntity obj WHERE obj.id = :id")
 })

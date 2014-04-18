@@ -2,19 +2,21 @@ package vinicius.ferneda.tcc.certics.view;
 
 import java.util.Iterator;
 import java.util.List;
+
 import javax.inject.Inject;
+
+import vinicius.ferneda.tcc.certics.business.LicaoAprendidaBC;
+import vinicius.ferneda.tcc.certics.domain.LicaoAprendidaEntity;
 import br.gov.frameworkdemoiselle.annotation.NextView;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractListPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
-import vinicius.ferneda.tcc.certics.business.LicaoAprendidaBC;
-import vinicius.ferneda.tcc.certics.domain.LicaoAprendida;
 
 @ViewController
 @NextView("./licaoAprendida_edit.jsf")
 @PreviousView("./licaoAprendida_list.jsf")
-public class LicaoAprendidaListMB extends AbstractListPageBean<LicaoAprendida, Long> {
+public class LicaoAprendidaListMB extends AbstractListPageBean<LicaoAprendidaEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -22,7 +24,7 @@ public class LicaoAprendidaListMB extends AbstractListPageBean<LicaoAprendida, L
 	private LicaoAprendidaBC licaoAprendidaBC;
 	
 	@Override
-	protected List<LicaoAprendida> handleResultList() {
+	protected List<LicaoAprendidaEntity> handleResultList() {
 		return this.licaoAprendidaBC.findAll();
 	}
 	

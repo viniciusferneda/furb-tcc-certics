@@ -13,8 +13,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import vinicius.ferneda.tcc.certics.constant.EnumPontuacaoEvidencia;
-import vinicius.ferneda.tcc.certics.domain.AvaliacaoEntity;
 import vinicius.ferneda.tcc.certics.domain.ConjuntoEvidenciasEntity;
 import vinicius.ferneda.tcc.certics.domain.RespostaEvidencia;
 import vinicius.ferneda.tcc.certics.domain.RespostaEvidenciaEntity;
@@ -38,7 +36,7 @@ public class RespostaEvidenciaBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		RespostaEvidencia respostaEvidencia = new RespostaEvidenciaEntity(EnumPontuacaoEvidencia.F,"abrangencia","motivo","contribuicao",new AvaliacaoEntity(),new ConjuntoEvidenciasEntity());
+		RespostaEvidencia respostaEvidencia = new RespostaEvidenciaEntity("abrangencia","motivo","contribuicao",new ConjuntoEvidenciasEntity());
 		respostaEvidenciaBC.insert(respostaEvidencia);
 		List<RespostaEvidencia> listOfRespostaEvidencia = respostaEvidenciaBC.findAll();
 		assertNotNull(listOfRespostaEvidencia);
@@ -49,7 +47,7 @@ public class RespostaEvidenciaBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		RespostaEvidencia respostaEvidencia = new RespostaEvidenciaEntity(EnumPontuacaoEvidencia.F,"abrangencia","motivo","contribuicao",new AvaliacaoEntity(),new ConjuntoEvidenciasEntity());
+		RespostaEvidencia respostaEvidencia = new RespostaEvidenciaEntity("abrangencia","motivo","contribuicao",new ConjuntoEvidenciasEntity());
 		respostaEvidenciaBC.insert(respostaEvidencia);
 		
 		List<RespostaEvidencia> listOfRespostaEvidencia = respostaEvidenciaBC.findAll();
@@ -64,7 +62,7 @@ public class RespostaEvidenciaBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		RespostaEvidencia respostaEvidencia = new RespostaEvidenciaEntity(EnumPontuacaoEvidencia.F,"abrangencia","motivo","contribuicao",new AvaliacaoEntity(),new ConjuntoEvidenciasEntity());
+		RespostaEvidencia respostaEvidencia = new RespostaEvidenciaEntity("abrangencia","motivo","contribuicao",new ConjuntoEvidenciasEntity());
 		respostaEvidenciaBC.insert(respostaEvidencia);
 		
 		List<RespostaEvidencia> listOfRespostaEvidencia = respostaEvidenciaBC.findAll();
@@ -79,7 +77,7 @@ public class RespostaEvidenciaBCTest {
 		RespostaEvidencia respostaEvidencia3 = (RespostaEvidencia)listOfRespostaEvidencia.get(0);
 		
 		// alterar para tratar uma propriedade existente na Entidade RespostaEvidencia
-		assertEquals("novo valor", respostaEvidencia3.getAvaliacao());
+		assertEquals("novo valor", respostaEvidencia3.getConjuntoEvidencias());
 	}
 
 }

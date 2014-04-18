@@ -8,7 +8,7 @@ import javax.inject.Inject;
 import vinicius.ferneda.tcc.certics.business.AvaliacaoBC;
 import vinicius.ferneda.tcc.certics.business.LicaoAprendidaBC;
 import vinicius.ferneda.tcc.certics.domain.AvaliacaoEntity;
-import vinicius.ferneda.tcc.certics.domain.LicaoAprendida;
+import vinicius.ferneda.tcc.certics.domain.LicaoAprendidaEntity;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
@@ -16,13 +16,12 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 @ViewController
 @PreviousView("./licaoAprendida_list.jsf")
-public class LicaoAprendidaEditMB extends AbstractEditPageBean<LicaoAprendida, Long> {
+public class LicaoAprendidaEditMB extends AbstractEditPageBean<LicaoAprendidaEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private LicaoAprendidaBC licaoAprendidaBC;
-	
 
 	@Inject
 	private AvaliacaoBC avaliacaoBC;
@@ -30,7 +29,6 @@ public class LicaoAprendidaEditMB extends AbstractEditPageBean<LicaoAprendida, L
 	public List<AvaliacaoEntity> getAvaliacaoList(){
 		return avaliacaoBC.findAll();
 	}
-			
 	
 	@Override
 	@Transactional
@@ -54,7 +52,7 @@ public class LicaoAprendidaEditMB extends AbstractEditPageBean<LicaoAprendida, L
 	}
 	
 	@Override
-	protected LicaoAprendida handleLoad(Long id) {
+	protected LicaoAprendidaEntity handleLoad(Long id) {
 		return this.licaoAprendidaBC.load(id);
 	}	
 }

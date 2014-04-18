@@ -32,6 +32,13 @@
 					<h:outputText id="id" value="#{licaoAprendidaEditMB.bean.id}" />
 					
 					<p:message for="id" />
+
+					<h:outputLabel value="#{messages['avaliacao.label']}: " for="avaliacao" styleClass="text-input" />
+				    <p:selectOneMenu id="avaliacao" value="#{licaoAprendidaEditMB.bean.avaliacao}"  effect="fade" converter="ConversorAvaliacao">
+						<f:selectItem itemLabel="Selecione" itemValue="" />
+						<f:selectItems value="#{licaoAprendidaEditMB.avaliacaoList}" var="varAvaliacao" itemLabel="#{varAvaliacao.id}"  itemValue="#{varAvaliacao}" />						
+					</p:selectOneMenu>
+					<p:message for="avaliacao" />								  
 						
 					<h:outputLabel value="#{messages['licaoAprendida.label.pontosPositivos']}: " for="pontosPositivos" styleClass="text-input" />
 					
@@ -53,13 +60,6 @@
 						title="#{messages['licaoAprendida.alt.melhoria']}" />
 					
 					<p:message for="melhoria" />
-						
-					<h:outputLabel value="#{messages['avaliacao.label']}: " for="avaliacao" styleClass="text-input" />
-				    <p:selectOneMenu id="avaliacao" value="#{licaoAprendidaEditMB.bean.avaliacao}"  effect="fade" converter="ConversorAvaliacao">
-						<f:selectItem itemLabel="Selecione" itemValue="" />
-						<f:selectItems value="#{licaoAprendidaEditMB.avaliacaoList}" var="varAvaliacao" itemLabel="#{varAvaliacao.id}"  itemValue="#{varAvaliacao}" />						
-					</p:selectOneMenu>
-					<p:message for="avaliacao" />								  
 								 
 				</h:panelGrid>
 			</p:fieldset>

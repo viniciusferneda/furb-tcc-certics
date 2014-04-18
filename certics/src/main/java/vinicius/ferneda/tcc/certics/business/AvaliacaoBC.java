@@ -21,7 +21,7 @@ public class AvaliacaoBC extends DelegateCrud<AvaliacaoEntity, Long, AvaliacaoDA
 	public List<SelectItem> getEnumVersaoCertics() {
 		List<SelectItem> varEnumVersaoCertics = new ArrayList<SelectItem>();
 		for (EnumVersaoCertics eachEnumVersaoCertics : EnumVersaoCertics.values()) {
-			varEnumVersaoCertics.add(new SelectItem(eachEnumVersaoCertics.getNome()));
+			varEnumVersaoCertics.add(new SelectItem(eachEnumVersaoCertics, eachEnumVersaoCertics.getNome()));
 		}
 		return varEnumVersaoCertics;
 	}
@@ -29,7 +29,7 @@ public class AvaliacaoBC extends DelegateCrud<AvaliacaoEntity, Long, AvaliacaoDA
 	public List<SelectItem> getEnumPontuacaoAvaliacao() {
 		List<SelectItem> varEnumPontuacaoAvaliacao = new ArrayList<SelectItem>();
 		for (EnumPontuacaoAvaliacao eachEnumPontuacaoAvaliacao : EnumPontuacaoAvaliacao.values()) {
-			varEnumPontuacaoAvaliacao.add(new SelectItem(eachEnumPontuacaoAvaliacao.getNome()));
+			varEnumPontuacaoAvaliacao.add(new SelectItem(eachEnumPontuacaoAvaliacao, eachEnumPontuacaoAvaliacao.getNome()));
 		}
 		return varEnumPontuacaoAvaliacao;
 	}

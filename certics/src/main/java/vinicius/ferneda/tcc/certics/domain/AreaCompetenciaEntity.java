@@ -10,9 +10,10 @@ import vinicius.ferneda.tcc.certics.constant.EnumVersaoCertics;
 
 @Entity
 @Table(name="TB_AREA_COMPETENCIA")
-@SequenceGenerator(name="ARC_ID", sequenceName="ARC_ID")
+@SequenceGenerator(name="ARC_ID", sequenceName="ARC_ID", allocationSize=1)
 @NamedQueries({
-    @NamedQuery(name = "AreaCompetenciaEntity.findById", query = "SELECT obj FROM AreaCompetenciaEntity obj WHERE obj.id = :id")
+    @NamedQuery(name="AreaCompetenciaEntity.findById", 
+    		query="SELECT obj FROM AreaCompetenciaEntity obj WHERE obj.id = :id")
 })
 public class AreaCompetenciaEntity extends AreaCompetencia {
 

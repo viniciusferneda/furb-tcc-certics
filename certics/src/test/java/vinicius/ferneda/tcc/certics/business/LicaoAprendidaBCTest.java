@@ -36,9 +36,9 @@ public class LicaoAprendidaBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		LicaoAprendida licaoAprendida = new LicaoAprendidaEntity("pontosPositivos","pontosNegativos","melhoria",new AvaliacaoEntity());
+		LicaoAprendidaEntity licaoAprendida = new LicaoAprendidaEntity("pontosPositivos","pontosNegativos","melhoria",new AvaliacaoEntity());
 		licaoAprendidaBC.insert(licaoAprendida);
-		List<LicaoAprendida> listOfLicaoAprendida = licaoAprendidaBC.findAll();
+		List<LicaoAprendidaEntity> listOfLicaoAprendida = licaoAprendidaBC.findAll();
 		assertNotNull(listOfLicaoAprendida);
 		assertEquals(1, listOfLicaoAprendida.size());
 	}	
@@ -47,10 +47,10 @@ public class LicaoAprendidaBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		LicaoAprendida licaoAprendida = new LicaoAprendidaEntity("pontosPositivos","pontosNegativos","melhoria",new AvaliacaoEntity());
+		LicaoAprendidaEntity licaoAprendida = new LicaoAprendidaEntity("pontosPositivos","pontosNegativos","melhoria",new AvaliacaoEntity());
 		licaoAprendidaBC.insert(licaoAprendida);
 		
-		List<LicaoAprendida> listOfLicaoAprendida = licaoAprendidaBC.findAll();
+		List<LicaoAprendidaEntity> listOfLicaoAprendida = licaoAprendidaBC.findAll();
 		assertNotNull(listOfLicaoAprendida);
 		assertEquals(1, listOfLicaoAprendida.size());
 		
@@ -62,11 +62,11 @@ public class LicaoAprendidaBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		LicaoAprendida licaoAprendida = new LicaoAprendidaEntity("pontosPositivos","pontosNegativos","melhoria",new AvaliacaoEntity());
+		LicaoAprendidaEntity licaoAprendida = new LicaoAprendidaEntity("pontosPositivos","pontosNegativos","melhoria",new AvaliacaoEntity());
 		licaoAprendidaBC.insert(licaoAprendida);
 		
-		List<LicaoAprendida> listOfLicaoAprendida = licaoAprendidaBC.findAll();
-		LicaoAprendida licaoAprendida2 = (LicaoAprendida)listOfLicaoAprendida.get(0);
+		List<LicaoAprendidaEntity> listOfLicaoAprendida = licaoAprendidaBC.findAll();
+		LicaoAprendidaEntity licaoAprendida2 = (LicaoAprendidaEntity)listOfLicaoAprendida.get(0);
 		assertNotNull(listOfLicaoAprendida);
 
 		// alterar para tratar uma propriedade existente na Entidade LicaoAprendida

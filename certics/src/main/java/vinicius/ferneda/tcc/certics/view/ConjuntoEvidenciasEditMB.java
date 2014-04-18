@@ -9,7 +9,7 @@ import javax.inject.Inject;
 
 import vinicius.ferneda.tcc.certics.business.ConjuntoEvidenciasBC;
 import vinicius.ferneda.tcc.certics.business.ResultadoEsperadoBC;
-import vinicius.ferneda.tcc.certics.domain.ConjuntoEvidencias;
+import vinicius.ferneda.tcc.certics.domain.ConjuntoEvidenciasEntity;
 import vinicius.ferneda.tcc.certics.domain.RespostaEvidenciaEntity;
 import vinicius.ferneda.tcc.certics.domain.ResultadoEsperadoEntity;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
@@ -19,13 +19,12 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 @ViewController
 @PreviousView("./conjuntoEvidencias_list.jsf")
-public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<ConjuntoEvidencias, Long> {
+public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<ConjuntoEvidenciasEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private ConjuntoEvidenciasBC conjuntoEvidenciasBC;
-	
 
 	@Inject
 	private ResultadoEsperadoBC resultadoEsperadoBC;
@@ -71,7 +70,7 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<ConjuntoEvide
 	}
 	
 	@Override
-	protected ConjuntoEvidencias handleLoad(Long id) {
+	protected ConjuntoEvidenciasEntity handleLoad(Long id) {
 		return this.conjuntoEvidenciasBC.load(id);
 	}	
 }

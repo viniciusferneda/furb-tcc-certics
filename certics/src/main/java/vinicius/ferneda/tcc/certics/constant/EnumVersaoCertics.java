@@ -2,7 +2,8 @@ package vinicius.ferneda.tcc.certics.constant;
 
 public enum EnumVersaoCertics {
 
-	V_1_0("v1.0");
+	V_1_0("Versão 1.0"),
+	V_1_1("Versão 1.1");
 	
 	private String nome;
 	

@@ -12,7 +12,7 @@ import vinicius.ferneda.tcc.certics.constant.EnumSexo;
 
 @Entity
 @Table(name="TB_PESSOA_FISICA")
-@SequenceGenerator(name="PES_ID", sequenceName="PES_ID")
+@SequenceGenerator(name="PES_ID", sequenceName="PES_ID", allocationSize=1)
 @NamedQueries({
 	@NamedQuery(name="PessoaFisicaEntity.findById", 
 	    	query = "SELECT avr FROM PessoaFisicaEntity avr WHERE avr.id = :id")

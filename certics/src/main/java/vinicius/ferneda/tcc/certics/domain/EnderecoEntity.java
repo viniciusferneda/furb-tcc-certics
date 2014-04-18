@@ -10,7 +10,7 @@ import vinicius.ferneda.tcc.certics.constant.EnumUF;
 
 @Entity
 @Table(name="TB_ENDERECO")
-@SequenceGenerator(name="END_ID", sequenceName="END_ID")
+@SequenceGenerator(name="END_ID", sequenceName="END_ID", allocationSize=1)
 @NamedQueries({
     @NamedQuery(name="EnderecoEntity.findById",
     	query = "SELECT obj FROM EnderecoEntity obj "

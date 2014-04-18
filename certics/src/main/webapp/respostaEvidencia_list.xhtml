@@ -33,14 +33,6 @@
 					<h:outputText value="#{bean.id}" />
 				</p:column>
 						
-				<p:column sortBy="#{bean.pontuacao}">
-					<f:facet name="header">#{messages['respostaEvidencia.label.pontuacao']}</f:facet>
-					<h:commandLink action="#{respostaEvidenciaListMB.getNextView}" actionListener="#{respostaEvidenciaListMB.clear}">
-						<h:outputText value="#{bean.pontuacao}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
-				</p:column>
-					
 				<p:column sortBy="#{bean.abrangencia}">
 					<f:facet name="header">#{messages['respostaEvidencia.label.abrangencia']}</f:facet>
 					<h:commandLink action="#{respostaEvidenciaListMB.getNextView}" actionListener="#{respostaEvidenciaListMB.clear}">

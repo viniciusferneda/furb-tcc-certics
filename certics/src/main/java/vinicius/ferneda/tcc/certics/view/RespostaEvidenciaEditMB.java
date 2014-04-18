@@ -12,7 +12,7 @@ import vinicius.ferneda.tcc.certics.business.AvaliacaoBC;
 import vinicius.ferneda.tcc.certics.business.ConjuntoEvidenciasBC;
 import vinicius.ferneda.tcc.certics.business.RespostaEvidenciaBC;
 import vinicius.ferneda.tcc.certics.domain.AvaliacaoEntity;
-import vinicius.ferneda.tcc.certics.domain.ConjuntoEvidencias;
+import vinicius.ferneda.tcc.certics.domain.ConjuntoEvidenciasEntity;
 import vinicius.ferneda.tcc.certics.domain.EvidenciaEntity;
 import vinicius.ferneda.tcc.certics.domain.EvidenciaProfissionalEntity;
 import vinicius.ferneda.tcc.certics.domain.RespostaEvidencia;
@@ -44,7 +44,7 @@ public class RespostaEvidenciaEditMB extends AbstractEditPageBean<RespostaEviden
 	@Inject
 	private ConjuntoEvidenciasBC conjuntoEvidenciasBC;
 	
-	public List<ConjuntoEvidencias> getConjuntoEvidenciasList(){
+	public List<ConjuntoEvidenciasEntity> getConjuntoEvidenciasList(){
 		return conjuntoEvidenciasBC.findAll();
 	}
 			

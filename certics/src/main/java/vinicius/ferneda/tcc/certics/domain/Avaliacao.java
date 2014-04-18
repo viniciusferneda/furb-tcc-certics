@@ -58,8 +58,8 @@ public abstract class Avaliacao implements Serializable{
 	private List<LicaoAprendidaEntity> licoesAprendidas = new ArrayList<LicaoAprendidaEntity>();
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	@JoinColumn(name="REV_AVAID")
-	private List<RespostaEvidenciaEntity> respostas = new ArrayList<RespostaEvidenciaEntity>();
+	@JoinColumn(name="CEV_AVAID")
+	private List<ConjuntoEvidenciasEntity> respostas = new ArrayList<ConjuntoEvidenciasEntity>();
 	
 	public Long getId() {
 		return id;
@@ -117,11 +117,12 @@ public abstract class Avaliacao implements Serializable{
 		this.licoesAprendidas = licoesAprendidas;
 	}
 
-	public List<RespostaEvidenciaEntity> getRespostas() {
+	public List<ConjuntoEvidenciasEntity> getRespostas() {
 		return respostas;
 	}
 
-	public void setRespostas(List<RespostaEvidenciaEntity> respostas) {
+	public void setRespostas(List<ConjuntoEvidenciasEntity> respostas) {
 		this.respostas = respostas;
 	}
+	
 }
