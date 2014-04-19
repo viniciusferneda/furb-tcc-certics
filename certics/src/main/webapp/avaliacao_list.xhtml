@@ -33,10 +33,10 @@
 					<h:outputText value="#{bean.id}" />
 				</p:column>
 						
-				<p:column sortBy="#{bean.versaoCertics}">
+				<p:column sortBy="#{bean.versaoCertics.nome}">
 					<f:facet name="header">#{messages['avaliacao.label.versaoCertics']}</f:facet>
 					<h:commandLink action="#{avaliacaoListMB.getNextView}" actionListener="#{avaliacaoListMB.clear}">
-						<h:outputText value="#{bean.versaoCertics}" />
+						<h:outputText value="#{bean.versaoCertics.nome}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
@@ -44,7 +44,7 @@
 				<p:column sortBy="#{bean.pontuacao}">
 					<f:facet name="header">#{messages['avaliacao.label.pontuacao']}</f:facet>
 					<h:commandLink action="#{avaliacaoListMB.getNextView}" actionListener="#{avaliacaoListMB.clear}">
-						<h:outputText value="#{bean.pontuacao}" />
+						<h:outputText value="#{bean.pontuacao.nome}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>

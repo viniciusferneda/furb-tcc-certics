@@ -5,23 +5,6 @@
 
 	<ui:define name="body">
 		<h:form>
-			<p:toolbar>
-				<p:toolbarGroup align="left">
-					<p:commandButton title="#{messages['button.new']}" icon="ui-icon-document" action="#{conjuntoEvidenciasListMB.getNextView}"
-						actionListener="#{conjuntoEvidenciasListMB.clear}" ajax="false" />
-
-					<p:commandButton title="#{messages['button.delete']}" icon="ui-icon-trash" onclick="confirmation.show()"
-						type="button" immediate="true" ajax="false" />
-
-					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
-						header="#{messages['label.dialog.alert']}!" severity="alert" widgetVar="confirmation">
-
-						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{conjuntoEvidenciasListMB.deleteSelection}"
-							actionListener="#{conjuntoEvidenciasListMB.clear}" />
-						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
-					</p:confirmDialog>
-				</p:toolbarGroup>
-			</p:toolbar>
 			<p:dataTable id="list" var="bean" value="#{conjuntoEvidenciasListMB.resultList}">
 				<f:facet name="header">#{messages['conjuntoEvidencias.list.table.title']}</f:facet>
 				<p:column style="width:2%;">
@@ -32,11 +15,43 @@
 					<f:facet name="header">#{messages['conjuntoEvidencias.label.id']}</f:facet>
 					<h:outputText value="#{bean.id}" />
 				</p:column>
-						
-				<p:column sortBy="#{bean.comentario}">
-					<f:facet name="header">#{messages['conjuntoEvidencias.label.comentario']}</f:facet>
+
+				<p:column sortBy="#{bean.software.nome}">
+					<f:facet name="header">#{messages['software.label.nome']}</f:facet>
 					<h:commandLink action="#{conjuntoEvidenciasListMB.getNextView}" actionListener="#{conjuntoEvidenciasListMB.clear}">
-						<h:outputText value="#{bean.comentario}" />
+						<h:outputText value="#{bean.software.nome}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+
+				<p:column sortBy="#{bean.software.organizacaoSolicitante.nome}">
+					<f:facet name="header">#{messages['organizacaoSolicitante.label.nome']}</f:facet>
+					<h:commandLink action="#{conjuntoEvidenciasListMB.getNextView}" actionListener="#{conjuntoEvidenciasListMB.clear}">
+						<h:outputText value="#{bean.software.organizacaoSolicitante.nome}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+
+				<p:column sortBy="#{bean.versaoCertics.nome}">
+					<f:facet name="header">#{messages['avaliacao.label.versaoCertics']}</f:facet>
+					<h:commandLink action="#{conjuntoEvidenciasListMB.getNextView}" actionListener="#{conjuntoEvidenciasListMB.clear}">
+						<h:outputText value="#{bean.versaoCertics.nome}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+					
+				<p:column sortBy="#{bean.pontuacao.nome}">
+					<f:facet name="header">#{messages['avaliacao.label.pontuacao']}</f:facet>
+					<h:commandLink action="#{conjuntoEvidenciasListMB.getNextView}" actionListener="#{conjuntoEvidenciasListMB.clear}">
+						<h:outputText value="#{bean.pontuacao.nome}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+					
+				<p:column sortBy="#{bean.dataAvaliacao}">
+					<f:facet name="header">#{messages['avaliacao.label.dataAvaliacao']}</f:facet>
+					<h:commandLink action="#{conjuntoEvidenciasListMB.getNextView}" actionListener="#{conjuntoEvidenciasListMB.clear}">
+						<h:outputText value="#{bean.dataAvaliacao}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>

@@ -8,7 +8,7 @@
 	<link type="text/css" rel="stylesheet" href="css/styles.css" />
 </h:head>
 
-<h:body style="background-color:#f1f1f1">
+<h:body style="background-color:#FFFFFF">
 	<table style="width: 100%">
 		<tr>
 			<td height="70" align="left">
@@ -49,8 +49,8 @@
 		<f:facet name="complete">
 			<h:outputText value="" />
 		</f:facet>
-	</p:ajaxStatus>
-	<link type="text/css" rel="stylesheet" href="css/aristo/skin.css" />
+	</p:ajaxStatus>	
+	<link type="text/css" rel="stylesheet" href="#{request.contextPath}/themes/#{layoutBean.theme}/skin.css" />
 	<h:outputScript library="js" name="locale-primefaces.js"/>
 </h:body>
 </html>
