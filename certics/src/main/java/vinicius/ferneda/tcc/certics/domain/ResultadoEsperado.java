@@ -2,9 +2,11 @@ package vinicius.ferneda.tcc.certics.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,7 +32,7 @@ public abstract class ResultadoEsperado implements Serializable{
 	@Column(name="ARC_DESCRICAO", nullable=false, length=8000)
 	private String descricao;
 	
-	@ManyToOne 
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER) 
 	@JoinColumn(name="REV_ARCID", nullable=false)
 	private AreaCompetenciaEntity areaCompetencia;
 

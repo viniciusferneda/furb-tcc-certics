@@ -28,72 +28,81 @@
 				<h:panelGrid id="fieldsconjuntoEvidencias" columns="3">
 				
 					<h:outputLabel value="#{messages['conjuntoEvidencias.label.id']}: " for="id" styleClass="text-input" />
-										
 					<h:outputText id="id" value="#{conjuntoEvidenciasEditMB.bean.id}" />
-					
 					<p:message for="id" />
-						
-					<h:outputLabel value="#{messages['conjuntoEvidencias.label.comentario']}: " for="comentario" styleClass="text-input" />
-					
-					<h:inputText id="comentario" value="#{conjuntoEvidenciasEditMB.bean.comentario}"
-						title="#{messages['conjuntoEvidencias.alt.comentario']}" />
-					
-					<p:message for="comentario" />
-						
-					<h:outputLabel value="#{messages['resultadoEsperado.label']}: " for="resultadoEsperado" styleClass="text-input" />
-				    <p:selectOneMenu id="resultadoEsperado" value="#{conjuntoEvidenciasEditMB.bean.resultadoEsperado}"  effect="fade" converter="ConversorResultadoEsperado">
-						<f:selectItem itemLabel="Selecione" itemValue="" />
-						<f:selectItems value="#{conjuntoEvidenciasEditMB.resultadoEsperadoList}" var="varResultadoEsperado" itemLabel="#{varResultadoEsperado.id}"  itemValue="#{varResultadoEsperado}" />						
-					</p:selectOneMenu>
-					<p:message for="resultadoEsperado" />								  
-								 
+
+					<h:outputLabel value="#{messages['software.label.nome']}: " for="softwareNome" styleClass="text-input" />
+					<h:outputText id="softwareNome" value="#{conjuntoEvidenciasEditMB.bean.software.nome}" />
+					<p:message for="softwareNome" />
+						 
 				</h:panelGrid>
 			</p:fieldset>
 			
-		<p:fieldset legend="#{messages['respostaEvidencia.label']}" toggleable="true" toggleSpeed="500">
-			<h:panelGrid id="fieldsrespostaEvidencia" columns="1"> 
-				<p:commandButton value="#{messages['button.new']}" action="#{conjuntoEvidenciasEditMB.addRespostaEvidencia}" update="listRespostaEvidencia"/>
-				<p:dataTable id="listRespostaEvidencia" var="respostaEvidencia" value="#{conjuntoEvidenciasEditMB.respostaEvidenciaList}" rowIndexVar="index">
+		<p:fieldset legend="#{messages['conjuntoEvidencias.label']}" toggleable="true" toggleSpeed="500">
+			<h:panelGrid id="fieldsconjuntoEvidencia" columns="1"> 
+				<p:dataTable id="lConjuntoEvidencias" var="conjuntoEvidencia" value="#{conjuntoEvidenciasEditMB.lConjuntoEvidencias}" rowIndexVar="index">
 						
-			        <p:column>
-  			           <h:outputLabel value="#{messages['respostaEvidencia.label.id']}: " for="id" styleClass="text-input" />
-						    
-			           <h:outputText id="id" value="#{respostaEvidencia.id}" />
-				             
-					   <p:message for="id" />
-			  	   </p:column>					  
+				<p:columnGroup type="header">  
+		            <p:row>  
+		                <p:column colspan="2" headerText="#{messages['areaCompetencia.label.titulo']}" />  
+		            </p:row>  
+		  
+		            <p:row>  
+		                <p:column headerText="#{messages['resultadoEsperado.label.titulo']}" />  
+		                <p:column headerText="#{messages['conjuntoEvidencias.label.comentario']}" />  
+		            </p:row>  
+		        </p:columnGroup>
+        
+        		<p:column>
+        			<h:outputText id="areaCompetenciaTitulo" value="#{conjuntoEvidencia.resultadoEsperado.areaCompetencia.titulo}" />
+        		</p:column>
+        		
+        		<p:column>
+        			<h:outputText id="resultadoEsperadoTitulo" value="#{conjuntoEvidencia.resultadoEsperado.titulo}" />
+        		</p:column>
+        		
+        		<p:column>
+        			<h:inputText id="comentario" value="#{conjuntoEvidencia.comentario}" title="#{messages['conjuntoEvidencias.alt.comentario']}" />
+        		</p:column>
+
+					<!--
+        		
+				<p:column>
+					<h:outputLabel value="#{messages['areaCompetencia.label.titulo']}: " for="areaCompetenciaTitulo" styleClass="text-input" />
+					<h:outputText id="areaCompetenciaTitulo" value="#{conjuntoEvidencia.resultadoEsperado.areaCompetencia.titulo}" />
+					<p:message for="areaCompetenciaTitulo" />
+					
+					<br/>
+					
+					<h:outputLabel value="#{messages['resultadoEsperado.label.titulo']}: " for="resultadoEsperadoTitulo" styleClass="text-input" />
+					<h:outputText id="resultadoEsperadoTitulo" value="#{conjuntoEvidencia.resultadoEsperado.titulo}" />
+					<p:message for="resultadoEsperadoTitulo" />
+
+					<br/>
+					
+					<h:outputLabel value="#{messages['conjuntoEvidencias.label.comentario']}: " for="comentario" styleClass="text-input" />
+					<h:inputText id="comentario" value="#{conjuntoEvidencia.comentario}" title="#{messages['conjuntoEvidencias.alt.comentario']}" />
+					<p:message for="comentario" />
+				</p:column>
 				
 			        <p:column>
-  			           <h:outputLabel value="#{messages['respostaEvidencia.label.abrangencia']}: " for="abrangencia" styleClass="text-input" />
-						    
-			           <h:inputText id="abrangencia" value="#{respostaEvidencia.abrangencia}"
-				          title="#{messages['respostaEvidencia.alt.abrangencia']}" />
-						                   
+  			           <h:outputLabel value="#{messages['conjuntoEvidencia.label.abrangencia']}: " for="abrangencia" styleClass="text-input" />
+			           <h:inputText id="abrangencia" value="#{conjuntoEvidencia.abrangencia}" title="#{messages['conjuntoEvidencia.alt.abrangencia']}" />
 					   <p:message for="abrangencia" />
-			  	   </p:column>					  
+			  	   	</p:column>					  
 				
 			        <p:column>
-  			           <h:outputLabel value="#{messages['respostaEvidencia.label.motivo']}: " for="motivo" styleClass="text-input" />
-						    
-			           <h:inputText id="motivo" value="#{respostaEvidencia.motivo}"
-				          title="#{messages['respostaEvidencia.alt.motivo']}" />
-						                   
+  			           <h:outputLabel value="#{messages['conjuntoEvidencia.label.motivo']}: " for="motivo" styleClass="text-input" />
+			           <h:inputText id="motivo" value="#{conjuntoEvidencia.motivo}" title="#{messages['conjuntoEvidencia.alt.motivo']}" />
 					   <p:message for="motivo" />
-			  	   </p:column>					  
+			  	   	</p:column>					  
 				
 			        <p:column>
-  			           <h:outputLabel value="#{messages['respostaEvidencia.label.contribuicao']}: " for="contribuicao" styleClass="text-input" />
-						    
-			           <h:inputText id="contribuicao" value="#{respostaEvidencia.contribuicao}"
-				          title="#{messages['respostaEvidencia.alt.contribuicao']}" />
-						                   
+  			           <h:outputLabel value="#{messages['conjuntoEvidencia.label.contribuicao']}: " for="contribuicao" styleClass="text-input" />
+			           <h:inputText id="contribuicao" value="#{conjuntoEvidencia.contribuicao}" title="#{messages['conjuntoEvidencia.alt.contribuicao']}" />
 					   <p:message for="contribuicao" />
-			  	   </p:column>					  
-				
-				   <p:column>
-					   <f:facet name="header">#{messages['label.action']}</f:facet>
-					   <p:commandButton value="#{messages['button.delete']}" action="#{conjuntoEvidenciasEditMB.deleteRespostaEvidencia}" ajax="false"/>
-				   </p:column>
+			  	   	</p:column>					  
+					-->
 				</p:dataTable>
 			</h:panelGrid>
 		</p:fieldset>
