@@ -37,12 +37,12 @@ public abstract class ConjuntoEvidencias implements Serializable{
 	@Column(name="CEV_COMENTARIO", length=8000)
 	private String comentario;
 	
-	@ManyToOne 
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="CEV_AVAID", nullable=false)
 	private AvaliacaoEntity avaliacao;
 	
 	@JoinColumn(name="CEV_RESID", nullable=false)
-	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private ResultadoEsperadoEntity resultadoEsperado;
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)

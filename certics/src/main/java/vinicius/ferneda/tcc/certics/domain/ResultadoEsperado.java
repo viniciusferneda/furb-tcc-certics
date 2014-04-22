@@ -1,6 +1,8 @@
 package vinicius.ferneda.tcc.certics.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToMany;
 
 import vinicius.ferneda.tcc.certics.constant.EnumVersaoCertics;
 
@@ -32,13 +35,17 @@ public abstract class ResultadoEsperado implements Serializable{
 	@Column(name="ARC_DESCRICAO", nullable=false, length=8000)
 	private String descricao;
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER) 
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY) 
 	@JoinColumn(name="REV_ARCID", nullable=false)
 	private AreaCompetenciaEntity areaCompetencia;
 
 	@Column(name="REV_VERSAO_CERTICS", nullable=false, length=10)
 	@Enumerated(EnumType.STRING)
 	private EnumVersaoCertics versaoCertics;
+	
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="CEV_RESID")
+	private List<ConjuntoEvidenciasEntity> conjuntoEvidencias = new ArrayList<ConjuntoEvidenciasEntity>();
 
 	public Long getId() {
 		return id;
@@ -78,6 +85,14 @@ public abstract class ResultadoEsperado implements Serializable{
 
 	public void setVersaoCertics(EnumVersaoCertics versaoCertics) {
 		this.versaoCertics = versaoCertics;
+	}
+
+	public List<ConjuntoEvidenciasEntity> getConjuntoEvidencias() {
+		return conjuntoEvidencias;
+	}
+
+	public void setConjuntoEvidencias(List<ConjuntoEvidenciasEntity> conjuntoEvidencias) {
+		this.conjuntoEvidencias = conjuntoEvidencias;
 	}
 	
 }

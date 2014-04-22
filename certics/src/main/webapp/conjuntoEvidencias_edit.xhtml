@@ -38,8 +38,19 @@
 				</h:panelGrid>
 			</p:fieldset>
 			
+			
 		<p:fieldset legend="#{messages['conjuntoEvidencias.label']}" toggleable="true" toggleSpeed="500">
-			<h:panelGrid id="fieldsconjuntoEvidencia" columns="1"> 
+			<h:panelGrid id="fieldsconjuntoEvidencia" columns="2"> 
+				
+				<p:tree value="#{conjuntoEvidenciasEditMB.raiz}" var="node" id="tree">
+			        
+			        <p:treeNode id="treeNode">
+			            <h:outputText value="#{node}" id="lblNode"/>
+			        </p:treeNode>
+			        
+			    </p:tree>
+				
+				<!--
 				<p:dataTable id="lConjuntoEvidencias" var="conjuntoEvidencia" value="#{conjuntoEvidenciasEditMB.lConjuntoEvidencias}" rowIndexVar="index">
 						
 				<p:columnGroup type="header">  
@@ -65,7 +76,7 @@
         			<h:inputText id="comentario" value="#{conjuntoEvidencia.comentario}" title="#{messages['conjuntoEvidencias.alt.comentario']}" />
         		</p:column>
 
-					<!--
+					
         		
 				<p:column>
 					<h:outputLabel value="#{messages['areaCompetencia.label.titulo']}: " for="areaCompetenciaTitulo" styleClass="text-input" />
@@ -102,8 +113,9 @@
 			           <h:inputText id="contribuicao" value="#{conjuntoEvidencia.contribuicao}" title="#{messages['conjuntoEvidencia.alt.contribuicao']}" />
 					   <p:message for="contribuicao" />
 			  	   	</p:column>					  
-					-->
+					
 				</p:dataTable>
+				-->
 			</h:panelGrid>
 		</p:fieldset>
 						

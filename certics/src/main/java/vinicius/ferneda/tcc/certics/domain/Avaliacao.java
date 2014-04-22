@@ -45,7 +45,7 @@ public abstract class Avaliacao implements Serializable{
 	@Temporal(value=TemporalType.DATE)
 	private Date dataAvaliacao;
 	
-	@ManyToOne 
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="AVA_SOFID", nullable=false)
 	private SoftwareEntity software;
 	

@@ -13,7 +13,18 @@ import vinicius.ferneda.tcc.certics.constant.EnumVersaoCertics;
 @SequenceGenerator(name="ARC_ID", sequenceName="ARC_ID", allocationSize=1)
 @NamedQueries({
     @NamedQuery(name="AreaCompetenciaEntity.findById", 
-    		query="SELECT obj FROM AreaCompetenciaEntity obj WHERE obj.id = :id")
+    		query="SELECT obj FROM AreaCompetenciaEntity obj WHERE obj.id = :id"),
+    
+    @NamedQuery(name="AreaCompetenciaEntity.findByVersaoCerticsAndAvaliacaoID",
+    		query="SELECT obj "
+    			+ " FROM AreaCompetenciaEntity obj "
+    			+ "	INNER JOIN obj.resultadosEsperados rev "
+    			+ " INNER JOIN rev.conjuntoEvidencias cev "
+    			+ " INNER JOIN cev.avaliacao ava "
+    			+ " INNER JOIN ava.software sof "
+    			+ " WHERE ava.id = :avaliacaoID "
+    			+ "		AND obj.versaoCertics = :versaoCertics"
+    			+ " GROUP BY obj.id")
 })
 public class AreaCompetenciaEntity extends AreaCompetencia {
 
