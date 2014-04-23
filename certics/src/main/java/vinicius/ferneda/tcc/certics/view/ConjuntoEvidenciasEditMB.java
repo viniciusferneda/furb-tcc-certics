@@ -6,12 +6,11 @@ import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 
 import vinicius.ferneda.tcc.certics.business.AvaliacaoBC;
+import vinicius.ferneda.tcc.certics.business.RespostaEvidenciaBC;
 import vinicius.ferneda.tcc.certics.domain.AreaCompetenciaEntity;
 import vinicius.ferneda.tcc.certics.domain.AvaliacaoEntity;
 import vinicius.ferneda.tcc.certics.domain.ConjuntoEvidenciasEntity;
-import vinicius.ferneda.tcc.certics.domain.EvidenciaProfissionalEntity;
 import vinicius.ferneda.tcc.certics.domain.RespostaEvidenciaEntity;
-import vinicius.ferneda.tcc.certics.domain.ResultadoEsperadoEntity;
 import vinicius.ferneda.tcc.certics.persistence.AreaCompetenciaDAO;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
@@ -39,36 +38,6 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 		return this.lEvidencias;
 	}
 	
-	public void addRespostas() {
-		for (AreaCompetenciaEntity evidencias : this.lEvidencias) {
-			for (ResultadoEsperadoEntity res : evidencias.getResultadosEsperados()) {
-				for (ConjuntoEvidenciasEntity con : res.getConjuntoEvidencias()) {
-					con.getRespostas().add(new RespostaEvidenciaEntity());
-				}
-			}
-		}
-	}
-	
-	public void addProfissionais() {
-		for (AreaCompetenciaEntity evidencias : lEvidencias) {
-			for (ResultadoEsperadoEntity res : evidencias.getResultadosEsperados()) {
-				for (ConjuntoEvidenciasEntity con : res.getConjuntoEvidencias()) {
-					for (RespostaEvidenciaEntity resEvi : con.getRespostas()) {
-						resEvi.getProfissionais().add(new EvidenciaProfissionalEntity());
-					}
-				}
-			}
-		}
-	}
-	
-	/*private DataModel<ConjuntoEvidenciasEntity> lConjuntoEvidencias;
-	public DataModel<ConjuntoEvidenciasEntity> getlConjuntoEvidencias() {
-	   if (lConjuntoEvidencias == null) {
-		   lConjuntoEvidencias = new ListDataModel<ConjuntoEvidenciasEntity>(this.getBean().getRespostas());
-	   }
-	   return lConjuntoEvidencias;
-	}*/
-	
 	@Override
 	@Transactional
 	public String delete() {
@@ -92,26 +61,37 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 	
 	@Override
 	protected AvaliacaoEntity handleLoad(Long id) {
-		AvaliacaoEntity avaliacao = this.avaliacaoBC.load(id);
-		
-		/*raiz = new DefaultTreeNode("Raiz", null);
-		List<AreaCompetenciaEntity> lEvidencias = areaCompetenciaDAO.findByVersaoCerticsAndAvaliacaoID(avaliacao.getId(), avaliacao.getVersaoCertics());
-		for (AreaCompetenciaEntity areaCompetenciaEntity : lEvidencias) {
-			TreeNode areaCompentencia = new DefaultTreeNode(areaCompetenciaEntity.getTitulo(), raiz);
-			for (ResultadoEsperadoEntity resultadoEsperadoEntity : areaCompetenciaEntity.getResultadosEsperados()) {
-				TreeNode resultadoEsperado = new DefaultTreeNode(resultadoEsperadoEntity.getTitulo(), areaCompentencia);
-				for (ConjuntoEvidenciasEntity conjuntoEvidenciasEntity : resultadoEsperadoEntity.getConjuntoEvidencias()) {
-					TreeNode conjuntoEvidencias = new DefaultTreeNode("evidencia", resultadoEsperado);
-				}
-			}
-		}*/
-		
-		return avaliacao;
+		return this.avaliacaoBC.load(id);
 	}
 
-	/*private TreeNode raiz;
-	public TreeNode getRaiz() {
-        return this.raiz;
+	private ConjuntoEvidenciasEntity conjuntoEvidenciasEntity;
+	
+	public void setConjuntoEvidencias(ConjuntoEvidenciasEntity conjuntoEvidenciasEntity){
+		this.conjuntoEvidenciasEntity = conjuntoEvidenciasEntity;
+	}
+
+	@Inject
+	private RespostaEvidenciaBC respostaEvidenciaBC;
+	
+	private RespostaEvidenciaEntity respostaEvidenciaEntity;
+
+	public void addEvidencia(){
+		this.respostaEvidenciaEntity.setConjuntoEvidencias(this.conjuntoEvidenciasEntity);
+		this.respostaEvidenciaBC.insert(this.respostaEvidenciaEntity);
+	}
+	
+	public RespostaEvidenciaEntity getRespostaEvidenciaEntity(){
+		return this.respostaEvidenciaEntity;
+	}
+	
+	/*public void addEvidencia() {  
+        Map<String,Object> options = new HashMap<String, Object>();  
+        options.put("modal", true);  
+        options.put("draggable", false);  
+        options.put("resizable", false);  
+        options.put("contentHeight", 320);  
+          
+        RequestContext.getCurrentInstance().openDialog("respostaEvidencia_edit", options, null);  
     }*/
 
 }

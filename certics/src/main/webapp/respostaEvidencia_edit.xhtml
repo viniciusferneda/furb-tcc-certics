@@ -54,13 +54,6 @@
 					
 					<p:message for="contribuicao" />
 						
-					<h:outputLabel value="#{messages['conjuntoEvidencias.label']}: " for="conjuntoEvidencias" styleClass="text-input" />
-				    <p:selectOneMenu id="conjuntoEvidencias" value="#{respostaEvidenciaEditMB.bean.conjuntoEvidencias}"  effect="fade" converter="ConversorConjuntoEvidencias">
-						<f:selectItem itemLabel="Selecione" itemValue="" />
-						<f:selectItems value="#{respostaEvidenciaEditMB.conjuntoEvidenciasList}" var="varConjuntoEvidencias" itemLabel="#{varConjuntoEvidencias.id}"  itemValue="#{varConjuntoEvidencias}" />						
-					</p:selectOneMenu>
-					<p:message for="conjuntoEvidencias" />								  
-								 
 				</h:panelGrid>
 			</p:fieldset>
 			

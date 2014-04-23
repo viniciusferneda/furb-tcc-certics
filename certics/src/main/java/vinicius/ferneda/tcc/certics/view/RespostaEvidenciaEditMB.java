@@ -14,7 +14,7 @@ import vinicius.ferneda.tcc.certics.business.RespostaEvidenciaBC;
 import vinicius.ferneda.tcc.certics.domain.AvaliacaoEntity;
 import vinicius.ferneda.tcc.certics.domain.ConjuntoEvidenciasEntity;
 import vinicius.ferneda.tcc.certics.domain.EvidenciaProfissionalEntity;
-import vinicius.ferneda.tcc.certics.domain.RespostaEvidencia;
+import vinicius.ferneda.tcc.certics.domain.RespostaEvidenciaEntity;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
@@ -22,7 +22,7 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 @ViewController
 @PreviousView("./respostaEvidencia_list.jsf")
-public class RespostaEvidenciaEditMB extends AbstractEditPageBean<RespostaEvidencia, Long> {
+public class RespostaEvidenciaEditMB extends AbstractEditPageBean<RespostaEvidenciaEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -84,7 +84,7 @@ public class RespostaEvidenciaEditMB extends AbstractEditPageBean<RespostaEviden
 	}
 	
 	@Override
-	protected RespostaEvidencia handleLoad(Long id) {
+	protected RespostaEvidenciaEntity handleLoad(Long id) {
 		return this.respostaEvidenciaBC.load(id);
 	}	
 }

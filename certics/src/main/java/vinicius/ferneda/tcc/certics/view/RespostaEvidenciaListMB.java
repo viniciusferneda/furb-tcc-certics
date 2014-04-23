@@ -2,19 +2,21 @@ package vinicius.ferneda.tcc.certics.view;
 
 import java.util.Iterator;
 import java.util.List;
+
 import javax.inject.Inject;
+
+import vinicius.ferneda.tcc.certics.business.RespostaEvidenciaBC;
+import vinicius.ferneda.tcc.certics.domain.RespostaEvidenciaEntity;
 import br.gov.frameworkdemoiselle.annotation.NextView;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractListPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
-import vinicius.ferneda.tcc.certics.business.RespostaEvidenciaBC;
-import vinicius.ferneda.tcc.certics.domain.RespostaEvidencia;
 
 @ViewController
 @NextView("./respostaEvidencia_edit.jsf")
 @PreviousView("./respostaEvidencia_list.jsf")
-public class RespostaEvidenciaListMB extends AbstractListPageBean<RespostaEvidencia, Long> {
+public class RespostaEvidenciaListMB extends AbstractListPageBean<RespostaEvidenciaEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -22,7 +24,7 @@ public class RespostaEvidenciaListMB extends AbstractListPageBean<RespostaEviden
 	private RespostaEvidenciaBC respostaEvidenciaBC;
 	
 	@Override
-	protected List<RespostaEvidencia> handleResultList() {
+	protected List<RespostaEvidenciaEntity> handleResultList() {
 		return this.respostaEvidenciaBC.findAll();
 	}
 	

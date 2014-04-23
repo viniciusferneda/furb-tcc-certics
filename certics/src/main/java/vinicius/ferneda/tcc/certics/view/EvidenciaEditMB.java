@@ -11,7 +11,7 @@ import vinicius.ferneda.tcc.certics.business.EvidenciaBC;
 import vinicius.ferneda.tcc.certics.business.RespostaEvidenciaBC;
 import vinicius.ferneda.tcc.certics.domain.AnexoEntity;
 import vinicius.ferneda.tcc.certics.domain.Evidencia;
-import vinicius.ferneda.tcc.certics.domain.RespostaEvidencia;
+import vinicius.ferneda.tcc.certics.domain.RespostaEvidenciaEntity;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
@@ -30,7 +30,7 @@ public class EvidenciaEditMB extends AbstractEditPageBean<Evidencia, Long> {
 	@Inject
 	private RespostaEvidenciaBC respostaEvidenciaBC;
 	
-	public List<RespostaEvidencia> getRespostaEvidenciaList(){
+	public List<RespostaEvidenciaEntity> getRespostaEvidenciaList(){
 		return respostaEvidenciaBC.findAll();
 	}
 			

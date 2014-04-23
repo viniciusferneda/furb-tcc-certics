@@ -7,13 +7,13 @@ import java.util.List;
 import javax.faces.model.SelectItem;
 
 import vinicius.ferneda.tcc.certics.constant.EnumPontuacaoEvidencia;
-import vinicius.ferneda.tcc.certics.domain.RespostaEvidencia;
+import vinicius.ferneda.tcc.certics.domain.RespostaEvidenciaEntity;
 import vinicius.ferneda.tcc.certics.persistence.RespostaEvidenciaDAO;
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
 import br.gov.frameworkdemoiselle.template.DelegateCrud;
 
 @BusinessController
-public class RespostaEvidenciaBC extends DelegateCrud<RespostaEvidencia, Long, RespostaEvidenciaDAO> {
+public class RespostaEvidenciaBC extends DelegateCrud<RespostaEvidenciaEntity, Long, RespostaEvidenciaDAO> {
 	private static final long serialVersionUID = 1L;
 	
 	

@@ -37,9 +37,9 @@ public class RespostaEvidenciaBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		RespostaEvidencia respostaEvidencia = new RespostaEvidenciaEntity("abrangencia","motivo","contribuicao",new ConjuntoEvidenciasEntity(), new EvidenciaEntity());
+		RespostaEvidenciaEntity respostaEvidencia = new RespostaEvidenciaEntity("abrangencia","motivo","contribuicao",new ConjuntoEvidenciasEntity(), new EvidenciaEntity());
 		respostaEvidenciaBC.insert(respostaEvidencia);
-		List<RespostaEvidencia> listOfRespostaEvidencia = respostaEvidenciaBC.findAll();
+		List<RespostaEvidenciaEntity> listOfRespostaEvidencia = respostaEvidenciaBC.findAll();
 		assertNotNull(listOfRespostaEvidencia);
 		assertEquals(1, listOfRespostaEvidencia.size());
 	}	
@@ -48,10 +48,10 @@ public class RespostaEvidenciaBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		RespostaEvidencia respostaEvidencia = new RespostaEvidenciaEntity("abrangencia","motivo","contribuicao",new ConjuntoEvidenciasEntity(), new EvidenciaEntity());
+		RespostaEvidenciaEntity respostaEvidencia = new RespostaEvidenciaEntity("abrangencia","motivo","contribuicao",new ConjuntoEvidenciasEntity(), new EvidenciaEntity());
 		respostaEvidenciaBC.insert(respostaEvidencia);
 		
-		List<RespostaEvidencia> listOfRespostaEvidencia = respostaEvidenciaBC.findAll();
+		List<RespostaEvidenciaEntity> listOfRespostaEvidencia = respostaEvidenciaBC.findAll();
 		assertNotNull(listOfRespostaEvidencia);
 		assertEquals(1, listOfRespostaEvidencia.size());
 		
@@ -63,11 +63,11 @@ public class RespostaEvidenciaBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		RespostaEvidencia respostaEvidencia = new RespostaEvidenciaEntity("abrangencia","motivo","contribuicao",new ConjuntoEvidenciasEntity(), new EvidenciaEntity());
+		RespostaEvidenciaEntity respostaEvidencia = new RespostaEvidenciaEntity("abrangencia","motivo","contribuicao",new ConjuntoEvidenciasEntity(), new EvidenciaEntity());
 		respostaEvidenciaBC.insert(respostaEvidencia);
 		
-		List<RespostaEvidencia> listOfRespostaEvidencia = respostaEvidenciaBC.findAll();
-		RespostaEvidencia respostaEvidencia2 = (RespostaEvidencia)listOfRespostaEvidencia.get(0);
+		List<RespostaEvidenciaEntity> listOfRespostaEvidencia = respostaEvidenciaBC.findAll();
+		RespostaEvidenciaEntity respostaEvidencia2 = (RespostaEvidenciaEntity)listOfRespostaEvidencia.get(0);
 		assertNotNull(listOfRespostaEvidencia);
 
 		// alterar para tratar uma propriedade existente na Entidade RespostaEvidencia
