@@ -38,16 +38,25 @@
 			</p:fieldset>
 			
 		<p:fieldset legend="#{messages['conjuntoEvidencias.label']}" toggleable="true" toggleSpeed="500">
-			
-			<p:tree value="#{conjuntoEvidenciasEditMB.raiz}" var="node" id="tree" style="width:100%">
-		        <p:treeNode id="treeNode">
-		            <h:outputText value="#{node}" id="lblNode" rendered="#{!'evidencia'.equals(node)}"/>
-		            <h:panelGrid id="evidencia" rendered="#{'evidencia'.equals(node)}">
-		            	<h:inputText id="comentario" value="#{node}" title="#{messages['conjuntoEvidencias.alt.comentario']}" />
-		            </h:panelGrid>
-		        </p:treeNode>
-		    </p:tree>
-						
+			<h:panelGrid id="fieldsEvidencias" columns="3">
+				<p:dataTable id="lEvidencias" var="areaCompetencia" value="#{conjuntoEvidenciasEditMB.lEvidencias}" rowIndexVar="index">
+					<p:column>
+						<h:outputText id="areaCompetenciaTitulo" value="#{areaCompetencia.titulo}" />
+						<p:subTable var="resultadoEsperado" value="#{areaCompetencia.resultadosEsperados}">
+							<p:column>
+								<h:outputText id="resultadoEsperadoTitulo" value="#{resultadoEsperado.titulo}" />
+								<p:subTable var="conjuntoEvidencias" value="#{resultadoEsperado.conjuntoEvidencias}">
+									<p:column>
+										<h:outputLabel value="#{messages['conjuntoEvidencias.label.comentario']}: " for="conjuntoEvidenciasComentario" styleClass="text-input" />
+										<h:inputText id="conjuntoEvidenciasComentario" value="#{conjuntoEvidencias.comentario}" title="#{messages['conjuntoEvidencias.alt.comentario']}" />
+										<p:message for="conjuntoEvidenciasComentario" />
+									</p:column>
+								</p:subTable>
+							</p:column>							
+						</p:subTable>
+					</p:column>
+				</p:dataTable>
+			</h:panelGrid>			
 		</p:fieldset>
 						
 		</h:form>
