@@ -37,14 +37,14 @@ public abstract class RespostaEvidencia implements Serializable{
 	@ManyToOne 
 	@JoinColumn(name="REV_CEVID")
 	private ConjuntoEvidenciasEntity conjuntoEvidencias;
-	
+
+	@ManyToOne 
+	@JoinColumn(name="REV_EVIID", nullable=false)
+	private EvidenciaEntity evidencia;
+
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="EPR_REVID")
 	private List<EvidenciaProfissionalEntity> profissionais = new ArrayList<EvidenciaProfissionalEntity>();
-	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	@JoinColumn(name="EVI_REVID")
-	private List<EvidenciaEntity> evidencias = new ArrayList<EvidenciaEntity>();
 
 	public Long getId() {
 		return id;
@@ -94,12 +94,12 @@ public abstract class RespostaEvidencia implements Serializable{
 		this.profissionais = profissionais;
 	}
 
-	public List<EvidenciaEntity> getEvidencias() {
-		return evidencias;
+	public EvidenciaEntity getEvidencia() {
+		return evidencia;
 	}
 
-	public void setEvidencias(List<EvidenciaEntity> evidencias) {
-		this.evidencias = evidencias;
+	public void setEvidencia(EvidenciaEntity evidencia) {
+		this.evidencia = evidencia;
 	}
 	
 }

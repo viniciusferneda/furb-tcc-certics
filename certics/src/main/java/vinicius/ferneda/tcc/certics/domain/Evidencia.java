@@ -11,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 
@@ -31,9 +30,9 @@ public abstract class Evidencia implements Serializable{
 	@Column(name="EVI_DESCRICAO", nullable=false, length=8000)
 	private String descricao;
 	
-	@ManyToOne 
-	@JoinColumn(name="EVI_REVID", nullable=false)
-	private RespostaEvidenciaEntity respostaEvidencia;
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="REV_EVIID")
+	private List<RespostaEvidenciaEntity> respostas = new ArrayList<RespostaEvidenciaEntity>();
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="ANE_EVIID")
@@ -63,12 +62,12 @@ public abstract class Evidencia implements Serializable{
 		this.descricao = descricao;
 	}
 
-	public RespostaEvidenciaEntity getRespostaEvidencia() {
-		return respostaEvidencia;
+	public List<RespostaEvidenciaEntity> getRespostas() {
+		return respostas;
 	}
 
-	public void setRespostaEvidencia(RespostaEvidenciaEntity respostaEvidencia) {
-		this.respostaEvidencia = respostaEvidencia;
+	public void setRespostas(List<RespostaEvidenciaEntity> respostas) {
+		this.respostas = respostas;
 	}
 
 	public List<AnexoEntity> getAnexos() {

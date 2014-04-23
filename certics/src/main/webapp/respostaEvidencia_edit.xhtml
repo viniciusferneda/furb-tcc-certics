@@ -103,45 +103,6 @@
 			</h:panelGrid>
 		</p:fieldset>
 						
-		<p:fieldset legend="#{messages['evidencia.label']}" toggleable="true" toggleSpeed="500">
-			<h:panelGrid id="fieldsevidencia" columns="1"> 
-				<p:commandButton value="#{messages['button.new']}" action="#{respostaEvidenciaEditMB.addEvidencia}" update="listEvidencia"/>
-				<p:dataTable id="listEvidencia" var="evidencia" value="#{respostaEvidenciaEditMB.evidenciaList}" rowIndexVar="index">
-						
-			        <p:column>
-  			           <h:outputLabel value="#{messages['evidencia.label.id']}: " for="id" styleClass="text-input" />
-						    
-			           <h:outputText id="id" value="#{evidencia.id}" />
-				             
-					   <p:message for="id" />
-			  	   </p:column>					  
-				
-			        <p:column>
-  			           <h:outputLabel value="#{messages['evidencia.label.nome']}: " for="nome" styleClass="text-input" />
-						    
-			           <h:inputText id="nome" value="#{evidencia.nome}"
-				          title="#{messages['evidencia.alt.nome']}" />
-						                   
-					   <p:message for="nome" />
-			  	   </p:column>					  
-				
-			        <p:column>
-  			           <h:outputLabel value="#{messages['evidencia.label.descricao']}: " for="descricao" styleClass="text-input" />
-						    
-			           <h:inputText id="descricao" value="#{evidencia.descricao}"
-				          title="#{messages['evidencia.alt.descricao']}" />
-						                   
-					   <p:message for="descricao" />
-			  	   </p:column>					  
-				
-				   <p:column>
-					   <f:facet name="header">#{messages['label.action']}</f:facet>
-					   <p:commandButton value="#{messages['button.delete']}" action="#{respostaEvidenciaEditMB.deleteEvidencia}" ajax="false"/>
-				   </p:column>
-				</p:dataTable>
-			</h:panelGrid>
-		</p:fieldset>
-						
 		</h:form>
 	</ui:define>
 </ui:composition>

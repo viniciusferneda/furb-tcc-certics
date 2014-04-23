@@ -37,27 +37,63 @@
 				</h:panelGrid>
 			</p:fieldset>
 			
-		<p:fieldset legend="#{messages['conjuntoEvidencias.label']}" toggleable="true" toggleSpeed="500">
-			<h:panelGrid id="fieldsEvidencias" columns="3">
-				<p:dataTable id="lEvidencias" var="areaCompetencia" value="#{conjuntoEvidenciasEditMB.lEvidencias}" rowIndexVar="index">
-					<p:column>
-						<h:outputText id="areaCompetenciaTitulo" value="#{areaCompetencia.titulo}" />
-						<p:subTable var="resultadoEsperado" value="#{areaCompetencia.resultadosEsperados}">
-							<p:column>
-								<h:outputText id="resultadoEsperadoTitulo" value="#{resultadoEsperado.titulo}" />
-								<p:subTable var="conjuntoEvidencias" value="#{resultadoEsperado.conjuntoEvidencias}">
-									<p:column>
-										<h:outputLabel value="#{messages['conjuntoEvidencias.label.comentario']}: " for="conjuntoEvidenciasComentario" styleClass="text-input" />
-										<h:inputText id="conjuntoEvidenciasComentario" value="#{conjuntoEvidencias.comentario}" title="#{messages['conjuntoEvidencias.alt.comentario']}" />
-										<p:message for="conjuntoEvidenciasComentario" />
-									</p:column>
-								</p:subTable>
-							</p:column>							
-						</p:subTable>
-					</p:column>
-				</p:dataTable>
-			</h:panelGrid>			
-		</p:fieldset>
+			<p:fieldset legend="#{messages['conjuntoEvidencias.label']}" toggleable="true" toggleSpeed="500">
+				<h:panelGrid id="fieldsEvidencias" columns="3" style="width:100%">
+					<p:dataTable id="lEvidencias" var="areaCompetencia" value="#{conjuntoEvidenciasEditMB.lEvidencias}" rowIndexVar="index">
+	        			<p:column>
+							<h:outputText id="areaCompetenciaTitulo" value="#{areaCompetencia.titulo}"/>
+							<p:subTable var="resultadoEsperado" value="#{areaCompetencia.resultadosEsperados}">
+								<p:column>
+									<h:outputText id="resultadoEsperadoTitulo" value="#{resultadoEsperado.titulo}"/>
+									<p:subTable var="conjuntoEvidencias" value="#{resultadoEsperado.conjuntoEvidencias}">
+										<p:column>
+											<p:commandButton value="#{messages['button.new']}" action="#{conjuntoEvidenciasEditMB.addRespostas}" update="sbEvidencias"/>
+											<p:subTable id="sbEvidencias" var="evidencias" value="#{conjuntoEvidencias.respostas}">
+												
+												<!-- EVIDENCIA -->
+												
+												<h:outputLabel value="#{messages['respostaEvidencia.label.abrangencia']}: " for="evidenciasAbrangencia" styleClass="text-input" />
+												<h:inputText id="evidenciasAbrangencia" value="#{evidencias.abrangencia}" title="#{messages['respostaEvidencia.alt.abrangencia']}" />
+												<p:message for="evidenciasAbrangencia" />
+												
+												<h:outputLabel value="#{messages['respostaEvidencia.label.contribuicao']}: " for="evidenciasContribuicao" styleClass="text-input" />
+												<h:inputText id="evidenciasContribuicao" value="#{evidencias.contribuicao}" title="#{messages['respostaEvidencia.alt.contribuicao']}" />
+												<p:message for="evidenciasContribuicao" />
+					
+												<h:outputLabel value="#{messages['respostaEvidencia.label.motivo']}: " for="evidenciasMotivo" styleClass="text-input" />
+												<h:inputText id="evidenciasMotivo" value="#{evidencias.motivo}" title="#{messages['respostaEvidencia.alt.motivo']}" />
+												<p:message for="evidenciasMotivo" />
+												
+												<p:commandButton value="#{messages['button.new']}" action="#{conjuntoEvidenciasEditMB.addProfissionais}" update="sbProfissionais"/>
+												<p:subTable id="sbProfissionais" var="profissionais" value="#{evidencias.profissionais}">
+
+													<!-- PROFISSIONAL -->
+													
+													<h:outputLabel value="#{messages['evidenciaProfissional.label.fazParteOrganizacao']}: " for="profissionaisFazParteOrganizacao" styleClass="text-input" />
+													<h:inputText id="profissionaisFazParteOrganizacao" value="#{profissionais.fazParteOrganizacao}" title="#{messages['evidenciaProfissional.alt.fazParteOrganizacao']}" />
+													<p:message for="profissionaisFazParteOrganizacao" />
+														
+													<h:outputLabel value="#{messages['evidenciaProfissional.label.envolvimento']}: " for="profissionaisEnvolvimento" styleClass="text-input" />
+													<h:inputText id="profissionaisEnvolvimento" value="#{profissionais.envolvimento}" title="#{messages['evidenciaProfissional.alt.envolvimento']}" />
+													<p:message for="profissionaisEnvolvimento" />
+													
+												</p:subTable>
+					
+											</p:subTable>
+											
+											<br/>
+											
+											<h:outputLabel value="#{messages['conjuntoEvidencias.label.comentario']}: " for="conjuntoEvidenciasComentario" styleClass="text-input" />
+											<h:inputText id="conjuntoEvidenciasComentario" value="#{conjuntoEvidencias.comentario}" title="#{messages['conjuntoEvidencias.alt.comentario']}" />
+											<p:message for="conjuntoEvidenciasComentario" />
+										</p:column>
+									</p:subTable>
+								</p:column>
+							</p:subTable>
+						</p:column>
+					</p:dataTable>
+				</h:panelGrid>			
+			</p:fieldset>
 						
 		</h:form>
 	</ui:define>

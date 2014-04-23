@@ -19,11 +19,12 @@ public class RespostaEvidenciaEntity extends RespostaEvidencia {
 	public RespostaEvidenciaEntity(){
 	}
 	
-	public RespostaEvidenciaEntity(String abrangencia, String motivo, String contribuicao, ConjuntoEvidenciasEntity conjuntoEvidencias) {
+	public RespostaEvidenciaEntity(String abrangencia, String motivo, String contribuicao, ConjuntoEvidenciasEntity conjuntoEvidencias, EvidenciaEntity evidencia) {
 		setAbrangencia(abrangencia);
 		setMotivo(motivo);
 		setContribuicao(contribuicao);
 		setConjuntoEvidencias(conjuntoEvidencias);
+		setEvidencia(evidencia);
 	}
 	
 }

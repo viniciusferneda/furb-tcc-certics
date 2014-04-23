@@ -46,13 +46,6 @@
 						title="#{messages['evidencia.alt.descricao']}" />
 					
 					<p:message for="descricao" />
-						
-					<h:outputLabel value="#{messages['respostaEvidencia.label']}: " for="respostaEvidencia" styleClass="text-input" />
-				    <p:selectOneMenu id="respostaEvidencia" value="#{evidenciaEditMB.bean.respostaEvidencia}"  effect="fade" converter="ConversorRespostaEvidencia">
-						<f:selectItem itemLabel="Selecione" itemValue="" />
-						<f:selectItems value="#{evidenciaEditMB.respostaEvidenciaList}" var="varRespostaEvidencia" itemLabel="#{varRespostaEvidencia.id}"  itemValue="#{varRespostaEvidencia}" />						
-					</p:selectOneMenu>
-					<p:message for="respostaEvidencia" />								  
 								 
 				</h:panelGrid>
 			</p:fieldset>

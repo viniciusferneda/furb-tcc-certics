@@ -13,7 +13,6 @@ import vinicius.ferneda.tcc.certics.business.ConjuntoEvidenciasBC;
 import vinicius.ferneda.tcc.certics.business.RespostaEvidenciaBC;
 import vinicius.ferneda.tcc.certics.domain.AvaliacaoEntity;
 import vinicius.ferneda.tcc.certics.domain.ConjuntoEvidenciasEntity;
-import vinicius.ferneda.tcc.certics.domain.EvidenciaEntity;
 import vinicius.ferneda.tcc.certics.domain.EvidenciaProfissionalEntity;
 import vinicius.ferneda.tcc.certics.domain.RespostaEvidencia;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
@@ -61,20 +60,6 @@ public class RespostaEvidenciaEditMB extends AbstractEditPageBean<RespostaEviden
 		   evidenciaProfissionalList = new ListDataModel<EvidenciaProfissionalEntity>(this.getBean().getProfissionais());
 	   }
 	   return evidenciaProfissionalList;
-	} 
-	private DataModel<EvidenciaEntity> evidenciaList;
-	
-	public void addEvidencia() {
-		this.getBean().getEvidencias().add(new EvidenciaEntity());
-	}
-	public void deleteEvidencia() {
-	   this.getBean().getEvidencias().remove(getEvidenciaList().getRowData());
-	}
-	public DataModel<EvidenciaEntity> getEvidenciaList() {
-	   if (evidenciaList == null) {
-		   evidenciaList = new ListDataModel<EvidenciaEntity>(this.getBean().getEvidencias());
-	   }
-	   return evidenciaList;
 	} 
 	
 	@Override

@@ -19,9 +19,8 @@ public class EvidenciaEntity extends Evidencia {
 	public EvidenciaEntity(){
 	}
 	
-	public EvidenciaEntity(String nome, String descricao, RespostaEvidenciaEntity respostaEvidencia) {
+	public EvidenciaEntity(String nome, String descricao) {
 		setNome(nome);
 		setDescricao(descricao);
-		setRespostaEvidencia(respostaEvidencia);
 	}
 }

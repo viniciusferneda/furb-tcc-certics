@@ -8,6 +8,10 @@ import javax.inject.Inject;
 import vinicius.ferneda.tcc.certics.business.AvaliacaoBC;
 import vinicius.ferneda.tcc.certics.domain.AreaCompetenciaEntity;
 import vinicius.ferneda.tcc.certics.domain.AvaliacaoEntity;
+import vinicius.ferneda.tcc.certics.domain.ConjuntoEvidenciasEntity;
+import vinicius.ferneda.tcc.certics.domain.EvidenciaProfissionalEntity;
+import vinicius.ferneda.tcc.certics.domain.RespostaEvidenciaEntity;
+import vinicius.ferneda.tcc.certics.domain.ResultadoEsperadoEntity;
 import vinicius.ferneda.tcc.certics.persistence.AreaCompetenciaDAO;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
@@ -33,6 +37,28 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 			this.lEvidencias = new ListDataModel<AreaCompetenciaEntity>(areaCompetenciaDAO.findByVersaoCerticsAndAvaliacaoID(this.getId(), this.getBean().getVersaoCertics()));
 		}
 		return this.lEvidencias;
+	}
+	
+	public void addRespostas() {
+		for (AreaCompetenciaEntity evidencias : this.lEvidencias) {
+			for (ResultadoEsperadoEntity res : evidencias.getResultadosEsperados()) {
+				for (ConjuntoEvidenciasEntity con : res.getConjuntoEvidencias()) {
+					con.getRespostas().add(new RespostaEvidenciaEntity());
+				}
+			}
+		}
+	}
+	
+	public void addProfissionais() {
+		for (AreaCompetenciaEntity evidencias : lEvidencias) {
+			for (ResultadoEsperadoEntity res : evidencias.getResultadosEsperados()) {
+				for (ConjuntoEvidenciasEntity con : res.getConjuntoEvidencias()) {
+					for (RespostaEvidenciaEntity resEvi : con.getRespostas()) {
+						resEvi.getProfissionais().add(new EvidenciaProfissionalEntity());
+					}
+				}
+			}
+		}
 	}
 	
 	/*private DataModel<ConjuntoEvidenciasEntity> lConjuntoEvidencias;
