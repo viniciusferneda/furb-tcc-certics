@@ -76,8 +76,8 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 			TreeNode areaCompentencia = new DefaultTreeNode(areaCompetenciaEntity.getTitulo(), raiz);
 			for (ResultadoEsperadoEntity resultadoEsperadoEntity : areaCompetenciaEntity.getResultadosEsperados()) {
 				TreeNode resultadoEsperado = new DefaultTreeNode(resultadoEsperadoEntity.getTitulo(), areaCompentencia);
-				for (int i = 0; i < resultadoEsperadoEntity.getConjuntoEvidencias().size(); i++) {
-					TreeNode conjuntoEvidencias = new DefaultTreeNode("Evidências", resultadoEsperado);
+				for (ConjuntoEvidenciasEntity conjuntoEvidenciasEntity : resultadoEsperadoEntity.getConjuntoEvidencias()) {
+					TreeNode conjuntoEvidencias = new DefaultTreeNode("evidencia", resultadoEsperado);
 				}
 			}
 		}
