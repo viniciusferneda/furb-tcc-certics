@@ -34,9 +34,9 @@
 		</dependency>
 		-->
 		<dependency>
-			<groupId>org.primefaces</groupId>
-			<artifactId>primefaces</artifactId>
-			<scope>compile</scope>
+		     <groupId>org.primefaces</groupId>
+		     <artifactId>primefaces</artifactId>
+		     <scope>compile</scope>
 		</dependency>
 
 		<dependency>  
