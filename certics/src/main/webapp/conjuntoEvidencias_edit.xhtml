@@ -48,7 +48,7 @@
 									<p:subTable var="conjuntoEvidencias" value="#{resultadoEsperado.conjuntoEvidencias}">
 										<p:column>
 											
-											<p:commandButton value="#{messages['button.new']}" icon="ui-icon-extlink" onclick="PF('dialogEvidencia').show();" actionListener="#{conjuntoEvidenciasEditMB.setConjuntoEvidencias(conjuntoEvidencias)}"/>
+											<p:commandButton value="#{messages['button.new']}" icon="ui-icon-extlink" actionListener="#{conjuntoEvidenciasEditMB.setConjuntoEvidencias(conjuntoEvidencias)}" update=":formModalEvidencia:fieldsRegistrarEvidencia" oncomplete="dialogEvidencia.show()"/>
 											
 											<p:subTable id="sbEvidencias" var="evidencias" value="#{conjuntoEvidencias.respostas}">
 												<p:column>
@@ -102,27 +102,26 @@
 				</h:panelGrid>			
 			</p:fieldset>
 		</h:form>
-	</ui:define>
-	
-	<h:form id="registroEvidencia">
+
 		<p:dialog id="modalEvidencia" header="Registrar evidência" widgetVar="dialogEvidencia" modal="true" height="100">  
-	   		<h:panelGrid id="fieldsRegistrarEvidencia" columns="3">
-				
-				<h:outputLabel value="#{messages['respostaEvidencia.label.abrangencia']}: " for="abrangencia" styleClass="text-input" />
-				<h:inputText id="abrangencia" value="#{conjuntoEvidenciasEditMB.respostaEvidenciaEntity.abrangencia}" title="#{messages['respostaEvidencia.alt.abrangencia']}" />
-				<p:message for="abrangencia" />
-					
-				<h:outputLabel value="#{messages['respostaEvidencia.label.motivo']}: " for="motivo" styleClass="text-input" />
-				<h:inputText id="motivo" value="#{conjuntoEvidenciasEditMB.respostaEvidenciaEntity.motivo}" title="#{messages['respostaEvidencia.alt.motivo']}" />
-				<p:message for="motivo" />
-					
-				<h:outputLabel value="#{messages['respostaEvidencia.label.contribuicao']}: " for="contribuicao" styleClass="text-input" />
-				<h:inputText id="contribuicao" value="#{conjuntoEvidenciasEditMB.respostaEvidenciaEntity.contribuicao}" title="#{messages['respostaEvidencia.alt.contribuicao']}" />
-				<p:message for="contribuicao" />
-						
-				<p:commandButton value="#{messages['button.new']}" action="#{conjuntoEvidenciasEditMB.addEvidencia()}"/>
-			</h:panelGrid>  
+	   		<h:form id="formModalEvidencia">
+		   		<h:panelGrid id="fieldsRegistrarEvidencia" columns="2" style="margin-bottom:10px">
+						<h:outputLabel value="#{messages['respostaEvidencia.label.abrangencia']}: " for="abrangencia" styleClass="text-input" />
+						<h:inputText id="abrangencia" value="#{conjuntoEvidenciasEditMB.respostaEvidenciaEntity.abrangencia}" title="#{messages['respostaEvidencia.alt.abrangencia']}" />
+						<p:message for="abrangencia" />
+							
+						<h:outputLabel value="#{messages['respostaEvidencia.label.motivo']}: " for="motivo" styleClass="text-input" />
+						<h:inputText id="motivo" value="#{conjuntoEvidenciasEditMB.respostaEvidenciaEntity.motivo}" title="#{messages['respostaEvidencia.alt.motivo']}" />
+						<p:message for="motivo" />
+							
+						<h:outputLabel value="#{messages['respostaEvidencia.label.contribuicao']}: " for="contribuicao" styleClass="text-input" />
+						<h:inputText id="contribuicao" value="#{conjuntoEvidenciasEditMB.respostaEvidenciaEntity.contribuicao}" title="#{messages['respostaEvidencia.alt.contribuicao']}" />
+						<p:message for="contribuicao" />
+								
+						<p:commandButton value="#{messages['button.new']}" action="#{conjuntoEvidenciasEditMB.addEvidencia()}"/>
+				</h:panelGrid>
+			</h:form>  
 		</p:dialog>
-	</h:form>
-	
+
+	</ui:define>
 </ui:composition>

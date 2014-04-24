@@ -64,19 +64,11 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 		return this.avaliacaoBC.load(id);
 	}
 	
-	/*public void addEvidencia(ConjuntoEvidenciasEntity conjuntoEvidenciasEntity){
-		Map<String,Object> options = new HashMap<String, Object>();  
-        options.put("modal", true);  
-        options.put("draggable", false);  
-        options.put("resizable", true);  
-        options.put("contentHeight", 320);
-		RequestContext.getCurrentInstance().openDialog("respostaEvidencia_edit", options, null);
-	}*/
-	
 	private ConjuntoEvidenciasEntity conjuntoEvidenciasEntity;
 	
 	public void setConjuntoEvidencias(ConjuntoEvidenciasEntity conjuntoEvidenciasEntity){
 		this.conjuntoEvidenciasEntity = conjuntoEvidenciasEntity;
+		this.respostaEvidenciaEntity = new RespostaEvidenciaEntity();
 	}
 
 	@Inject
