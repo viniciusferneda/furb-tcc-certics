@@ -4,53 +4,91 @@
 <f:view contentType="text/html" locale="#{locales.currentLocale}" />
 
 <h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>#{messages['main.app.title']}</title>
 	<link type="text/css" rel="stylesheet" href="css/styles.css" />
 </h:head>
 
-<h:body style="background-color:#FFFFFF">
-	<table style="width: 100%">
-		<tr>
-			<td height="70" align="left">
-				<div align="center">
-					<a href="index.jsf">
-						<img src="images/logo-certics.png" border="0"/>
-					</a>
-				</div>
-				<div style="float: right;">
-					<h:form id="language_form" prependId="true">
-						<h:commandLink action="#{locales.setCurrentLocale('pt')}">
-							<span class="ui-icon-locale-pt" ></span>
-						</h:commandLink>
-						<h:commandLink action="#{locales.setCurrentLocale('en')}">
-							<span class="ui-icon-locale-en" ></span>
-						</h:commandLink>
-					</h:form>
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td height="20"><ui:include src="/menu.xhtml" /></td>
-		</tr>
-		<tr valign="top">
-			<td height="400"><ui:insert name="body" /></td>
-		</tr>
-		<tr align="center">
-			<td height="20" align="center" class="text-input">#{messages['main.footer.text']}</td>
-		</tr>
-	</table>
+<h:body>
+	<h:form>
+	    <div id="topNav">
+	        <div class="fixed">
+	            <div class="wrapper">
+	                <div class="welcome">
+	                	<a href="index.html" title="">
+	                		<img src="images/logo-certics.png" style="width: 70px;"/>
+	                	</a>
+	                	<span>
+	                		<h:outputText value="#{identity.emailUsuario}" rendered="#{securityContext.loggedIn}"/>
+	                	</span>
+	                </div>
+	                <div class="userNav">
+	                    <ul>
+	                        <li>
+	                            <h:commandLink  action="login.jsf" rendered="#{not securityContext.loggedIn}">
+	                                <img src="images/icons/topnav/logout.png" alt="" /><span>#{messages['login.label']}</span>
+	                            </h:commandLink>
+	                        </li>
+	                        <li>
+	                            <h:commandLink  action="lembrar.jsf" rendered="#{not securityContext.loggedIn}">
+	                                <img src="images/icons/dark/repeat.png" alt="" /><span>#{messages['button.esqueci_senha']}</span>
+	                            </h:commandLink>
+	                        </li>
+	                    </ul>
+	                    <ul>
+	                        <h:outputText value="#{identity.getAttribute('papel')}" rendered="#{securityContext.loggedIn}"/>
+	                    </ul>
+	                    <ul>
+	                        <h:commandLink value="(sair)" action="#{usuarioEditMB.logout()}" rendered="#{securityContext.loggedIn}" />
+	                    </ul>
+	                </div>
+	                <div class="fix"></div>
+	            </div>
+	        </div>
+	    </div>
+	</h:form>
+	
+	<div class="wrapper">
+	    <div class="content">
+	        <p:panel rendered="#{securityContext.loggedIn}">
+	            <div>
+	                <ui:include src="/security/menu.xhtml"/>
+	            </div>
+	            <div style="clear: both; padding-top: 10px; padding-bottom: 10px;"></div>
+	            <div>
+	                <ui:insert name="crud"/>
+	            </div>
+	        </p:panel>
+	        <p:panel>
+	            <ui:insert name="body"/>
+	        </p:panel>
+	    </div>
+	</div>
+	
+	<div class="fix"></div>
 
-	<p:growl id="messages" globalOnly="true" />
+	<!-- Footer -->
+	<div id="footer" class="aligncenter">
+	    <div class="wrapper">
+	        <span>
+	            <a href="http://www.certics.cti.gov.br/" title="">
+	                <img src="images/logo-certics.png" alt="" />
+	            </a>
+	        </span>
+	    </div>
+	</div>
+        
+	<p:growl id="messages" globalOnly="true" autoUpdate="true" showSummary="true" showDetail="false" />
 
-	<p:ajaxStatus style="width:16px;height:16px;">
-		<f:facet name="start">
-		</f:facet>
+	<p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>
 
-		<f:facet name="complete">
-			<h:outputText value="" />
-		</f:facet>
-	</p:ajaxStatus>	
+    <p:dialog modal="true" widgetVar="statusDialog" header="Processando ..."
+              draggable="false" closable="false" position="center" resizable="false">
+        <p:graphicImage value="/images/loaders/loader7.gif"/>
+    </p:dialog>
+        	
 	<link type="text/css" rel="stylesheet" href="#{request.contextPath}/themes/#{layoutBean.theme}/skin.css" />
 	<h:outputScript library="js" name="locale-primefaces.js"/>
+
 </h:body>
 </html>

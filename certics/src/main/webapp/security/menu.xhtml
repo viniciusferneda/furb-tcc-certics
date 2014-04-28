@@ -5,54 +5,56 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 	<h:form>
-		<p:menubar>
+		<p:menubar id="menu_avaliador" rendered="#{securityContext.hasRole('AVALIADOR')}">
+			
 			<p:submenu label="#{messages['menu.avaliador']}">
-				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/avaliador_edit.jsf"></p:menuitem>
-				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/avaliador_list.jsf"></p:menuitem>
+				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/avaliador/avaliador_edit.jsf"></p:menuitem>
+				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/avaliador/avaliador_list.jsf"></p:menuitem>
 			</p:submenu>
 
 			<p:submenu label="#{messages['menu.areaCompetencia']}">
-				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/areaCompetencia_edit.jsf"></p:menuitem>
-				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/areaCompetencia_list.jsf"></p:menuitem>
+				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/avaliador/areaCompetencia_edit.jsf"></p:menuitem>
+				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/avaliador/areaCompetencia_list.jsf"></p:menuitem>
 			</p:submenu>
 
 			<p:submenu label="#{messages['menu.resultadoEsperado']}">
-				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/resultadoEsperado_edit.jsf"></p:menuitem>
-				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/resultadoEsperado_list.jsf"></p:menuitem>
+				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/avaliador/resultadoEsperado_edit.jsf"></p:menuitem>
+				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/avaliador/resultadoEsperado_list.jsf"></p:menuitem>
 			</p:submenu>
 
 			<p:submenu label="#{messages['menu.organizacaoSolicitante']}">
-				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/organizacaoSolicitante_edit.jsf"></p:menuitem>
-				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/organizacaoSolicitante_list.jsf"></p:menuitem>
+				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/avaliador/organizacaoSolicitante_edit.jsf"></p:menuitem>
+				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/avaliador/organizacaoSolicitante_list.jsf"></p:menuitem>
 			</p:submenu>
 
 			<p:submenu label="#{messages['menu.profissional']}">
-				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/profissional_edit.jsf"></p:menuitem>
-				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/profissional_list.jsf"></p:menuitem>
+				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/avaliador/profissional_edit.jsf"></p:menuitem>
+				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/avaliador/profissional_list.jsf"></p:menuitem>
 			</p:submenu>
 
 			<p:submenu label="#{messages['menu.software']}">
-				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/software_edit.jsf"></p:menuitem>
-				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/software_list.jsf"></p:menuitem>
+				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/avaliador/software_edit.jsf"></p:menuitem>
+				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/avaliador/software_list.jsf"></p:menuitem>
 			</p:submenu>
 
 			<p:submenu label="#{messages['menu.avaliacao']}">
-				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/avaliacao_edit.jsf"></p:menuitem>
-				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/avaliacao_list.jsf"></p:menuitem>
+				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/avaliador/avaliacao_edit.jsf"></p:menuitem>
+				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/avaliador/avaliacao_list.jsf"></p:menuitem>
 			</p:submenu>
-
+		</p:menubar>
+	
+		<p:menubar id="menu_avaliado" rendered="#{securityContext.hasRole('AVALIADO')}">
+		
 			<p:submenu label="#{messages['menu.conjuntoEvidencias']}">
-				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/conjuntoEvidencias_edit.jsf"></p:menuitem>
-				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/conjuntoEvidencias_list.jsf"></p:menuitem>
+				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/avaliado/conjuntoEvidencias_edit.jsf"></p:menuitem>
+				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/avaliado/conjuntoEvidencias_list.jsf"></p:menuitem>
 			</p:submenu>
 			
 			<p:submenu label="#{messages['menu.licaoAprendida']}">
-				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/licaoAprendida_edit.jsf"></p:menuitem>
-				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/licaoAprendida_list.jsf"></p:menuitem>
+				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/avaliado/licaoAprendida_edit.jsf"></p:menuitem>
+				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/avaliado/licaoAprendida_list.jsf"></p:menuitem>
 			</p:submenu>
 
-			<p:menuitem value="#{messages['menu.menuitem.quit']}" url="http://localhost:8080/certics/"
-				action="#{securityContext.logout}" />
 		</p:menubar>
 	</h:form>
 

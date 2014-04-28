@@ -4,7 +4,9 @@ import javax.inject.Inject;
 
 import vinicius.ferneda.tcc.certics.business.UsuarioBC;
 import vinicius.ferneda.tcc.certics.domain.UsuarioEntity;
+import vinicius.ferneda.tcc.certics.security.CatalogoAuthenticator;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
+import br.gov.frameworkdemoiselle.message.MessageContext;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
@@ -18,6 +20,12 @@ public class UsuarioEditMB extends AbstractEditPageBean<UsuarioEntity, Long> {
 	@Inject
 	private UsuarioBC usuarioBC;
 	
+    @Inject
+    private CatalogoAuthenticator catalogoAuthenticator;
+
+    @Inject
+    private MessageContext messageContext;
+    
 	@Override
 	@Transactional
 	public String delete() {
@@ -43,5 +51,23 @@ public class UsuarioEditMB extends AbstractEditPageBean<UsuarioEntity, Long> {
 	protected UsuarioEntity handleLoad(Long id) {
 		return this.usuarioBC.load(id);
 	}
+	
+	public void login() {
+        try {
+            catalogoAuthenticator.login();
+        } catch (Exception e) {
+            messageContext.add("Login: ", e.getMessage());
+        }
+
+    }
+
+    public void logout() {
+        try {
+             catalogoAuthenticator.logout();
+        } catch (Exception e) {
+            messageContext.add("Login: ", e.getMessage());
+        }
+
+    }
 	
 }

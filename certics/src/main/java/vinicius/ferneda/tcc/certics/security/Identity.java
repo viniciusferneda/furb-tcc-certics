@@ -7,10 +7,6 @@ import javax.inject.Named;
 
 import br.gov.frameworkdemoiselle.security.User;
 
-/**
- *
- * @author escritorio
- */
 @Named
 @SessionScoped
 public class Identity implements User {
@@ -25,11 +21,11 @@ public class Identity implements User {
         attribute = new HashMap<Object, Object>();
     }
 
-    public String getUsuario() {
+    public String getEmailUsuario() {
         return (String) (attribute.get("username") == null ? "" : attribute.get("username"));
     }
 
-    public void setUsuario(String usuario) {
+    public void setEmailUsuario(String usuario) {
         attribute.put("username", usuario);
     }
 

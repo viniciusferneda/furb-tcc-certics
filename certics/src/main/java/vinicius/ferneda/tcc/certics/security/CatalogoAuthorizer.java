@@ -8,10 +8,9 @@ import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
 
-/**
- *
- * @author 70744416353
- */
+import vinicius.ferneda.tcc.certics.constant.EnumOperacoes;
+import vinicius.ferneda.tcc.certics.constant.EnumRecursos;
+
 public class CatalogoAuthorizer implements Authorizer {
 	 
 	private static final long serialVersionUID = 1L;
@@ -31,27 +30,25 @@ public class CatalogoAuthorizer implements Authorizer {
         }
     }
 
-    @SuppressWarnings("unchecked")
 	@Override
+	@SuppressWarnings("unchecked")
     public boolean hasPermission(String resource, String operation) throws Exception {
         try {
-
-            Map<Integer, Integer> recursoOperacoes = (Map<Integer, Integer>) identity.getAttribute("RecursosOperacoes");
+        	Map<EnumRecursos, EnumOperacoes> recursoOperacoes = (Map<EnumRecursos, EnumOperacoes>) identity.getAttribute("recursos_operacoes");
 
             List<String> operacoes = new ArrayList<String>();
             operacoes.add(operation);
 
-            Integer recurso = Resources.getResource(resource);
-            Integer operacao = Operations.getOperation(operacoes);
+            EnumRecursos recurso = EnumRecursos.valueOf(resource);
+            EnumOperacoes operacao = EnumOperacoes.valueOf(operation);
 
-            for (Map.Entry<Integer, Integer> entry : recursoOperacoes.entrySet()) {
-                if (recurso == entry.getKey() && operacao == entry.getValue()) {
+            for (Map.Entry<EnumRecursos, EnumOperacoes> entry : recursoOperacoes.entrySet()) {
+                if (recurso.equals(entry.getKey()) && operacao.equals(entry.getValue())) {
                     return true;
                 }
             }
 
             return false;
-
         } catch (Exception ex) {
             throw new AuthenticationException(rb.getString("controle.acesso.tem.permissao.excecao"), ex);
         }

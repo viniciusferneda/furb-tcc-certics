@@ -15,7 +15,39 @@ import vinicius.ferneda.tcc.certics.constant.EnumSexo;
 @SequenceGenerator(name="PES_ID", sequenceName="PES_ID", allocationSize=1)
 @NamedQueries({
 	@NamedQuery(name="PessoaFisicaEntity.findById", 
-	    	query = "SELECT avr FROM PessoaFisicaEntity avr WHERE avr.id = :id")
+	    query="SELECT obj "
+	    		+ " FROM PessoaFisicaEntity obj "
+	    		+ " WHERE obj.id = :id"),
+    	
+    @NamedQuery(name="PessoaFisicaEntity.findByNome", 
+    	query="SELECT obj "
+    			+ " FROM PessoaFisicaEntity obj "
+    			+ " WHERE obj.nome = :nome"),
+    	
+    @NamedQuery(name="PessoaFisicaEntity.findByAminesia",
+    	query="SELECT obj "
+    			+ " FROM PessoaFisicaEntity obj "
+    			+ " INNER JOIN obj.usuario usu "
+    			+ " WHERE usu.aminesia = :aminesia"),
+    	
+    @NamedQuery(name="PessoaFisicaEntity.findBySenha",
+    	query="SELECT obj "
+    			+ " FROM PessoaFisicaEntity obj "
+    			+ " INNER JOIN obj.usuario usu "
+    			+ " WHERE usu.senha = :senha"),
+    	
+    @NamedQuery(name="PessoaFisicaEntity.findByEmail",
+    	query="SELECT obj "
+    			+ " FROM PessoaFisicaEntity obj "
+    			+ " INNER JOIN obj.usuario usu "
+    			+ " WHERE usu.email = :email"),
+    			
+    @NamedQuery(name="PessoaFisicaEntity.hasRole",
+    	query="SELECT COUNT(obj.id) "
+    			+ " FROM PessoaFisicaEntity obj "
+    			+ " INNER JOIN obj.usuario usu "
+    			+ " WHERE obj.id = :usuarioID"
+    			+ "		AND usu.papelUsuario = :papelUsuario")
 })
 public class PessoaFisicaEntity extends PessoaFisica {
 
