@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
@@ -53,8 +54,8 @@ public abstract class PessoaFisica{
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private EnderecoEntity endereco;
 	
-	@JoinColumn(name="PES_USUID")
-	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="PES_USUID", nullable=false)
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private UsuarioEntity usuario;
 	
 	public Long getId() {

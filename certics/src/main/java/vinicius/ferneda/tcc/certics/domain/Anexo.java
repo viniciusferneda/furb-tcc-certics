@@ -21,7 +21,7 @@ public abstract class Anexo implements Serializable{
 	private Long id;
 
 	@Column(name="ANE_ARQUIVO", nullable=false)
-	private Byte arquivo;
+	private byte[] arquivo;
 	
 	@ManyToOne 
 	@JoinColumn(name="ANE_EVIID", nullable=false)
@@ -35,11 +35,11 @@ public abstract class Anexo implements Serializable{
 		this.id = id;
 	}
 
-	public Byte getArquivo() {
+	public byte[] getArquivo() {
 		return arquivo;
 	}
 
-	public void setArquivo(Byte arquivo) {
+	public void setArquivo(byte[] arquivo) {
 		this.arquivo = arquivo;
 	}
 

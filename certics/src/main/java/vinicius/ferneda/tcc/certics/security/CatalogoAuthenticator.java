@@ -41,10 +41,7 @@ public class CatalogoAuthenticator implements Authenticator {
 	        if (pessoaFisica == null) {
 	            throw new AuthenticationException(rb.getString("login.falhou"));
 	        } else {
-	            if (!pessoaFisica.getUsuario().getAminesia().isEmpty() && pessoaFisica.getUsuario().getSenha().equals(pessoaFisica.getUsuario().getAminesia().substring(21, 27))) {
-	                throw new AuthenticationException(rb.getString("login.alteracao.por.email"));
-	            }
-	            if (!pessoaFisica.getUsuario().getSenha().equals(CriptografiaUtil.getCodigoMd5((String) identity.getSenha()))) {
+	            if (pessoaFisica.getUsuario().getSenha().equals(CriptografiaUtil.getCodigoMd5((String) identity.getSenha()))) {
 	                throw new AuthenticationException(rb.getString("login.falhou"));
 	            }
 	        }

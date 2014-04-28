@@ -52,7 +52,7 @@
 	    <div class="content">
 	        <p:panel rendered="#{securityContext.loggedIn}">
 	            <div>
-	                <ui:include src="/security/menu.xhtml"/>
+	                <ui:include src="/menu.xhtml"/>
 	            </div>
 	            <div style="clear: both; padding-top: 10px; padding-bottom: 10px;"></div>
 	            <div>
@@ -84,7 +84,7 @@
 
     <p:dialog modal="true" widgetVar="statusDialog" header="Processando ..."
               draggable="false" closable="false" position="center" resizable="false">
-        <p:graphicImage value="/images/loaders/loader7.gif"/>
+        <p:graphicImage value="images/loaders/loader7.gif"/>
     </p:dialog>
         	
 	<link type="text/css" rel="stylesheet" href="#{request.contextPath}/themes/#{layoutBean.theme}/skin.css" />

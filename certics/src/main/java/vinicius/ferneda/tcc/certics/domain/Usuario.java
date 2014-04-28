@@ -1,14 +1,20 @@
 package vinicius.ferneda.tcc.certics.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
 import vinicius.ferneda.tcc.certics.constant.EnumPapelUsuario;
@@ -29,16 +35,20 @@ public abstract class Usuario implements Serializable{
 	@Column(name="USU_SENHA", length=255)
 	private String senha;
 
-	@Column(name="USU_PAPEL", nullable=false)
+	@Column(name="USU_PAPEL", nullable=false, length=50)
 	@Enumerated(EnumType.STRING)
     private EnumPapelUsuario papelUsuario; 
 	
-	@Size(min=3, max = 64)
-    @Column(name="USU_AMINESIA", nullable=false, length = 64)
+	@Size(min=3, max = 100)
+    @Column(name="USU_AMINESIA", nullable=false, length = 100)
     private String aminesia;
 	
 	@Column(name="USU_ATIVO", nullable=false)
     private Integer ativo = 1;
+	
+	@JoinColumn(name="PES_USUID")
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private List<PessoaFisicaEntity> pessoaFisica = new ArrayList<PessoaFisicaEntity>();
 	
 	public Long getId() {
 		return id;
@@ -86,6 +96,14 @@ public abstract class Usuario implements Serializable{
 
 	public void setAtivo(Integer ativo) {
 		this.ativo = ativo;
+	}
+
+	public List<PessoaFisicaEntity> getPessoaFisica() {
+		return pessoaFisica;
+	}
+
+	public void setPessoaFisica(List<PessoaFisicaEntity> pessoaFisica) {
+		this.pessoaFisica = pessoaFisica;
 	}
 	
 }

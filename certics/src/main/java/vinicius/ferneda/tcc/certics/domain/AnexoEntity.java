@@ -19,7 +19,7 @@ public class AnexoEntity extends Anexo {
 	public AnexoEntity(){
 	}
 	
-	public AnexoEntity(Byte arquivo, EvidenciaEntity evidencia) {
+	public AnexoEntity(byte[] arquivo, EvidenciaEntity evidencia) {
 		setArquivo(arquivo);
 		setEvidencia(evidencia);
 	}

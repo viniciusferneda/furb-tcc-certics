@@ -27,26 +27,26 @@ import vinicius.ferneda.tcc.certics.constant.EnumSexo;
     @NamedQuery(name="PessoaFisicaEntity.findByAminesia",
     	query="SELECT obj "
     			+ " FROM PessoaFisicaEntity obj "
-    			+ " INNER JOIN obj.usuario usu "
-    			+ " WHERE usu.aminesia = :aminesia"),
+    			+ " INNER JOIN FETCH obj.usuario "
+    			+ " WHERE obj.usuario.aminesia = :aminesia"),
     	
     @NamedQuery(name="PessoaFisicaEntity.findBySenha",
     	query="SELECT obj "
     			+ " FROM PessoaFisicaEntity obj "
-    			+ " INNER JOIN obj.usuario usu "
-    			+ " WHERE usu.senha = :senha"),
+    			+ " INNER JOIN FETCH obj.usuario "
+    			+ " WHERE obj.usuario.senha = :senha"),
     	
     @NamedQuery(name="PessoaFisicaEntity.findByEmail",
     	query="SELECT obj "
     			+ " FROM PessoaFisicaEntity obj "
-    			+ " INNER JOIN obj.usuario usu "
-    			+ " WHERE usu.email = :email"),
+    			+ " INNER JOIN FETCH obj.usuario "
+    			+ " WHERE obj.usuario.email = :email"),
     			
     @NamedQuery(name="PessoaFisicaEntity.hasRole",
     	query="SELECT COUNT(obj.id) "
     			+ " FROM PessoaFisicaEntity obj "
     			+ " INNER JOIN obj.usuario usu "
-    			+ " WHERE obj.id = :usuarioID"
+    			+ " WHERE obj.id = :usuarioID "
     			+ "		AND usu.papelUsuario = :papelUsuario")
 })
 public class PessoaFisicaEntity extends PessoaFisica {
