@@ -10,85 +10,76 @@
 </h:head>
 
 <h:body>
-	<h:form>
-	    <div id="topNav">
-	        <div class="fixed">
-	            <div class="wrapper">
-	                <div class="welcome">
-	                	<a href="index.html" title="">
-	                		<img src="images/logo-certics.png" style="width: 70px;"/>
-	                	</a>
-	                	<span>
-	                		<h:outputText value="#{identity.emailUsuario}" rendered="#{securityContext.loggedIn}"/>
-	                	</span>
-	                </div>
-	                <div class="userNav">
-	                    <ul>
-	                        <li>
-	                            <h:commandLink  action="login.jsf" rendered="#{not securityContext.loggedIn}">
-	                                <img src="images/icons/topnav/logout.png" alt="" /><span>#{messages['login.label']}</span>
-	                            </h:commandLink>
-	                        </li>
-	                        <li>
-	                            <h:commandLink  action="lembrar.jsf" rendered="#{not securityContext.loggedIn}">
-	                                <img src="images/icons/dark/repeat.png" alt="" /><span>#{messages['button.esqueci_senha']}</span>
-	                            </h:commandLink>
-	                        </li>
-	                    </ul>
-	                    <ul>
-	                        <h:outputText value="#{identity.getAttribute('papel')}" rendered="#{securityContext.loggedIn}"/>
-	                    </ul>
-	                    <ul>
-	                        <h:commandLink value="(sair)" action="#{usuarioEditMB.logout()}" rendered="#{securityContext.loggedIn}" />
-	                    </ul>
-	                </div>
-	                <div class="fix"></div>
-	            </div>
-	        </div>
-	    </div>
-	</h:form>
-	
-	<div class="wrapper">
-	    <div class="content">
-	        <p:panel rendered="#{securityContext.loggedIn}">
-	            <div>
-	                <ui:include src="/menu.xhtml"/>
-	            </div>
-	            <div style="clear: both; padding-top: 10px; padding-bottom: 10px;"></div>
-	            <div>
-	                <ui:insert name="crud"/>
-	            </div>
-	        </p:panel>
-	        <p:panel>
-	            <ui:insert name="body"/>
-	        </p:panel>
-	    </div>
+	<div align="center">
+		<p:layout id="layoutPrincipal" fullPage="true">
+			
+			<!-- Cabecalho -->
+			<p:layoutUnit id="layoutUnitLogo" position="north" size="150">
+				<div align="center">
+					<a href="index.jsf">
+						<img src="images/logo-certics.png" border="0"/>
+					</a>
+				</div>
+				
+				<div style="float: left;">
+					<h:form id="formCabecalhoLogin" prependId="true">
+						<div align="left">
+			                <h:commandLink  action="login.jsf" rendered="#{not securityContext.loggedIn}">
+			                    <img src="images/icons/topnav/logout.png" alt="" /><span>#{messages['login.label']}</span>
+			                </h:commandLink>
+		                </div>
+			            <div align="left">    
+			                <h:commandLink  action="lembrar.jsf" rendered="#{not securityContext.loggedIn}">
+			                    <img src="images/icons/dark/repeat.png" alt="" /><span>#{messages['button.esqueci_senha']}</span>
+			                </h:commandLink>
+		                </div>
+		                <div align="left">
+		                	<h:outputText value="#{identity.getAttribute('papel')}" rendered="#{securityContext.loggedIn}"/>
+		                </div>
+		                <div align="right">
+		                	<h:commandLink value="(sair)" action="#{usuarioEditMB.logout()}" rendered="#{securityContext.loggedIn}" />
+		                </div>
+	                </h:form>
+                </div>
+			</p:layoutUnit>
+			
+			<!-- Corpo -->
+			<p:layoutUnit id="layoutUnitCorpo" position="center">
+				<div align="left">
+					<p:panel id="panelMenu" rendered="#{securityContext.loggedIn}">
+						<ui:include src="/menu.xhtml"/>
+					</p:panel>
+					<ui:insert name="body"/>
+				</div>
+			</p:layoutUnit>
+
+			<!-- Rodape -->
+			<p:layoutUnit id="layoutUnitRodape" position="south" size="50">
+				<div id="footer" class="aligncenter">
+				    <div class="wrapper">
+				        <span>
+				            <a href="http://www.certics.cti.gov.br/" title="">
+				                <h:outputText value="CERTICS"/>
+				            </a>
+				        </span>
+				    </div>
+				</div>
+			</p:layoutUnit>				
+				
+			<p:growl id="messages" globalOnly="true" />			
+			        
+			<p:ajaxStatus style="width:16px;height:16px;">
+				<f:facet name="start">
+				</f:facet>
+		
+				<f:facet name="complete">
+					<h:outputText value="" />
+				</f:facet>
+			</p:ajaxStatus>	
+			<link type="text/css" rel="stylesheet" href="#{request.contextPath}/themes/#{layoutBean.theme}/skin.css" />
+			<h:outputScript library="js" name="locale-primefaces.js"/>
+		</p:layout>	
 	</div>
-	
-	<div class="fix"></div>
-
-	<!-- Footer -->
-	<div id="footer" class="aligncenter">
-	    <div class="wrapper">
-	        <span>
-	            <a href="http://www.certics.cti.gov.br/" title="">
-	                <img src="images/logo-certics.png" alt="" />
-	            </a>
-	        </span>
-	    </div>
-	</div>
-        
-	<p:growl id="messages" globalOnly="true" autoUpdate="true" showSummary="true" showDetail="false" />
-
-	<p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>
-
-    <p:dialog modal="true" widgetVar="statusDialog" header="Processando ..."
-              draggable="false" closable="false" position="center" resizable="false">
-        <p:graphicImage value="images/loaders/loader7.gif"/>
-    </p:dialog>
-        	
-	<link type="text/css" rel="stylesheet" href="#{request.contextPath}/themes/#{layoutBean.theme}/skin.css" />
-	<h:outputScript library="js" name="locale-primefaces.js"/>
-
 </h:body>
+	
 </html>
