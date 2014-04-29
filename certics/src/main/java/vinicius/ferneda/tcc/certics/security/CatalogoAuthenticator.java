@@ -41,7 +41,7 @@ public class CatalogoAuthenticator implements Authenticator {
 	        if (pessoaFisica == null) {
 	            throw new AuthenticationException(rb.getString("login.falhou"));
 	        } else {
-	            if (pessoaFisica.getUsuario().getSenha().equals(CriptografiaUtil.getCodigoMd5((String) identity.getSenha()))) {
+	            if (!pessoaFisica.getUsuario().getSenha().equals(CriptografiaUtil.getCodigoMd5((String) identity.getSenha()))) {
 	                throw new AuthenticationException(rb.getString("login.falhou"));
 	            }
 	        }
@@ -49,7 +49,7 @@ public class CatalogoAuthenticator implements Authenticator {
 	        this.identity.setAttribute("id", pessoaFisica.getId());
 	        this.identity.setAttribute("username", pessoaFisica.getUsuario().getEmail());
 	        this.identity.setAttribute("ativo", pessoaFisica.getUsuario().getAtivo());
-	        this.identity.setAttribute("role", pessoaFisica.getUsuario().getPapelUsuario().getNome());
+	        this.identity.setAttribute("role", pessoaFisica.getUsuario().getPapelUsuario());
 	        this.identity.setAttribute("recursos_operacoes", defineRecursosOperacoes(pessoaFisica.getUsuario().getPapelUsuario()));
 	        this.identity.setAttribute("isLogged", true);
         } catch (Exception ex) {

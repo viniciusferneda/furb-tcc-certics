@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import vinicius.ferneda.tcc.certics.constant.EnumOperacoes;
+import vinicius.ferneda.tcc.certics.constant.EnumPapelUsuario;
 import vinicius.ferneda.tcc.certics.constant.EnumRecursos;
 
 public class CatalogoAuthorizer implements Authorizer {
@@ -24,7 +25,7 @@ public class CatalogoAuthorizer implements Authorizer {
     @Override
     public boolean hasRole(String role) throws Exception {
         try {
-            return role.equals(identity.getAttribute("role"));
+            return EnumPapelUsuario.valueOf(role).equals(identity.getAttribute("role"));
         } catch (Exception ex) {
             throw new AuthenticationException(rb.getString("controle.acesso.tem.papel.excecao"), ex);
         }
