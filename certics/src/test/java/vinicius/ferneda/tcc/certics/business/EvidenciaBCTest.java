@@ -35,9 +35,9 @@ public class EvidenciaBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		Evidencia evidencia = new EvidenciaEntity("nome","descricao");
+		EvidenciaEntity evidencia = new EvidenciaEntity("nome","descricao");
 		evidenciaBC.insert(evidencia);
-		List<Evidencia> listOfEvidencia = evidenciaBC.findAll();
+		List<EvidenciaEntity> listOfEvidencia = evidenciaBC.findAll();
 		assertNotNull(listOfEvidencia);
 		assertEquals(1, listOfEvidencia.size());
 	}	
@@ -46,10 +46,10 @@ public class EvidenciaBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		Evidencia evidencia = new EvidenciaEntity("nome","descricao");
+		EvidenciaEntity evidencia = new EvidenciaEntity("nome","descricao");
 		evidenciaBC.insert(evidencia);
 		
-		List<Evidencia> listOfEvidencia = evidenciaBC.findAll();
+		List<EvidenciaEntity> listOfEvidencia = evidenciaBC.findAll();
 		assertNotNull(listOfEvidencia);
 		assertEquals(1, listOfEvidencia.size());
 		
@@ -61,11 +61,11 @@ public class EvidenciaBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		Evidencia evidencia = new EvidenciaEntity("nome","descricao");
+		EvidenciaEntity evidencia = new EvidenciaEntity("nome","descricao");
 		evidenciaBC.insert(evidencia);
 		
-		List<Evidencia> listOfEvidencia = evidenciaBC.findAll();
-		Evidencia evidencia2 = (Evidencia)listOfEvidencia.get(0);
+		List<EvidenciaEntity> listOfEvidencia = evidenciaBC.findAll();
+		EvidenciaEntity evidencia2 = (EvidenciaEntity)listOfEvidencia.get(0);
 		assertNotNull(listOfEvidencia);
 
 		// alterar para tratar uma propriedade existente na Entidade Evidencia

@@ -2,19 +2,21 @@ package vinicius.ferneda.tcc.certics.view;
 
 import java.util.Iterator;
 import java.util.List;
+
 import javax.inject.Inject;
+
+import vinicius.ferneda.tcc.certics.business.AnexoBC;
+import vinicius.ferneda.tcc.certics.domain.AnexoEntity;
 import br.gov.frameworkdemoiselle.annotation.NextView;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractListPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
-import vinicius.ferneda.tcc.certics.business.AnexoBC;
-import vinicius.ferneda.tcc.certics.domain.Anexo;
 
 @ViewController
 @NextView("./anexo_edit.jsf")
 @PreviousView("./anexo_list.jsf")
-public class AnexoListMB extends AbstractListPageBean<Anexo, Long> {
+public class AnexoListMB extends AbstractListPageBean<AnexoEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -22,7 +24,7 @@ public class AnexoListMB extends AbstractListPageBean<Anexo, Long> {
 	private AnexoBC anexoBC;
 	
 	@Override
-	protected List<Anexo> handleResultList() {
+	protected List<AnexoEntity> handleResultList() {
 		return this.anexoBC.findAll();
 	}
 	

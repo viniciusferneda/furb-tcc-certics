@@ -1,15 +1,21 @@
 
 package vinicius.ferneda.tcc.certics.view;
 
+import java.util.List;
+
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
 import vinicius.ferneda.tcc.certics.business.AvaliacaoBC;
+import vinicius.ferneda.tcc.certics.business.EvidenciaBC;
 import vinicius.ferneda.tcc.certics.business.RespostaEvidenciaBC;
+import vinicius.ferneda.tcc.certics.domain.AnexoEntity;
 import vinicius.ferneda.tcc.certics.domain.AreaCompetenciaEntity;
 import vinicius.ferneda.tcc.certics.domain.AvaliacaoEntity;
 import vinicius.ferneda.tcc.certics.domain.ConjuntoEvidenciasEntity;
+import vinicius.ferneda.tcc.certics.domain.EvidenciaEntity;
 import vinicius.ferneda.tcc.certics.domain.RespostaEvidenciaEntity;
 import vinicius.ferneda.tcc.certics.persistence.AreaCompetenciaDAO;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
@@ -28,7 +34,17 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 
 	@Inject
 	private AreaCompetenciaDAO areaCompetenciaDAO;
-	
+
+	@Inject
+	private RespostaEvidenciaBC respostaEvidenciaBC;
+	private RespostaEvidenciaEntity respostaEvidenciaEntity;
+
+	@Inject
+	private EvidenciaBC evidenciaBC;
+	private EvidenciaEntity evidenciaEntity;
+
+	private ConjuntoEvidenciasEntity conjuntoEvidenciasEntity;
+
 	private DataModel<AreaCompetenciaEntity> lEvidencias;
 	
 	public DataModel<AreaCompetenciaEntity> getlEvidencias(){
@@ -37,6 +53,29 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 		}
 		return this.lEvidencias;
 	}
+	
+	public List<SelectItem> getEvidenciaList(){
+		return this.evidenciaBC.getEvidenciaList();
+	}
+	
+	private DataModel<AnexoEntity> anexoList;
+
+	public void addAnexo() {
+		this.getEvidenciaEntity().getAnexos().add(new AnexoEntity());
+	}
+	public void deleteAnexo() {
+	   this.getEvidenciaEntity().getAnexos().remove(getAnexoList().getRowData());
+	}
+	public DataModel<AnexoEntity> getAnexoList() {
+	   if (anexoList == null) {
+		   if(evidenciaEntity == null){
+			   anexoList = new ListDataModel<AnexoEntity>();
+		   }else{
+			   anexoList = new ListDataModel<AnexoEntity>(this.getEvidenciaEntity().getAnexos());
+		   }
+	   }
+	   return anexoList;
+	} 
 	
 	@Override
 	@Transactional
@@ -64,25 +103,30 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 		return this.avaliacaoBC.load(id);
 	}
 	
-	private ConjuntoEvidenciasEntity conjuntoEvidenciasEntity;
-	
 	public void setConjuntoEvidencias(ConjuntoEvidenciasEntity conjuntoEvidenciasEntity){
 		this.conjuntoEvidenciasEntity = conjuntoEvidenciasEntity;
 		this.respostaEvidenciaEntity = new RespostaEvidenciaEntity();
 	}
-
-	@Inject
-	private RespostaEvidenciaBC respostaEvidenciaBC;
 	
-	private RespostaEvidenciaEntity respostaEvidenciaEntity;
+	public void setEvidencia(){
+		this.evidenciaEntity = new EvidenciaEntity();
+	}
 
-	public void addEvidencia(){
+	public void addRespostaEvidencia(){
 		this.respostaEvidenciaEntity.setConjuntoEvidencias(this.conjuntoEvidenciasEntity);
 		this.respostaEvidenciaBC.insert(this.respostaEvidenciaEntity);
 	}
-	
+
+	public void addEvidencia(){
+		this.evidenciaBC.insert(this.evidenciaEntity);
+	}
+
 	public RespostaEvidenciaEntity getRespostaEvidenciaEntity(){
 		return this.respostaEvidenciaEntity;
+	}
+	
+	public EvidenciaEntity getEvidenciaEntity(){
+		return this.evidenciaEntity;
 	}
 
 }

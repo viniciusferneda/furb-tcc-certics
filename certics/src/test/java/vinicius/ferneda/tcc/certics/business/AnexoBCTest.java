@@ -36,9 +36,9 @@ public class AnexoBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		Anexo anexo = new AnexoEntity(new byte[]{},new EvidenciaEntity());
+		AnexoEntity anexo = new AnexoEntity(new byte[]{},new EvidenciaEntity());
 		anexoBC.insert(anexo);
-		List<Anexo> listOfAnexo = anexoBC.findAll();
+		List<AnexoEntity> listOfAnexo = anexoBC.findAll();
 		assertNotNull(listOfAnexo);
 		assertEquals(1, listOfAnexo.size());
 	}	
@@ -47,10 +47,10 @@ public class AnexoBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		Anexo anexo = new AnexoEntity(new byte[]{},new EvidenciaEntity());
+		AnexoEntity anexo = new AnexoEntity(new byte[]{},new EvidenciaEntity());
 		anexoBC.insert(anexo);
 		
-		List<Anexo> listOfAnexo = anexoBC.findAll();
+		List<AnexoEntity> listOfAnexo = anexoBC.findAll();
 		assertNotNull(listOfAnexo);
 		assertEquals(1, listOfAnexo.size());
 		
@@ -62,11 +62,11 @@ public class AnexoBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		Anexo anexo = new AnexoEntity(new byte[]{},new EvidenciaEntity());
+		AnexoEntity anexo = new AnexoEntity(new byte[]{},new EvidenciaEntity());
 		anexoBC.insert(anexo);
 		
-		List<Anexo> listOfAnexo = anexoBC.findAll();
-		Anexo anexo2 = (Anexo)listOfAnexo.get(0);
+		List<AnexoEntity> listOfAnexo = anexoBC.findAll();
+		AnexoEntity anexo2 = (AnexoEntity)listOfAnexo.get(0);
 		assertNotNull(listOfAnexo);
 
 		// alterar para tratar uma propriedade existente na Entidade Anexo
@@ -74,7 +74,7 @@ public class AnexoBCTest {
 		anexoBC.update(anexo2);
 		
 		listOfAnexo = anexoBC.findAll();
-		Anexo anexo3 = (Anexo)listOfAnexo.get(0);
+		AnexoEntity anexo3 = (AnexoEntity)listOfAnexo.get(0);
 		
 		// alterar para tratar uma propriedade existente na Entidade Anexo
 		assertEquals("novo valor", anexo3.getArquivo());

@@ -7,8 +7,8 @@ import javax.inject.Inject;
 
 import vinicius.ferneda.tcc.certics.business.AnexoBC;
 import vinicius.ferneda.tcc.certics.business.EvidenciaBC;
-import vinicius.ferneda.tcc.certics.domain.Anexo;
-import vinicius.ferneda.tcc.certics.domain.Evidencia;
+import vinicius.ferneda.tcc.certics.domain.AnexoEntity;
+import vinicius.ferneda.tcc.certics.domain.EvidenciaEntity;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
@@ -16,7 +16,7 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 @ViewController
 @PreviousView("./anexo_list.jsf")
-public class AnexoEditMB extends AbstractEditPageBean<Anexo, Long> {
+public class AnexoEditMB extends AbstractEditPageBean<AnexoEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -27,7 +27,7 @@ public class AnexoEditMB extends AbstractEditPageBean<Anexo, Long> {
 	@Inject
 	private EvidenciaBC evidenciaBC;
 	
-	public List<Evidencia> getEvidenciaList(){
+	public List<EvidenciaEntity> getEvidenciaList(){
 		return evidenciaBC.findAll();
 	}
 			
@@ -54,7 +54,7 @@ public class AnexoEditMB extends AbstractEditPageBean<Anexo, Long> {
 	}
 	
 	@Override
-	protected Anexo handleLoad(Long id) {
+	protected AnexoEntity handleLoad(Long id) {
 		return this.anexoBC.load(id);
 	}	
 }

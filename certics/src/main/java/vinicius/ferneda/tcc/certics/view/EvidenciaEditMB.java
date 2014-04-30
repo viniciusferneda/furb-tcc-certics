@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import vinicius.ferneda.tcc.certics.business.EvidenciaBC;
 import vinicius.ferneda.tcc.certics.business.RespostaEvidenciaBC;
 import vinicius.ferneda.tcc.certics.domain.AnexoEntity;
-import vinicius.ferneda.tcc.certics.domain.Evidencia;
+import vinicius.ferneda.tcc.certics.domain.EvidenciaEntity;
 import vinicius.ferneda.tcc.certics.domain.RespostaEvidenciaEntity;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
@@ -19,7 +19,7 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 @ViewController
 @PreviousView("./evidencia_list.jsf")
-public class EvidenciaEditMB extends AbstractEditPageBean<Evidencia, Long> {
+public class EvidenciaEditMB extends AbstractEditPageBean<EvidenciaEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -71,7 +71,7 @@ public class EvidenciaEditMB extends AbstractEditPageBean<Evidencia, Long> {
 	}
 	
 	@Override
-	protected Evidencia handleLoad(Long id) {
+	protected EvidenciaEntity handleLoad(Long id) {
 		return this.evidenciaBC.load(id);
 	}	
 }
