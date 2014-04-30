@@ -112,7 +112,7 @@
 					width="400" height="400"
 					resizable="false"
 					closable="true" 
-					appendToBody="false">  
+					appendToBody="true">  
 	   			<h:panelGrid id="panelModalEvidencia">
 					<h:outputLabel value="#{messages['respostaEvidencia.label.abrangencia']}: " for="abrangencia" styleClass="text-input" />
 					<h:inputText id="abrangencia" value="#{conjuntoEvidenciasEditMB.respostaEvidenciaEntity.abrangencia}" title="#{messages['respostaEvidencia.alt.abrangencia']}" />
@@ -130,6 +130,5 @@
 				</h:panelGrid>
 			</p:dialog>
 		</h:form>  
-
 	</ui:define>
 </ui:composition>

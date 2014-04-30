@@ -7,21 +7,21 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>#{messages['main.app.title']}</title>
 	<link type="text/css" rel="stylesheet" href="css/styles.css" />
+	<!--<link href="css/main.css" rel="stylesheet" type="text/css" />-->
 </h:head>
 
 <h:body>
 	<div align="center">
 		<p:layout id="layoutPrincipal" fullPage="true">
-			
-			<!-- Cabecalho -->
-			<p:layoutUnit id="layoutUnitLogo" position="north" size="150">
-				<div align="center">
+			<p:layoutUnit id="layoutUnitCorpo" position="center">
+				<!-- Cabecalho -->
+                <div class="welcome">
 					<a href="index.jsf">
 						<img src="images/logo-certics.png" border="0"/>
 					</a>
 				</div>
-				
-				<div style="float: left;">
+				<!-- Login -->
+				<div id="divLogin" class="userNav">
 					<h:form id="formCabecalhoLogin" prependId="true">
 						<div align="left">
 			                <h:commandLink  action="login.jsf" rendered="#{not securityContext.loggedIn}">
@@ -41,30 +41,31 @@
 		                </div>
 	                </h:form>
                 </div>
+                <!-- Menu e Corpo-->
+			    <div class="content">
+			        <p:panel rendered="#{securityContext.loggedIn}">
+			            <div>
+			                <ui:include src="/menu.xhtml"/>
+			            </div>
+			            <div>
+			                <ui:insert name="crud"/>
+			            </div>
+			        </p:panel>
+			        <p:panel>
+			        	<div align="left">
+			            	<ui:insert name="body"/>
+			            </div>
+			        </p:panel>
+			    </div>
+				<!-- Rodape 
+				<div id="rodape" class="footer">
+			        <span>
+			            <a href="http://www.certics.cti.gov.br/" title="">
+			                <h:outputText value="CERTICS"/>
+			            </a>
+			        </span>
+				</div>-->
 			</p:layoutUnit>
-			
-			<!-- Corpo -->
-			<p:layoutUnit id="layoutUnitCorpo" position="center">
-				<div align="left">
-					<p:panel id="panelMenu" rendered="#{securityContext.loggedIn}">
-						<ui:include src="/menu.xhtml"/>
-					</p:panel>
-					<ui:insert name="body"/>
-				</div>
-			</p:layoutUnit>
-
-			<!-- Rodape -->
-			<p:layoutUnit id="layoutUnitRodape" position="south" size="50">
-				<div id="footer" class="aligncenter">
-				    <div class="wrapper">
-				        <span>
-				            <a href="http://www.certics.cti.gov.br/" title="">
-				                <h:outputText value="CERTICS"/>
-				            </a>
-				        </span>
-				    </div>
-				</div>
-			</p:layoutUnit>				
 				
 			<p:growl id="messages" globalOnly="true" />			
 			        

@@ -17,3 +17,10 @@
 .ui-icon-locale-en{
 	background-image: url("../images/locale_en.png");
 }
+
+.rodape {
+	position:absolute;
+	bottom:0;
+	width:100%;
+	align:center;
+}

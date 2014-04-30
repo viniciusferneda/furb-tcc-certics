@@ -5,52 +5,49 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 	<h:form>
-		<p:menubar id="menu_avaliador" rendered="#{securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM')}">
+		<p:menubar id="menuPrincipal">
 			
-			<p:submenu label="#{messages['menu.avaliador']}">
+			<p:submenu label="#{messages['menu.avaliador']}" rendered="#{securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM')}">
 				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/avaliador_edit.jsf"></p:menuitem>
 				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/avaliador_list.jsf"></p:menuitem>
 			</p:submenu>
 
-			<p:submenu label="#{messages['menu.areaCompetencia']}">
+			<p:submenu label="#{messages['menu.areaCompetencia']}" rendered="#{securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM')}">
 				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/areaCompetencia_edit.jsf"></p:menuitem>
 				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/areaCompetencia_list.jsf"></p:menuitem>
 			</p:submenu>
 
-			<p:submenu label="#{messages['menu.resultadoEsperado']}">
+			<p:submenu label="#{messages['menu.resultadoEsperado']}" rendered="#{securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM')}">
 				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/resultadoEsperado_edit.jsf"></p:menuitem>
 				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/resultadoEsperado_list.jsf"></p:menuitem>
 			</p:submenu>
 
-			<p:submenu label="#{messages['menu.organizacaoSolicitante']}">
+			<p:submenu label="#{messages['menu.organizacaoSolicitante']}" rendered="#{securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM')}">
 				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/organizacaoSolicitante_edit.jsf"></p:menuitem>
 				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/organizacaoSolicitante_list.jsf"></p:menuitem>
 			</p:submenu>
 
-			<p:submenu label="#{messages['menu.profissional']}">
+			<p:submenu label="#{messages['menu.profissional']}" rendered="#{securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM')}">
 				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/profissional_edit.jsf"></p:menuitem>
 				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/profissional_list.jsf"></p:menuitem>
 			</p:submenu>
 
-			<p:submenu label="#{messages['menu.software']}">
+			<p:submenu label="#{messages['menu.software']}" rendered="#{securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM')}">
 				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/software_edit.jsf"></p:menuitem>
 				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/software_list.jsf"></p:menuitem>
 			</p:submenu>
 
-			<p:submenu label="#{messages['menu.avaliacao']}">
+			<p:submenu label="#{messages['menu.avaliacao']}" rendered="#{securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM')}">
 				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/avaliacao_edit.jsf"></p:menuitem>
 				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/avaliacao_list.jsf"></p:menuitem>
 			</p:submenu>
-		</p:menubar>
-	
-		<p:menubar id="menu_avaliado" rendered="#{securityContext.hasRole('AVALIADO') || securityContext.hasRole('ADM')}">
 		
-			<p:submenu label="#{messages['menu.conjuntoEvidencias']}">
+			<p:submenu label="#{messages['menu.conjuntoEvidencias']}" rendered="#{securityContext.hasRole('AVALIADO') || securityContext.hasRole('ADM')}">
 				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/conjuntoEvidencias_edit.jsf"></p:menuitem>
 				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/conjuntoEvidencias_list.jsf"></p:menuitem>
 			</p:submenu>
 			
-			<p:submenu label="#{messages['menu.licaoAprendida']}">
+			<p:submenu label="#{messages['menu.licaoAprendida']}" rendered="#{securityContext.hasRole('AVALIADO') || securityContext.hasRole('ADM')}">
 				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/licaoAprendida_edit.jsf"></p:menuitem>
 				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/licaoAprendida_list.jsf"></p:menuitem>
 			</p:submenu>
