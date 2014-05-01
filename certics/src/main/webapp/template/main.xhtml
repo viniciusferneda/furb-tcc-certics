@@ -14,15 +14,15 @@
 	<div align="center">
 		<p:layout id="layoutPrincipal" fullPage="true">
 			<p:layoutUnit id="layoutUnitCorpo" position="center">
-				<!-- Cabecalho -->
-                <div class="welcome">
-					<a href="index.jsf">
-						<img src="images/logo-certics.png" border="0"/>
-					</a>
-				</div>
-				<!-- Login -->
-				<div id="divLogin" class="userNav">
-					<h:form id="formCabecalhoLogin" prependId="true">
+				<h:form prependId="false">
+					<!-- Cabecalho -->
+	                <div class="welcome">
+						<a href="index.jsf">
+							<img src="images/logo-certics.png" border="0"/>
+						</a>
+					</div>
+					<!-- Login -->
+					<div id="divLogin" class="userNav">
 						<div align="left">
 			                <h:commandLink  action="login.jsf" rendered="#{not securityContext.loggedIn}">
 			                    <img src="images/icons/topnav/logout.png" alt="" /><span>#{messages['login.label']}</span>
@@ -39,32 +39,32 @@
 		                <div align="right">
 		                	<h:commandLink value="(sair)" action="#{usuarioEditMB.logout()}" rendered="#{securityContext.loggedIn}" />
 		                </div>
-	                </h:form>
-                </div>
-                <!-- Menu e Corpo-->
-			    <div class="content">
-			        <p:panel rendered="#{securityContext.loggedIn}">
-			            <div>
-			                <ui:include src="/menu.xhtml"/>
-			            </div>
-			            <div>
-			                <ui:insert name="crud"/>
-			            </div>
-			        </p:panel>
-			        <p:panel>
-			        	<div align="left">
-			            	<ui:insert name="body"/>
-			            </div>
-			        </p:panel>
-			    </div>
-				<!-- Rodape 
-				<div id="rodape" class="footer">
-			        <span>
-			            <a href="http://www.certics.cti.gov.br/" title="">
-			                <h:outputText value="CERTICS"/>
-			            </a>
-			        </span>
-				</div>-->
+	                </div>
+	                <!-- Menu e Corpo-->
+				    <div class="content">
+				        <p:panel rendered="#{securityContext.loggedIn}">
+				            <div>
+				                <ui:include src="/menu.xhtml"/>
+				            </div>
+				            <div>
+				                <ui:insert name="crud"/>
+				            </div>
+				        </p:panel>
+				        <p:panel>
+				        	<div align="left">
+				            	<ui:insert name="body"/>
+				            </div>
+				        </p:panel>
+				    </div>
+					<!-- Rodape 
+					<div id="rodape" class="footer">
+				        <span>
+				            <a href="http://www.certics.cti.gov.br/" title="">
+				                <h:outputText value="CERTICS"/>
+				            </a>
+				        </span>
+					</div>-->
+				</h:form>
 			</p:layoutUnit>
 				
 			<p:growl id="messages" globalOnly="true" />			

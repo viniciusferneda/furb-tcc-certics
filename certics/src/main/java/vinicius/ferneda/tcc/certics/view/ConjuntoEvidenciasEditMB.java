@@ -108,7 +108,7 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 		this.respostaEvidenciaEntity = new RespostaEvidenciaEntity();
 	}
 	
-	public void setEvidencia(){
+	public void setNovaEvidencia(){
 		this.evidenciaEntity = new EvidenciaEntity();
 	}
 
@@ -117,8 +117,8 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 		this.respostaEvidenciaBC.insert(this.respostaEvidenciaEntity);
 	}
 
-	public void addEvidencia(){
-		this.evidenciaBC.insert(this.evidenciaEntity);
+	public void setEvidencia(){
+		this.evidenciaBC.insert(getEvidenciaEntity());
 	}
 
 	public RespostaEvidenciaEntity getRespostaEvidenciaEntity(){

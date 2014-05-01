@@ -4,7 +4,6 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
 	<ui:define name="body">
-		<h:form>
 			<p:dataTable id="list" var="bean" value="#{conjuntoEvidenciasListMB.resultList}">
 				<f:facet name="header">#{messages['conjuntoEvidencias.list.table.title']}</f:facet>
 				<p:column style="width:2%;">
@@ -57,7 +56,5 @@
 				</p:column>
 					
 			</p:dataTable>
-		</h:form>
-
 	</ui:define>
 </ui:composition>
