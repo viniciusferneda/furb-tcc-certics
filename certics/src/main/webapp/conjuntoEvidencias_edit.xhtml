@@ -107,7 +107,7 @@
 								   				
 								   				<p:column>
 									   				<h:outputLabel value="#{messages['evidencia.label']}: " for="evidencia" styleClass="text-input" />
-												    <p:selectOneMenu id="evidencia" value="#{conjuntoEvidenciasEditMB.respostaEvidenciaEntity.evidencia}" effect="fade" converter="ConversorEvidencia">
+												    <p:selectOneMenu id="evidencia" value="#{conjuntoEvidenciasEditMB.bean.respostaEvidenciaAux.evidencia}" effect="fade" converter="ConversorEvidencia">
 														<f:selectItem itemLabel="Selecione" itemValue="" />
 														<f:selectItems value="#{conjuntoEvidenciasEditMB.evidenciaList}" var="varEvidencia" itemLabel="#{varEvidencia.label}" itemValue="#{varEvidencia}" />						
 													</p:selectOneMenu>
@@ -122,15 +122,15 @@
 												</p:column>
 								   				
 												<h:outputLabel value="#{messages['respostaEvidencia.label.abrangencia']}: " for="abrangencia" styleClass="text-input" />
-												<h:inputText id="abrangencia" value="#{conjuntoEvidenciasEditMB.respostaEvidenciaEntity.abrangencia}" title="#{messages['respostaEvidencia.alt.abrangencia']}" />
+												<h:inputText id="abrangencia" value="#{conjuntoEvidenciasEditMB.bean.respostaEvidenciaAux.abrangencia}" title="#{messages['respostaEvidencia.alt.abrangencia']}" />
 												<p:message for="abrangencia" />
 													
 												<h:outputLabel value="#{messages['respostaEvidencia.label.motivo']}: " for="motivo" styleClass="text-input" />
-												<h:inputText id="motivo" value="#{conjuntoEvidenciasEditMB.respostaEvidenciaEntity.motivo}" title="#{messages['respostaEvidencia.alt.motivo']}" />
+												<h:inputText id="motivo" value="#{conjuntoEvidenciasEditMB.bean.respostaEvidenciaAux.motivo}" title="#{messages['respostaEvidencia.alt.motivo']}" />
 												<p:message for="motivo" />
 													
 												<h:outputLabel value="#{messages['respostaEvidencia.label.contribuicao']}: " for="contribuicao" styleClass="text-input" />
-												<h:inputText id="contribuicao" value="#{conjuntoEvidenciasEditMB.respostaEvidenciaEntity.contribuicao}" title="#{messages['respostaEvidencia.alt.contribuicao']}" />
+												<h:inputText id="contribuicao" value="#{conjuntoEvidenciasEditMB.bean.respostaEvidenciaAux.contribuicao}" title="#{messages['respostaEvidencia.alt.contribuicao']}" />
 												<p:message for="contribuicao" />
 														
 												<p:commandButton value="#{messages['button.save']}"
@@ -151,11 +151,11 @@
 												appendToBody="true">  
 								   			<h:panelGrid id="panelModalEvidencianew">
 												<h:outputLabel value="#{messages['evidencia.label.nome']}: " for="nome" styleClass="text-input" />
-												<h:inputText id="nome" value="#{conjuntoEvidenciasEditMB.evidenciaEntity.nome}" title="#{messages['evidencia.alt.nome']}" />
+												<h:inputText id="nome" value="#{conjuntoEvidenciasEditMB.bean.evidenciaAux.nome}" title="#{messages['evidencia.alt.nome']}" />
 												<p:message for="nome" />
-													
+
 												<h:outputLabel value="#{messages['evidencia.label.descricao']}: " for="descricao" styleClass="text-input" />
-												<h:inputText id="descricao" value="#{conjuntoEvidenciasEditMB.evidenciaEntity.descricao}" title="#{messages['evidencia.alt.descricao']}" />
+												<h:inputText id="descricao" value="#{conjuntoEvidenciasEditMB.bean.evidenciaAux.descricao}" title="#{messages['evidencia.alt.descricao']}" />
 												<p:message for="descricao" />
 												
 												<h:panelGrid id="fieldsanexo" columns="1"> 

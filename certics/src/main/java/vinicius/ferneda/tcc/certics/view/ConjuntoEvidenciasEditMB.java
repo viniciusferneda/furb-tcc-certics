@@ -37,13 +37,9 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 
 	@Inject
 	private RespostaEvidenciaBC respostaEvidenciaBC;
-	private RespostaEvidenciaEntity respostaEvidenciaEntity;
 
 	@Inject
 	private EvidenciaBC evidenciaBC;
-	private EvidenciaEntity evidenciaEntity;
-
-	private ConjuntoEvidenciasEntity conjuntoEvidenciasEntity;
 
 	private DataModel<AreaCompetenciaEntity> lEvidencias;
 	
@@ -61,17 +57,17 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 	private DataModel<AnexoEntity> anexoList;
 
 	public void addAnexo() {
-		this.getEvidenciaEntity().getAnexos().add(new AnexoEntity());
+		this.getBean().getEvidenciaAux().getAnexos().add(new AnexoEntity());
 	}
 	public void deleteAnexo() {
-	   this.getEvidenciaEntity().getAnexos().remove(getAnexoList().getRowData());
+	   this.getBean().getEvidenciaAux().getAnexos().remove(getAnexoList().getRowData());
 	}
 	public DataModel<AnexoEntity> getAnexoList() {
 	   if (anexoList == null) {
-		   if(evidenciaEntity == null){
+		   if(this.getBean().getEvidenciaAux() == null){
 			   anexoList = new ListDataModel<AnexoEntity>();
 		   }else{
-			   anexoList = new ListDataModel<AnexoEntity>(this.getEvidenciaEntity().getAnexos());
+			   anexoList = new ListDataModel<AnexoEntity>(this.getBean().getEvidenciaAux().getAnexos());
 		   }
 	   }
 	   return anexoList;
@@ -104,29 +100,21 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 	}
 	
 	public void setConjuntoEvidencias(ConjuntoEvidenciasEntity conjuntoEvidenciasEntity){
-		this.conjuntoEvidenciasEntity = conjuntoEvidenciasEntity;
-		this.respostaEvidenciaEntity = new RespostaEvidenciaEntity();
+		this.getBean().setConjuntoEvidenciasAux(conjuntoEvidenciasEntity);
+		this.getBean().setRespostaEvidenciaAux(new RespostaEvidenciaEntity());
 	}
 	
 	public void setNovaEvidencia(){
-		this.evidenciaEntity = new EvidenciaEntity();
+		this.getBean().setEvidenciaAux(new EvidenciaEntity());
 	}
 
 	public void addRespostaEvidencia(){
-		this.respostaEvidenciaEntity.setConjuntoEvidencias(this.conjuntoEvidenciasEntity);
-		this.respostaEvidenciaBC.insert(this.respostaEvidenciaEntity);
+		this.getBean().getRespostaEvidenciaAux().setConjuntoEvidencias(this.getBean().getConjuntoEvidenciasAux());
+		this.respostaEvidenciaBC.insert(this.getBean().getRespostaEvidenciaAux());
 	}
 
 	public void setEvidencia(){
-		this.evidenciaBC.insert(getEvidenciaEntity());
-	}
-
-	public RespostaEvidenciaEntity getRespostaEvidenciaEntity(){
-		return this.respostaEvidenciaEntity;
-	}
-	
-	public EvidenciaEntity getEvidenciaEntity(){
-		return this.evidenciaEntity;
+		this.evidenciaBC.insert(this.getBean().getEvidenciaAux());
 	}
 
 }
