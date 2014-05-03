@@ -21,7 +21,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import vinicius.ferneda.tcc.certics.constant.EnumPontuacaoAvaliacao;
-import vinicius.ferneda.tcc.certics.constant.EnumVersaoCertics;
 
 @MappedSuperclass
 public abstract class Avaliacao implements Serializable{
@@ -32,10 +31,6 @@ public abstract class Avaliacao implements Serializable{
 	@Column(name="AVA_ID", nullable=false)
 	@GeneratedValue(generator="AVA_ID", strategy = GenerationType.AUTO)
 	private Long id;
-	
-	@Column(name="AVA_VERSAO_CERTICS", nullable=false, length=10)
-	@Enumerated(EnumType.STRING)
-	private EnumVersaoCertics versaoCertics;
 	
 	@Column(name="AVA_PONTUACAO", nullable=false, length=10)
 	@Enumerated(EnumType.STRING)
@@ -53,6 +48,10 @@ public abstract class Avaliacao implements Serializable{
 	@JoinColumn(name="AVA_AVRID", nullable=false)
 	private AvaliadorEntity avaliador;
 
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY) 
+	@JoinColumn(name="AVA_VCEID", nullable=false)
+	private VersaoCerticsEntity versaoCertics;
+	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="LIA_AVAID")
 	private List<LicaoAprendidaEntity> licoesAprendidas = new ArrayList<LicaoAprendidaEntity>();
@@ -69,14 +68,6 @@ public abstract class Avaliacao implements Serializable{
 		this.id = id;
 	}
 	
-	public EnumVersaoCertics getVersaoCertics() {
-		return versaoCertics;
-	}
-
-	public void setVersaoCertics(EnumVersaoCertics versaoCertics) {
-		this.versaoCertics = versaoCertics;
-	}
-
 	public EnumPontuacaoAvaliacao getPontuacao() {
 		return pontuacao;
 	}
@@ -107,6 +98,14 @@ public abstract class Avaliacao implements Serializable{
 
 	public void setAvaliador(AvaliadorEntity avaliador) {
 		this.avaliador = avaliador;
+	}
+	
+	public VersaoCerticsEntity getVersaoCertics() {
+		return versaoCertics;
+	}
+
+	public void setVersaoCertics(VersaoCerticsEntity versaoCertics) {
+		this.versaoCertics = versaoCertics;
 	}
 
 	public List<LicaoAprendidaEntity> getLicoesAprendidas() {

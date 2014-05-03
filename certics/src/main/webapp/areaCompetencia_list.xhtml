@@ -57,14 +57,6 @@
 					</h:commandLink>
 				</p:column>
 					
-				<p:column sortBy="#{bean.versaoCertics}">
-					<f:facet name="header">#{messages['areaCompetencia.label.versaoCertics']}</f:facet>
-					<h:commandLink action="#{areaCompetenciaListMB.getNextView}" actionListener="#{areaCompetenciaListMB.clear}">
-						<h:outputText value="#{bean.versaoCertics}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
-				</p:column>
-					
 			</p:dataTable>
 		</h:form>
 

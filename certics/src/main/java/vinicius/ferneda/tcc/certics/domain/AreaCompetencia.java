@@ -6,8 +6,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,8 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
-
-import vinicius.ferneda.tcc.certics.constant.EnumVersaoCertics;
 
 @MappedSuperclass
 public abstract class AreaCompetencia implements Serializable{
@@ -37,13 +33,13 @@ public abstract class AreaCompetencia implements Serializable{
 	@Column(name="ARC_DESCRICAO", nullable=false, length=8000)
 	private String descricao;
 	
-	@Column(name="ARC_VERSAO_CERTICS", nullable=false, length=10)
-	@Enumerated(EnumType.STRING)
-	private EnumVersaoCertics versaoCertics;
-	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="REV_ARCID")
 	private List<ResultadoEsperadoEntity> resultadosEsperados = new ArrayList<ResultadoEsperadoEntity>();
+	
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="VAC_ARCID")
+	private List<VersaoCerticsAreaCompetenciaEntity> lVersaoCerticsAreaCompetencia = new ArrayList<VersaoCerticsAreaCompetenciaEntity>();
 
 	public Long getId() {
 		return id;
@@ -76,14 +72,6 @@ public abstract class AreaCompetencia implements Serializable{
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
-	public EnumVersaoCertics getVersaoCertics() {
-		return versaoCertics;
-	}
-
-	public void setVersaoCertics(EnumVersaoCertics versaoCertics) {
-		this.versaoCertics = versaoCertics;
-	}
 
 	public List<ResultadoEsperadoEntity> getResultadosEsperados() {
 		return resultadosEsperados;
@@ -91,6 +79,14 @@ public abstract class AreaCompetencia implements Serializable{
 
 	public void setResultadosEsperados(List<ResultadoEsperadoEntity> resultadosEsperados) {
 		this.resultadosEsperados = resultadosEsperados;
+	}
+
+	public List<VersaoCerticsAreaCompetenciaEntity> getlVersaoCerticsAreaCompetencia() {
+		return lVersaoCerticsAreaCompetencia;
+	}
+
+	public void setlVersaoCerticsAreaCompetencia(List<VersaoCerticsAreaCompetenciaEntity> lVersaoCerticsAreaCompetencia) {
+		this.lVersaoCerticsAreaCompetencia = lVersaoCerticsAreaCompetencia;
 	}
 	
 }

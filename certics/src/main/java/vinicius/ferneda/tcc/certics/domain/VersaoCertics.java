@@ -11,36 +11,31 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 
 @MappedSuperclass
-public abstract class ResultadoEsperado implements Serializable{
+public class VersaoCertics implements Serializable{
 
-	private static final long serialVersionUID = 1L;
+private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="RES_ID", nullable=false)
-	@GeneratedValue(generator="RES_ID", strategy=GenerationType.AUTO)
+	@Column(name = "VCE_ID", nullable=false)
+	@GeneratedValue(generator="VCE_ID", strategy=GenerationType.AUTO)
 	private Long id;
-
-	@Column(name="ARC_TITULO", nullable=false, length=255)
-	private String titulo;
 	
-	@Column(name="ARC_DESCRICAO", nullable=false, length=8000)
+	@Column(name="VCE_NOME", length=255)
+	private String nome;
+	
+	@Column(name="VCE_DESCRICAO", length=8000)
 	private String descricao;
-	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY) 
-	@JoinColumn(name="REV_ARCID", nullable=false)
-	private AreaCompetenciaEntity areaCompetencia;
-	
+
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	@JoinColumn(name="CEV_RESID")
-	private List<ConjuntoEvidenciasEntity> conjuntoEvidencias = new ArrayList<ConjuntoEvidenciasEntity>();
-	
+	@JoinColumn(name="VAC_VCEID")
+	private List<VersaoCerticsAreaCompetenciaEntity> lVersaoCerticsAreaCompetencia = new ArrayList<VersaoCerticsAreaCompetenciaEntity>();
+
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	@JoinColumn(name="VRE_RESID")
+	@JoinColumn(name="VRE_VCEID")
 	private List<VersaoCerticsResultadoEsperadoEntity> lVersaoCerticsResultadoEsperado = new ArrayList<VersaoCerticsResultadoEsperadoEntity>();
 
 	public Long getId() {
@@ -51,12 +46,12 @@ public abstract class ResultadoEsperado implements Serializable{
 		this.id = id;
 	}
 
-	public String getTitulo() {
-		return titulo;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getDescricao() {
@@ -67,20 +62,12 @@ public abstract class ResultadoEsperado implements Serializable{
 		this.descricao = descricao;
 	}
 
-	public AreaCompetenciaEntity getAreaCompetencia() {
-		return areaCompetencia;
+	public List<VersaoCerticsAreaCompetenciaEntity> getlVersaoCerticsAreaCompetencia() {
+		return lVersaoCerticsAreaCompetencia;
 	}
 
-	public void setAreaCompetencia(AreaCompetenciaEntity areaCompetencia) {
-		this.areaCompetencia = areaCompetencia;
-	}
-
-	public List<ConjuntoEvidenciasEntity> getConjuntoEvidencias() {
-		return conjuntoEvidencias;
-	}
-
-	public void setConjuntoEvidencias(List<ConjuntoEvidenciasEntity> conjuntoEvidencias) {
-		this.conjuntoEvidencias = conjuntoEvidencias;
+	public void setlVersaoCerticsAreaCompetencia(List<VersaoCerticsAreaCompetenciaEntity> lVersaoCerticsAreaCompetencia) {
+		this.lVersaoCerticsAreaCompetencia = lVersaoCerticsAreaCompetencia;
 	}
 
 	public List<VersaoCerticsResultadoEsperadoEntity> getlVersaoCerticsResultadoEsperado() {

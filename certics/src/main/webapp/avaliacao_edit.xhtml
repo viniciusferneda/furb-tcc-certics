@@ -28,25 +28,20 @@
 				<h:panelGrid id="fieldsavaliacao" columns="3">
 				
 					<h:outputLabel value="#{messages['avaliacao.label.id']}: " for="id" styleClass="text-input" />
-										
 					<h:outputText id="id" value="#{avaliacaoEditMB.bean.id}" />
-					
 					<p:message for="id" />
 						
 					<h:outputLabel value="#{messages['avaliacao.label.versaoCertics']}: " for="versaoCertics" styleClass="text-input" />
-					
-					<p:selectOneMenu id="versaoCertics" effect="fade" value="#{avaliacaoEditMB.bean.versaoCertics}">
-						<f:selectItems value="#{avaliacaoEditMB.versaoCertics}" />
-					</p:selectOneMenu>					
-								
+					<p:selectOneMenu id="versaoCertics" value="#{avaliacaoEditMB.bean.versaoCertics}"  effect="fade" converter="ConversorVersaoCertics">
+						<f:selectItem itemLabel="Selecione" itemValue="" />
+						<f:selectItems value="#{avaliacaoEditMB.versaoCerticsList}" var="varVersaoCertics" itemLabel="#{varVersaoCertics.nome}"  itemValue="#{varVersaoCertics}" />						
+					</p:selectOneMenu>
 					<p:message for="versaoCertics" />
 						
 					<h:outputLabel value="#{messages['avaliacao.label.dataAvaliacao']}: " for="dataAvaliacao" styleClass="text-input" />
-					
 					<p:calendar id="dataAvaliacao" value="#{avaliacaoEditMB.bean.dataAvaliacao}"
 					   pattern="#{messages['label.date.pattern']}" navigator="true" showButtonPanel="true"
 					   locale="#{locales.currentLocale}" title="#{messages['avaliacao.alt.dataAvaliacao']}" />
-							 
 					<p:message for="dataAvaliacao" />
 						
 					<h:outputLabel value="#{messages['software.label']}: " for="software" styleClass="text-input" />
@@ -64,11 +59,9 @@
 					<p:message for="avaliador" />								  
 
 					<h:outputLabel value="#{messages['avaliacao.label.pontuacao']}: " for="pontuacao" styleClass="text-input" />
-					
 					<p:selectOneMenu id="pontuacao" effect="fade" value="#{avaliacaoEditMB.bean.pontuacao}">
 						<f:selectItems value="#{avaliacaoEditMB.pontuacao}" />
 					</p:selectOneMenu>					
-								
 					<p:message for="pontuacao" />
 								 
 				</h:panelGrid>

@@ -1,17 +1,22 @@
 
 package vinicius.ferneda.tcc.certics.view;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
-import javax.faces.model.SelectItem;
 import javax.inject.Inject;
+
+import org.primefaces.model.DualListModel;
 
 import vinicius.ferneda.tcc.certics.business.AreaCompetenciaBC;
 import vinicius.ferneda.tcc.certics.business.ResultadoEsperadoBC;
+import vinicius.ferneda.tcc.certics.business.VersaoCerticsEntityBC;
 import vinicius.ferneda.tcc.certics.domain.AreaCompetenciaEntity;
 import vinicius.ferneda.tcc.certics.domain.ResultadoEsperadoEntity;
+import vinicius.ferneda.tcc.certics.domain.VersaoCerticsAreaCompetenciaEntity;
+import vinicius.ferneda.tcc.certics.domain.VersaoCerticsEntity;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
@@ -27,14 +32,14 @@ public class AreaCompetenciaEditMB extends AbstractEditPageBean<AreaCompetenciaE
 	private AreaCompetenciaBC areaCompetenciaBC;
 	
 	@Inject
+	private VersaoCerticsEntityBC versaoCerticsEntityBC;
+	private DualListModel<VersaoCerticsEntity> lVersaoCertics;
+	
+	@Inject
 	private ResultadoEsperadoBC resultadoEsperadoBC;
 	
 	private DataModel<ResultadoEsperadoEntity> resultadoEsperadoList;
 
-	public List<SelectItem> getVersaoCertics() {
-		return areaCompetenciaBC.getEnumVersaoCertics();
-	}
-	
 	public void addResultadoEsperado() {
 		this.getBean().getResultadosEsperados().add(new ResultadoEsperadoEntity());
 	}
@@ -78,5 +83,27 @@ public class AreaCompetenciaEditMB extends AbstractEditPageBean<AreaCompetenciaE
 	@Override
 	protected AreaCompetenciaEntity handleLoad(Long id) {
 		return this.areaCompetenciaBC.load(id);
-	}	
+	}
+	
+	@Override
+	protected AreaCompetenciaEntity createBean() {
+		AreaCompetenciaEntity areaCompetenciaEntity = super.createBean();
+		//cria a lista de versões
+		List<VersaoCerticsAreaCompetenciaEntity> lVersaoCerticsAreaCompetencia = areaCompetenciaEntity.getlVersaoCerticsAreaCompetencia();
+		List<VersaoCerticsEntity> lVersaoCertics = new ArrayList<VersaoCerticsEntity>();
+		for (VersaoCerticsAreaCompetenciaEntity versao : lVersaoCerticsAreaCompetencia) {
+			lVersaoCertics.add(versao.getVersaoCertics());
+		}
+		this.lVersaoCertics = new DualListModel<VersaoCerticsEntity>(this.versaoCerticsEntityBC.findAll(), lVersaoCertics);
+		return areaCompetenciaEntity;
+	}
+
+	public DualListModel<VersaoCerticsEntity> getlVersaoCertics() {
+		return lVersaoCertics;
+	}
+
+	public void setlVersaoCertics(DualListModel<VersaoCerticsEntity> lVersaoCertics) {
+		this.lVersaoCertics = lVersaoCertics;
+	}
+
 }

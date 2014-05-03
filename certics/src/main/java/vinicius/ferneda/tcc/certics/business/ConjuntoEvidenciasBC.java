@@ -23,7 +23,7 @@ public class ConjuntoEvidenciasBC extends DelegateCrud<ConjuntoEvidenciasEntity,
 	private ResultadoEsperadoDAO resultadoEsperadoDAO;
 	
 	public void criarConjuntoEvidencias(AvaliacaoEntity avaliacaoEntity){
-		List<ResultadoEsperadoEntity> lResultadosEsperados = this.resultadoEsperadoDAO.findByVersaoCertics(avaliacaoEntity.getVersaoCertics());
+		List<ResultadoEsperadoEntity> lResultadosEsperados = this.resultadoEsperadoDAO.findByVersaoCertics(avaliacaoEntity.getVersaoCertics().getId());
 		List<ConjuntoEvidenciasEntity> lConjuntoEvidencias = new ArrayList<ConjuntoEvidenciasEntity>();
 		
 		for (ResultadoEsperadoEntity resultadoEsperadoEntity : lResultadosEsperados) {

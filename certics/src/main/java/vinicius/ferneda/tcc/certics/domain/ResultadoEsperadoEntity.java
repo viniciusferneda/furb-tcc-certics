@@ -6,8 +6,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import vinicius.ferneda.tcc.certics.constant.EnumVersaoCertics;
-
 @Entity
 @Table(name="TB_RESULTADO_ESPERADO")
 @SequenceGenerator(name="RES_ID", sequenceName="RES_ID", allocationSize=1)
@@ -20,7 +18,11 @@ import vinicius.ferneda.tcc.certics.constant.EnumVersaoCertics;
     @NamedQuery(name="ResultadoEsperadoEntity.findByVersaoCertics",
     		query="SELECT obj"
     			+ " FROM ResultadoEsperadoEntity obj "
-    			+ " WHERE obj.versaoCertics = :versaoCertics")
+    			+ "	WHERE (SELECT count(vre.id) "
+    			+ "		   FROM VersaoCerticsResultadoEsperadoEntity vre "
+    			+ "		   WHERE vre.resultadoEsperado.id = obj.id"
+    			+ "				AND vre.versaoCertics.id = :versaoCerticsID "
+    			+ "		  ) > 0 ")
 })
 public class ResultadoEsperadoEntity extends ResultadoEsperado {
 
@@ -29,10 +31,9 @@ public class ResultadoEsperadoEntity extends ResultadoEsperado {
 	public ResultadoEsperadoEntity(){
 	}
 	
-	public ResultadoEsperadoEntity(String titulo, String descricao, EnumVersaoCertics versaoCertics, AreaCompetenciaEntity areaCompetencia) {
+	public ResultadoEsperadoEntity(String titulo, String descricao, AreaCompetenciaEntity areaCompetencia) {
 		setTitulo(titulo);
 		setDescricao(descricao);
-		setVersaoCertics(versaoCertics);
 		setAreaCompetencia(areaCompetencia);
 	}
 	

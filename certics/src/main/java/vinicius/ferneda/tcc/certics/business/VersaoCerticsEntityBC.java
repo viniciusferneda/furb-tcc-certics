@@ -1,13 +1,13 @@
-
 package vinicius.ferneda.tcc.certics.business;
 
-import vinicius.ferneda.tcc.certics.domain.AreaCompetenciaEntity;
-import vinicius.ferneda.tcc.certics.persistence.AreaCompetenciaDAO;
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
 import br.gov.frameworkdemoiselle.template.DelegateCrud;
 
+import vinicius.ferneda.tcc.certics.domain.VersaoCerticsEntity;
+import vinicius.ferneda.tcc.certics.persistence.VersaoCerticsEntityDAO;
+
 @BusinessController
-public class AreaCompetenciaBC extends DelegateCrud<AreaCompetenciaEntity, Long, AreaCompetenciaDAO> {
+public class VersaoCerticsEntityBC extends DelegateCrud<VersaoCerticsEntity, Long, VersaoCerticsEntityDAO> {
 	
 	private static final long serialVersionUID = 1L;
 	

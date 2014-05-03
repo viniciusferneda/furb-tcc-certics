@@ -13,11 +13,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import vinicius.ferneda.tcc.certics.constant.EnumPontuacaoAvaliacao;
-import vinicius.ferneda.tcc.certics.constant.EnumVersaoCertics;
 import vinicius.ferneda.tcc.certics.domain.Avaliacao;
 import vinicius.ferneda.tcc.certics.domain.AvaliacaoEntity;
 import vinicius.ferneda.tcc.certics.domain.AvaliadorEntity;
 import vinicius.ferneda.tcc.certics.domain.SoftwareEntity;
+import vinicius.ferneda.tcc.certics.domain.VersaoCerticsEntity;
 import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
 
 @RunWith(DemoiselleRunner.class)
@@ -38,7 +38,7 @@ public class AvaliacaoBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		AvaliacaoEntity avaliacao = new AvaliacaoEntity(EnumVersaoCertics.V_1_0,EnumPontuacaoAvaliacao.REPROVADA,new Date(),new SoftwareEntity(),new AvaliadorEntity());
+		AvaliacaoEntity avaliacao = new AvaliacaoEntity(EnumPontuacaoAvaliacao.REPROVADA,new Date(),new SoftwareEntity(),new AvaliadorEntity(), new VersaoCerticsEntity());
 		avaliacaoBC.insert(avaliacao);
 		List<AvaliacaoEntity> listOfAvaliacao = avaliacaoBC.findAll();
 		assertNotNull(listOfAvaliacao);
@@ -49,7 +49,7 @@ public class AvaliacaoBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		AvaliacaoEntity avaliacao = new AvaliacaoEntity(EnumVersaoCertics.V_1_0,EnumPontuacaoAvaliacao.REPROVADA,new Date(),new SoftwareEntity(),new AvaliadorEntity());
+		AvaliacaoEntity avaliacao = new AvaliacaoEntity(EnumPontuacaoAvaliacao.REPROVADA,new Date(),new SoftwareEntity(),new AvaliadorEntity(), new VersaoCerticsEntity());
 		avaliacaoBC.insert(avaliacao);
 		
 		List<AvaliacaoEntity> listOfAvaliacao = avaliacaoBC.findAll();
@@ -64,7 +64,7 @@ public class AvaliacaoBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		AvaliacaoEntity avaliacao = new AvaliacaoEntity(EnumVersaoCertics.V_1_0,EnumPontuacaoAvaliacao.REPROVADA,new Date(),new SoftwareEntity(),new AvaliadorEntity());
+		AvaliacaoEntity avaliacao = new AvaliacaoEntity(EnumPontuacaoAvaliacao.REPROVADA,new Date(),new SoftwareEntity(),new AvaliadorEntity(), new VersaoCerticsEntity());
 		avaliacaoBC.insert(avaliacao);
 		
 		List<AvaliacaoEntity> listOfAvaliacao = avaliacaoBC.findAll();

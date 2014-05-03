@@ -7,35 +7,24 @@
 	-->
 	<persistence-unit name="certics-ds" transaction-type="RESOURCE_LOCAL">
 	
-			<class>vinicius.ferneda.tcc.certics.domain.AreaCompetencia</class>
-		
-			<class>vinicius.ferneda.tcc.certics.domain.ResultadoEsperado</class>
-		
-			<class>vinicius.ferneda.tcc.certics.domain.Software</class>
-		
-			<class>vinicius.ferneda.tcc.certics.domain.Profissional</class>
-		
-			<class>vinicius.ferneda.tcc.certics.domain.OrganizacaoSolicitante</class>
-		
-			<class>vinicius.ferneda.tcc.certics.domain.Endereco</class>
-		
-			<class>vinicius.ferneda.tcc.certics.domain.Avaliador</class>
-		
-			<class>vinicius.ferneda.tcc.certics.domain.LicaoAprendida</class>
-		
-			<class>vinicius.ferneda.tcc.certics.domain.Avaliacao</class>
-		
-			<class>vinicius.ferneda.tcc.certics.domain.Usuario</class>
-		
-			<class>vinicius.ferneda.tcc.certics.domain.ConjuntoEvidencias</class>
-		
-			<class>vinicius.ferneda.tcc.certics.domain.EvidenciaProfissional</class>
-		
-			<class>vinicius.ferneda.tcc.certics.domain.RespostaEvidencia</class>
-		
-			<class>vinicius.ferneda.tcc.certics.domain.Evidencia</class>
-		
-			<class>vinicius.ferneda.tcc.certics.domain.Anexo</class>
+		<class>vinicius.ferneda.tcc.certics.domain.AnexoEntity</class>
+		<class>vinicius.ferneda.tcc.certics.domain.AreaCompetenciaEntity</class>
+		<class>vinicius.ferneda.tcc.certics.domain.AvaliacaoEntity</class>
+		<class>vinicius.ferneda.tcc.certics.domain.AvaliadorEntity</class>
+		<class>vinicius.ferneda.tcc.certics.domain.ConjuntoEvidenciasEntity</class>
+		<class>vinicius.ferneda.tcc.certics.domain.EnderecoEntity</class>
+		<class>vinicius.ferneda.tcc.certics.domain.EvidenciaEntity</class>
+		<class>vinicius.ferneda.tcc.certics.domain.EvidenciaProfissionalEntity</class>
+		<class>vinicius.ferneda.tcc.certics.domain.LicaoAprendidaEntity</class>
+		<class>vinicius.ferneda.tcc.certics.domain.OrganizacaoSolicitanteEntity</class>
+		<class>vinicius.ferneda.tcc.certics.domain.ProfissionalEntity</class>
+		<class>vinicius.ferneda.tcc.certics.domain.RespostaEvidenciaEntity</class>
+		<class>vinicius.ferneda.tcc.certics.domain.ResultadoEsperadoEntity</class>
+		<class>vinicius.ferneda.tcc.certics.domain.SoftwareEntity</class>
+		<class>vinicius.ferneda.tcc.certics.domain.UsuarioEntity</class>
+		<class>vinicius.ferneda.tcc.certics.domain.VersaoCerticsEntity</class>
+		<class>vinicius.ferneda.tcc.certics.domain.VersaoCerticsAreaCompetenciaEntity</class>
+		<class>vinicius.ferneda.tcc.certics.domain.VersaoCerticsResultadoEsperadoEntity</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver" />

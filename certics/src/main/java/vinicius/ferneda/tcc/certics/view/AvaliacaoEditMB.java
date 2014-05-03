@@ -9,9 +9,11 @@ import vinicius.ferneda.tcc.certics.business.AvaliacaoBC;
 import vinicius.ferneda.tcc.certics.business.AvaliadorBC;
 import vinicius.ferneda.tcc.certics.business.ConjuntoEvidenciasBC;
 import vinicius.ferneda.tcc.certics.business.SoftwareBC;
+import vinicius.ferneda.tcc.certics.business.VersaoCerticsEntityBC;
 import vinicius.ferneda.tcc.certics.domain.AvaliacaoEntity;
 import vinicius.ferneda.tcc.certics.domain.AvaliadorEntity;
 import vinicius.ferneda.tcc.certics.domain.SoftwareEntity;
+import vinicius.ferneda.tcc.certics.domain.VersaoCerticsEntity;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
@@ -29,12 +31,10 @@ public class AvaliacaoEditMB extends AbstractEditPageBean<AvaliacaoEntity, Long>
 	@Inject
 	private ConjuntoEvidenciasBC conjuntoEvidenciasBC;
 
-	public List<SelectItem> getVersaoCertics() {
-		return avaliacaoBC.getEnumVersaoCertics();
-	}
 	public List<SelectItem> getPontuacao() {
 		return avaliacaoBC.getEnumPontuacaoAvaliacao();
 	}
+	
 	@Inject
 	private SoftwareBC softwareBC;
 	
@@ -47,6 +47,13 @@ public class AvaliacaoEditMB extends AbstractEditPageBean<AvaliacaoEntity, Long>
 	
 	public List<AvaliadorEntity> getAvaliadorList(){
 		return avaliadorBC.findAll();
+	}
+	
+	@Inject
+	private VersaoCerticsEntityBC versaoCerticsEntityBC;
+	
+	public List<VersaoCerticsEntity> getVersaoCerticsList(){
+		return versaoCerticsEntityBC.findAll();
 	}
 	
 	@Override

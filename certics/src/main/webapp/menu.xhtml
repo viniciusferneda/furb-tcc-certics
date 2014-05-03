@@ -12,6 +12,11 @@
 				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/avaliador_list.jsf"></p:menuitem>
 			</p:submenu>
 
+			<p:submenu label="#{messages['menu.versaoCerticsEntity']}" rendered="#{securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM')}">
+				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/versaoCerticsEntity_edit.jsf"></p:menuitem>
+				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/versaoCerticsEntity_list.jsf"></p:menuitem>
+			</p:submenu>
+
 			<p:submenu label="#{messages['menu.areaCompetencia']}" rendered="#{securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM')}">
 				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/areaCompetencia_edit.jsf"></p:menuitem>
 				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/areaCompetencia_list.jsf"></p:menuitem>
@@ -43,7 +48,6 @@
 			</p:submenu>
 		
 			<p:submenu label="#{messages['menu.conjuntoEvidencias']}" rendered="#{securityContext.hasRole('AVALIADO') || securityContext.hasRole('ADM')}">
-				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/conjuntoEvidencias_edit.jsf"></p:menuitem>
 				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/conjuntoEvidencias_list.jsf"></p:menuitem>
 			</p:submenu>
 			

@@ -6,8 +6,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import vinicius.ferneda.tcc.certics.constant.EnumVersaoCertics;
-
 @Entity
 @Table(name="TB_AREA_COMPETENCIA")
 @SequenceGenerator(name="ARC_ID", sequenceName="ARC_ID", allocationSize=1)
@@ -23,7 +21,11 @@ import vinicius.ferneda.tcc.certics.constant.EnumVersaoCertics;
     			+ " INNER JOIN cev.avaliacao ava "
     			+ " INNER JOIN ava.software sof "
     			+ " WHERE ava.id = :avaliacaoID "
-    			+ "		AND obj.versaoCertics = :versaoCertics"
+    			+ "		AND (SELECT count(vac.id) "
+    			+ "			 FROM VersaoCerticsAreaCompetenciaEntity vac "
+    			+ "			 WHERE vac.areaCompetencia.id = obj.id"
+    			+ "				AND vac.versaoCertics.id = :versaoCerticsID "
+    			+ "			) > 0 "
     			+ " GROUP BY obj.id")
 })
 public class AreaCompetenciaEntity extends AreaCompetencia {
@@ -33,10 +35,9 @@ public class AreaCompetenciaEntity extends AreaCompetencia {
 	public AreaCompetenciaEntity(){
 	}
 	
-	public AreaCompetenciaEntity(String titulo, String perguntaChave, String descricao, EnumVersaoCertics versaoCertics) {
+	public AreaCompetenciaEntity(String titulo, String perguntaChave, String descricao) {
 		setTitulo(titulo);
 		setPerguntaChave(perguntaChave);
 		setDescricao(descricao);
-		setVersaoCertics(versaoCertics);
 	}
 }
