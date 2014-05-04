@@ -27,7 +27,7 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 public class AreaCompetenciaEditMB extends AbstractEditPageBean<AreaCompetenciaEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	@Inject
 	private AreaCompetenciaBC areaCompetenciaBC;
 	
@@ -82,12 +82,7 @@ public class AreaCompetenciaEditMB extends AbstractEditPageBean<AreaCompetenciaE
 	
 	@Override
 	protected AreaCompetenciaEntity handleLoad(Long id) {
-		return this.areaCompetenciaBC.load(id);
-	}
-	
-	@Override
-	protected AreaCompetenciaEntity createBean() {
-		AreaCompetenciaEntity areaCompetenciaEntity = super.createBean();
+		AreaCompetenciaEntity areaCompetenciaEntity = this.areaCompetenciaBC.load(id);
 		//cria a lista de versões
 		List<VersaoCerticsAreaCompetenciaEntity> lVersaoCerticsAreaCompetencia = areaCompetenciaEntity.getlVersaoCerticsAreaCompetencia();
 		List<VersaoCerticsEntity> lVersaoCertics = new ArrayList<VersaoCerticsEntity>();
@@ -95,6 +90,13 @@ public class AreaCompetenciaEditMB extends AbstractEditPageBean<AreaCompetenciaE
 			lVersaoCertics.add(versao.getVersaoCertics());
 		}
 		this.lVersaoCertics = new DualListModel<VersaoCerticsEntity>(this.versaoCerticsEntityBC.findAll(), lVersaoCertics);
+		return areaCompetenciaEntity;
+	}
+	
+	@Override
+	protected AreaCompetenciaEntity createBean() {
+		AreaCompetenciaEntity areaCompetenciaEntity = super.createBean();
+		this.lVersaoCertics = new DualListModel<VersaoCerticsEntity>(this.versaoCerticsEntityBC.findAll(), new ArrayList<VersaoCerticsEntity>());
 		return areaCompetenciaEntity;
 	}
 
@@ -105,5 +107,5 @@ public class AreaCompetenciaEditMB extends AbstractEditPageBean<AreaCompetenciaE
 	public void setlVersaoCertics(DualListModel<VersaoCerticsEntity> lVersaoCertics) {
 		this.lVersaoCertics = lVersaoCertics;
 	}
-
+	
 }

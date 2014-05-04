@@ -41,10 +41,9 @@
 				<h:outputLabel value="#{messages['areaCompetencia.label.descricao']}: " for="descricao" styleClass="text-input" />
 				<h:inputText id="descricao" value="#{areaCompetenciaEditMB.bean.descricao}" title="#{messages['areaCompetencia.alt.descricao']}" />
 				<p:message for="descricao" />
-					
-				<h:outputLabel value="#{messages['areaCompetencia.label.versaoCertics']}: " for="versaoCertics" styleClass="text-input" />
-				<p:pickList id="pickList" value="#{areaCompetenciaEditMB.lVersaoCertics}" var="versaoCertics" itemLabel="#{versaoCertics}" itemValue="#{versaoCertics}" />  
-				<p:message for="versaoCertics" />
+				
+				<h:outputLabel value="#{messages['areaCompetencia.label.versaoCertics']}: " styleClass="text-input" />
+				<p:pickList id="pickList" value="#{areaCompetenciaEditMB.lVersaoCertics}" var="versaoCertics" itemLabel="#{versaoCertics.nome}" itemValue="#{versaoCertics}" converter="ConversorVersaoCertics"/>
 					
 			</h:panelGrid>
 		</p:fieldset>

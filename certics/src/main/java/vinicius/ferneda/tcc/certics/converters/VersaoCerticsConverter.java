@@ -8,7 +8,7 @@ import javax.faces.convert.FacesConverter;
 import org.primefaces.component.picklist.PickList;
 import org.primefaces.model.DualListModel;
 
-import vinicius.ferneda.tcc.certics.domain.Usuario;
+import vinicius.ferneda.tcc.certics.domain.VersaoCerticsEntity;
 import vinicius.ferneda.tcc.certics.persistence.VersaoCerticsEntityDAO;
 import br.gov.frameworkdemoiselle.util.Beans;
 
@@ -26,7 +26,7 @@ public class VersaoCerticsConverter implements Converter{
 				Object dualList = ((PickList) component).getValue();
 				DualListModel<?> dl = (DualListModel<?>) dualList;
 				for (Object o : dl.getSource()) {
-					String id = String.valueOf(((Usuario) o).getId());
+					String id = String.valueOf(((VersaoCerticsEntity) o).getId());
 					if (value.equals(id)) {
 						ret = o;
 						break;
@@ -34,7 +34,7 @@ public class VersaoCerticsConverter implements Converter{
 				}
 				if (ret == null)
 					for (Object o : dl.getTarget()) {
-						String id = String.valueOf(((Usuario) o).getId());
+						String id = String.valueOf(((VersaoCerticsEntity) o).getId());
 						if (value.equals(id)) {
 							ret = o;
 							break;
@@ -63,7 +63,7 @@ public class VersaoCerticsConverter implements Converter{
 			if (value == null || value.equals("")) {
 				return "";
 			} else {			        
-				return String.valueOf(((Usuario) value).getId());
+				return String.valueOf(((VersaoCerticsEntity) value).getId());
 			}
 		}catch (Exception e) {
 			e.printStackTrace();

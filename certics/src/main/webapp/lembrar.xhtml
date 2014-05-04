@@ -8,28 +8,26 @@
                 <div class="head">
                     <h5 class="iUser">#{messages['button.esqueci_senha']}</h5>
                 </div>
-                <h:form id="valid" styleClass="mainForm" >
-                    <fieldset>
-                        <div class="loginRow noborder">
-                            <label for="req1">#{messages['login.email']} :</label>
-                            <div class="loginInput">
-                                <p:inputText id="email"
-                                             value="#{aminesiaMB.email}"
-                                             size="60" maxlength="60" autocomplete="off"
-                                             styleClass="validate[required,maxSize[60],custom[email]]"/>
-                            </div>
-                            <div class="fix"></div>
+                <fieldset>
+                    <div class="loginRow noborder">
+                        <label for="req1">#{messages['login.email']} :</label>
+                        <div class="loginInput">
+                            <p:inputText id="email"
+                                         value="#{aminesiaMB.email}"
+                                         size="60" maxlength="60" autocomplete="off"
+                                         styleClass="validate[required,maxSize[60],custom[email]]"/>
                         </div>
-                        <div class="loginRow">
-                            <p:commandButton id="login_button"
-                                             value="#{messages['button.lembrar']}"
-                                             action="#{aminesiaMB.lembrar()}"
-                                             styleClass="submitForm"
-                                             ajax="false" />
+                        <div class="fix"></div>
+                    </div>
+                    <div class="loginRow">
+                        <p:commandButton id="login_button"
+                                         value="#{messages['button.lembrar']}"
+                                         action="#{aminesiaMB.lembrar()}"
+                                         styleClass="submitForm"
+                                         ajax="false" />
 
-                        </div>
-                    </fieldset>
-                </h:form>
+                    </div>
+                </fieldset>
             </div>
         </div>
     </ui:define>

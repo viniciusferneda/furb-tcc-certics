@@ -4,93 +4,90 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
 	<ui:define name="body">
-		<h:form>
-			<p:toolbar>
-				<p:toolbarGroup align="left">
-					<p:commandButton title="#{messages['button.new']}" icon="ui-icon-document" action="#{avaliadorListMB.getNextView}"
-						actionListener="#{avaliadorListMB.clear}" ajax="false" />
+		<p:toolbar>
+			<p:toolbarGroup align="left">
+				<p:commandButton title="#{messages['button.new']}" icon="ui-icon-document" action="#{avaliadorListMB.getNextView}"
+					actionListener="#{avaliadorListMB.clear}" ajax="false" />
 
-					<p:commandButton title="#{messages['button.delete']}" icon="ui-icon-trash" onclick="confirmation.show()"
-						type="button" immediate="true" ajax="false" />
+				<p:commandButton title="#{messages['button.delete']}" icon="ui-icon-trash" onclick="confirmation.show()"
+					type="button" immediate="true" ajax="false" />
 
-					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
-						header="#{messages['label.dialog.alert']}!" severity="alert" widgetVar="confirmation">
+				<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
+					header="#{messages['label.dialog.alert']}!" severity="alert" widgetVar="confirmation">
 
-						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{avaliadorListMB.deleteSelection}"
-							actionListener="#{avaliadorListMB.clear}" />
-						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
-					</p:confirmDialog>
-				</p:toolbarGroup>
-			</p:toolbar>
-			<p:dataTable id="list" var="bean" value="#{avaliadorListMB.resultList}">
-				<f:facet name="header">#{messages['avaliador.list.table.title']}</f:facet>
-				<p:column style="width:2%;">
-					<h:selectBooleanCheckbox value="#{avaliadorListMB.selection[bean.id]}"></h:selectBooleanCheckbox>
-				</p:column>
+					<h:commandButton value="#{messages['button.dialog.yes']}" action="#{avaliadorListMB.deleteSelection}"
+						actionListener="#{avaliadorListMB.clear}" />
+					<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+				</p:confirmDialog>
+			</p:toolbarGroup>
+		</p:toolbar>
+		<p:dataTable id="list" var="bean" value="#{avaliadorListMB.resultList}">
+			<f:facet name="header">#{messages['avaliador.list.table.title']}</f:facet>
+			<p:column style="width:2%;">
+				<h:selectBooleanCheckbox value="#{avaliadorListMB.selection[bean.id]}"></h:selectBooleanCheckbox>
+			</p:column>
+			
+			<p:column style="width:5%;" sortBy="#{bean.id}">
+				<f:facet name="header">#{messages['avaliador.label.id']}</f:facet>
+				<h:outputText value="#{bean.id}" />
+			</p:column>
+					
+			<p:column sortBy="#{bean.nome}">
+				<f:facet name="header">#{messages['avaliador.label.nome']}</f:facet>
+				<h:commandLink action="#{avaliadorListMB.getNextView}" actionListener="#{avaliadorListMB.clear}">
+					<h:outputText value="#{bean.nome}" />
+					<f:param name="id" value="#{bean.id}" />
+				</h:commandLink>
+			</p:column>
 				
-				<p:column style="width:5%;" sortBy="#{bean.id}">
-					<f:facet name="header">#{messages['avaliador.label.id']}</f:facet>
-					<h:outputText value="#{bean.id}" />
-				</p:column>
-						
-				<p:column sortBy="#{bean.nome}">
-					<f:facet name="header">#{messages['avaliador.label.nome']}</f:facet>
-					<h:commandLink action="#{avaliadorListMB.getNextView}" actionListener="#{avaliadorListMB.clear}">
-						<h:outputText value="#{bean.nome}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
-				</p:column>
-					
-				<p:column sortBy="#{bean.cpf}">
-					<f:facet name="header">#{messages['avaliador.label.cpf']}</f:facet>
-					<h:commandLink action="#{avaliadorListMB.getNextView}" actionListener="#{avaliadorListMB.clear}">
-						<h:outputText value="#{bean.cpf}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
-				</p:column>
-					
-				<p:column sortBy="#{bean.rg}">
-					<f:facet name="header">#{messages['avaliador.label.rg']}</f:facet>
-					<h:commandLink action="#{avaliadorListMB.getNextView}" actionListener="#{avaliadorListMB.clear}">
-						<h:outputText value="#{bean.rg}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
-				</p:column>
-					
-				<p:column sortBy="#{bean.sexo}">
-					<f:facet name="header">#{messages['avaliador.label.sexo']}</f:facet>
-					<h:commandLink action="#{avaliadorListMB.getNextView}" actionListener="#{avaliadorListMB.clear}">
-						<h:outputText value="#{bean.sexo}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
-				</p:column>
-					
-				<p:column sortBy="#{bean.dataNascimento}">
-					<f:facet name="header">#{messages['avaliador.label.dataNascimento']}</f:facet>
-					<h:commandLink action="#{avaliadorListMB.getNextView}" actionListener="#{avaliadorListMB.clear}">
-						<h:outputText value="#{bean.dataNascimento}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
-				</p:column>
-					
-				<p:column sortBy="#{bean.fone1}">
-					<f:facet name="header">#{messages['avaliador.label.fone1']}</f:facet>
-					<h:commandLink action="#{avaliadorListMB.getNextView}" actionListener="#{avaliadorListMB.clear}">
-						<h:outputText value="#{bean.fone1}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
-				</p:column>
-					
-				<p:column sortBy="#{bean.fone2}">
-					<f:facet name="header">#{messages['avaliador.label.fone2']}</f:facet>
-					<h:commandLink action="#{avaliadorListMB.getNextView}" actionListener="#{avaliadorListMB.clear}">
-						<h:outputText value="#{bean.fone2}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
-				</p:column>
-					
-			</p:dataTable>
-		</h:form>
-
+			<p:column sortBy="#{bean.cpf}">
+				<f:facet name="header">#{messages['avaliador.label.cpf']}</f:facet>
+				<h:commandLink action="#{avaliadorListMB.getNextView}" actionListener="#{avaliadorListMB.clear}">
+					<h:outputText value="#{bean.cpf}" />
+					<f:param name="id" value="#{bean.id}" />
+				</h:commandLink>
+			</p:column>
+				
+			<p:column sortBy="#{bean.rg}">
+				<f:facet name="header">#{messages['avaliador.label.rg']}</f:facet>
+				<h:commandLink action="#{avaliadorListMB.getNextView}" actionListener="#{avaliadorListMB.clear}">
+					<h:outputText value="#{bean.rg}" />
+					<f:param name="id" value="#{bean.id}" />
+				</h:commandLink>
+			</p:column>
+				
+			<p:column sortBy="#{bean.sexo}">
+				<f:facet name="header">#{messages['avaliador.label.sexo']}</f:facet>
+				<h:commandLink action="#{avaliadorListMB.getNextView}" actionListener="#{avaliadorListMB.clear}">
+					<h:outputText value="#{bean.sexo}" />
+					<f:param name="id" value="#{bean.id}" />
+				</h:commandLink>
+			</p:column>
+				
+			<p:column sortBy="#{bean.dataNascimento}">
+				<f:facet name="header">#{messages['avaliador.label.dataNascimento']}</f:facet>
+				<h:commandLink action="#{avaliadorListMB.getNextView}" actionListener="#{avaliadorListMB.clear}">
+					<h:outputText value="#{bean.dataNascimento}" />
+					<f:param name="id" value="#{bean.id}" />
+				</h:commandLink>
+			</p:column>
+				
+			<p:column sortBy="#{bean.fone1}">
+				<f:facet name="header">#{messages['avaliador.label.fone1']}</f:facet>
+				<h:commandLink action="#{avaliadorListMB.getNextView}" actionListener="#{avaliadorListMB.clear}">
+					<h:outputText value="#{bean.fone1}" />
+					<f:param name="id" value="#{bean.id}" />
+				</h:commandLink>
+			</p:column>
+				
+			<p:column sortBy="#{bean.fone2}">
+				<f:facet name="header">#{messages['avaliador.label.fone2']}</f:facet>
+				<h:commandLink action="#{avaliadorListMB.getNextView}" actionListener="#{avaliadorListMB.clear}">
+					<h:outputText value="#{bean.fone2}" />
+					<f:param name="id" value="#{bean.id}" />
+				</h:commandLink>
+			</p:column>
+				
+		</p:dataTable>
 	</ui:define>
 </ui:composition>

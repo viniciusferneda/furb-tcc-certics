@@ -8,36 +8,34 @@
                 <div class="head">
                 	<h5 class="iUser">#{messages['login.label']}</h5>
                 </div>
-                <h:form id="valid" styleClass="mainForm" >
-                    <fieldset>
-                        <div class="loginRow noborder">
-                            <label for="usuario">#{messages['login.usuario']} :</label>
-                            <div class="loginInput">
-                                <h:inputText id="usuario"
-                                             value="#{identity.emailUsuario}"
-                                             size="30" maxlength="30"
-                                             styleClass="validate[required,maxSize[30]]"/>
-                            </div>
-                            <div class="fix"></div>
+                <fieldset>
+                    <div class="loginRow noborder">
+                        <label for="usuario">#{messages['login.usuario']} :</label>
+                        <div class="loginInput">
+                            <h:inputText id="usuario"
+                                         value="#{identity.emailUsuario}"
+                                         size="30" maxlength="30"
+                                         styleClass="validate[required,maxSize[30]]"/>
                         </div>
+                        <div class="fix"></div>
+                    </div>
 
-                        <div class="loginRow">
-                            <label for="password">#{messages['login.senha']} :</label>
-                            <div class="loginInput">
-                                <p:password id="password" value="#{identity.senha}"
-                                			styleClass="validate[required]"/>
-                            </div>
-                            <div class="fix"></div>
+                    <div class="loginRow">
+                        <label for="password">#{messages['login.senha']} :</label>
+                        <div class="loginInput">
+                            <p:password id="password" value="#{identity.senha}"
+                            			styleClass="validate[required]"/>
                         </div>
+                        <div class="fix"></div>
+                    </div>
 
-                        <p:commandButton id="login_button"
-                                         value="#{messages['button.login']}"
-                                         action="#{usuarioEditMB.login()}"
-                                         styleClass="submitForm"
-                                         ajax="false" />
+                    <p:commandButton id="login_button"
+                                     value="#{messages['button.login']}"
+                                     action="#{usuarioEditMB.login()}"
+                                     styleClass="submitForm"
+                                     ajax="false" />
 
-                    </fieldset>
-                </h:form>
+                </fieldset>
             </div>
         </div>
     </ui:define>

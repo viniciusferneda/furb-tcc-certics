@@ -4,57 +4,57 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
 	<ui:define name="body">
-			<p:dataTable id="list" var="bean" value="#{conjuntoEvidenciasListMB.resultList}">
-				<f:facet name="header">#{messages['conjuntoEvidencias.list.table.title']}</f:facet>
-				<p:column style="width:2%;">
-					<h:selectBooleanCheckbox value="#{conjuntoEvidenciasListMB.selection[bean.id]}"></h:selectBooleanCheckbox>
-				</p:column>
+		<p:dataTable id="list" var="bean" value="#{conjuntoEvidenciasListMB.resultList}">
+			<f:facet name="header">#{messages['conjuntoEvidencias.list.table.title']}</f:facet>
+			<p:column style="width:2%;">
+				<h:selectBooleanCheckbox value="#{conjuntoEvidenciasListMB.selection[bean.id]}"></h:selectBooleanCheckbox>
+			</p:column>
+			
+			<p:column style="width:5%;" sortBy="#{bean.id}">
+				<f:facet name="header">#{messages['conjuntoEvidencias.label.id']}</f:facet>
+				<h:outputText value="#{bean.id}" />
+			</p:column>
+
+			<p:column sortBy="#{bean.software.nome}">
+				<f:facet name="header">#{messages['software.label.nome']}</f:facet>
+				<h:commandLink action="#{conjuntoEvidenciasListMB.getNextView}" actionListener="#{conjuntoEvidenciasListMB.clear}">
+					<h:outputText value="#{bean.software.nome}" />
+					<f:param name="id" value="#{bean.id}" />
+				</h:commandLink>
+			</p:column>
+
+			<p:column sortBy="#{bean.software.organizacaoSolicitante.nome}">
+				<f:facet name="header">#{messages['organizacaoSolicitante.label.nome']}</f:facet>
+				<h:commandLink action="#{conjuntoEvidenciasListMB.getNextView}" actionListener="#{conjuntoEvidenciasListMB.clear}">
+					<h:outputText value="#{bean.software.organizacaoSolicitante.nome}" />
+					<f:param name="id" value="#{bean.id}" />
+				</h:commandLink>
+			</p:column>
+
+			<p:column sortBy="#{bean.versaoCertics.nome}">
+				<f:facet name="header">#{messages['avaliacao.label.versaoCertics']}</f:facet>
+				<h:commandLink action="#{conjuntoEvidenciasListMB.getNextView}" actionListener="#{conjuntoEvidenciasListMB.clear}">
+					<h:outputText value="#{bean.versaoCertics.nome}" />
+					<f:param name="id" value="#{bean.id}" />
+				</h:commandLink>
+			</p:column>
 				
-				<p:column style="width:5%;" sortBy="#{bean.id}">
-					<f:facet name="header">#{messages['conjuntoEvidencias.label.id']}</f:facet>
-					<h:outputText value="#{bean.id}" />
-				</p:column>
-
-				<p:column sortBy="#{bean.software.nome}">
-					<f:facet name="header">#{messages['software.label.nome']}</f:facet>
-					<h:commandLink action="#{conjuntoEvidenciasListMB.getNextView}" actionListener="#{conjuntoEvidenciasListMB.clear}">
-						<h:outputText value="#{bean.software.nome}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
-				</p:column>
-
-				<p:column sortBy="#{bean.software.organizacaoSolicitante.nome}">
-					<f:facet name="header">#{messages['organizacaoSolicitante.label.nome']}</f:facet>
-					<h:commandLink action="#{conjuntoEvidenciasListMB.getNextView}" actionListener="#{conjuntoEvidenciasListMB.clear}">
-						<h:outputText value="#{bean.software.organizacaoSolicitante.nome}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
-				</p:column>
-
-				<p:column sortBy="#{bean.versaoCertics.nome}">
-					<f:facet name="header">#{messages['avaliacao.label.versaoCertics']}</f:facet>
-					<h:commandLink action="#{conjuntoEvidenciasListMB.getNextView}" actionListener="#{conjuntoEvidenciasListMB.clear}">
-						<h:outputText value="#{bean.versaoCertics.nome}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
-				</p:column>
-					
-				<p:column sortBy="#{bean.pontuacao.nome}">
-					<f:facet name="header">#{messages['avaliacao.label.pontuacao']}</f:facet>
-					<h:commandLink action="#{conjuntoEvidenciasListMB.getNextView}" actionListener="#{conjuntoEvidenciasListMB.clear}">
-						<h:outputText value="#{bean.pontuacao.nome}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
-				</p:column>
-					
-				<p:column sortBy="#{bean.dataAvaliacao}">
-					<f:facet name="header">#{messages['avaliacao.label.dataAvaliacao']}</f:facet>
-					<h:commandLink action="#{conjuntoEvidenciasListMB.getNextView}" actionListener="#{conjuntoEvidenciasListMB.clear}">
-						<h:outputText value="#{bean.dataAvaliacao}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
-				</p:column>
-					
-			</p:dataTable>
+			<p:column sortBy="#{bean.pontuacao.nome}">
+				<f:facet name="header">#{messages['avaliacao.label.pontuacao']}</f:facet>
+				<h:commandLink action="#{conjuntoEvidenciasListMB.getNextView}" actionListener="#{conjuntoEvidenciasListMB.clear}">
+					<h:outputText value="#{bean.pontuacao.nome}" />
+					<f:param name="id" value="#{bean.id}" />
+				</h:commandLink>
+			</p:column>
+				
+			<p:column sortBy="#{bean.dataAvaliacao}">
+				<f:facet name="header">#{messages['avaliacao.label.dataAvaliacao']}</f:facet>
+				<h:commandLink action="#{conjuntoEvidenciasListMB.getNextView}" actionListener="#{conjuntoEvidenciasListMB.clear}">
+					<h:outputText value="#{bean.dataAvaliacao}" />
+					<f:param name="id" value="#{bean.id}" />
+				</h:commandLink>
+			</p:column>
+				
+		</p:dataTable>
 	</ui:define>
 </ui:composition>

@@ -4,103 +4,100 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
 	<ui:define name="body">
-		<h:form prependId="false">
-			<p:toolbar>
-				<p:toolbarGroup align="left">
-					<p:commandButton value="#{messages['button.save']}" action="#{softwareEditMB.insert}"
-						rendered="#{!softwareEditMB.updateMode}" ajax="false" />
-					<p:commandButton value="#{messages['button.save']}" action="#{softwareEditMB.update}"
-						rendered="#{softwareEditMB.updateMode}" ajax="false" />
-					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
-						rendered="#{softwareEditMB.updateMode}" type="button" immediate="true" ajax="false" />
-					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
-						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
-						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{softwareEditMB.delete}" immediate="true"
-							ajax="false" />
-						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
-					</p:confirmDialog>
-				</p:toolbarGroup>
-			</p:toolbar>
+		<p:toolbar>
+			<p:toolbarGroup align="left">
+				<p:commandButton value="#{messages['button.save']}" action="#{softwareEditMB.insert}"
+					rendered="#{!softwareEditMB.updateMode}" ajax="false" />
+				<p:commandButton value="#{messages['button.save']}" action="#{softwareEditMB.update}"
+					rendered="#{softwareEditMB.updateMode}" ajax="false" />
+				<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
+					rendered="#{softwareEditMB.updateMode}" type="button" immediate="true" ajax="false" />
+				<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
+					header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
+					<h:commandButton value="#{messages['button.dialog.yes']}" action="#{softwareEditMB.delete}" immediate="true"
+						ajax="false" />
+					<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+				</p:confirmDialog>
+			</p:toolbarGroup>
+		</p:toolbar>
 
-			<br />
+		<br />
 
-			<p:fieldset legend="#{messages['software.label']}" toggleable="true" toggleSpeed="500">
-				<h:panelGrid id="fieldssoftware" columns="3">
-				
-					<h:outputLabel value="#{messages['software.label.id']}: " for="id" styleClass="text-input" />
-										
-					<h:outputText id="id" value="#{softwareEditMB.bean.id}" />
-					
-					<p:message for="id" />
-						
-					<h:outputLabel value="#{messages['organizacaoSolicitante.label']}: " for="organizacaoSolicitante" styleClass="text-input" />
-				    <p:selectOneMenu id="organizacaoSolicitante" value="#{softwareEditMB.bean.organizacaoSolicitante}"  effect="fade" converter="ConversorOrganizacaoSolicitante">
-						<f:selectItem itemLabel="Selecione" itemValue="" />
-						<f:selectItems value="#{softwareEditMB.organizacaoSolicitanteList}" var="varOrganizacaoSolicitante" itemLabel="#{varOrganizacaoSolicitante.id}"  itemValue="#{varOrganizacaoSolicitante}" />						
-					</p:selectOneMenu>
-					<p:message for="organizacaoSolicitante" />
-					
-					<h:outputLabel value="#{messages['software.label.nome']}: " for="nome" styleClass="text-input" />
-					
-					<h:inputText id="nome" value="#{softwareEditMB.bean.nome}"
-						title="#{messages['software.alt.nome']}" />
-					
-					<p:message for="nome" />
-						
-					<h:outputLabel value="#{messages['software.label.descricao']}: " for="descricao" styleClass="text-input" />
-					
-					<h:inputText id="descricao" value="#{softwareEditMB.bean.descricao}"
-						title="#{messages['software.alt.descricao']}" />
-					
-					<p:message for="descricao" />
-						
-					<h:outputLabel value="#{messages['software.label.historico']}: " for="historico" styleClass="text-input" />
-					
-					<h:inputText id="historico" value="#{softwareEditMB.bean.historico}"
-						title="#{messages['software.alt.historico']}" />
-					
-					<p:message for="historico" />
-						
-					<h:outputLabel value="#{messages['software.label.tecnologias']}: " for="tecnologias" styleClass="text-input" />
-					
-					<h:inputText id="tecnologias" value="#{softwareEditMB.bean.tecnologias}"
-						title="#{messages['software.alt.tecnologias']}" />
-					
-					<p:message for="tecnologias" />
-						
-					<h:outputLabel value="#{messages['software.label.aspectInovador']}: " for="aspectInovador" styleClass="text-input" />
-					
-					<h:inputText id="aspectInovador" value="#{softwareEditMB.bean.aspectoInovador}"
-						title="#{messages['software.alt.aspectInovador']}" />
-					
-					<p:message for="aspectInovador" />
-						
-					<h:outputLabel value="#{messages['software.label.release']}: " for="release" styleClass="text-input" />
-					
-					<h:inputText id="release" value="#{softwareEditMB.bean.release}"
-						title="#{messages['software.alt.release']}" />
-					
-					<p:message for="release" />
-						
-					<h:outputLabel value="#{messages['software.label.dataInicio']}: " for="dataInicio" styleClass="text-input" />
-					
-					<p:calendar id="dataInicio" value="#{softwareEditMB.bean.dataInicio}"
-					   pattern="#{messages['label.date.pattern']}" navigator="true" showButtonPanel="true"
-					   locale="#{locales.currentLocale}" title="#{messages['software.alt.dataInicio']}" />
-							 
-					<p:message for="dataInicio" />
-						
-					<h:outputLabel value="#{messages['software.label.dataLiberacaoVersao']}: " for="dataLiberacaoVersao" styleClass="text-input" />
-					
-					<p:calendar id="dataLiberacaoVersao" value="#{softwareEditMB.bean.dataLiberacaoVersao}"
-					   pattern="#{messages['label.date.pattern']}" navigator="true" showButtonPanel="true"
-					   locale="#{locales.currentLocale}" title="#{messages['software.alt.dataLiberacaoVersao']}" />
-							 
-					<p:message for="dataLiberacaoVersao" />
-						
-				</h:panelGrid>
-			</p:fieldset>
+		<p:fieldset legend="#{messages['software.label']}" toggleable="true" toggleSpeed="500">
+			<h:panelGrid id="fieldssoftware" columns="3">
 			
-		</h:form>
+				<h:outputLabel value="#{messages['software.label.id']}: " for="id" styleClass="text-input" />
+									
+				<h:outputText id="id" value="#{softwareEditMB.bean.id}" />
+				
+				<p:message for="id" />
+					
+				<h:outputLabel value="#{messages['organizacaoSolicitante.label']}: " for="organizacaoSolicitante" styleClass="text-input" />
+			    <p:selectOneMenu id="organizacaoSolicitante" value="#{softwareEditMB.bean.organizacaoSolicitante}"  effect="fade" converter="ConversorOrganizacaoSolicitante">
+					<f:selectItem itemLabel="Selecione" itemValue="" />
+					<f:selectItems value="#{softwareEditMB.organizacaoSolicitanteList}" var="varOrganizacaoSolicitante" itemLabel="#{varOrganizacaoSolicitante.id}"  itemValue="#{varOrganizacaoSolicitante}" />						
+				</p:selectOneMenu>
+				<p:message for="organizacaoSolicitante" />
+				
+				<h:outputLabel value="#{messages['software.label.nome']}: " for="nome" styleClass="text-input" />
+				
+				<h:inputText id="nome" value="#{softwareEditMB.bean.nome}"
+					title="#{messages['software.alt.nome']}" />
+				
+				<p:message for="nome" />
+					
+				<h:outputLabel value="#{messages['software.label.descricao']}: " for="descricao" styleClass="text-input" />
+				
+				<h:inputText id="descricao" value="#{softwareEditMB.bean.descricao}"
+					title="#{messages['software.alt.descricao']}" />
+				
+				<p:message for="descricao" />
+					
+				<h:outputLabel value="#{messages['software.label.historico']}: " for="historico" styleClass="text-input" />
+				
+				<h:inputText id="historico" value="#{softwareEditMB.bean.historico}"
+					title="#{messages['software.alt.historico']}" />
+				
+				<p:message for="historico" />
+					
+				<h:outputLabel value="#{messages['software.label.tecnologias']}: " for="tecnologias" styleClass="text-input" />
+				
+				<h:inputText id="tecnologias" value="#{softwareEditMB.bean.tecnologias}"
+					title="#{messages['software.alt.tecnologias']}" />
+				
+				<p:message for="tecnologias" />
+					
+				<h:outputLabel value="#{messages['software.label.aspectInovador']}: " for="aspectInovador" styleClass="text-input" />
+				
+				<h:inputText id="aspectInovador" value="#{softwareEditMB.bean.aspectoInovador}"
+					title="#{messages['software.alt.aspectInovador']}" />
+				
+				<p:message for="aspectInovador" />
+					
+				<h:outputLabel value="#{messages['software.label.release']}: " for="release" styleClass="text-input" />
+				
+				<h:inputText id="release" value="#{softwareEditMB.bean.release}"
+					title="#{messages['software.alt.release']}" />
+				
+				<p:message for="release" />
+					
+				<h:outputLabel value="#{messages['software.label.dataInicio']}: " for="dataInicio" styleClass="text-input" />
+				
+				<p:calendar id="dataInicio" value="#{softwareEditMB.bean.dataInicio}"
+				   pattern="#{messages['label.date.pattern']}" navigator="true" showButtonPanel="true"
+				   locale="#{locales.currentLocale}" title="#{messages['software.alt.dataInicio']}" />
+						 
+				<p:message for="dataInicio" />
+					
+				<h:outputLabel value="#{messages['software.label.dataLiberacaoVersao']}: " for="dataLiberacaoVersao" styleClass="text-input" />
+				
+				<p:calendar id="dataLiberacaoVersao" value="#{softwareEditMB.bean.dataLiberacaoVersao}"
+				   pattern="#{messages['label.date.pattern']}" navigator="true" showButtonPanel="true"
+				   locale="#{locales.currentLocale}" title="#{messages['software.alt.dataLiberacaoVersao']}" />
+						 
+				<p:message for="dataLiberacaoVersao" />
+					
+			</h:panelGrid>
+		</p:fieldset>
 	</ui:define>
 </ui:composition>
