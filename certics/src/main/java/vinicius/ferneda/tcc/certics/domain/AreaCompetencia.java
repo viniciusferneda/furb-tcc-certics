@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -33,11 +32,11 @@ public abstract class AreaCompetencia implements Serializable{
 	@Column(name="ARC_DESCRICAO", nullable=false, length=8000)
 	private String descricao;
 	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@OneToMany(fetch=FetchType.LAZY)
 	@JoinColumn(name="REV_ARCID")
 	private List<ResultadoEsperadoEntity> resultadosEsperados = new ArrayList<ResultadoEsperadoEntity>();
 	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@OneToMany(fetch=FetchType.LAZY)
 	@JoinColumn(name="VAC_ARCID")
 	private List<VersaoCerticsAreaCompetenciaEntity> lVersaoCerticsAreaCompetencia = new ArrayList<VersaoCerticsAreaCompetenciaEntity>();
 

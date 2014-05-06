@@ -149,7 +149,6 @@
 											closable="true" 
 											appendToBody="true">  
 							   			<h:panelGrid id="panelModalEvidencianew">
-							   				<h:form id="formDialog">
 											<h:outputLabel value="#{messages['evidencia.label.nome']}: " for="evidenciaNome" styleClass="text-input" />
 											<h:inputText id="evidenciaNome" value="#{conjuntoEvidenciasEditMB.evidenciaNome}" title="#{messages['evidencia.alt.nome']}" />
 											<p:message for="evidenciaNome" />
@@ -187,7 +186,6 @@
 												oncomplete="dialogEvidenciaNew.hide();"
 												process="@this,evidenciaNome,evidenciaDescricao"
 												/>
-											</h:form>
 										</h:panelGrid>
 									</p:dialog>
 								</p:column>

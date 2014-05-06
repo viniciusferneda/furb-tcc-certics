@@ -10,5 +10,4 @@ public class VersaoCerticsAreaCompetenciaEntityDAO extends JPACrud<VersaoCertics
 
 	private static final long serialVersionUID = 1L;
 	
-
 }

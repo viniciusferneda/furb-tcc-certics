@@ -2,7 +2,6 @@ package vinicius.ferneda.tcc.certics.domain;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,11 +21,11 @@ private static final long serialVersionUID = 1L;
 	@GeneratedValue(generator="VRE_ID", strategy=GenerationType.AUTO)
 	private Long id;
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY) 
+	@ManyToOne(fetch=FetchType.LAZY) 
 	@JoinColumn(name="VRE_RESID", nullable=false)
 	private ResultadoEsperadoEntity resultadoEsperado;
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY) 
+	@ManyToOne(fetch=FetchType.LAZY) 
 	@JoinColumn(name="VRE_VCEID", nullable=false)
 	private VersaoCerticsEntity versaoCertics;
 

@@ -12,8 +12,8 @@ public class ResultadoEsperadoDAO extends JPACrud<ResultadoEsperadoEntity, Long>
 	private static final long serialVersionUID = 1L;
 	
 	@SuppressWarnings("unchecked")
-	public List<ResultadoEsperadoEntity> findByVersaoCertics(Long versaoCeticsID){
-		return getEntityManager().createNamedQuery("ResultadoEsperadoEntity.findByVersaoCertics").setParameter("versaoCeticsID", versaoCeticsID).getResultList();
+	public List<ResultadoEsperadoEntity> findByVersaoCertics(Long versaoCerticsID){
+		return getEntityManager().createNamedQuery("ResultadoEsperadoEntity.findByVersaoCertics").setParameter("versaoCerticsID", versaoCerticsID).getResultList();
     }
 	
 }

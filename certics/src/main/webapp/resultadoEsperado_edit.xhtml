@@ -45,9 +45,8 @@
 				</p:selectOneMenu>
 				<p:message for="areaCompetencia" />								  
 							 
-				<h:outputLabel value="#{messages['resultadoEsperado.label.versaoCertics']}: " for="versaoCertics" styleClass="text-input" />
-				<p:pickList id="pickList" value="#{resultadoEsperadoEditMB.lVersaoCertics}" var="versaoCertics" itemLabel="#{versaoCertics}" itemValue="#{versaoCertics}" />
-				<p:message for="versaoCertics" />
+				<h:outputLabel value="#{messages['resultadoEsperado.label.versaoCertics']}: " styleClass="text-input" />
+				<p:pickList id="pickList" value="#{resultadoEsperadoEditMB.lVersaoCertics}" var="versaoCertics" itemLabel="#{versaoCertics.nome}" itemValue="#{versaoCertics}" converter="ConversorVersaoCertics"/>
 					
 			</h:panelGrid>
 		</p:fieldset>

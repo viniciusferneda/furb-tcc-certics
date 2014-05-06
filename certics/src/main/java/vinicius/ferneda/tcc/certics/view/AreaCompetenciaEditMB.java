@@ -17,6 +17,7 @@ import vinicius.ferneda.tcc.certics.domain.AreaCompetenciaEntity;
 import vinicius.ferneda.tcc.certics.domain.ResultadoEsperadoEntity;
 import vinicius.ferneda.tcc.certics.domain.VersaoCerticsAreaCompetenciaEntity;
 import vinicius.ferneda.tcc.certics.domain.VersaoCerticsEntity;
+import vinicius.ferneda.tcc.certics.persistence.VersaoCerticsAreaCompetenciaEntityDAO;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
@@ -30,6 +31,9 @@ public class AreaCompetenciaEditMB extends AbstractEditPageBean<AreaCompetenciaE
 	
 	@Inject
 	private AreaCompetenciaBC areaCompetenciaBC;
+	
+	@Inject
+	private VersaoCerticsAreaCompetenciaEntityDAO versaoCerticsAreaCompetenciaEntityDAO;
 	
 	@Inject
 	private VersaoCerticsEntityBC versaoCerticsEntityBC;
@@ -66,9 +70,11 @@ public class AreaCompetenciaEditMB extends AbstractEditPageBean<AreaCompetenciaE
 	@Transactional
 	public String insert() {
 		this.areaCompetenciaBC.insert(this.getBean());
-		for (ResultadoEsperadoEntity res : this.getBean().getResultadosEsperados()) {
-			res.setAreaCompetencia(this.getBean());
-			this.resultadoEsperadoBC.insert(res);
+		//Registra as versoes vinculadas
+		if(getlVersaoCertics().getTarget() != null && !getlVersaoCertics().getTarget().isEmpty()){
+			for (VersaoCerticsEntity versaoCerticsEntity : getlVersaoCertics().getTarget()) {
+				this.versaoCerticsAreaCompetenciaEntityDAO.insert(new VersaoCerticsAreaCompetenciaEntity(this.getBean(), versaoCerticsEntity));
+			}
 		}
 		return getPreviousView();
 	}
@@ -77,6 +83,12 @@ public class AreaCompetenciaEditMB extends AbstractEditPageBean<AreaCompetenciaE
 	@Transactional
 	public String update() {
 		this.areaCompetenciaBC.update(this.getBean());
+		//Registra as versoes vinculadas
+		if(getlVersaoCertics().getTarget() != null && !getlVersaoCertics().getTarget().isEmpty()){
+			for (VersaoCerticsEntity versaoCerticsEntity : getlVersaoCertics().getTarget()) {
+				this.versaoCerticsAreaCompetenciaEntityDAO.insert(new VersaoCerticsAreaCompetenciaEntity(this.getBean(), versaoCerticsEntity));
+			}
+		}
 		return getPreviousView();
 	}
 	
@@ -84,13 +96,32 @@ public class AreaCompetenciaEditMB extends AbstractEditPageBean<AreaCompetenciaE
 	protected AreaCompetenciaEntity handleLoad(Long id) {
 		AreaCompetenciaEntity areaCompetenciaEntity = this.areaCompetenciaBC.load(id);
 		//cria a lista de versões
-		List<VersaoCerticsAreaCompetenciaEntity> lVersaoCerticsAreaCompetencia = areaCompetenciaEntity.getlVersaoCerticsAreaCompetencia();
-		List<VersaoCerticsEntity> lVersaoCertics = new ArrayList<VersaoCerticsEntity>();
-		for (VersaoCerticsAreaCompetenciaEntity versao : lVersaoCerticsAreaCompetencia) {
-			lVersaoCertics.add(versao.getVersaoCertics());
-		}
-		this.lVersaoCertics = new DualListModel<VersaoCerticsEntity>(this.versaoCerticsEntityBC.findAll(), lVersaoCertics);
+		montaListaVersoes(areaCompetenciaEntity);
 		return areaCompetenciaEntity;
+	}
+
+	private void montaListaVersoes(AreaCompetenciaEntity areaCompetenciaEntity) {
+		//recupera as versoes vinculadas
+		List<VersaoCerticsAreaCompetenciaEntity> lVersaoCerticsAreaCompetencia = areaCompetenciaEntity.getlVersaoCerticsAreaCompetencia();
+		List<VersaoCerticsEntity> lVersaoCerticsTarget = new ArrayList<VersaoCerticsEntity>();
+		for (VersaoCerticsAreaCompetenciaEntity versao : lVersaoCerticsAreaCompetencia) {
+			lVersaoCerticsTarget.add(versao.getVersaoCertics());
+		}
+		
+		//remove as repetidas
+		List<VersaoCerticsEntity> lVersaoCerticsSource = this.versaoCerticsEntityBC.findAll();
+		List<VersaoCerticsEntity> lVersaoCerticsSourceRemove = new ArrayList<VersaoCerticsEntity>();
+		for (VersaoCerticsEntity versaoCerticsEntitySource : lVersaoCerticsSource) {
+			for (VersaoCerticsEntity versaoCerticsEntityTarget : lVersaoCerticsTarget) {
+				if(versaoCerticsEntitySource.getId().equals(versaoCerticsEntityTarget.getId())){
+					lVersaoCerticsSourceRemove.add(versaoCerticsEntitySource);
+				}
+			}
+		}
+		lVersaoCerticsSource.removeAll(lVersaoCerticsSourceRemove);
+		
+		//monta a lista
+		this.lVersaoCertics = new DualListModel<VersaoCerticsEntity>(lVersaoCerticsSource, lVersaoCerticsTarget);
 	}
 	
 	@Override

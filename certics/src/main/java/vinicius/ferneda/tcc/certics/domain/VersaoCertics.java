@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -30,11 +29,11 @@ private static final long serialVersionUID = 1L;
 	@Column(name="VCE_DESCRICAO", length=8000)
 	private String descricao;
 
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@OneToMany(fetch=FetchType.LAZY)
 	@JoinColumn(name="VAC_VCEID")
 	private List<VersaoCerticsAreaCompetenciaEntity> lVersaoCerticsAreaCompetencia = new ArrayList<VersaoCerticsAreaCompetenciaEntity>();
 
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@OneToMany(fetch=FetchType.LAZY)
 	@JoinColumn(name="VRE_VCEID")
 	private List<VersaoCerticsResultadoEsperadoEntity> lVersaoCerticsResultadoEsperado = new ArrayList<VersaoCerticsResultadoEsperadoEntity>();
 

@@ -15,6 +15,7 @@ import vinicius.ferneda.tcc.certics.domain.AreaCompetenciaEntity;
 import vinicius.ferneda.tcc.certics.domain.ResultadoEsperadoEntity;
 import vinicius.ferneda.tcc.certics.domain.VersaoCerticsEntity;
 import vinicius.ferneda.tcc.certics.domain.VersaoCerticsResultadoEsperadoEntity;
+import vinicius.ferneda.tcc.certics.persistence.VersaoCerticsResultadoEsperadoEntityDAO;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
@@ -29,6 +30,9 @@ public class ResultadoEsperadoEditMB extends AbstractEditPageBean<ResultadoEsper
 	@Inject
 	private ResultadoEsperadoBC resultadoEsperadoBC;
 
+	@Inject
+	private VersaoCerticsResultadoEsperadoEntityDAO versaoCerticsResultadoEsperadoEntityDAO;
+	
 	@Inject
 	private VersaoCerticsEntityBC versaoCerticsEntityBC;
 	private DualListModel<VersaoCerticsEntity> lVersaoCertics;
@@ -51,6 +55,12 @@ public class ResultadoEsperadoEditMB extends AbstractEditPageBean<ResultadoEsper
 	@Transactional
 	public String insert() {
 		this.resultadoEsperadoBC.insert(this.getBean());
+		//Registra as versoes vinculadas
+		if(getlVersaoCertics().getTarget() != null && !getlVersaoCertics().getTarget().isEmpty()){
+			for (VersaoCerticsEntity versaoCerticsEntity : getlVersaoCertics().getTarget()) {
+				this.versaoCerticsResultadoEsperadoEntityDAO.insert(new VersaoCerticsResultadoEsperadoEntity(this.getBean(), versaoCerticsEntity));
+			}
+		}
 		return getPreviousView();
 	}
 	
@@ -58,24 +68,51 @@ public class ResultadoEsperadoEditMB extends AbstractEditPageBean<ResultadoEsper
 	@Transactional
 	public String update() {
 		this.resultadoEsperadoBC.update(this.getBean());
+		//Registra as versoes vinculadas
+		if(getlVersaoCertics().getTarget() != null && !getlVersaoCertics().getTarget().isEmpty()){
+			for (VersaoCerticsEntity versaoCerticsEntity : getlVersaoCertics().getTarget()) {
+				this.versaoCerticsResultadoEsperadoEntityDAO.insert(new VersaoCerticsResultadoEsperadoEntity(this.getBean(), versaoCerticsEntity));
+			}
+		}
 		return getPreviousView();
 	}
 	
 	@Override
 	protected ResultadoEsperadoEntity handleLoad(Long id) {
-		return this.resultadoEsperadoBC.load(id);
+		ResultadoEsperadoEntity resultadoEsperadoEntity = this.resultadoEsperadoBC.load(id);
+		//cria a lista de versões
+		montaListaVersoes(resultadoEsperadoEntity);
+		return resultadoEsperadoEntity; 
+	}
+	
+	private void montaListaVersoes(ResultadoEsperadoEntity resultadoEsperadoEntity) {
+		//recupera as versoes vinculadas
+		List<VersaoCerticsResultadoEsperadoEntity> lVersaoCerticsAreaCompetencia = resultadoEsperadoEntity.getlVersaoCerticsResultadoEsperado();
+		List<VersaoCerticsEntity> lVersaoCerticsTarget = new ArrayList<VersaoCerticsEntity>();
+		for (VersaoCerticsResultadoEsperadoEntity versao : lVersaoCerticsAreaCompetencia) {
+			lVersaoCerticsTarget.add(versao.getVersaoCertics());
+		}
+		
+		//remove as repetidas
+		List<VersaoCerticsEntity> lVersaoCerticsSource = this.versaoCerticsEntityBC.findAll();
+		List<VersaoCerticsEntity> lVersaoCerticsSourceRemove = new ArrayList<VersaoCerticsEntity>();
+		for (VersaoCerticsEntity versaoCerticsEntitySource : lVersaoCerticsSource) {
+			for (VersaoCerticsEntity versaoCerticsEntityTarget : lVersaoCerticsTarget) {
+				if(versaoCerticsEntitySource.getId().equals(versaoCerticsEntityTarget.getId())){
+					lVersaoCerticsSourceRemove.add(versaoCerticsEntitySource);
+				}
+			}
+		}
+		lVersaoCerticsSource.removeAll(lVersaoCerticsSourceRemove);
+		
+		//monta a lista
+		this.lVersaoCertics = new DualListModel<VersaoCerticsEntity>(lVersaoCerticsSource, lVersaoCerticsTarget);
 	}
 	
 	@Override
 	protected ResultadoEsperadoEntity createBean() {
 		ResultadoEsperadoEntity resultadoEsperado = super.createBean();
-		//cria a lista de versões
-		List<VersaoCerticsResultadoEsperadoEntity> lVersaoCerticsAreaCompetencia = resultadoEsperado.getlVersaoCerticsResultadoEsperado();
-		List<VersaoCerticsEntity> lVersaoCertics = new ArrayList<VersaoCerticsEntity>();
-		for (VersaoCerticsResultadoEsperadoEntity versao : lVersaoCerticsAreaCompetencia) {
-			lVersaoCertics.add(versao.getVersaoCertics());
-		}
-		this.lVersaoCertics = new DualListModel<VersaoCerticsEntity>(this.versaoCerticsEntityBC.findAll(), lVersaoCertics);
+		this.lVersaoCertics = new DualListModel<VersaoCerticsEntity>(this.versaoCerticsEntityBC.findAll(), new ArrayList<VersaoCerticsEntity>());
 		return resultadoEsperado;
 	}
 	

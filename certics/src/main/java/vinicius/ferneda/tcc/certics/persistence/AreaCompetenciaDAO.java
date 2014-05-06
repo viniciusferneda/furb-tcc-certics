@@ -14,10 +14,10 @@ public class AreaCompetenciaDAO extends JPACrud<AreaCompetenciaEntity, Long> {
 	private static final long serialVersionUID = 1L;
 	
 	@SuppressWarnings("unchecked")
-	public List<AreaCompetenciaEntity> findByVersaoCerticsAndAvaliacaoID(Long avaliacaoID, Long versaoCeticsID){
+	public List<AreaCompetenciaEntity> findByVersaoCerticsAndAvaliacaoID(Long avaliacaoID, Long versaoCerticsID){
 		Query query = getEntityManager().createNamedQuery("AreaCompetenciaEntity.findByVersaoCerticsAndAvaliacaoID");
 		query.setParameter("avaliacaoID", avaliacaoID);
-		query.setParameter("versaoCeticsID", versaoCeticsID);
+		query.setParameter("versaoCerticsID", versaoCerticsID);
 		return query.getResultList();
     }
 	
