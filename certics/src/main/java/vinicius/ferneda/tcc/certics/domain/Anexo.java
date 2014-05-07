@@ -3,10 +3,12 @@ package vinicius.ferneda.tcc.certics.domain;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
@@ -23,10 +25,11 @@ public abstract class Anexo implements Serializable{
 	@Column(name="ANE_NOME", nullable=false, length=255)
 	private String nome;
 
+	@Lob
 	@Column(name="ANE_ARQUIVO", nullable=false)
 	private byte[] arquivo;
 	
-	@ManyToOne 
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="ANE_EVIID", nullable=false)
 	private EvidenciaEntity evidencia;
 

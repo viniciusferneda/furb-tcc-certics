@@ -1,14 +1,17 @@
 package vinicius.ferneda.tcc.certics.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 
+import vinicius.ferneda.tcc.certics.business.AnexoBC;
 import vinicius.ferneda.tcc.certics.business.EvidenciaEntityBC;
 import vinicius.ferneda.tcc.certics.domain.AnexoEntity;
 import vinicius.ferneda.tcc.certics.domain.EvidenciaEntity;
@@ -26,6 +29,11 @@ public class EvidenciaEntityEditMB extends AbstractEditPageBean<EvidenciaEntity,
 
 	@Inject
 	private EvidenciaEntityBC evidenciaEntityBC;
+	
+	@Inject
+	private AnexoBC anexoBC;
+	
+	private List<AnexoEntity> lAnexosAux = new ArrayList<AnexoEntity>();
 	
 	private DataModel<AnexoEntity> anexoList;
 	
@@ -52,14 +60,26 @@ public class EvidenciaEntityEditMB extends AbstractEditPageBean<EvidenciaEntity,
 	@Override
 	@Transactional
 	public String insert() {
+		retiraAnexos(getBean().getAnexos());
 		this.evidenciaEntityBC.insert(getBean());
+		for (AnexoEntity anexo : getlAnexosAux()) {
+			this.anexoBC.insert(anexo);
+		}
 		return getPreviousView();
 	}
 	
 	@Override
 	@Transactional
 	public String update() {
+		retiraAnexos(getBean().getAnexos());
 		this.evidenciaEntityBC.update(getBean());
+		for (AnexoEntity anexo : getlAnexosAux()) {
+			if(anexo.getId() != null){
+				this.anexoBC.insert(anexo);
+			}else{
+				this.anexoBC.update(anexo);
+			}
+		}
 		return getPreviousView();
 	}
 	
@@ -69,8 +89,41 @@ public class EvidenciaEntityEditMB extends AbstractEditPageBean<EvidenciaEntity,
 	}
 	
 	public void handleFileUpload(FileUploadEvent event) {
-		FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
-		FacesContext.getCurrentInstance().addMessage(null, msg);
+		UploadedFile uploadedFile = event.getFile();
+		AnexoEntity anexoAux = (AnexoEntity) event.getComponent().getAttributes().get("anexoAux");
+		boolean existeAnexo = false;
+		for (AnexoEntity anexo : this.anexoList) {
+			if(anexoAux.getId() != null && anexoAux.getId().equals(anexo.getId())){
+				anexo.setNome(uploadedFile.getFileName());
+				anexo.setArquivo(uploadedFile.getContents());
+				existeAnexo = true;
+				break;
+			}
+		}
+		if(!existeAnexo){
+			this.getBean().getAnexos().add(new AnexoEntity(uploadedFile.getFileName(),uploadedFile.getContents(),getBean()));
+		}
 	}
-
+	
+	private void retiraAnexos(List<AnexoEntity> lAnexos){
+		if(lAnexos != null && !lAnexos.isEmpty()){
+			List<AnexoEntity> lAnexosRemove = new ArrayList<AnexoEntity>();
+			for (AnexoEntity anexo : lAnexos) {
+				if(anexo.getArquivo() == null){
+					lAnexosRemove.add(anexo);
+				}else{
+					this.getlAnexosAux().add(anexo);
+				}
+			}
+			lAnexos.removeAll(lAnexosRemove);
+		}
+	}
+	
+	public List<AnexoEntity> getlAnexosAux() {
+		return lAnexosAux;
+	}
+	public void setlAnexosAux(List<AnexoEntity> lAnexosAux) {
+		this.lAnexosAux = lAnexosAux;
+	}
+	
 }

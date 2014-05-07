@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -30,11 +29,11 @@ public abstract class Evidencia implements Serializable{
 	@Column(name="EVI_DESCRICAO", nullable=false, length=8000)
 	private String descricao;
 	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@OneToMany(fetch=FetchType.LAZY)
 	@JoinColumn(name="REV_EVIID")
 	private List<RespostaEvidenciaEntity> respostas = new ArrayList<RespostaEvidenciaEntity>();
 	
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@OneToMany(fetch=FetchType.LAZY)
 	@JoinColumn(name="ANE_EVIID")
 	private List<AnexoEntity> anexos = new ArrayList<AnexoEntity>();
 

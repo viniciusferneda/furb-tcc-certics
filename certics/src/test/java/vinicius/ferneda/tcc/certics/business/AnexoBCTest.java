@@ -36,7 +36,7 @@ public class AnexoBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		AnexoEntity anexo = new AnexoEntity(new byte[]{},new EvidenciaEntity());
+		AnexoEntity anexo = new AnexoEntity("anexo", new byte[]{}, new EvidenciaEntity());
 		anexoBC.insert(anexo);
 		List<AnexoEntity> listOfAnexo = anexoBC.findAll();
 		assertNotNull(listOfAnexo);
@@ -47,7 +47,7 @@ public class AnexoBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		AnexoEntity anexo = new AnexoEntity(new byte[]{},new EvidenciaEntity());
+		AnexoEntity anexo = new AnexoEntity("anexo", new byte[]{}, new EvidenciaEntity());
 		anexoBC.insert(anexo);
 		
 		List<AnexoEntity> listOfAnexo = anexoBC.findAll();
@@ -62,7 +62,7 @@ public class AnexoBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		AnexoEntity anexo = new AnexoEntity(new byte[]{},new EvidenciaEntity());
+		AnexoEntity anexo = new AnexoEntity("anexo", new byte[]{}, new EvidenciaEntity());
 		anexoBC.insert(anexo);
 		
 		List<AnexoEntity> listOfAnexo = anexoBC.findAll();

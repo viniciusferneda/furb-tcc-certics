@@ -10,7 +10,10 @@ import javax.persistence.Table;
 @Table(name="TB_ANEXO")
 @SequenceGenerator(name="ANE_ID", sequenceName="ANE_ID", allocationSize=1)
 @NamedQueries({
-    @NamedQuery(name = "AnexoEntity.findById", query = "SELECT obj FROM AnexoEntity obj WHERE obj.id = :id")
+    @NamedQuery(name="AnexoEntity.findById", 
+    		query="SELECT obj "
+    				+ " FROM AnexoEntity obj "
+    				+ " WHERE obj.id = :id")
 })
 public class AnexoEntity extends Anexo {
 
@@ -19,7 +22,8 @@ public class AnexoEntity extends Anexo {
 	public AnexoEntity(){
 	}
 	
-	public AnexoEntity(byte[] arquivo, EvidenciaEntity evidencia) {
+	public AnexoEntity(String nome, byte[] arquivo, EvidenciaEntity evidencia) {
+		setNome(nome);
 		setArquivo(arquivo);
 		setEvidencia(evidencia);
 	}

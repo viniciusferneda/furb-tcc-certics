@@ -47,17 +47,20 @@
 					<p:column>
 						<f:facet name="header">#{messages['anexo.label.id']}</f:facet>
 						<h:outputText id="id" value="#{anexo.id}" />
-					</p:column>					  
-
+					</p:column>
+					
 					<p:column>
 						<f:facet name="header">#{messages['anexo.label.nome']}</f:facet>
 						<h:outputText id="nome" value="#{anexo.nome}" />
-					</p:column>					  
+					</p:column>
 
 					<p:column>
 			       		<f:facet name="header">#{messages['anexo.label.arquivo']}</f:facet>
-	 					<p:fileUpload id="arquivo" fileUploadListener="#{evidenciaEntityEditMB.handleFileUpload}" mode="advanced" dragDropSupport="false"
-	                    	auto="true" multiple="false" allowTypes="/(\.|\/)(jpe?g|png|jpg|gif)$/"/>                   
+	 					<p:fileUpload id="arquivo" fileUploadListener="#{evidenciaEntityEditMB.handleFileUpload}" 
+	 						mode="advanced" dragDropSupport="false" auto="true" multiple="false" update="listAnexo"
+	 						allowTypes="/(\.|\/)(jpe?g|png|jpg|gif)$/">
+	 						<f:attribute name="anexoAux" value="#{anexo}"/>
+	 					</p:fileUpload>                   
 				  	</p:column>					  
 
 					<p:column>
