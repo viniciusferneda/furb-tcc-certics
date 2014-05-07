@@ -56,9 +56,8 @@
 
 					<p:column>
 			       		<f:facet name="header">#{messages['anexo.label.arquivo']}</f:facet>
-						<p:fileUpload fileUploadListener="#{evidenciaEntityEditMB.handleFileUpload}" 
-							mode="advanced" auto="true" sizeLimit="100000" 
-							allowTypes="/(\.|\/)(gif|jpe?g|png\pdf)$/"/>
+	 					<p:fileUpload id="arquivo" fileUploadListener="#{evidenciaEntityEditMB.handleFileUpload}" mode="advanced" dragDropSupport="false"
+	                    	auto="true" multiple="false" allowTypes="/(\.|\/)(jpe?g|png|jpg|gif)$/"/>                   
 				  	</p:column>					  
 
 					<p:column>

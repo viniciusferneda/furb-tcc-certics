@@ -1,5 +1,6 @@
 package vinicius.ferneda.tcc.certics.view;
 
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
@@ -18,6 +19,7 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 @ViewController
 @PreviousView("./evidenciaEntity_list.jsf")
+@SessionScoped
 public class EvidenciaEntityEditMB extends AbstractEditPageBean<EvidenciaEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
