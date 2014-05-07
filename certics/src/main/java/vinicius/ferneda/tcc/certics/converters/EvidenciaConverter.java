@@ -4,16 +4,18 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+
 import org.primefaces.component.picklist.PickList;
 import org.primefaces.model.DualListModel;
-import br.gov.frameworkdemoiselle.util.Beans;
-import vinicius.ferneda.tcc.certics.persistence.EvidenciaDAO;
+
 import vinicius.ferneda.tcc.certics.domain.Evidencia;
+import vinicius.ferneda.tcc.certics.persistence.EvidenciaEntityDAO;
+import br.gov.frameworkdemoiselle.util.Beans;
 
 @FacesConverter(value= "ConversorEvidencia")
 public class EvidenciaConverter implements Converter {
 
-	private EvidenciaDAO evidenciaDAO = Beans.getReference(EvidenciaDAO.class);
+	private EvidenciaEntityDAO evidenciaDAO = Beans.getReference(EvidenciaEntityDAO.class);
 
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component,

@@ -1,4 +1,3 @@
-
 package vinicius.ferneda.tcc.certics.business;
 
 import java.util.ArrayList;
@@ -6,13 +5,14 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
-import vinicius.ferneda.tcc.certics.domain.EvidenciaEntity;
-import vinicius.ferneda.tcc.certics.persistence.EvidenciaDAO;
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
 import br.gov.frameworkdemoiselle.template.DelegateCrud;
 
+import vinicius.ferneda.tcc.certics.domain.EvidenciaEntity;
+import vinicius.ferneda.tcc.certics.persistence.EvidenciaEntityDAO;
+
 @BusinessController
-public class EvidenciaBC extends DelegateCrud<EvidenciaEntity, Long, EvidenciaDAO> {
+public class EvidenciaEntityBC extends DelegateCrud<EvidenciaEntity, Long, EvidenciaEntityDAO> {
 	
 	private static final long serialVersionUID = 1L;
 	

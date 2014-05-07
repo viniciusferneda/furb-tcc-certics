@@ -21,12 +21,12 @@ import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
 public class EvidenciaBCTest {
 
     @Inject
-	private EvidenciaBC evidenciaBC;
+	private EvidenciaEntityBC evidenciaEntityBC;
 	
 	@Before
 	public void before() {
-		for (Evidencia evidencia : evidenciaBC.findAll()) {
-			evidenciaBC.delete(evidencia.getId());
+		for (Evidencia evidencia : evidenciaEntityBC.findAll()) {
+			evidenciaEntityBC.delete(evidencia.getId());
 		}
 	}	
 	
@@ -36,8 +36,8 @@ public class EvidenciaBCTest {
 				
 		// modifique para inserir dados conforme o construtor
 		EvidenciaEntity evidencia = new EvidenciaEntity("nome","descricao");
-		evidenciaBC.insert(evidencia);
-		List<EvidenciaEntity> listOfEvidencia = evidenciaBC.findAll();
+		evidenciaEntityBC.insert(evidencia);
+		List<EvidenciaEntity> listOfEvidencia = evidenciaEntityBC.findAll();
 		assertNotNull(listOfEvidencia);
 		assertEquals(1, listOfEvidencia.size());
 	}	
@@ -47,14 +47,14 @@ public class EvidenciaBCTest {
 		
 		// modifique para inserir dados conforme o construtor
 		EvidenciaEntity evidencia = new EvidenciaEntity("nome","descricao");
-		evidenciaBC.insert(evidencia);
+		evidenciaEntityBC.insert(evidencia);
 		
-		List<EvidenciaEntity> listOfEvidencia = evidenciaBC.findAll();
+		List<EvidenciaEntity> listOfEvidencia = evidenciaEntityBC.findAll();
 		assertNotNull(listOfEvidencia);
 		assertEquals(1, listOfEvidencia.size());
 		
-		evidenciaBC.delete(evidencia.getId());
-		listOfEvidencia = evidenciaBC.findAll();
+		evidenciaEntityBC.delete(evidencia.getId());
+		listOfEvidencia = evidenciaEntityBC.findAll();
 		assertEquals(0, listOfEvidencia.size());
 	}
 	
@@ -62,17 +62,17 @@ public class EvidenciaBCTest {
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
 		EvidenciaEntity evidencia = new EvidenciaEntity("nome","descricao");
-		evidenciaBC.insert(evidencia);
+		evidenciaEntityBC.insert(evidencia);
 		
-		List<EvidenciaEntity> listOfEvidencia = evidenciaBC.findAll();
+		List<EvidenciaEntity> listOfEvidencia = evidenciaEntityBC.findAll();
 		EvidenciaEntity evidencia2 = (EvidenciaEntity)listOfEvidencia.get(0);
 		assertNotNull(listOfEvidencia);
 
 		// alterar para tratar uma propriedade existente na Entidade Evidencia
 		// evidencia2.setUmaPropriedade("novo valor");
-		evidenciaBC.update(evidencia2);
+		evidenciaEntityBC.update(evidencia2);
 		
-		listOfEvidencia = evidenciaBC.findAll();
+		listOfEvidencia = evidenciaEntityBC.findAll();
 		Evidencia evidencia3 = (Evidencia)listOfEvidencia.get(0);
 		
 		// alterar para tratar uma propriedade existente na Entidade Evidencia

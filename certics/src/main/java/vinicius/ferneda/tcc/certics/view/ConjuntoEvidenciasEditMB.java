@@ -9,7 +9,7 @@ import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
 import vinicius.ferneda.tcc.certics.business.AvaliacaoBC;
-import vinicius.ferneda.tcc.certics.business.EvidenciaBC;
+import vinicius.ferneda.tcc.certics.business.EvidenciaEntityBC;
 import vinicius.ferneda.tcc.certics.business.RespostaEvidenciaBC;
 import vinicius.ferneda.tcc.certics.domain.AnexoEntity;
 import vinicius.ferneda.tcc.certics.domain.AreaCompetenciaEntity;
@@ -39,7 +39,7 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 	private RespostaEvidenciaBC respostaEvidenciaBC;
 
 	@Inject
-	private EvidenciaBC evidenciaBC;
+	private EvidenciaEntityBC evidenciaBC;
 
 	private DataModel<AreaCompetenciaEntity> lEvidencias;
 	

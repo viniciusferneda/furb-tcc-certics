@@ -1,0 +1,72 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
+
+	<ui:define name="body">
+		<p:toolbar>
+			<p:toolbarGroup align="left">
+				<p:commandButton value="#{messages['button.save']}" action="#{evidenciaEntityEditMB.insert}"
+					rendered="#{!evidenciaEntityEditMB.updateMode}" ajax="false" />
+				<p:commandButton value="#{messages['button.save']}" action="#{evidenciaEntityEditMB.update}"
+					rendered="#{evidenciaEntityEditMB.updateMode}" ajax="false" />
+				<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
+					rendered="#{evidenciaEntityEditMB.updateMode}" type="button" immediate="true" ajax="false" />
+				<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
+					header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
+					<h:commandButton value="#{messages['button.dialog.yes']}" action="#{evidenciaEntityEditMB.delete}" immediate="true"
+						ajax="false" />
+					<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+				</p:confirmDialog>
+			</p:toolbarGroup>
+		</p:toolbar>
+
+		<br />
+
+		<p:fieldset legend="#{messages['evidenciaEntity.label']}" toggleable="true" toggleSpeed="500">
+			<h:panelGrid id="fields" columns="3">
+				
+				<h:outputLabel value="#{messages['evidenciaEntity.label.id']}: " for="id" styleClass="text-input" />
+				<h:outputText id="id" value="#{evidenciaEntityEditMB.bean.id}" />
+				<p:message for="id" />
+				
+				<h:outputLabel value="#{messages['evidenciaEntity.label.nome']}: " for="nome" styleClass="text-input" />
+				<h:inputText id="nome" value="#{evidenciaEntityEditMB.bean.nome}" title="#{messages['evidenciaEntity.alt.nome']}" />
+				<p:message for="nome" />
+				
+				<h:outputLabel value="#{messages['evidenciaEntity.label.descricao']}: " for="descricao" styleClass="text-input" />
+				<h:inputText id="descricao" value="#{evidenciaEntityEditMB.bean.descricao}" title="#{messages['evidenciaEntity.alt.descricao']}" />
+				<p:message for="descricao" />
+			</h:panelGrid>
+		</p:fieldset>
+
+		<p:fieldset legend="#{messages['anexo.label']}" toggleable="true" toggleSpeed="500">
+			<h:panelGrid id="fieldsanexo" columns="1"> 
+				<p:commandButton value="#{messages['button.new']}" action="#{evidenciaEntityEditMB.addAnexo}" update="listAnexo"/>
+				<p:dataTable id="listAnexo" var="anexo" value="#{evidenciaEntityEditMB.anexoList}" rowIndexVar="index">
+
+					<p:column>
+						<f:facet name="header">#{messages['anexo.label.id']}</f:facet>
+						<h:outputText id="id" value="#{anexo.id}" />
+					</p:column>					  
+
+					<p:column>
+						<f:facet name="header">#{messages['anexo.label.nome']}</f:facet>
+						<h:outputText id="nome" value="#{anexo.nome}" />
+					</p:column>					  
+
+					<p:column>
+			       		<f:facet name="header">#{messages['anexo.label.arquivo']}</f:facet>
+						<p:fileUpload fileUploadListener="#{evidenciaEntityEditMB.handleFileUpload}" 
+							mode="advanced" auto="true" sizeLimit="100000" 
+							allowTypes="/(\.|\/)(gif|jpe?g|png\pdf)$/"/>
+				  	</p:column>					  
+
+					<p:column>
+						<f:facet name="header">#{messages['label.action']}</f:facet>
+						<p:commandButton value="#{messages['button.delete']}" action="#{evidenciaEntityEditMB.deleteAnexo}" ajax="false"/>
+					</p:column>
+				</p:dataTable>
+			</h:panelGrid>
+		</p:fieldset>
+	</ui:define>
+</ui:composition>

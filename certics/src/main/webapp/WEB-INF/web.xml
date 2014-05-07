@@ -13,6 +13,21 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
     
+    <filter>  
+       <filter-name>PrimeFaces FileUpload Filter</filter-name>  
+       <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+       <init-param>  
+	        <param-name>thresholdSize</param-name>  
+	        <param-value>51200</param-value>  
+	    </init-param>
+	</filter>
+        
+	<filter-mapping>    
+       <filter-name>PrimeFaces FileUpload Filter</filter-name>    
+       <servlet-name>Faces Servlet</servlet-name>    
+       <url-pattern>*.jsf</url-pattern>   
+	</filter-mapping> 
+    
 	<context-param>
     	<param-name>primefaces.THEME</param-name>
     	<param-value>ui-lightness</param-value>
@@ -40,12 +55,12 @@
 
 	<error-page>
 		<error-code>404</error-code>
-		<location>/security/404.jsf</location>
+		<location>/404.jsf</location>
 	</error-page>
 
 	<error-page>
 		<error-code>500</error-code>
-		<location>/security/500.jsf</location>
+		<location>/500.jsf</location>
 	</error-page>
 
 </web-app>

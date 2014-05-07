@@ -1,39 +1,30 @@
-
 package vinicius.ferneda.tcc.certics.view;
 
-import java.util.List;
-
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
 
-import vinicius.ferneda.tcc.certics.business.EvidenciaBC;
-import vinicius.ferneda.tcc.certics.business.RespostaEvidenciaBC;
+import org.primefaces.event.FileUploadEvent;
+
+import vinicius.ferneda.tcc.certics.business.EvidenciaEntityBC;
 import vinicius.ferneda.tcc.certics.domain.AnexoEntity;
 import vinicius.ferneda.tcc.certics.domain.EvidenciaEntity;
-import vinicius.ferneda.tcc.certics.domain.RespostaEvidenciaEntity;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 @ViewController
-@PreviousView("./evidencia_list.jsf")
-public class EvidenciaEditMB extends AbstractEditPageBean<EvidenciaEntity, Long> {
+@PreviousView("./evidenciaEntity_list.jsf")
+public class EvidenciaEntityEditMB extends AbstractEditPageBean<EvidenciaEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private EvidenciaBC evidenciaBC;
+	private EvidenciaEntityBC evidenciaEntityBC;
 	
-
-	@Inject
-	private RespostaEvidenciaBC respostaEvidenciaBC;
-	
-	public List<RespostaEvidenciaEntity> getRespostaEvidenciaList(){
-		return respostaEvidenciaBC.findAll();
-	}
-			
 	private DataModel<AnexoEntity> anexoList;
 	
 	public void addAnexo() {
@@ -47,31 +38,37 @@ public class EvidenciaEditMB extends AbstractEditPageBean<EvidenciaEntity, Long>
 		   anexoList = new ListDataModel<AnexoEntity>(this.getBean().getAnexos());
 	   }
 	   return anexoList;
-	} 
+	}
 	
 	@Override
 	@Transactional
 	public String delete() {
-		this.evidenciaBC.delete(getId());
+		this.evidenciaEntityBC.delete(getId());
 		return getPreviousView();
 	}
 	
 	@Override
 	@Transactional
 	public String insert() {
-		this.evidenciaBC.insert(this.getBean());
+		this.evidenciaEntityBC.insert(getBean());
 		return getPreviousView();
 	}
 	
 	@Override
 	@Transactional
 	public String update() {
-		this.evidenciaBC.update(this.getBean());
+		this.evidenciaEntityBC.update(getBean());
 		return getPreviousView();
 	}
 	
 	@Override
 	protected EvidenciaEntity handleLoad(Long id) {
-		return this.evidenciaBC.load(id);
-	}	
+		return this.evidenciaEntityBC.load(id);
+	}
+	
+	public void handleFileUpload(FileUploadEvent event) {
+		FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
 }

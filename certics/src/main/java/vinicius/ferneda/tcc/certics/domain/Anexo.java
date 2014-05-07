@@ -19,6 +19,9 @@ public abstract class Anexo implements Serializable{
 	@Column(name="ANE_ID", nullable=false)
 	@GeneratedValue(generator="ANE_ID", strategy = GenerationType.AUTO)
 	private Long id;
+	
+	@Column(name="ANE_NOME", nullable=false, length=255)
+	private String nome;
 
 	@Column(name="ANE_ARQUIVO", nullable=false)
 	private byte[] arquivo;
@@ -33,6 +36,14 @@ public abstract class Anexo implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public byte[] getArquivo() {
