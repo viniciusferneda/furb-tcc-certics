@@ -57,17 +57,17 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 	private DataModel<AnexoEntity> anexoList;
 
 	public void addAnexo() {
-		this.getEvidenciaAux().getAnexos().add(new AnexoEntity());
+		this.getBean().getEvidenciaAux().getAnexos().add(new AnexoEntity());
 	}
 	public void deleteAnexo() {
-	   this.getEvidenciaAux().getAnexos().remove(getAnexoList().getRowData());
+	   this.getBean().getEvidenciaAux().getAnexos().remove(getAnexoList().getRowData());
 	}
 	public DataModel<AnexoEntity> getAnexoList() {
 	   if (anexoList == null) {
-		   if(this.getEvidenciaAux() == null){
+		   if(this.getBean().getEvidenciaAux() == null){
 			   anexoList = new ListDataModel<AnexoEntity>();
 		   }else{
-			   anexoList = new ListDataModel<AnexoEntity>(this.getEvidenciaAux().getAnexos());
+			   anexoList = new ListDataModel<AnexoEntity>(this.getBean().getEvidenciaAux().getAnexos());
 		   }
 	   }
 	   return anexoList;
@@ -100,69 +100,21 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 	}
 	
 	public void setConjuntoEvidencias(ConjuntoEvidenciasEntity conjuntoEvidenciasEntity){
-		this.setConjuntoEvidenciasAux(conjuntoEvidenciasEntity);
-		this.setRespostaEvidenciaAux(new RespostaEvidenciaEntity());
+		this.getBean().setConjuntoEvidenciasAux(conjuntoEvidenciasEntity);
+		this.getBean().setRespostaEvidenciaAux(new RespostaEvidenciaEntity());
 	}
 	
 	public void setNovaEvidencia(){
-		this.setEvidenciaAux(new EvidenciaEntity());
+		this.getBean().setEvidenciaAux(new EvidenciaEntity());
 	}
 
 	public void addRespostaEvidencia(){
-		this.getRespostaEvidenciaAux().setConjuntoEvidencias(this.getConjuntoEvidenciasAux());
-		this.respostaEvidenciaBC.insert(this.getRespostaEvidenciaAux());
+		this.getBean().getRespostaEvidenciaAux().setConjuntoEvidencias(this.getBean().getConjuntoEvidenciasAux());
+		this.respostaEvidenciaBC.insert(this.getBean().getRespostaEvidenciaAux());
 	}
 
 	public void setEvidencia(){
-		String evidenciaNome = this.getEvidenciaNome();
-		String evidenciaDescricao = this.getEvidenciaDescricao();
-		this.evidenciaBC.insert(new EvidenciaEntity(evidenciaNome, evidenciaDescricao));
-	}
-
-	private ConjuntoEvidenciasEntity conjuntoEvidenciasAux;
-	private RespostaEvidenciaEntity respostaEvidenciaAux;
-	private EvidenciaEntity evidenciaAux;
-	private String evidenciaNome;
-	private String evidenciaDescricao;
-	
-	public String getEvidenciaNome() {
-		return evidenciaNome;
-	}
-
-	public void setEvidenciaNome(String evidenciaNome) {
-		this.evidenciaNome = evidenciaNome;
-	}
-
-	public String getEvidenciaDescricao() {
-		return evidenciaDescricao;
-	}
-
-	public void setEvidenciaDescricao(String evidenciaDescricao) {
-		this.evidenciaDescricao = evidenciaDescricao;
-	}
-
-	public ConjuntoEvidenciasEntity getConjuntoEvidenciasAux() {
-		return conjuntoEvidenciasAux;
-	}
-
-	public void setConjuntoEvidenciasAux(ConjuntoEvidenciasEntity conjuntoEvidenciasAux) {
-		this.conjuntoEvidenciasAux = conjuntoEvidenciasAux;
-	}
-
-	public RespostaEvidenciaEntity getRespostaEvidenciaAux() {
-		return respostaEvidenciaAux;
-	}
-
-	public void setRespostaEvidenciaAux(RespostaEvidenciaEntity respostaEvidenciaAux) {
-		this.respostaEvidenciaAux = respostaEvidenciaAux;
-	}
-
-	public EvidenciaEntity getEvidenciaAux() {
-		return evidenciaAux;
-	}
-
-	public void setEvidenciaAux(EvidenciaEntity evidenciaAux) {
-		this.evidenciaAux = evidenciaAux;
+		this.evidenciaBC.insert(this.getBean().getEvidenciaAux());
 	}
 	
 }

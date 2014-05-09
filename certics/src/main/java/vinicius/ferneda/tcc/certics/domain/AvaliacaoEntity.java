@@ -34,4 +34,32 @@ public class AvaliacaoEntity extends Avaliacao {
 		setVersaoCertics(versaoCertics);
 	}
 
+	private ConjuntoEvidenciasEntity conjuntoEvidenciasAux;
+	private RespostaEvidenciaEntity respostaEvidenciaAux;
+	private EvidenciaEntity evidenciaAux;
+
+	public ConjuntoEvidenciasEntity getConjuntoEvidenciasAux() {
+		return conjuntoEvidenciasAux;
+	}
+
+	public void setConjuntoEvidenciasAux(ConjuntoEvidenciasEntity conjuntoEvidenciasAux) {
+		this.conjuntoEvidenciasAux = conjuntoEvidenciasAux;
+	}
+
+	public RespostaEvidenciaEntity getRespostaEvidenciaAux() {
+		return respostaEvidenciaAux;
+	}
+
+	public void setRespostaEvidenciaAux(RespostaEvidenciaEntity respostaEvidenciaAux) {
+		this.respostaEvidenciaAux = respostaEvidenciaAux;
+	}
+
+	public EvidenciaEntity getEvidenciaAux() {
+		return evidenciaAux;
+	}
+
+	public void setEvidenciaAux(EvidenciaEntity evidenciaAux) {
+		this.evidenciaAux = evidenciaAux;
+	}
+
 }

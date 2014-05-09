@@ -24,3 +24,7 @@
 	width:100%;
 	align:center;
 }
+
+.semBorda tr, .semBorda td {  
+    border: none !important;  
+}

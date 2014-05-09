@@ -31,5 +31,5 @@ public class ConjuntoEvidenciasEntity extends ConjuntoEvidencias {
 		setAvaliacao(avaliacaoEntity);
 		setResultadoEsperado(resultadoEsperadoEntity);
 	}
-	
+
 }
