@@ -46,7 +46,7 @@ public abstract class ConjuntoEvidencias implements Serializable{
 	private ResultadoEsperadoEntity resultadoEsperado;
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	@JoinColumn(name="EVI_REVID")
+	@JoinColumn(name="REV_CEVID")
 	private List<RespostaEvidenciaEntity> respostas = new ArrayList<RespostaEvidenciaEntity>();
 
 	public Long getId() {
