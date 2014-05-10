@@ -39,6 +39,40 @@
 		<br />
 	
 		<p:fieldset id="fsEvidencias" legend="#{messages['conjuntoEvidencias.label']}" toggleable="true" toggleSpeed="500">
+			 <p:treeTable id="treetable" value="#{documentsController.root}" var="document">
+		        <f:facet name="header">
+		            Document Viewer
+		        </f:facet>
+		 
+		        <p:column style="width:32%">
+		            <f:facet name="header">
+		                Name
+		            </f:facet>
+		            <h:outputText value="#{document.name}" />
+		        </p:column>
+		 
+		        <p:column style="width:32%">
+		            <f:facet name="header">
+		                Size
+		            </f:facet>
+		            <h:outputText value="#{document.size}" />
+		        </p:column>
+		 
+		        <p:column style="width:32%">
+		            <f:facet name="header">
+		                Type
+		            </f:facet>
+		            <h:outputText value="#{document.type}" />
+		        </p:column>
+		 
+		        <p:column style="width:4%">
+		            <p:commandLink update=":form:documentPanel" oncomplete="PF('documentDialog').show()" title="View Detail" styleClass="ui-icon ui-icon-search">
+		                <f:setPropertyActionListener value="#{document}" target="#{documentsController.selectedDocument}" />
+		            </p:commandLink>
+		        </p:column>
+		    </p:treeTable>
+			
+			<!--
 			<p:dataTable id="lEvidencias" var="areaCompetencia" value="#{conjuntoEvidenciasEditMB.lEvidencias}" rowIndexVar="index">
        			<p:column>
 					<h:outputText id="areaCompetenciaTitulo" value="#{areaCompetencia.titulo}" />
@@ -138,6 +172,7 @@
 					</p:subTable>
 				</p:column>
 			</p:dataTable>
+			-->
 		</p:fieldset>
 	</ui:define>
 </ui:composition>

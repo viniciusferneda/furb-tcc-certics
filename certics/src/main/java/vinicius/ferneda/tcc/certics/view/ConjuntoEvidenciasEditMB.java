@@ -8,6 +8,9 @@ import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
+import org.primefaces.model.DefaultTreeNode;
+import org.primefaces.model.TreeNode;
+
 import vinicius.ferneda.tcc.certics.business.AvaliacaoBC;
 import vinicius.ferneda.tcc.certics.business.EvidenciaEntityBC;
 import vinicius.ferneda.tcc.certics.business.RespostaEvidenciaBC;
@@ -16,7 +19,9 @@ import vinicius.ferneda.tcc.certics.domain.AreaCompetenciaEntity;
 import vinicius.ferneda.tcc.certics.domain.AvaliacaoEntity;
 import vinicius.ferneda.tcc.certics.domain.ConjuntoEvidenciasEntity;
 import vinicius.ferneda.tcc.certics.domain.EvidenciaEntity;
+import vinicius.ferneda.tcc.certics.domain.EvidenciaProfissionalEntity;
 import vinicius.ferneda.tcc.certics.domain.RespostaEvidenciaEntity;
+import vinicius.ferneda.tcc.certics.domain.ResultadoEsperadoEntity;
 import vinicius.ferneda.tcc.certics.persistence.AreaCompetenciaDAO;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
@@ -117,4 +122,29 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 		this.evidenciaBC.insert(this.getBean().getEvidenciaAux());
 	}
 	
+	private TreeNode root;
+	
+	@SuppressWarnings("unused")
+	public TreeNode getRoot(){
+		List<AreaCompetenciaEntity> lAreaCompetencia = this.areaCompetenciaDAO.findByVersaoCerticsAndAvaliacaoID(this.getId(), this.getBean().getVersaoCertics().getId());
+		this.root = new DefaultTreeNode("root", null);
+		
+		for (AreaCompetenciaEntity areaCompetenciaEntity : lAreaCompetencia) {
+			TreeNode areaCompetencia = new DefaultTreeNode(areaCompetenciaEntity, root);
+			for (ResultadoEsperadoEntity resultadoEsperadoEntity : areaCompetenciaEntity.getResultadosEsperados()) {
+				TreeNode resultadoEsperado = new DefaultTreeNode(resultadoEsperadoEntity, areaCompetencia);
+				for (ConjuntoEvidenciasEntity conjuntoEvidenciasEntity : resultadoEsperadoEntity.getConjuntoEvidencias()) {
+					TreeNode conjuntoEvidencias = new DefaultTreeNode(conjuntoEvidenciasEntity, resultadoEsperado);
+					for (RespostaEvidenciaEntity respostaEvidenciaEntity : conjuntoEvidenciasEntity.getRespostas()) {
+						TreeNode respostaEvidencia = new DefaultTreeNode(respostaEvidenciaEntity, conjuntoEvidencias);
+						for (EvidenciaProfissionalEntity evidenciaProfissionalEntity : respostaEvidenciaEntity.getProfissionais()) {
+							TreeNode evidenciaProfissional = new DefaultTreeNode(evidenciaProfissionalEntity, respostaEvidencia);
+						}
+					}
+				}
+			}
+		}
+		
+		return this.root;
+	}
 }
