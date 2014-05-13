@@ -8,6 +8,7 @@ import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
+import org.primefaces.event.NodeSelectEvent;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 
@@ -19,10 +20,10 @@ import vinicius.ferneda.tcc.certics.domain.AreaCompetenciaEntity;
 import vinicius.ferneda.tcc.certics.domain.AvaliacaoEntity;
 import vinicius.ferneda.tcc.certics.domain.ConjuntoEvidenciasEntity;
 import vinicius.ferneda.tcc.certics.domain.EvidenciaEntity;
-import vinicius.ferneda.tcc.certics.domain.EvidenciaProfissionalEntity;
 import vinicius.ferneda.tcc.certics.domain.RespostaEvidenciaEntity;
 import vinicius.ferneda.tcc.certics.domain.ResultadoEsperadoEntity;
 import vinicius.ferneda.tcc.certics.persistence.AreaCompetenciaDAO;
+import vinicius.ferneda.tcc.certics.persistence.ConjuntoEvidenciasDAO;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
@@ -39,6 +40,9 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 
 	@Inject
 	private AreaCompetenciaDAO areaCompetenciaDAO;
+	
+	@Inject
+	private ConjuntoEvidenciasDAO conjuntoEvidenciasDAO;
 
 	@Inject
 	private RespostaEvidenciaBC respostaEvidenciaBC;
@@ -46,6 +50,15 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 	@Inject
 	private EvidenciaEntityBC evidenciaBC;
 
+	private TreeNode root;
+	private TreeNode selectedNode;
+
+	private DataModel<ConjuntoEvidenciasEntity> lConjuntoEvidencias;
+	
+	public DataModel<ConjuntoEvidenciasEntity> getlConjuntoEvidencias(){
+		return this.lConjuntoEvidencias;
+	}
+	
 	private DataModel<AreaCompetenciaEntity> lEvidencias;
 	
 	public DataModel<AreaCompetenciaEntity> getlEvidencias(){
@@ -113,38 +126,40 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 		this.getBean().setEvidenciaAux(new EvidenciaEntity());
 	}
 
+	public void setEvidencia(){
+		this.evidenciaBC.insert(this.getBean().getEvidenciaAux());
+	}
+
 	public void addRespostaEvidencia(){
 		this.getBean().getRespostaEvidenciaAux().setConjuntoEvidencias(this.getBean().getConjuntoEvidenciasAux());
 		this.respostaEvidenciaBC.insert(this.getBean().getRespostaEvidenciaAux());
 	}
 
-	public void setEvidencia(){
-		this.evidenciaBC.insert(this.getBean().getEvidenciaAux());
-	}
-	
-	private TreeNode root;
-	
 	@SuppressWarnings("unused")
 	public TreeNode getRoot(){
 		List<AreaCompetenciaEntity> lAreaCompetencia = this.areaCompetenciaDAO.findByVersaoCerticsAndAvaliacaoID(this.getId(), this.getBean().getVersaoCertics().getId());
 		this.root = new DefaultTreeNode("root", null);
-		
 		for (AreaCompetenciaEntity areaCompetenciaEntity : lAreaCompetencia) {
-			TreeNode areaCompetencia = new DefaultTreeNode(areaCompetenciaEntity, root);
+			TreeNode areaCompetencia = new DefaultTreeNode(new InformacoesArvore(areaCompetenciaEntity.getId(), areaCompetenciaEntity.getTitulo(), "areaCompetencia"), root);
 			for (ResultadoEsperadoEntity resultadoEsperadoEntity : areaCompetenciaEntity.getResultadosEsperados()) {
-				TreeNode resultadoEsperado = new DefaultTreeNode(resultadoEsperadoEntity, areaCompetencia);
-				for (ConjuntoEvidenciasEntity conjuntoEvidenciasEntity : resultadoEsperadoEntity.getConjuntoEvidencias()) {
-					TreeNode conjuntoEvidencias = new DefaultTreeNode(conjuntoEvidenciasEntity, resultadoEsperado);
-					for (RespostaEvidenciaEntity respostaEvidenciaEntity : conjuntoEvidenciasEntity.getRespostas()) {
-						TreeNode respostaEvidencia = new DefaultTreeNode(respostaEvidenciaEntity, conjuntoEvidencias);
-						for (EvidenciaProfissionalEntity evidenciaProfissionalEntity : respostaEvidenciaEntity.getProfissionais()) {
-							TreeNode evidenciaProfissional = new DefaultTreeNode(evidenciaProfissionalEntity, respostaEvidencia);
-						}
-					}
-				}
+				TreeNode resultadoEsperado = new DefaultTreeNode(new InformacoesArvore(resultadoEsperadoEntity.getId(), resultadoEsperadoEntity.getTitulo(), "resultadoEsperado"), areaCompetencia);
 			}
 		}
-		
 		return this.root;
 	}
+	
+	public TreeNode getSelectedNode() {
+        return selectedNode;
+    }
+ 
+    public void setSelectedNode(TreeNode selectedNode) {
+        this.selectedNode = selectedNode;
+    }
+    
+    public void onNodeSelect(NodeSelectEvent event) {
+    	if("resultadoEsperado".equals(((InformacoesArvore)event.getTreeNode().getData()).getTipo())){
+    		this.lConjuntoEvidencias = new ListDataModel<ConjuntoEvidenciasEntity>(this.conjuntoEvidenciasDAO.findByResultadoEsperadoID(((InformacoesArvore)event.getTreeNode().getData()).getId())); 
+    	}
+    }
+    
 }

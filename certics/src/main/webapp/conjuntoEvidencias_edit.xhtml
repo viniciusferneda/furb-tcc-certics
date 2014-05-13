@@ -3,28 +3,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
 	<ui:define name="body">
-		<p:toolbar>
-			<p:toolbarGroup align="left">
-				<p:commandButton value="#{messages['button.save']}" action="#{conjuntoEvidenciasEditMB.insert}"
-					rendered="#{!conjuntoEvidenciasEditMB.updateMode}" ajax="false" />
-				<p:commandButton value="#{messages['button.save']}" action="#{conjuntoEvidenciasEditMB.update}"
-					rendered="#{conjuntoEvidenciasEditMB.updateMode}" ajax="false" />
-				<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
-					rendered="#{conjuntoEvidenciasEditMB.updateMode}" type="button" immediate="true" ajax="false" />
-				<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
-					header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
-					<h:commandButton value="#{messages['button.dialog.yes']}" action="#{conjuntoEvidenciasEditMB.delete}" immediate="true"
-						ajax="false" />
-					<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
-				</p:confirmDialog>
-			</p:toolbarGroup>
-		</p:toolbar>
-
-		<br />
-
-		<p:fieldset id="fsInformacoes" legend="#{messages['conjuntoEvidencias.label']}" toggleable="true" toggleSpeed="500">
-			<h:panelGrid id="fieldsconjuntoEvidencias" columns="3">
-			
+	<h:form id="formRegistroEvidencias"> 
+		<p:layout id="layoutRegistroEvidencias" style="width:100%;height:100%">
+			<p:layoutUnit id="informacoesAvalicao" position="north" style="width:100%;height:100%">
 				<h:outputLabel value="#{messages['conjuntoEvidencias.label.id']}: " for="id" styleClass="text-input" />
 				<h:outputText id="id" value="#{conjuntoEvidenciasEditMB.bean.id}" />
 				<p:message for="id" />
@@ -32,147 +13,113 @@
 				<h:outputLabel value="#{messages['software.label.nome']}: " for="softwareNome" styleClass="text-input" />
 				<h:outputText id="softwareNome" value="#{conjuntoEvidenciasEditMB.bean.software.nome}" />
 				<p:message for="softwareNome" />
-					 
-			</h:panelGrid>
-		</p:fieldset>
-
-		<br />
-	
-		<p:fieldset id="fsEvidencias" legend="#{messages['conjuntoEvidencias.label']}" toggleable="true" toggleSpeed="500">
-			 <p:treeTable id="treetable" value="#{documentsController.root}" var="document">
-		        <f:facet name="header">
-		            Document Viewer
-		        </f:facet>
-		 
-		        <p:column style="width:32%">
-		            <f:facet name="header">
-		                Name
-		            </f:facet>
-		            <h:outputText value="#{document.name}" />
-		        </p:column>
-		 
-		        <p:column style="width:32%">
-		            <f:facet name="header">
-		                Size
-		            </f:facet>
-		            <h:outputText value="#{document.size}" />
-		        </p:column>
-		 
-		        <p:column style="width:32%">
-		            <f:facet name="header">
-		                Type
-		            </f:facet>
-		            <h:outputText value="#{document.type}" />
-		        </p:column>
-		 
-		        <p:column style="width:4%">
-		            <p:commandLink update=":form:documentPanel" oncomplete="PF('documentDialog').show()" title="View Detail" styleClass="ui-icon ui-icon-search">
-		                <f:setPropertyActionListener value="#{document}" target="#{documentsController.selectedDocument}" />
-		            </p:commandLink>
-		        </p:column>
-		    </p:treeTable>
+			</p:layoutUnit>
 			
-			<!--
-			<p:dataTable id="lEvidencias" var="areaCompetencia" value="#{conjuntoEvidenciasEditMB.lEvidencias}" rowIndexVar="index">
-       			<p:column>
-					<h:outputText id="areaCompetenciaTitulo" value="#{areaCompetencia.titulo}" />
-					<p:subTable id="stResultadoEsperado" var="resultadoEsperado" value="#{areaCompetencia.resultadosEsperados}">
-						<p:column>
-							<h:outputText id="resultadoEsperadoTitulo" value="#{resultadoEsperado.titulo}"/>
-							<p:subTable id="stConjuntoEvidencias" var="conjuntoEvidencias" value="#{resultadoEsperado.conjuntoEvidencias}">
+			<p:layoutUnit id="treeRegistroEvidencias" position="west" resizable="true" size="20%">
+				<p:tree id="tree" value="#{conjuntoEvidenciasEditMB.root}" var="node" dynamic="true" cache="false" 
+            		selectionMode="single" selection="#{conjuntoEvidenciasEditMB.selectedNode}" style="width:100%;height:100%">
+			        
+			        <p:ajax event="select" listener="#{conjuntoEvidenciasEditMB.onNodeSelect}" update=":formRegistroEvidencias:dtConjuntoEvidencias"/>
+			        
+			        <p:treeNode id="treeNode">
+			            <h:outputText id="lblNode" value="#{node.titulo}"/>
+			        </p:treeNode>
+			    </p:tree>	
+			</p:layoutUnit>
+			
+			<p:layoutUnit id="principalRegistroEvidencia" position="center" size="80%">
+				<p:dataTable id="dtConjuntoEvidencias" var="conjuntoEvidencias" value="#{conjuntoEvidenciasEditMB.lConjuntoEvidencias}">
+					<p:column>
+						<p:commandButton value="#{messages['button.new']}" 
+							actionListener="#{conjuntoEvidenciasEditMB.setConjuntoEvidencias(conjuntoEvidencias)}"
+							immediate="true"
+							update=":formRegistroEvidencias:panelRegistroEvidencia" 
+							oncomplete="dialogEvidencia.show()"/>
+
+						<p:subTable id="sbEvidencias" var="evidencias" value="#{conjuntoEvidencias.respostas}">
+							<f:facet name="header">
+								#{messages['evidenciaEntity.label']}
+							</f:facet>
+							
+							<p:column>
+								<h:outputText id="evidenciasNome" value="#{evidencias.evidencia.nome}"/>
+							</p:column>
+							
+							<p:column>
+								<h:outputText id="evidenciasAbrangencia" value="#{evidencias.abrangencia}"/>
+							</p:column>
+								
+							<p:column>
+								<h:outputText id="evidenciasContribuicao" value="#{evidencias.contribuicao}"/>
+							</p:column>
+							
+							<p:column>
+								<h:outputText id="evidenciasMotivo" value="#{evidencias.motivo}"/>
+							</p:column>
+								
+							<br/>
+							<p:commandButton value="#{messages['button.new']}"/>
+
+							<p:subTable id="sbProfissionais" var="profissionais" value="#{evidencias.profissionais}">
+							
 								<p:column>
-									<p:commandButton value="#{messages['button.new']}" 
-										actionListener="#{conjuntoEvidenciasEditMB.setConjuntoEvidencias(conjuntoEvidencias)}"
-										immediate="true"
-										update="panelRegistroEvidencia" 
-										oncomplete="dialogEvidencia.show()"/>
-		
-									<p:dataTable id="sbEvidencias" var="evidencias" value="#{conjuntoEvidencias.respostas}">
-										<f:facet name="header">
-											#{messages['evidenciaEntity.label']}
-										</f:facet>
-										
-										<p:column>
-											<h:outputText id="evidenciasNome" value="#{evidencias.evidencia.nome}"/>
-										</p:column>
-										
-										<p:column>
-											<h:outputText id="evidenciasAbrangencia" value="#{evidencias.abrangencia}"/>
-										</p:column>
-											
-										<p:column>
-											<h:outputText id="evidenciasContribuicao" value="#{evidencias.contribuicao}"/>
-										</p:column>
-										
-										<p:column>
-											<h:outputText id="evidenciasMotivo" value="#{evidencias.motivo}"/>
-										</p:column>
-											
-										<br/>
-										<p:commandButton value="#{messages['button.new']}"/>
-
-										<p:subTable id="sbProfissionais" var="profissionais" value="#{evidencias.profissionais}">
-										
-											<p:column>
-												<h:outputText id="profissionaisNome" value="#{profissionais.profissional.nome}"/>
-											</p:column>
-											
-											<p:column>
-												<h:outputText id="profissionaisEnvolvimento" value="#{profissionais.envolvimento}"/>
-											</p:column>
-												
-											<p:column>
-												<h:outputText id="profissionaisFazParteDaOrganizacao" value="#{profissionais.fazParteOrganizacao}"/>
-											</p:column>
-										</p:subTable>
-									</p:dataTable>
+									<h:outputText id="profissionaisNome" value="#{profissionais.profissional.nome}"/>
+								</p:column>
+								
+								<p:column>
+									<h:outputText id="profissionaisEnvolvimento" value="#{profissionais.envolvimento}"/>
+								</p:column>
 									
-									<br/>
-									
-									<h:outputLabel value="#{messages['conjuntoEvidencias.label.comentario']}: " for="conjuntoEvidenciasComentario" styleClass="text-input" />
-									<h:inputText id="conjuntoEvidenciasComentario" value="#{conjuntoEvidencias.comentario}" title="#{messages['conjuntoEvidencias.alt.comentario']}" />
-									<p:message for="conjuntoEvidenciasComentario" />
-									
-									<p:dialog id="modalEvidencia"
-											header="Registrar evidência" 
-											widgetVar="dialogEvidencia" 
-											width="400" height="400"
-											resizable="false"
-											closable="true">  
-							   			<h:panelGrid id="panelRegistroEvidencia" styleClass="semBorda">
-
-							   				<h:outputLabel value="#{messages['evidenciaEntity.label']}: " for="evidencia" styleClass="text-input" />
-										    <p:selectOneMenu id="evidencia" value="#{conjuntoEvidenciasEditMB.bean.respostaEvidenciaAux.evidencia}" effect="fade" converter="ConversorEvidencia">
-												<f:selectItem itemLabel="Selecione" itemValue="" />
-												<f:selectItems value="#{conjuntoEvidenciasEditMB.evidenciaList}" var="varEvidencia" itemLabel="#{varEvidencia.label}" itemValue="#{varEvidencia}" />						
-											</p:selectOneMenu>
-											<p:message for="evidencia" />
-
-											<h:outputLabel value="#{messages['respostaEvidencia.label.abrangencia']}: " for="abrangencia" styleClass="text-input" />
-											<h:inputText id="abrangencia" value="#{conjuntoEvidenciasEditMB.bean.respostaEvidenciaAux.abrangencia}" title="#{messages['respostaEvidencia.alt.abrangencia']}" />
-											<p:message for="abrangencia" />
-
-											<h:outputLabel value="#{messages['respostaEvidencia.label.motivo']}: " for="motivo" styleClass="text-input" />
-											<h:inputText id="motivo" value="#{conjuntoEvidenciasEditMB.bean.respostaEvidenciaAux.motivo}" title="#{messages['respostaEvidencia.alt.motivo']}" />
-											<p:message for="motivo" />
-
-											<h:outputLabel value="#{messages['respostaEvidencia.label.contribuicao']}: " for="contribuicao" styleClass="text-input" />
-											<h:inputText id="contribuicao" value="#{conjuntoEvidenciasEditMB.bean.respostaEvidenciaAux.contribuicao}" title="#{messages['respostaEvidencia.alt.contribuicao']}" />
-											<p:message for="contribuicao" />
-
-											<p:commandButton value="#{messages['button.save']}"
-												actionListener="#{conjuntoEvidenciasEditMB.addRespostaEvidencia()}"
-												update="stConjuntoEvidencias"
-												oncomplete="dialogEvidencia.hide();"/>
-										</h:panelGrid>
-									</p:dialog>										
+								<p:column>
+									<h:outputText id="profissionaisFazParteDaOrganizacao" value="#{profissionais.fazParteOrganizacao}"/>
 								</p:column>
 							</p:subTable>
-						</p:column>
-					</p:subTable>
-				</p:column>
-			</p:dataTable>
-			-->
-		</p:fieldset>
+						</p:subTable>
+						
+						<br/>
+						
+						<h:outputLabel value="#{messages['conjuntoEvidencias.label.comentario']}: " for="conjuntoEvidenciasComentario" styleClass="text-input" />
+						<h:inputText id="conjuntoEvidenciasComentario" value="#{conjuntoEvidencias.comentario}" title="#{messages['conjuntoEvidencias.alt.comentario']}" />
+						<p:message for="conjuntoEvidenciasComentario" />
+						
+					</p:column>
+				</p:dataTable>
+			</p:layoutUnit>
+		</p:layout>
+		
+		<p:dialog id="modalEvidencia"
+			header="Registrar evidência" 
+			widgetVar="dialogEvidencia" 
+			width="400" height="400"
+			resizable="false"
+			closable="true">  
+	  		<h:panelGrid id="panelRegistroEvidencia" styleClass="semBorda">
+	
+				<h:outputLabel value="#{messages['evidenciaEntity.label']}: " for="evidencia" styleClass="text-input" />
+			    <p:selectOneMenu id="evidencia" value="#{conjuntoEvidenciasEditMB.bean.respostaEvidenciaAux.evidencia}" effect="fade" converter="ConversorEvidencia">
+					<f:selectItem itemLabel="Selecione" itemValue="" />
+					<f:selectItems value="#{conjuntoEvidenciasEditMB.evidenciaList}" var="varEvidencia" itemLabel="#{varEvidencia.label}" itemValue="#{varEvidencia}" />						
+				</p:selectOneMenu>
+				<p:message for="evidencia" />
+	
+				<h:outputLabel value="#{messages['respostaEvidencia.label.abrangencia']}: " for="abrangencia" styleClass="text-input" />
+				<h:inputText id="abrangencia" value="#{conjuntoEvidenciasEditMB.bean.respostaEvidenciaAux.abrangencia}" title="#{messages['respostaEvidencia.alt.abrangencia']}" />
+				<p:message for="abrangencia" />
+	
+				<h:outputLabel value="#{messages['respostaEvidencia.label.motivo']}: " for="motivo" styleClass="text-input" />
+				<h:inputText id="motivo" value="#{conjuntoEvidenciasEditMB.bean.respostaEvidenciaAux.motivo}" title="#{messages['respostaEvidencia.alt.motivo']}" />
+				<p:message for="motivo" />
+	
+				<h:outputLabel value="#{messages['respostaEvidencia.label.contribuicao']}: " for="contribuicao" styleClass="text-input" />
+				<h:inputText id="contribuicao" value="#{conjuntoEvidenciasEditMB.bean.respostaEvidenciaAux.contribuicao}" title="#{messages['respostaEvidencia.alt.contribuicao']}" />
+				<p:message for="contribuicao" />
+	
+				<p:commandButton value="#{messages['button.save']}"
+					actionListener="#{conjuntoEvidenciasEditMB.addRespostaEvidencia()}"
+					update="dtConjuntoEvidencias"
+					oncomplete="dialogEvidencia.hide();"/>
+			</h:panelGrid>
+		</p:dialog>
+	</h:form>
 	</ui:define>
 </ui:composition>
