@@ -145,7 +145,7 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
     	}
     }
 
-    public void setNovaRespostaEvidencia(){
+    public void novaRespostaEvidencia(){
     	this.getBean().setRespostaEvidenciaAux(new RespostaEvidenciaEntity());
     }
     
