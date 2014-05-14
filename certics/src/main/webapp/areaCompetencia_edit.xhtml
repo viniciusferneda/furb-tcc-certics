@@ -4,74 +4,51 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
 	<ui:define name="body">
-		<p:toolbar>
-			<p:toolbarGroup align="left">
-				<p:commandButton value="#{messages['button.save']}" action="#{areaCompetenciaEditMB.insert}"
-					rendered="#{!areaCompetenciaEditMB.updateMode}" ajax="false" />
-				<p:commandButton value="#{messages['button.save']}" action="#{areaCompetenciaEditMB.update}"
-					rendered="#{areaCompetenciaEditMB.updateMode}" ajax="false" />
-				<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
-					rendered="#{areaCompetenciaEditMB.updateMode}" type="button" immediate="true" ajax="false" />
-				<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
-					header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
-					<h:commandButton value="#{messages['button.dialog.yes']}" action="#{areaCompetenciaEditMB.delete}" immediate="true"
-						ajax="false" />
-					<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
-				</p:confirmDialog>
-			</p:toolbarGroup>
-		</p:toolbar>
-
-		<br />
-
-		<p:fieldset legend="#{messages['areaCompetencia.label']}" toggleable="true" toggleSpeed="500">
-			<h:panelGrid id="fieldsareaCompetencia" columns="3">
-			
-				<h:outputLabel value="#{messages['areaCompetencia.label.id']}: " for="id" styleClass="text-input" />
-				<h:outputText id="id" value="#{areaCompetenciaEditMB.bean.id}" />
-				<p:message for="id" />
-					
-				<h:outputLabel value="#{messages['areaCompetencia.label.titulo']}: " for="titulo" styleClass="text-input" />
-				<h:inputText id="titulo" value="#{areaCompetenciaEditMB.bean.titulo}" title="#{messages['areaCompetencia.alt.titulo']}" />
-				<p:message for="titulo" />
-					
-				<h:outputLabel value="#{messages['areaCompetencia.label.perguntaChave']}: " for="perguntaChave" styleClass="text-input" />
-				<h:inputText id="perguntaChave" value="#{areaCompetenciaEditMB.bean.perguntaChave}" title="#{messages['areaCompetencia.alt.perguntaChave']}" />
-				<p:message for="perguntaChave" />
-					
-				<h:outputLabel value="#{messages['areaCompetencia.label.descricao']}: " for="descricao" styleClass="text-input" />
-				<h:inputText id="descricao" value="#{areaCompetenciaEditMB.bean.descricao}" title="#{messages['areaCompetencia.alt.descricao']}" />
-				<p:message for="descricao" />
+		<h:form prependId="false">
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton value="#{messages['button.save']}" action="#{areaCompetenciaEditMB.insert}"
+						rendered="#{!areaCompetenciaEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.save']}" action="#{areaCompetenciaEditMB.update}"
+						rendered="#{areaCompetenciaEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
+						rendered="#{areaCompetenciaEditMB.updateMode}" type="button" immediate="true" ajax="false" />
+					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{areaCompetenciaEditMB.delete}" immediate="true"
+							ajax="false" />
+						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+	
+			<br />
+	
+			<p:fieldset legend="#{messages['areaCompetencia.label']}" toggleable="true" toggleSpeed="500">
+				<h:panelGrid id="fieldsareaCompetencia" columns="3">
 				
-				<h:outputLabel value="#{messages['areaCompetencia.label.versaoCertics']}: " styleClass="text-input" />
-				<p:pickList id="pickList" value="#{areaCompetenciaEditMB.lVersaoCertics}" var="versaoCertics" itemLabel="#{versaoCertics.nome}" itemValue="#{versaoCertics}" converter="ConversorVersaoCertics"/>
-					
-			</h:panelGrid>
-		</p:fieldset>
-		
-		<p:fieldset legend="#{messages['resultadoEsperado.label']}" toggleable="true" toggleSpeed="500">
-			<h:panelGrid id="fieldsresultadoEsperado" columns="1"> 
-				<p:dataTable id="listResultadoEsperado" var="resultadoEsperado" value="#{areaCompetenciaEditMB.resultadoEsperadoList}" rowIndexVar="index">
+					<h:outputLabel value="#{messages['areaCompetencia.label.id']}: " for="id" styleClass="text-input" />
+					<h:outputText id="id" value="#{areaCompetenciaEditMB.bean.id}" />
+					<p:message for="id" />
 						
-			        <p:column>
-  			           <h:outputLabel value="#{messages['resultadoEsperado.label.id']}: " for="id" styleClass="text-input" />
-			           <h:outputText id="id" value="#{resultadoEsperado.id}" />
-					   <p:message for="id" />
-			  	   </p:column>					  
-				
-			        <p:column>
-  			           <h:outputLabel value="#{messages['resultadoEsperado.label.titulo']}: " for="titulo" styleClass="text-input" />
-			           <h:inputText id="titulo" value="#{resultadoEsperado.titulo}" title="#{messages['resultadoEsperado.alt.titulo']}" />
-					   <p:message for="titulo" />
-			  	   </p:column>					  
-				
-			        <p:column>
-  			           <h:outputLabel value="#{messages['resultadoEsperado.label.descricao']}: " for="descricao" styleClass="text-input" />
-			           <h:inputText id="descricao" value="#{resultadoEsperado.descricao}" title="#{messages['resultadoEsperado.alt.descricao']}" />
-					   <p:message for="descricao" />
-			  	   </p:column>					  
-				
-				</p:dataTable>
-			</h:panelGrid>
-		</p:fieldset>
+					<h:outputLabel value="#{messages['areaCompetencia.label.titulo']}: " for="titulo" styleClass="text-input" />
+					<h:inputText id="titulo" value="#{areaCompetenciaEditMB.bean.titulo}" title="#{messages['areaCompetencia.alt.titulo']}" />
+					<p:message for="titulo" />
+						
+					<h:outputLabel value="#{messages['areaCompetencia.label.perguntaChave']}: " for="perguntaChave" styleClass="text-input" />
+					<h:inputText id="perguntaChave" value="#{areaCompetenciaEditMB.bean.perguntaChave}" title="#{messages['areaCompetencia.alt.perguntaChave']}" />
+					<p:message for="perguntaChave" />
+						
+					<h:outputLabel value="#{messages['areaCompetencia.label.descricao']}: " for="descricao" styleClass="text-input" />
+					<h:inputText id="descricao" value="#{areaCompetenciaEditMB.bean.descricao}" title="#{messages['areaCompetencia.alt.descricao']}" />
+					<p:message for="descricao" />
+					
+					<h:outputLabel value="#{messages['areaCompetencia.label.versaoCertics']}: " styleClass="text-input" />
+					<p:pickList id="pickList" value="#{areaCompetenciaEditMB.lVersaoCertics}" var="versaoCertics" itemLabel="#{versaoCertics.nome}" itemValue="#{versaoCertics}" converter="ConversorVersaoCertics"/>
+						
+				</h:panelGrid>
+			</p:fieldset>
+			
+		</h:form>
 	</ui:define>
 </ui:composition>

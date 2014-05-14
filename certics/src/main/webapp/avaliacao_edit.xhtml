@@ -4,66 +4,68 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
 	<ui:define name="body">
-		<p:toolbar>
-			<p:toolbarGroup align="left">
-				<p:commandButton value="#{messages['button.save']}" action="#{avaliacaoEditMB.insert}"
-					rendered="#{!avaliacaoEditMB.updateMode}" ajax="false" />
-				<p:commandButton value="#{messages['button.save']}" action="#{avaliacaoEditMB.update}"
-					rendered="#{avaliacaoEditMB.updateMode}" ajax="false" />
-				<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
-					rendered="#{avaliacaoEditMB.updateMode}" type="button" immediate="true" ajax="false" />
-				<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
-					header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
-					<h:commandButton value="#{messages['button.dialog.yes']}" action="#{avaliacaoEditMB.delete}" immediate="true"
-						ajax="false" />
-					<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
-				</p:confirmDialog>
-			</p:toolbarGroup>
-		</p:toolbar>
-	
-		<br />
-	
-		<p:fieldset legend="#{messages['avaliacao.label']}" toggleable="true" toggleSpeed="500">
-			<h:panelGrid id="fieldsavaliacao" columns="3">
-			
-				<h:outputLabel value="#{messages['avaliacao.label.id']}: " for="id" styleClass="text-input" />
-				<h:outputText id="id" value="#{avaliacaoEditMB.bean.id}" />
-				<p:message for="id" />
-					
-				<h:outputLabel value="#{messages['avaliacao.label.versaoCertics']}: " for="versaoCertics" styleClass="text-input" />
-				<p:selectOneMenu id="versaoCertics" value="#{avaliacaoEditMB.bean.versaoCertics}"  effect="fade" converter="ConversorVersaoCertics">
-					<f:selectItem itemLabel="Selecione" itemValue="" />
-					<f:selectItems value="#{avaliacaoEditMB.versaoCerticsList}" var="varVersaoCertics" itemLabel="#{varVersaoCertics.nome}"  itemValue="#{varVersaoCertics}" />						
-				</p:selectOneMenu>
-				<p:message for="versaoCertics" />
-					
-				<h:outputLabel value="#{messages['avaliacao.label.dataAvaliacao']}: " for="dataAvaliacao" styleClass="text-input" />
-				<p:calendar id="dataAvaliacao" value="#{avaliacaoEditMB.bean.dataAvaliacao}"
-				   pattern="#{messages['label.date.pattern']}" navigator="true" showButtonPanel="true"
-				   locale="#{locales.currentLocale}" title="#{messages['avaliacao.alt.dataAvaliacao']}" />
-				<p:message for="dataAvaliacao" />
-					
-				<h:outputLabel value="#{messages['software.label']}: " for="software" styleClass="text-input" />
-			    <p:selectOneMenu id="software" value="#{avaliacaoEditMB.bean.software}"  effect="fade" converter="ConversorSoftware">
-					<f:selectItem itemLabel="Selecione" itemValue="" />
-					<f:selectItems value="#{avaliacaoEditMB.softwareList}" var="varSoftware" itemLabel="#{varSoftware.id}"  itemValue="#{varSoftware}" />						
-				</p:selectOneMenu>
-				<p:message for="software" />								  
-							 
-				<h:outputLabel value="#{messages['avaliador.label']}: " for="avaliador" styleClass="text-input" />
-			    <p:selectOneMenu id="avaliador" value="#{avaliacaoEditMB.bean.avaliador}"  effect="fade" converter="ConversorAvaliador">
-					<f:selectItem itemLabel="Selecione" itemValue="" />
-					<f:selectItems value="#{avaliacaoEditMB.avaliadorList}" var="varAvaliador" itemLabel="#{varAvaliador.id}"  itemValue="#{varAvaliador}" />						
-				</p:selectOneMenu>
-				<p:message for="avaliador" />								  
-	
-				<h:outputLabel value="#{messages['avaliacao.label.pontuacao']}: " for="pontuacao" styleClass="text-input" />
-				<p:selectOneMenu id="pontuacao" effect="fade" value="#{avaliacaoEditMB.bean.pontuacao}">
-					<f:selectItems value="#{avaliacaoEditMB.pontuacao}" />
-				</p:selectOneMenu>					
-				<p:message for="pontuacao" />
-							 
-			</h:panelGrid>
-		</p:fieldset>
+		<h:form prependId="false">
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton value="#{messages['button.save']}" action="#{avaliacaoEditMB.insert}"
+						rendered="#{!avaliacaoEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.save']}" action="#{avaliacaoEditMB.update}"
+						rendered="#{avaliacaoEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
+						rendered="#{avaliacaoEditMB.updateMode}" type="button" immediate="true" ajax="false" />
+					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{avaliacaoEditMB.delete}" immediate="true"
+							ajax="false" />
+						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+		
+			<br />
+		
+			<p:fieldset legend="#{messages['avaliacao.label']}" toggleable="true" toggleSpeed="500">
+				<h:panelGrid id="fieldsavaliacao" columns="3">
+				
+					<h:outputLabel value="#{messages['avaliacao.label.id']}: " for="id" styleClass="text-input" />
+					<h:outputText id="id" value="#{avaliacaoEditMB.bean.id}" />
+					<p:message for="id" />
+						
+					<h:outputLabel value="#{messages['avaliacao.label.versaoCertics']}: " for="versaoCertics" styleClass="text-input" />
+					<p:selectOneMenu id="versaoCertics" value="#{avaliacaoEditMB.bean.versaoCertics}"  effect="fade" converter="ConversorVersaoCertics">
+						<f:selectItem itemLabel="Selecione" itemValue="" />
+						<f:selectItems value="#{avaliacaoEditMB.versaoCerticsList}" var="varVersaoCertics" itemLabel="#{varVersaoCertics.nome}"  itemValue="#{varVersaoCertics}" />						
+					</p:selectOneMenu>
+					<p:message for="versaoCertics" />
+						
+					<h:outputLabel value="#{messages['avaliacao.label.dataAvaliacao']}: " for="dataAvaliacao" styleClass="text-input" />
+					<p:calendar id="dataAvaliacao" value="#{avaliacaoEditMB.bean.dataAvaliacao}"
+					   pattern="#{messages['label.date.pattern']}" navigator="true" showButtonPanel="true"
+					   locale="#{locales.currentLocale}" title="#{messages['avaliacao.alt.dataAvaliacao']}" />
+					<p:message for="dataAvaliacao" />
+						
+					<h:outputLabel value="#{messages['software.label']}: " for="software" styleClass="text-input" />
+				    <p:selectOneMenu id="software" value="#{avaliacaoEditMB.bean.software}"  effect="fade" converter="ConversorSoftware">
+						<f:selectItem itemLabel="Selecione" itemValue="" />
+						<f:selectItems value="#{avaliacaoEditMB.softwareList}" var="varSoftware" itemLabel="#{varSoftware.id}"  itemValue="#{varSoftware}" />						
+					</p:selectOneMenu>
+					<p:message for="software" />								  
+								 
+					<h:outputLabel value="#{messages['avaliador.label']}: " for="avaliador" styleClass="text-input" />
+				    <p:selectOneMenu id="avaliador" value="#{avaliacaoEditMB.bean.avaliador}"  effect="fade" converter="ConversorAvaliador">
+						<f:selectItem itemLabel="Selecione" itemValue="" />
+						<f:selectItems value="#{avaliacaoEditMB.avaliadorList}" var="varAvaliador" itemLabel="#{varAvaliador.id}"  itemValue="#{varAvaliador}" />						
+					</p:selectOneMenu>
+					<p:message for="avaliador" />								  
+		
+					<h:outputLabel value="#{messages['avaliacao.label.pontuacao']}: " for="pontuacao" styleClass="text-input" />
+					<p:selectOneMenu id="pontuacao" effect="fade" value="#{avaliacaoEditMB.bean.pontuacao}">
+						<f:selectItems value="#{avaliacaoEditMB.pontuacao}" />
+					</p:selectOneMenu>					
+					<p:message for="pontuacao" />
+								 
+				</h:panelGrid>
+			</p:fieldset>
+		</h:form>
 	</ui:define>
 </ui:composition>

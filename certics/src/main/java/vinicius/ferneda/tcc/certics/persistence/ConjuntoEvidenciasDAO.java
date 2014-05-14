@@ -14,9 +14,14 @@ public class ConjuntoEvidenciasDAO extends JPACrud<ConjuntoEvidenciasEntity, Lon
 	private static final long serialVersionUID = 1L;
 	
 	@SuppressWarnings("unchecked")
-	public List<ConjuntoEvidenciasEntity> findByResultadoEsperadoID(Long resultadoEsperadoID){
+	public ConjuntoEvidenciasEntity findByResultadoEsperadoID(Long resultadoEsperadoID){
 		Query query = getEntityManager().createNamedQuery("ConjuntoEvidenciasEntity.findByResultadoEsperadoID");
 		query.setParameter("resultadoEsperadoID", resultadoEsperadoID);
-		return query.getResultList();
+		List<ConjuntoEvidenciasEntity> lConjuntoEvidencias = query.getResultList();
+		if(lConjuntoEvidencias != null && !lConjuntoEvidencias.isEmpty()){
+			return lConjuntoEvidencias.get(0);
+		}else{
+			return null;
+		}
     }
 }

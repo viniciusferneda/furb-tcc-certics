@@ -4,147 +4,149 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
 	<ui:define name="body">
-		<p:toolbar>
-			<p:toolbarGroup align="left">
-				<p:commandButton value="#{messages['button.save']}" action="#{avaliadorEditMB.insert}"
-					rendered="#{!avaliadorEditMB.updateMode}" ajax="false" />
-				<p:commandButton value="#{messages['button.save']}" action="#{avaliadorEditMB.update}"
-					rendered="#{avaliadorEditMB.updateMode}" ajax="false" />
-				<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
-					rendered="#{avaliadorEditMB.updateMode}" type="button" immediate="true" ajax="false" />
-				<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
-					header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
-					<h:commandButton value="#{messages['button.dialog.yes']}" action="#{avaliadorEditMB.delete}" immediate="true"
-						ajax="false" />
-					<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
-				</p:confirmDialog>
-			</p:toolbarGroup>
-		</p:toolbar>
-
-		<br />
-
-		<p:fieldset legend="#{messages['avaliador.label']}" toggleable="true" toggleSpeed="500">
-			<h:panelGrid id="fieldsavaliador" columns="3">
-			
-				<h:outputLabel value="#{messages['avaliador.label.id']}: " for="id" styleClass="text-input" />
-									
-				<h:outputText id="id" value="#{avaliadorEditMB.bean.id}" />
+		<h:form prependId="false">
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton value="#{messages['button.save']}" action="#{avaliadorEditMB.insert}"
+						rendered="#{!avaliadorEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.save']}" action="#{avaliadorEditMB.update}"
+						rendered="#{avaliadorEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
+						rendered="#{avaliadorEditMB.updateMode}" type="button" immediate="true" ajax="false" />
+					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{avaliadorEditMB.delete}" immediate="true"
+							ajax="false" />
+						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+	
+			<br />
+	
+			<p:fieldset legend="#{messages['avaliador.label']}" toggleable="true" toggleSpeed="500">
+				<h:panelGrid id="fieldsavaliador" columns="3">
 				
-				<p:message for="id" />
+					<h:outputLabel value="#{messages['avaliador.label.id']}: " for="id" styleClass="text-input" />
+										
+					<h:outputText id="id" value="#{avaliadorEditMB.bean.id}" />
 					
-				<h:outputLabel value="#{messages['avaliador.label.nome']}: " for="nome" styleClass="text-input" />
-				
-				<h:inputText id="nome" value="#{avaliadorEditMB.bean.nome}"
-					title="#{messages['avaliador.alt.nome']}" />
-				
-				<p:message for="nome" />
+					<p:message for="id" />
+						
+					<h:outputLabel value="#{messages['avaliador.label.nome']}: " for="nome" styleClass="text-input" />
 					
-				<h:outputLabel value="#{messages['avaliador.label.cpf']}: " for="cpf" styleClass="text-input" />
-				
-				<h:inputText id="cpf" value="#{avaliadorEditMB.bean.cpf}"
-					title="#{messages['avaliador.alt.cpf']}" />
-				
-				<p:message for="cpf" />
+					<h:inputText id="nome" value="#{avaliadorEditMB.bean.nome}"
+						title="#{messages['avaliador.alt.nome']}" />
 					
-				<h:outputLabel value="#{messages['avaliador.label.rg']}: " for="rg" styleClass="text-input" />
-				
-				<h:inputText id="rg" value="#{avaliadorEditMB.bean.rg}" title="#{messages['avaliador.alt.rg']}" />
-				
-				<p:message for="rg" />
+					<p:message for="nome" />
+						
+					<h:outputLabel value="#{messages['avaliador.label.cpf']}: " for="cpf" styleClass="text-input" />
 					
-				<h:outputLabel value="#{messages['avaliador.label.sexo']}: " for="sexo" styleClass="text-input" />
-				
-				<p:selectOneMenu id="sexo" effect="fade" value="#{avaliadorEditMB.bean.sexo}">
-					<f:selectItems value="#{avaliadorEditMB.sexo}" />
-				</p:selectOneMenu>					
-							
-				<p:message for="sexo" />
+					<h:inputText id="cpf" value="#{avaliadorEditMB.bean.cpf}"
+						title="#{messages['avaliador.alt.cpf']}" />
 					
-				<h:outputLabel value="#{messages['avaliador.label.dataNascimento']}: " for="dataNascimento" styleClass="text-input" />
-				
-				<p:calendar id="dataNascimento" value="#{avaliadorEditMB.bean.dataNascimento}"
-				   pattern="#{messages['label.date.pattern']}" navigator="true" showButtonPanel="true"
-				   locale="#{locales.currentLocale}" title="#{messages['avaliador.alt.dataNascimento']}" />
-						 
-				<p:message for="dataNascimento" />
+					<p:message for="cpf" />
+						
+					<h:outputLabel value="#{messages['avaliador.label.rg']}: " for="rg" styleClass="text-input" />
 					
-				<h:outputLabel value="#{messages['avaliador.label.fone1']}: " for="fone1" styleClass="text-input" />
-				
-				<h:inputText id="fone1" value="#{avaliadorEditMB.bean.fone1}"
-					title="#{messages['avaliador.alt.fone1']}" />
-				
-				<p:message for="fone1" />
+					<h:inputText id="rg" value="#{avaliadorEditMB.bean.rg}" title="#{messages['avaliador.alt.rg']}" />
 					
-				<h:outputLabel value="#{messages['avaliador.label.fone2']}: " for="fone2" styleClass="text-input" />
-				
-				<h:inputText id="fone2" value="#{avaliadorEditMB.bean.fone2}"
-					title="#{messages['avaliador.alt.fone2']}" />
-				
-				<p:message for="fone2" />
+					<p:message for="rg" />
+						
+					<h:outputLabel value="#{messages['avaliador.label.sexo']}: " for="sexo" styleClass="text-input" />
 					
-				<h:outputLabel value="#{messages['endereco.label.cep']}: " for="cep" styleClass="text-input" />
-				
-				<h:inputText id="cep" value="#{avaliadorEditMB.bean.endereco.cep}" title="#{messages['endereco.alt.cep']}" />
-				
-				<p:message for="cep" />
+					<p:selectOneMenu id="sexo" effect="fade" value="#{avaliadorEditMB.bean.sexo}">
+						<f:selectItems value="#{avaliadorEditMB.sexo}" />
+					</p:selectOneMenu>					
+								
+					<p:message for="sexo" />
+						
+					<h:outputLabel value="#{messages['avaliador.label.dataNascimento']}: " for="dataNascimento" styleClass="text-input" />
 					
-				<h:outputLabel value="#{messages['endereco.label.logradouro']}: " for="logradouro" styleClass="text-input" />
-				
-				<h:inputText id="logradouro" value="#{avaliadorEditMB.bean.endereco.logradouro}" title="#{messages['endereco.alt.logradouro']}" />
-				
-				<p:message for="logradouro" />
+					<p:calendar id="dataNascimento" value="#{avaliadorEditMB.bean.dataNascimento}"
+					   pattern="#{messages['label.date.pattern']}" navigator="true" showButtonPanel="true"
+					   locale="#{locales.currentLocale}" title="#{messages['avaliador.alt.dataNascimento']}" />
+							 
+					<p:message for="dataNascimento" />
+						
+					<h:outputLabel value="#{messages['avaliador.label.fone1']}: " for="fone1" styleClass="text-input" />
 					
-				<h:outputLabel value="#{messages['endereco.label.numero']}: " for="numero" styleClass="text-input" />
-				
-				<h:inputText id="numero" value="#{avaliadorEditMB.bean.endereco.numero}" title="#{messages['endereco.alt.numero']}" />
-				
-				<p:message for="numero" />
+					<h:inputText id="fone1" value="#{avaliadorEditMB.bean.fone1}"
+						title="#{messages['avaliador.alt.fone1']}" />
 					
-				<h:outputLabel value="#{messages['endereco.label.complemento']}: " for="complemento" styleClass="text-input" />
-				
-				<h:inputText id="complemento" value="#{avaliadorEditMB.bean.endereco.complemento}" title="#{messages['endereco.alt.complemento']}" />
-				
-				<p:message for="complemento" />
+					<p:message for="fone1" />
+						
+					<h:outputLabel value="#{messages['avaliador.label.fone2']}: " for="fone2" styleClass="text-input" />
 					
-				<h:outputLabel value="#{messages['endereco.label.bairro']}: " for="bairro" styleClass="text-input" />
-				
-				<h:inputText id="bairro" value="#{avaliadorEditMB.bean.endereco.bairro}" title="#{messages['endereco.alt.bairro']}" />
-				
-				<p:message for="bairro" />
+					<h:inputText id="fone2" value="#{avaliadorEditMB.bean.fone2}"
+						title="#{messages['avaliador.alt.fone2']}" />
 					
-				<h:outputLabel value="#{messages['endereco.label.cidade']}: " for="cidade" styleClass="text-input" />
-				
-				<h:inputText id="cidade" value="#{avaliadorEditMB.bean.endereco.cidade}" title="#{messages['endereco.alt.cidade']}" />
-				
-				<p:message for="cidade" />
+					<p:message for="fone2" />
+						
+					<h:outputLabel value="#{messages['endereco.label.cep']}: " for="cep" styleClass="text-input" />
 					
-				<h:outputLabel value="#{messages['endereco.label.uf']}: " for="uf" styleClass="text-input" />
-				
-				<p:selectOneMenu id="uf" effect="fade" value="#{avaliadorEditMB.bean.endereco.uf}">
-					<f:selectItems value="#{avaliadorEditMB.uf}" />
-				</p:selectOneMenu>					
-							
-				<p:message for="uf" />
+					<h:inputText id="cep" value="#{avaliadorEditMB.bean.endereco.cep}" title="#{messages['endereco.alt.cep']}" />
 					
-				<h:outputLabel value="#{messages['endereco.label.pais']}: " for="pais" styleClass="text-input" />
-				
-				<h:inputText id="pais" value="#{avaliadorEditMB.bean.endereco.pais}" title="#{messages['endereco.alt.pais']}" />
-				
-				<p:message for="pais" />
-				
-				<h:outputLabel value="#{messages['usuario.label.email']}: " for="email" styleClass="text-input" />
-					    
-		        <h:inputText id="email" value="#{avaliadorEditMB.bean.usuario.email}" title="#{messages['usuario.alt.email']}" />
-					                   
-				<p:message for="email" />
-				
-				<h:outputLabel value="#{messages['usuario.label.senha']}: " for="senha" styleClass="text-input" />
-					    
-		        <h:inputText id="senha" value="#{avaliadorEditMB.bean.usuario.senha}" title="#{messages['usuario.alt.senha']}" />
-					                   
-				<p:message for="senha" />
-				
-			</h:panelGrid>
-		</p:fieldset>
+					<p:message for="cep" />
+						
+					<h:outputLabel value="#{messages['endereco.label.logradouro']}: " for="logradouro" styleClass="text-input" />
+					
+					<h:inputText id="logradouro" value="#{avaliadorEditMB.bean.endereco.logradouro}" title="#{messages['endereco.alt.logradouro']}" />
+					
+					<p:message for="logradouro" />
+						
+					<h:outputLabel value="#{messages['endereco.label.numero']}: " for="numero" styleClass="text-input" />
+					
+					<h:inputText id="numero" value="#{avaliadorEditMB.bean.endereco.numero}" title="#{messages['endereco.alt.numero']}" />
+					
+					<p:message for="numero" />
+						
+					<h:outputLabel value="#{messages['endereco.label.complemento']}: " for="complemento" styleClass="text-input" />
+					
+					<h:inputText id="complemento" value="#{avaliadorEditMB.bean.endereco.complemento}" title="#{messages['endereco.alt.complemento']}" />
+					
+					<p:message for="complemento" />
+						
+					<h:outputLabel value="#{messages['endereco.label.bairro']}: " for="bairro" styleClass="text-input" />
+					
+					<h:inputText id="bairro" value="#{avaliadorEditMB.bean.endereco.bairro}" title="#{messages['endereco.alt.bairro']}" />
+					
+					<p:message for="bairro" />
+						
+					<h:outputLabel value="#{messages['endereco.label.cidade']}: " for="cidade" styleClass="text-input" />
+					
+					<h:inputText id="cidade" value="#{avaliadorEditMB.bean.endereco.cidade}" title="#{messages['endereco.alt.cidade']}" />
+					
+					<p:message for="cidade" />
+						
+					<h:outputLabel value="#{messages['endereco.label.uf']}: " for="uf" styleClass="text-input" />
+					
+					<p:selectOneMenu id="uf" effect="fade" value="#{avaliadorEditMB.bean.endereco.uf}">
+						<f:selectItems value="#{avaliadorEditMB.uf}" />
+					</p:selectOneMenu>					
+								
+					<p:message for="uf" />
+						
+					<h:outputLabel value="#{messages['endereco.label.pais']}: " for="pais" styleClass="text-input" />
+					
+					<h:inputText id="pais" value="#{avaliadorEditMB.bean.endereco.pais}" title="#{messages['endereco.alt.pais']}" />
+					
+					<p:message for="pais" />
+					
+					<h:outputLabel value="#{messages['usuario.label.email']}: " for="email" styleClass="text-input" />
+						    
+			        <h:inputText id="email" value="#{avaliadorEditMB.bean.usuario.email}" title="#{messages['usuario.alt.email']}" />
+						                   
+					<p:message for="email" />
+					
+					<h:outputLabel value="#{messages['usuario.label.senha']}: " for="senha" styleClass="text-input" />
+						    
+			        <h:inputText id="senha" value="#{avaliadorEditMB.bean.usuario.senha}" title="#{messages['usuario.alt.senha']}" />
+						                   
+					<p:message for="senha" />
+					
+				</h:panelGrid>
+			</p:fieldset>
+		</h:form>
 	</ui:define>
 </ui:composition>

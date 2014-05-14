@@ -4,120 +4,117 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
 	<ui:define name="body">
-		<p:toolbar>
-			<p:toolbarGroup align="left">
-				<p:commandButton value="#{messages['button.save']}" action="#{organizacaoSolicitanteEditMB.insert}"
-					rendered="#{!organizacaoSolicitanteEditMB.updateMode}" ajax="false" />
-				<p:commandButton value="#{messages['button.save']}" action="#{organizacaoSolicitanteEditMB.update}"
-					rendered="#{organizacaoSolicitanteEditMB.updateMode}" ajax="false" />
-				<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
-					rendered="#{organizacaoSolicitanteEditMB.updateMode}" type="button" immediate="true" ajax="false" />
-				<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
-					header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
-					<h:commandButton value="#{messages['button.dialog.yes']}" action="#{organizacaoSolicitanteEditMB.delete}" immediate="true"
-						ajax="false" />
-					<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
-				</p:confirmDialog>
-			</p:toolbarGroup>
-		</p:toolbar>
-
-		<br />
-
-		<p:fieldset legend="#{messages['organizacaoSolicitante.label']}" toggleable="true" toggleSpeed="500">
-			<h:panelGrid id="fieldsorganizacaoSolicitante" columns="3">
-			
-				<h:outputLabel value="#{messages['organizacaoSolicitante.label.id']}: " for="id" styleClass="text-input" />
-									
-				<h:outputText id="id" value="#{organizacaoSolicitanteEditMB.bean.id}" />
+		<h:form prependId="false">
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton value="#{messages['button.save']}" action="#{organizacaoSolicitanteEditMB.insert}"
+						rendered="#{!organizacaoSolicitanteEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.save']}" action="#{organizacaoSolicitanteEditMB.update}"
+						rendered="#{organizacaoSolicitanteEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
+						rendered="#{organizacaoSolicitanteEditMB.updateMode}" type="button" immediate="true" ajax="false" />
+					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{organizacaoSolicitanteEditMB.delete}" immediate="true"
+							ajax="false" />
+						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+	
+			<br />
+	
+			<p:fieldset legend="#{messages['organizacaoSolicitante.label']}" toggleable="true" toggleSpeed="500">
+				<h:panelGrid id="fieldsorganizacaoSolicitante" columns="3">
 				
-				<p:message for="id" />
+					<h:outputLabel value="#{messages['organizacaoSolicitante.label.id']}: " for="id" styleClass="text-input" />
+										
+					<h:outputText id="id" value="#{organizacaoSolicitanteEditMB.bean.id}" />
 					
-				<h:outputLabel value="#{messages['organizacaoSolicitante.label.nome']}: " for="nome" styleClass="text-input" />
-				
-				<h:inputText id="nome" value="#{organizacaoSolicitanteEditMB.bean.nome}"
-					title="#{messages['organizacaoSolicitante.alt.nome']}" />
-				
-				<p:message for="nome" />
+					<p:message for="id" />
+						
+					<h:outputLabel value="#{messages['organizacaoSolicitante.label.nome']}: " for="nome" styleClass="text-input" />
 					
-				<h:outputLabel value="#{messages['organizacaoSolicitante.label.razaoSocial']}: " for="razaoSocial" styleClass="text-input" />
-				
-				<h:inputText id="razaoSocial" value="#{organizacaoSolicitanteEditMB.bean.razaoSocial}"
-					title="#{messages['organizacaoSolicitante.alt.razaoSocial']}" />
-				
-				<p:message for="razaoSocial" />
+					<h:inputText id="nome" value="#{organizacaoSolicitanteEditMB.bean.nome}" title="#{messages['organizacaoSolicitante.alt.nome']}" />
 					
-				<h:outputLabel value="#{messages['organizacaoSolicitante.label.cnpj']}: " for="cnpj" styleClass="text-input" />
-				
-				<h:inputText id="cnpj" value="#{organizacaoSolicitanteEditMB.bean.cnpj}"
-					title="#{messages['organizacaoSolicitante.alt.cnpj']}" />
-				
-				<p:message for="cnpj" />
+					<p:message for="nome" />
+						
+					<h:outputLabel value="#{messages['organizacaoSolicitante.label.razaoSocial']}: " for="razaoSocial" styleClass="text-input" />
 					
-				<h:outputLabel value="#{messages['organizacaoSolicitante.label.fone1']}: " for="fone1" styleClass="text-input" />
-				
-				<h:inputText id="fone1" value="#{organizacaoSolicitanteEditMB.bean.fone1}"
-					title="#{messages['organizacaoSolicitante.alt.fone1']}" />
-				
-				<p:message for="fone1" />
+					<h:inputText id="razaoSocial" value="#{organizacaoSolicitanteEditMB.bean.razaoSocial}" title="#{messages['organizacaoSolicitante.alt.razaoSocial']}" />
 					
-				<h:outputLabel value="#{messages['organizacaoSolicitante.label.fone2']}: " for="fone2" styleClass="text-input" />
-				
-				<h:inputText id="fone2" value="#{organizacaoSolicitanteEditMB.bean.fone2}"
-					title="#{messages['organizacaoSolicitante.alt.fone2']}" />
-				
-				<p:message for="fone2" />
+					<p:message for="razaoSocial" />
+						
+					<h:outputLabel value="#{messages['organizacaoSolicitante.label.cnpj']}: " for="cnpj" styleClass="text-input" />
 					
-				<h:outputLabel value="#{messages['endereco.label.cep']}: " for="cep" styleClass="text-input" />
-				
-				<h:inputText id="cep" value="#{organizacaoSolicitanteEditMB.bean.endereco.cep}" title="#{messages['endereco.alt.cep']}" />
-				
-				<p:message for="cep" />
+					<h:inputText id="cnpj" value="#{organizacaoSolicitanteEditMB.bean.cnpj}" title="#{messages['organizacaoSolicitante.alt.cnpj']}" />
 					
-				<h:outputLabel value="#{messages['endereco.label.logradouro']}: " for="logradouro" styleClass="text-input" />
-				
-				<h:inputText id="logradouro" value="#{organizacaoSolicitanteEditMB.bean.endereco.logradouro}" title="#{messages['endereco.alt.logradouro']}" />
-				
-				<p:message for="logradouro" />
+					<p:message for="cnpj" />
+						
+					<h:outputLabel value="#{messages['organizacaoSolicitante.label.fone1']}: " for="fone1" styleClass="text-input" />
 					
-				<h:outputLabel value="#{messages['endereco.label.numero']}: " for="numero" styleClass="text-input" />
-				
-				<h:inputText id="numero" value="#{organizacaoSolicitanteEditMB.bean.endereco.numero}" title="#{messages['endereco.alt.numero']}" />
-				
-				<p:message for="numero" />
+					<h:inputText id="fone1" value="#{organizacaoSolicitanteEditMB.bean.fone1}" title="#{messages['organizacaoSolicitante.alt.fone1']}" />
 					
-				<h:outputLabel value="#{messages['endereco.label.complemento']}: " for="complemento" styleClass="text-input" />
-				
-				<h:inputText id="complemento" value="#{organizacaoSolicitanteEditMB.bean.endereco.complemento}" title="#{messages['endereco.alt.complemento']}" />
-				
-				<p:message for="complemento" />
+					<p:message for="fone1" />
+						
+					<h:outputLabel value="#{messages['organizacaoSolicitante.label.fone2']}: " for="fone2" styleClass="text-input" />
 					
-				<h:outputLabel value="#{messages['endereco.label.bairro']}: " for="bairro" styleClass="text-input" />
-				
-				<h:inputText id="bairro" value="#{organizacaoSolicitanteEditMB.bean.endereco.bairro}" title="#{messages['endereco.alt.bairro']}" />
-				
-				<p:message for="bairro" />
+					<h:inputText id="fone2" value="#{organizacaoSolicitanteEditMB.bean.fone2}" title="#{messages['organizacaoSolicitante.alt.fone2']}" />
 					
-				<h:outputLabel value="#{messages['endereco.label.cidade']}: " for="cidade" styleClass="text-input" />
-				
-				<h:inputText id="cidade" value="#{organizacaoSolicitanteEditMB.bean.endereco.cidade}" title="#{messages['endereco.alt.cidade']}" />
-				
-				<p:message for="cidade" />
+					<p:message for="fone2" />
+						
+					<h:outputLabel value="#{messages['endereco.label.cep']}: " for="cep" styleClass="text-input" />
 					
-				<h:outputLabel value="#{messages['endereco.label.uf']}: " for="uf" styleClass="text-input" />
-				
-				<p:selectOneMenu id="uf" effect="fade" value="#{organizacaoSolicitanteEditMB.bean.endereco.uf}">
-					<f:selectItems value="#{organizacaoSolicitanteEditMB.uf}" />
-				</p:selectOneMenu>					
-							
-				<p:message for="uf" />
+					<h:inputText id="cep" value="#{organizacaoSolicitanteEditMB.bean.endereco.cep}" title="#{messages['endereco.alt.cep']}" />
 					
-				<h:outputLabel value="#{messages['endereco.label.pais']}: " for="pais" styleClass="text-input" />
-				
-				<h:inputText id="pais" value="#{organizacaoSolicitanteEditMB.bean.endereco.pais}" title="#{messages['endereco.alt.pais']}" />
-				
-				<p:message for="pais" />								  
-							 
-			</h:panelGrid>
-		</p:fieldset>
+					<p:message for="cep" />
+						
+					<h:outputLabel value="#{messages['endereco.label.logradouro']}: " for="logradouro" styleClass="text-input" />
+					
+					<h:inputText id="logradouro" value="#{organizacaoSolicitanteEditMB.bean.endereco.logradouro}" title="#{messages['endereco.alt.logradouro']}" />
+					
+					<p:message for="logradouro" />
+						
+					<h:outputLabel value="#{messages['endereco.label.numero']}: " for="numero" styleClass="text-input" />
+					
+					<h:inputText id="numero" value="#{organizacaoSolicitanteEditMB.bean.endereco.numero}" title="#{messages['endereco.alt.numero']}" />
+					
+					<p:message for="numero" />
+						
+					<h:outputLabel value="#{messages['endereco.label.complemento']}: " for="complemento" styleClass="text-input" />
+					
+					<h:inputText id="complemento" value="#{organizacaoSolicitanteEditMB.bean.endereco.complemento}" title="#{messages['endereco.alt.complemento']}" />
+					
+					<p:message for="complemento" />
+						
+					<h:outputLabel value="#{messages['endereco.label.bairro']}: " for="bairro" styleClass="text-input" />
+					
+					<h:inputText id="bairro" value="#{organizacaoSolicitanteEditMB.bean.endereco.bairro}" title="#{messages['endereco.alt.bairro']}" />
+					
+					<p:message for="bairro" />
+						
+					<h:outputLabel value="#{messages['endereco.label.cidade']}: " for="cidade" styleClass="text-input" />
+					
+					<h:inputText id="cidade" value="#{organizacaoSolicitanteEditMB.bean.endereco.cidade}" title="#{messages['endereco.alt.cidade']}" />
+					
+					<p:message for="cidade" />
+						
+					<h:outputLabel value="#{messages['endereco.label.uf']}: " for="uf" styleClass="text-input" />
+					
+					<p:selectOneMenu id="uf" effect="fade" value="#{organizacaoSolicitanteEditMB.bean.endereco.uf}">
+						<f:selectItems value="#{organizacaoSolicitanteEditMB.uf}" />
+					</p:selectOneMenu>					
+								
+					<p:message for="uf" />
+						
+					<h:outputLabel value="#{messages['endereco.label.pais']}: " for="pais" styleClass="text-input" />
+					
+					<h:inputText id="pais" value="#{organizacaoSolicitanteEditMB.bean.endereco.pais}" title="#{messages['endereco.alt.pais']}" />
+					
+					<p:message for="pais" />								  
+								 
+				</h:panelGrid>
+			</p:fieldset>
+		</h:form>
 	</ui:define>
 </ui:composition>

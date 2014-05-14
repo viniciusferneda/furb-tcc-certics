@@ -13,6 +13,7 @@ import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 
 import vinicius.ferneda.tcc.certics.business.AvaliacaoBC;
+import vinicius.ferneda.tcc.certics.business.ConjuntoEvidenciasBC;
 import vinicius.ferneda.tcc.certics.business.EvidenciaEntityBC;
 import vinicius.ferneda.tcc.certics.business.RespostaEvidenciaBC;
 import vinicius.ferneda.tcc.certics.domain.AnexoEntity;
@@ -24,6 +25,7 @@ import vinicius.ferneda.tcc.certics.domain.RespostaEvidenciaEntity;
 import vinicius.ferneda.tcc.certics.domain.ResultadoEsperadoEntity;
 import vinicius.ferneda.tcc.certics.persistence.AreaCompetenciaDAO;
 import vinicius.ferneda.tcc.certics.persistence.ConjuntoEvidenciasDAO;
+import vinicius.ferneda.tcc.certics.persistence.RespostaEvidenciaDAO;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
@@ -37,35 +39,31 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 
 	@Inject
 	private AvaliacaoBC avaliacaoBC;
+	@Inject
+	private RespostaEvidenciaBC respostaEvidenciaBC;
+	@Inject
+	private EvidenciaEntityBC evidenciaBC;
+	@Inject
+	private ConjuntoEvidenciasBC conjuntoEvidenciasBC;
 
 	@Inject
 	private AreaCompetenciaDAO areaCompetenciaDAO;
-	
 	@Inject
 	private ConjuntoEvidenciasDAO conjuntoEvidenciasDAO;
-
 	@Inject
-	private RespostaEvidenciaBC respostaEvidenciaBC;
+	private RespostaEvidenciaDAO respostaEvidenciaDAO;
 
-	@Inject
-	private EvidenciaEntityBC evidenciaBC;
-
+	public List<SelectItem> getPontuacao() {
+		return conjuntoEvidenciasBC.getEnumPontuacaoAvaliacao();
+	}
+	
 	private TreeNode root;
 	private TreeNode selectedNode;
 
-	private DataModel<ConjuntoEvidenciasEntity> lConjuntoEvidencias;
+	private DataModel<RespostaEvidenciaEntity> lRespostaEvidencias;
 	
-	public DataModel<ConjuntoEvidenciasEntity> getlConjuntoEvidencias(){
-		return this.lConjuntoEvidencias;
-	}
-	
-	private DataModel<AreaCompetenciaEntity> lEvidencias;
-	
-	public DataModel<AreaCompetenciaEntity> getlEvidencias(){
-		if(this.lEvidencias == null){
-			this.lEvidencias = new ListDataModel<AreaCompetenciaEntity>(areaCompetenciaDAO.findByVersaoCerticsAndAvaliacaoID(this.getId(), this.getBean().getVersaoCertics().getId()));
-		}
-		return this.lEvidencias;
+	public DataModel<RespostaEvidenciaEntity> getlRespostaEvidencias(){
+		return this.lRespostaEvidencias;
 	}
 	
 	public List<SelectItem> getEvidenciaList(){
@@ -114,25 +112,9 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 	
 	@Override
 	protected AvaliacaoEntity handleLoad(Long id) {
-		return this.avaliacaoBC.load(id);
-	}
-	
-	public void setConjuntoEvidencias(ConjuntoEvidenciasEntity conjuntoEvidenciasEntity){
-		this.getBean().setConjuntoEvidenciasAux(conjuntoEvidenciasEntity);
-		this.getBean().setRespostaEvidenciaAux(new RespostaEvidenciaEntity());
-	}
-	
-	public void setNovaEvidencia(){
-		this.getBean().setEvidenciaAux(new EvidenciaEntity());
-	}
-
-	public void setEvidencia(){
-		this.evidenciaBC.insert(this.getBean().getEvidenciaAux());
-	}
-
-	public void addRespostaEvidencia(){
-		this.getBean().getRespostaEvidenciaAux().setConjuntoEvidencias(this.getBean().getConjuntoEvidenciasAux());
-		this.respostaEvidenciaBC.insert(this.getBean().getRespostaEvidenciaAux());
+		AvaliacaoEntity avaliacaoEntity = this.avaliacaoBC.load(id);
+		avaliacaoEntity.setConjuntoEvidenciasAux(new ConjuntoEvidenciasEntity());
+		return avaliacaoEntity;
 	}
 
 	@SuppressWarnings("unused")
@@ -158,8 +140,26 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
     
     public void onNodeSelect(NodeSelectEvent event) {
     	if("resultadoEsperado".equals(((InformacoesArvore)event.getTreeNode().getData()).getTipo())){
-    		this.lConjuntoEvidencias = new ListDataModel<ConjuntoEvidenciasEntity>(this.conjuntoEvidenciasDAO.findByResultadoEsperadoID(((InformacoesArvore)event.getTreeNode().getData()).getId())); 
+    		this.getBean().setConjuntoEvidenciasAux(this.conjuntoEvidenciasDAO.findByResultadoEsperadoID(((InformacoesArvore)event.getTreeNode().getData()).getId()));   		
+    		this.lRespostaEvidencias = new ListDataModel<RespostaEvidenciaEntity>(respostaEvidenciaDAO.findByConjuntoEvidenciaID(this.getBean().getConjuntoEvidenciasAux().getId())); 
     	}
     }
+
+    public void setNovaRespostaEvidencia(){
+    	this.getBean().setRespostaEvidenciaAux(new RespostaEvidenciaEntity());
+    }
     
+	public void addRespostaEvidencia(){
+		this.getBean().getRespostaEvidenciaAux().setConjuntoEvidencias(this.getBean().getConjuntoEvidenciasAux());
+		this.respostaEvidenciaBC.insert(this.getBean().getRespostaEvidenciaAux());
+	}
+
+	public void setNovaEvidencia(){
+		this.getBean().setEvidenciaAux(new EvidenciaEntity());
+	}
+
+	public void setEvidencia(){
+		this.evidenciaBC.insert(this.getBean().getEvidenciaAux());
+	}
+
 }

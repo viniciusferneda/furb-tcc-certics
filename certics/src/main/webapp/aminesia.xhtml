@@ -3,39 +3,41 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
     <ui:define name="body">
-        <div class="loginWrapper">
-            <div class="aminesiaPanel">
-                <div class="head">
-                    <h5 class="iUser">#{messages['aminesia.login.alterar']}</h5>
-                </div>
-                <fieldset>
-                    <div class="loginRow">
-                        <label for="req2">#{messages['aminesia.login.senhanova']} :</label>
-                        <div class="loginInput">
-                            <p:password id="passwordNew" value="#{aminesiaMB.senhanova}" />
-                        </div>
-                        <div class="fix"></div>
-                    </div>
-                    <div class="loginRow">
-                        <label for="req2">#{messages['aminesia.login.resenhanova']} :</label>
-                        <div class="loginInput">
-                            <p:password id="rePasswordNew" value="#{aminesiaMB.senharepetida}" />
-                        </div>
-                        <div class="fix"></div>
-                    </div>
-
-                    <div class="loginRow">
-                        <p:commandButton id="login_button"
-                                         value="#{messages['aminesia.button.alterar_senha']}"
-                                         action="#{aminesiaMB.update()}"
-                                         styleClass="submitForm"
-                                         ajax="false" >
-                            <f:param value="#{aminesiaMB.aminesia}" name="cod_aminesia"/>
-                        </p:commandButton>
-                        <div class="fix"></div>
-                    </div>
-                </fieldset>
-            </div>
-        </div>
+    	<h:form prependId="false">
+	        <div class="loginWrapper">
+	            <div class="aminesiaPanel">
+	                <div class="head">
+	                    <h5 class="iUser">#{messages['aminesia.login.alterar']}</h5>
+	                </div>
+	                <fieldset>
+	                    <div class="loginRow">
+	                        <label for="req2">#{messages['aminesia.login.senhanova']} :</label>
+	                        <div class="loginInput">
+	                            <p:password id="passwordNew" value="#{aminesiaMB.senhanova}" />
+	                        </div>
+	                        <div class="fix"></div>
+	                    </div>
+	                    <div class="loginRow">
+	                        <label for="req2">#{messages['aminesia.login.resenhanova']} :</label>
+	                        <div class="loginInput">
+	                            <p:password id="rePasswordNew" value="#{aminesiaMB.senharepetida}" />
+	                        </div>
+	                        <div class="fix"></div>
+	                    </div>
+	
+	                    <div class="loginRow">
+	                        <p:commandButton id="login_button"
+	                                         value="#{messages['aminesia.button.alterar_senha']}"
+	                                         action="#{aminesiaMB.update()}"
+	                                         styleClass="submitForm"
+	                                         ajax="false" >
+	                            <f:param value="#{aminesiaMB.aminesia}" name="cod_aminesia"/>
+	                        </p:commandButton>
+	                        <div class="fix"></div>
+	                    </div>
+	                </fieldset>
+	            </div>
+	        </div>
+		</h:form>
     </ui:define>
 </ui:composition>

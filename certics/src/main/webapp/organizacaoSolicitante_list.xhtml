@@ -4,74 +4,76 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
 	<ui:define name="body">
-		<p:toolbar>
-			<p:toolbarGroup align="left">
-				<p:commandButton title="#{messages['button.new']}" icon="ui-icon-document" action="#{organizacaoSolicitanteListMB.getNextView}"
-					actionListener="#{organizacaoSolicitanteListMB.clear}" ajax="false" />
-
-				<p:commandButton title="#{messages['button.delete']}" icon="ui-icon-trash" onclick="confirmation.show()"
-					type="button" immediate="true" ajax="false" />
-
-				<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
-					header="#{messages['label.dialog.alert']}!" severity="alert" widgetVar="confirmation">
-
-					<h:commandButton value="#{messages['button.dialog.yes']}" action="#{organizacaoSolicitanteListMB.deleteSelection}"
-						actionListener="#{organizacaoSolicitanteListMB.clear}" />
-					<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
-				</p:confirmDialog>
-			</p:toolbarGroup>
-		</p:toolbar>
-		<p:dataTable id="list" var="bean" value="#{organizacaoSolicitanteListMB.resultList}">
-			<f:facet name="header">#{messages['organizacaoSolicitante.list.table.title']}</f:facet>
-			<p:column style="width:2%;">
-				<h:selectBooleanCheckbox value="#{organizacaoSolicitanteListMB.selection[bean.id]}"></h:selectBooleanCheckbox>
-			</p:column>
-			
-			<p:column style="width:5%;" sortBy="#{bean.id}">
-				<f:facet name="header">#{messages['organizacaoSolicitante.label.id']}</f:facet>
-				<h:outputText value="#{bean.id}" />
-			</p:column>
+		<h:form prependId="false">
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton title="#{messages['button.new']}" icon="ui-icon-document" action="#{organizacaoSolicitanteListMB.getNextView}"
+						actionListener="#{organizacaoSolicitanteListMB.clear}" ajax="false" />
+	
+					<p:commandButton title="#{messages['button.delete']}" icon="ui-icon-trash" onclick="confirmation.show()"
+						type="button" immediate="true" ajax="false" />
+	
+					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.alert']}!" severity="alert" widgetVar="confirmation">
+	
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{organizacaoSolicitanteListMB.deleteSelection}"
+							actionListener="#{organizacaoSolicitanteListMB.clear}" />
+						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+			<p:dataTable id="list" var="bean" value="#{organizacaoSolicitanteListMB.resultList}">
+				<f:facet name="header">#{messages['organizacaoSolicitante.list.table.title']}</f:facet>
+				<p:column style="width:2%;">
+					<h:selectBooleanCheckbox value="#{organizacaoSolicitanteListMB.selection[bean.id]}"></h:selectBooleanCheckbox>
+				</p:column>
+				
+				<p:column style="width:5%;" sortBy="#{bean.id}">
+					<f:facet name="header">#{messages['organizacaoSolicitante.label.id']}</f:facet>
+					<h:outputText value="#{bean.id}" />
+				</p:column>
+						
+				<p:column sortBy="#{bean.nome}">
+					<f:facet name="header">#{messages['organizacaoSolicitante.label.nome']}</f:facet>
+					<h:commandLink action="#{organizacaoSolicitanteListMB.getNextView}" actionListener="#{organizacaoSolicitanteListMB.clear}">
+						<h:outputText value="#{bean.nome}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
 					
-			<p:column sortBy="#{bean.nome}">
-				<f:facet name="header">#{messages['organizacaoSolicitante.label.nome']}</f:facet>
-				<h:commandLink action="#{organizacaoSolicitanteListMB.getNextView}" actionListener="#{organizacaoSolicitanteListMB.clear}">
-					<h:outputText value="#{bean.nome}" />
-					<f:param name="id" value="#{bean.id}" />
-				</h:commandLink>
-			</p:column>
-				
-			<p:column sortBy="#{bean.razaoSocial}">
-				<f:facet name="header">#{messages['organizacaoSolicitante.label.razaoSocial']}</f:facet>
-				<h:commandLink action="#{organizacaoSolicitanteListMB.getNextView}" actionListener="#{organizacaoSolicitanteListMB.clear}">
-					<h:outputText value="#{bean.razaoSocial}" />
-					<f:param name="id" value="#{bean.id}" />
-				</h:commandLink>
-			</p:column>
-				
-			<p:column sortBy="#{bean.cnpj}">
-				<f:facet name="header">#{messages['organizacaoSolicitante.label.cnpj']}</f:facet>
-				<h:commandLink action="#{organizacaoSolicitanteListMB.getNextView}" actionListener="#{organizacaoSolicitanteListMB.clear}">
-					<h:outputText value="#{bean.cnpj}" />
-					<f:param name="id" value="#{bean.id}" />
-				</h:commandLink>
-			</p:column>
-				
-			<p:column sortBy="#{bean.fone1}">
-				<f:facet name="header">#{messages['organizacaoSolicitante.label.fone1']}</f:facet>
-				<h:commandLink action="#{organizacaoSolicitanteListMB.getNextView}" actionListener="#{organizacaoSolicitanteListMB.clear}">
-					<h:outputText value="#{bean.fone1}" />
-					<f:param name="id" value="#{bean.id}" />
-				</h:commandLink>
-			</p:column>
-				
-			<p:column sortBy="#{bean.fone2}">
-				<f:facet name="header">#{messages['organizacaoSolicitante.label.fone2']}</f:facet>
-				<h:commandLink action="#{organizacaoSolicitanteListMB.getNextView}" actionListener="#{organizacaoSolicitanteListMB.clear}">
-					<h:outputText value="#{bean.fone2}" />
-					<f:param name="id" value="#{bean.id}" />
-				</h:commandLink>
-			</p:column>
-				
-		</p:dataTable>
+				<p:column sortBy="#{bean.razaoSocial}">
+					<f:facet name="header">#{messages['organizacaoSolicitante.label.razaoSocial']}</f:facet>
+					<h:commandLink action="#{organizacaoSolicitanteListMB.getNextView}" actionListener="#{organizacaoSolicitanteListMB.clear}">
+						<h:outputText value="#{bean.razaoSocial}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+					
+				<p:column sortBy="#{bean.cnpj}">
+					<f:facet name="header">#{messages['organizacaoSolicitante.label.cnpj']}</f:facet>
+					<h:commandLink action="#{organizacaoSolicitanteListMB.getNextView}" actionListener="#{organizacaoSolicitanteListMB.clear}">
+						<h:outputText value="#{bean.cnpj}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+					
+				<p:column sortBy="#{bean.fone1}">
+					<f:facet name="header">#{messages['organizacaoSolicitante.label.fone1']}</f:facet>
+					<h:commandLink action="#{organizacaoSolicitanteListMB.getNextView}" actionListener="#{organizacaoSolicitanteListMB.clear}">
+						<h:outputText value="#{bean.fone1}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+					
+				<p:column sortBy="#{bean.fone2}">
+					<f:facet name="header">#{messages['organizacaoSolicitante.label.fone2']}</f:facet>
+					<h:commandLink action="#{organizacaoSolicitanteListMB.getNextView}" actionListener="#{organizacaoSolicitanteListMB.clear}">
+						<h:outputText value="#{bean.fone2}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+					
+			</p:dataTable>
+		</h:form>
 	</ui:define>
 </ui:composition>

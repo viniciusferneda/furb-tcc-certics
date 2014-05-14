@@ -14,8 +14,8 @@ import br.gov.frameworkdemoiselle.template.DelegateCrud;
 
 @BusinessController
 public class RespostaEvidenciaBC extends DelegateCrud<RespostaEvidenciaEntity, Long, RespostaEvidenciaDAO> {
-	private static final long serialVersionUID = 1L;
 	
+	private static final long serialVersionUID = 1L;
 	
 	public List<SelectItem> getEnumPontuacaoEvidencia() {
 		List<SelectItem> varEnumPontuacaoEvidencia = new ArrayList<SelectItem>();

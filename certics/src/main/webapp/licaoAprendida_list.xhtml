@@ -4,58 +4,60 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
 	<ui:define name="body">
-		<p:toolbar>
-			<p:toolbarGroup align="left">
-				<p:commandButton title="#{messages['button.new']}" icon="ui-icon-document" action="#{licaoAprendidaListMB.getNextView}"
-					actionListener="#{licaoAprendidaListMB.clear}" ajax="false" />
-
-				<p:commandButton title="#{messages['button.delete']}" icon="ui-icon-trash" onclick="confirmation.show()"
-					type="button" immediate="true" ajax="false" />
-
-				<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
-					header="#{messages['label.dialog.alert']}!" severity="alert" widgetVar="confirmation">
-
-					<h:commandButton value="#{messages['button.dialog.yes']}" action="#{licaoAprendidaListMB.deleteSelection}"
-						actionListener="#{licaoAprendidaListMB.clear}" />
-					<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
-				</p:confirmDialog>
-			</p:toolbarGroup>
-		</p:toolbar>
-		<p:dataTable id="list" var="bean" value="#{licaoAprendidaListMB.resultList}">
-			<f:facet name="header">#{messages['licaoAprendida.list.table.title']}</f:facet>
-			<p:column style="width:2%;">
-				<h:selectBooleanCheckbox value="#{licaoAprendidaListMB.selection[bean.id]}"></h:selectBooleanCheckbox>
-			</p:column>
-			
-			<p:column style="width:5%;" sortBy="#{bean.id}">
-				<f:facet name="header">#{messages['licaoAprendida.label.id']}</f:facet>
-				<h:outputText value="#{bean.id}" />
-			</p:column>
+		<h:form prependId="false">
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton title="#{messages['button.new']}" icon="ui-icon-document" action="#{licaoAprendidaListMB.getNextView}"
+						actionListener="#{licaoAprendidaListMB.clear}" ajax="false" />
+	
+					<p:commandButton title="#{messages['button.delete']}" icon="ui-icon-trash" onclick="confirmation.show()"
+						type="button" immediate="true" ajax="false" />
+	
+					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
+						header="#{messages['label.dialog.alert']}!" severity="alert" widgetVar="confirmation">
+	
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{licaoAprendidaListMB.deleteSelection}"
+							actionListener="#{licaoAprendidaListMB.clear}" />
+						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
+					</p:confirmDialog>
+				</p:toolbarGroup>
+			</p:toolbar>
+			<p:dataTable id="list" var="bean" value="#{licaoAprendidaListMB.resultList}">
+				<f:facet name="header">#{messages['licaoAprendida.list.table.title']}</f:facet>
+				<p:column style="width:2%;">
+					<h:selectBooleanCheckbox value="#{licaoAprendidaListMB.selection[bean.id]}"></h:selectBooleanCheckbox>
+				</p:column>
+				
+				<p:column style="width:5%;" sortBy="#{bean.id}">
+					<f:facet name="header">#{messages['licaoAprendida.label.id']}</f:facet>
+					<h:outputText value="#{bean.id}" />
+				</p:column>
+						
+				<p:column sortBy="#{bean.pontosPositivos}">
+					<f:facet name="header">#{messages['licaoAprendida.label.pontosPositivos']}</f:facet>
+					<h:commandLink action="#{licaoAprendidaListMB.getNextView}" actionListener="#{licaoAprendidaListMB.clear}">
+						<h:outputText value="#{bean.pontosPositivos}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
 					
-			<p:column sortBy="#{bean.pontosPositivos}">
-				<f:facet name="header">#{messages['licaoAprendida.label.pontosPositivos']}</f:facet>
-				<h:commandLink action="#{licaoAprendidaListMB.getNextView}" actionListener="#{licaoAprendidaListMB.clear}">
-					<h:outputText value="#{bean.pontosPositivos}" />
-					<f:param name="id" value="#{bean.id}" />
-				</h:commandLink>
-			</p:column>
-				
-			<p:column sortBy="#{bean.pontosNegativos}">
-				<f:facet name="header">#{messages['licaoAprendida.label.pontosNegativos']}</f:facet>
-				<h:commandLink action="#{licaoAprendidaListMB.getNextView}" actionListener="#{licaoAprendidaListMB.clear}">
-					<h:outputText value="#{bean.pontosNegativos}" />
-					<f:param name="id" value="#{bean.id}" />
-				</h:commandLink>
-			</p:column>
-				
-			<p:column sortBy="#{bean.melhoria}">
-				<f:facet name="header">#{messages['licaoAprendida.label.melhoria']}</f:facet>
-				<h:commandLink action="#{licaoAprendidaListMB.getNextView}" actionListener="#{licaoAprendidaListMB.clear}">
-					<h:outputText value="#{bean.melhoria}" />
-					<f:param name="id" value="#{bean.id}" />
-				</h:commandLink>
-			</p:column>
-				
-		</p:dataTable>
+				<p:column sortBy="#{bean.pontosNegativos}">
+					<f:facet name="header">#{messages['licaoAprendida.label.pontosNegativos']}</f:facet>
+					<h:commandLink action="#{licaoAprendidaListMB.getNextView}" actionListener="#{licaoAprendidaListMB.clear}">
+						<h:outputText value="#{bean.pontosNegativos}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+					
+				<p:column sortBy="#{bean.melhoria}">
+					<f:facet name="header">#{messages['licaoAprendida.label.melhoria']}</f:facet>
+					<h:commandLink action="#{licaoAprendidaListMB.getNextView}" actionListener="#{licaoAprendidaListMB.clear}">
+						<h:outputText value="#{bean.melhoria}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+					
+			</p:dataTable>
+		</h:form>
 	</ui:define>
 </ui:composition>

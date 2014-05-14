@@ -10,7 +10,15 @@ import javax.persistence.Table;
 @Table(name="TB_RESPOSTA_EVIDENCIA")
 @SequenceGenerator(name="REV_ID", sequenceName="REV_ID", allocationSize=1)
 @NamedQueries({
-    @NamedQuery(name="RespostaEvidenciaEntity.findById", query="SELECT obj FROM RespostaEvidenciaEntity obj WHERE obj.id = :id")
+    @NamedQuery(name="RespostaEvidenciaEntity.findById", 
+    		query="SELECT obj "
+    				+ " FROM RespostaEvidenciaEntity obj "
+    				+ " WHERE obj.id = :id"),
+    @NamedQuery(name="RespostaEvidenciaEntity.findByConjuntoEvidenciaID",
+    		query="SELECT obj "
+    				+ " FROM RespostaEvidenciaEntity obj "
+    				+ " INNER JOIN obj.conjuntoEvidencias cev "
+    				+ " WHERE cev.id = :conjuntoEvidenciaID")
 })
 public class RespostaEvidenciaEntity extends RespostaEvidencia {
 

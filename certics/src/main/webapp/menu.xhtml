@@ -46,14 +46,14 @@
 				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/avaliacao_edit.jsf"></p:menuitem>
 				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/avaliacao_list.jsf"></p:menuitem>
 			</p:submenu>
-		
-			<p:submenu label="#{messages['menu.conjuntoEvidencias']}" rendered="#{securityContext.hasRole('AVALIADO') || securityContext.hasRole('ADM')}">
-				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/conjuntoEvidencias_list.jsf"></p:menuitem>
-			</p:submenu>
 
 			<p:submenu label="#{messages['menu.evidenciaEntity']}" rendered="#{securityContext.hasRole('AVALIADO') || securityContext.hasRole('ADM')}">
 				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/evidenciaEntity_edit.jsf"></p:menuitem>
 				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/evidenciaEntity_list.jsf"></p:menuitem>
+			</p:submenu>
+		
+			<p:submenu label="#{messages['menu.conjuntoEvidencias']}" rendered="#{securityContext.hasRole('AVALIADO') || securityContext.hasRole('ADM')}">
+				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/conjuntoEvidencias_list.jsf"></p:menuitem>
 			</p:submenu>
 			
 			<p:submenu label="#{messages['menu.licaoAprendida']}" rendered="#{securityContext.hasRole('AVALIADO') || securityContext.hasRole('ADM')}">
