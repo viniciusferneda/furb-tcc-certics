@@ -40,7 +40,7 @@
 		                	<h:commandLink value="(sair)" action="#{usuarioEditMB.logout()}" rendered="#{securityContext.loggedIn}" />
 		                </div>
 	                </div>
-	            </h:form>
+	            
 	                <!-- Menu e Corpo-->
 				    <div class="content">
 				        <p:panel rendered="#{securityContext.loggedIn}">
@@ -65,7 +65,7 @@
 				            </a>
 				        </span>
 					</div>-->
-				
+				</h:form>
 			</p:layoutUnit>
 				
 			<p:growl id="messages" globalOnly="true" />			
