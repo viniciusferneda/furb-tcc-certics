@@ -33,4 +33,12 @@ public class ProfissionalBC extends DelegateCrud<ProfissionalEntity, Long, Profi
 		return varEnumUF;
 	}
 	
+	public List<SelectItem> getProfissionalList() {
+		List<SelectItem> varProfissional = new ArrayList<SelectItem>();
+		for (ProfissionalEntity profissional : this.findAll()) {
+			varProfissional.add(new SelectItem(profissional, profissional.getNome()));
+		}
+		return varProfissional;
+	}
+	
 }

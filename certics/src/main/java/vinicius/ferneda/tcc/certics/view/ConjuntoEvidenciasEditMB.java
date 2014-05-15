@@ -15,12 +15,14 @@ import org.primefaces.model.TreeNode;
 import vinicius.ferneda.tcc.certics.business.AvaliacaoBC;
 import vinicius.ferneda.tcc.certics.business.ConjuntoEvidenciasBC;
 import vinicius.ferneda.tcc.certics.business.EvidenciaEntityBC;
+import vinicius.ferneda.tcc.certics.business.ProfissionalBC;
 import vinicius.ferneda.tcc.certics.business.RespostaEvidenciaBC;
 import vinicius.ferneda.tcc.certics.domain.AnexoEntity;
 import vinicius.ferneda.tcc.certics.domain.AreaCompetenciaEntity;
 import vinicius.ferneda.tcc.certics.domain.AvaliacaoEntity;
 import vinicius.ferneda.tcc.certics.domain.ConjuntoEvidenciasEntity;
 import vinicius.ferneda.tcc.certics.domain.EvidenciaEntity;
+import vinicius.ferneda.tcc.certics.domain.EvidenciaProfissionalEntity;
 import vinicius.ferneda.tcc.certics.domain.RespostaEvidenciaEntity;
 import vinicius.ferneda.tcc.certics.domain.ResultadoEsperadoEntity;
 import vinicius.ferneda.tcc.certics.persistence.AreaCompetenciaDAO;
@@ -45,6 +47,8 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 	private EvidenciaEntityBC evidenciaBC;
 	@Inject
 	private ConjuntoEvidenciasBC conjuntoEvidenciasBC;
+	@Inject
+	private ProfissionalBC profissionalBC;
 
 	@Inject
 	private AreaCompetenciaDAO areaCompetenciaDAO;
@@ -69,6 +73,32 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 	public List<SelectItem> getEvidenciaList(){
 		return this.evidenciaBC.getEvidenciaList();
 	}
+
+	public List<SelectItem> getProfissionalList(){
+		return this.profissionalBC.getProfissionalList();
+	}
+
+	private DataModel<EvidenciaProfissionalEntity> profissionalList;
+
+	public void addEvidenciaProfissional() {
+		this.getBean().getRespostaEvidenciaAux().getProfissionais().add(this.getBean().getEvidenciaProfissionalEntity());
+		this.getBean().setEvidenciaProfissionalEntity(new EvidenciaProfissionalEntity());
+	}
+	
+	public void deleteEvidenciaProfissional() {
+		this.getBean().getRespostaEvidenciaAux().getProfissionais().remove(getEvidenciaProfissionalList().getRowData());
+	}
+	
+	public DataModel<EvidenciaProfissionalEntity> getEvidenciaProfissionalList() {
+	   if (profissionalList == null) {
+		   if(this.getBean().getRespostaEvidenciaAux() == null){
+			   profissionalList = new ListDataModel<EvidenciaProfissionalEntity>();
+		   }else{
+			   profissionalList = new ListDataModel<EvidenciaProfissionalEntity>(this.getBean().getRespostaEvidenciaAux().getProfissionais());
+		   }
+	   }
+	   return profissionalList;
+	}
 	
 	private DataModel<AnexoEntity> anexoList;
 
@@ -87,7 +117,7 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 		   }
 	   }
 	   return anexoList;
-	} 
+	}
 	
 	@Override
 	@Transactional
@@ -147,11 +177,13 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 
     public void novaRespostaEvidencia(){
     	this.getBean().setRespostaEvidenciaAux(new RespostaEvidenciaEntity());
+    	this.getBean().setEvidenciaProfissionalEntity(new EvidenciaProfissionalEntity());
     }
     
 	public void addRespostaEvidencia(){
 		this.getBean().getRespostaEvidenciaAux().setConjuntoEvidencias(this.getBean().getConjuntoEvidenciasAux());
 		this.respostaEvidenciaBC.insert(this.getBean().getRespostaEvidenciaAux());
+		this.getBean().setRespostaEvidenciaAux(new RespostaEvidenciaEntity());
 	}
 
 	public void setNovaEvidencia(){

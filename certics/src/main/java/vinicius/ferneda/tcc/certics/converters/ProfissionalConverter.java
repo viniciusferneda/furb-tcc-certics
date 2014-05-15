@@ -4,11 +4,13 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+
 import org.primefaces.component.picklist.PickList;
 import org.primefaces.model.DualListModel;
-import br.gov.frameworkdemoiselle.util.Beans;
+
+import vinicius.ferneda.tcc.certics.domain.ProfissionalEntity;
 import vinicius.ferneda.tcc.certics.persistence.ProfissionalDAO;
-import vinicius.ferneda.tcc.certics.domain.Profissional;
+import br.gov.frameworkdemoiselle.util.Beans;
 
 @FacesConverter(value= "ConversorProfissional")
 public class ProfissionalConverter implements Converter {
@@ -24,7 +26,7 @@ public class ProfissionalConverter implements Converter {
 				Object dualList = ((PickList) component).getValue();
 				DualListModel<?> dl = (DualListModel<?>) dualList;
 				for (Object o : dl.getSource()) {
-					String id = String.valueOf(((Profissional) o).getId());
+					String id = String.valueOf(((ProfissionalEntity) o).getId());
 					if (value.equals(id)) {
 						ret = o;
 						break;
@@ -32,7 +34,7 @@ public class ProfissionalConverter implements Converter {
 				}
 				if (ret == null)
 					for (Object o : dl.getTarget()) {
-						String id = String.valueOf(((Profissional) o).getId());
+						String id = String.valueOf(((ProfissionalEntity) o).getId());
 						if (value.equals(id)) {
 							ret = o;
 							break;
@@ -61,7 +63,7 @@ public class ProfissionalConverter implements Converter {
 			if (value == null || value.equals("")) {
 				return "";
 			} else {			        
-				return String.valueOf(((Profissional) value).getId());
+				return String.valueOf(((ProfissionalEntity) value).getId());
 			}
 		}catch (Exception e) {
 			e.printStackTrace();

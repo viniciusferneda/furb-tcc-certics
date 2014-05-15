@@ -36,6 +36,7 @@ public class AvaliacaoEntity extends Avaliacao {
 
 	private ConjuntoEvidenciasEntity conjuntoEvidenciasAux;
 	private RespostaEvidenciaEntity respostaEvidenciaAux;
+	private EvidenciaProfissionalEntity evidenciaProfissionalEntity;
 	private EvidenciaEntity evidenciaAux;
 
 	public ConjuntoEvidenciasEntity getConjuntoEvidenciasAux() {
@@ -52,6 +53,14 @@ public class AvaliacaoEntity extends Avaliacao {
 
 	public void setRespostaEvidenciaAux(RespostaEvidenciaEntity respostaEvidenciaAux) {
 		this.respostaEvidenciaAux = respostaEvidenciaAux;
+	}
+	
+	public EvidenciaProfissionalEntity getEvidenciaProfissionalEntity() {
+		return evidenciaProfissionalEntity;
+	}
+
+	public void setEvidenciaProfissionalEntity(EvidenciaProfissionalEntity evidenciaProfissionalEntity) {
+		this.evidenciaProfissionalEntity = evidenciaProfissionalEntity;
 	}
 
 	public EvidenciaEntity getEvidenciaAux() {
