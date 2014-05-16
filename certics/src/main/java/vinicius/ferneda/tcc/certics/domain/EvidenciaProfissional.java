@@ -23,7 +23,7 @@ public abstract class EvidenciaProfissional implements Serializable{
 	@Column(name="EPR_FAZ_PARTE_ORG", length=1)
 	private Integer fazParteOrganizacao;
 	
-	@Column(name="EPR_ENVOLVIMENTO", length=255)
+	@Column(name="EPR_ENVOLVIMENTO", length=1000)
 	private String envolvimento;
 	
 	@ManyToOne 

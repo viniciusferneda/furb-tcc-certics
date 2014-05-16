@@ -71,7 +71,7 @@
 							<p:commandButton value="#{messages['button.new']}" 
 								immediate="true"
 								actionListener="#{conjuntoEvidenciasEditMB.novoProfissional(evidencias)}"
-								update=":formModalProfissionais:panelProfissionais" 
+								update=":formModalProfissionais:panelProfissionais, :formModalProfissionais:dtEvidenciaProfissionais" 
 								oncomplete="dialogProfissionais.show()"/>
 						</p:column>
 						
@@ -82,7 +82,7 @@
 		
 		<h:form id="formModalEvidencia">
 			<p:dialog id="modalEvidencia"
-				header="Registrar evidência" 
+				header="#{messages['respostaEvidencia.dialog']}" 
 				widgetVar="dialogEvidencia" 
 				width="400" height="600"
 				resizable="false"
@@ -119,9 +119,9 @@
 		
 		<h:form id="formModalProfissionais">
 			<p:dialog id="modalProfissionais"
-				header="Vincular profissionais" 
+				header="#{messages['evidenciaProfissional.dialog']}" 
 				widgetVar="dialogProfissionais" 
-				width="700" height="700"
+				width="900" height="600"
 				resizable="false"
 				closable="true">
 				<h:panelGrid id="panelProfissionais" styleClass="semBorda">
@@ -134,11 +134,15 @@
 					<p:message for="profissional" />
 		
 					<h:outputLabel value="#{messages['evidenciaProfissional.label.fazParteOrganizacao']}: " for="fazParteOrganizacao" styleClass="text-input" />
-					<p:inputText id="fazParteOrganizacao" value="#{conjuntoEvidenciasEditMB.bean.evidenciaProfissionalEntity.fazParteOrganizacao}" title="#{messages['evidenciaProfissional.alt.fazParteOrganizacao']}" />
+					<p:selectOneRadio id="fazParteOrganizacao" value="#{conjuntoEvidenciasEditMB.bean.evidenciaProfissionalEntity.fazParteOrganizacao}" title="#{messages['evidenciaProfissional.alt.fazParteOrganizacao']}">
+			            <f:selectItem itemLabel="#{messages['label.sim']}" itemValue="1" />
+			            <f:selectItem itemLabel="#{messages['label.nao']}" itemValue="0" />
+			        </p:selectOneRadio>
 					<p:message for="fazParteOrganizacao" />
 		
 					<h:outputLabel value="#{messages['evidenciaProfissional.label.envolvimento']}: " for="envolvimento" styleClass="text-input" />
-					<p:inputText id="envolvimento" value="#{conjuntoEvidenciasEditMB.bean.evidenciaProfissionalEntity.envolvimento}" title="#{messages['evidenciaProfissional.alt.envolvimento']}" />
+					<p:inputTextarea id="envolvimento" value="#{conjuntoEvidenciasEditMB.bean.evidenciaProfissionalEntity.envolvimento}" title="#{messages['evidenciaProfissional.alt.envolvimento']}" 
+						rows="10" cols="30" maxlength="1000" autoResize="false"/>
 					<p:message for="envolvimento" />
 
 					<p:commandButton value="#{messages['button.save']}"

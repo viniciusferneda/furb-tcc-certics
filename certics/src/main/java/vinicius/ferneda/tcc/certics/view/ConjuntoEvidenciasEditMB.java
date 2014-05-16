@@ -97,12 +97,13 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 	
 	public DataModel<EvidenciaProfissionalEntity> getlEvidenciaProfissional() {
 	   if (lEvidenciaProfissional == null) {
-		   if(this.getBean().getRespostaEvidenciaAux() == null){
-			   lEvidenciaProfissional = new ListDataModel<EvidenciaProfissionalEntity>();
-		   }else{
-			   lEvidenciaProfissional = new ListDataModel<EvidenciaProfissionalEntity>(this.getBean().getRespostaEvidenciaAux().getProfissionais());
-		   }
+		   lEvidenciaProfissional = new ListDataModel<EvidenciaProfissionalEntity>();
 	   }
+		
+	   if(this.getBean().getRespostaEvidenciaAux() != null && this.getBean().getRespostaEvidenciaAux().getProfissionais() != null){
+		   lEvidenciaProfissional = new ListDataModel<EvidenciaProfissionalEntity>(this.getBean().getRespostaEvidenciaAux().getProfissionais());
+	   }
+	   
 	   return lEvidenciaProfissional;
 	}
 	
