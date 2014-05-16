@@ -38,6 +38,10 @@
 					<h:outputLabel value="#{messages['resultadoEsperado.label.descricao']}: " for="descricao" styleClass="text-input" />
 					<h:inputText id="descricao" value="#{resultadoEsperadoEditMB.bean.descricao}" title="#{messages['resultadoEsperado.alt.descricao']}" />
 					<p:message for="descricao" />
+
+					<h:outputLabel value="#{messages['resultadoEsperado.label.dica']}: " for="dica" styleClass="text-input" />
+					<h:inputText id="dica" value="#{resultadoEsperadoEditMB.bean.dica}" title="#{messages['resultadoEsperado.alt.dica']}" />
+					<p:message for="dica" />
 						
 					<h:outputLabel value="#{messages['areaCompetencia.label']}: " for="areaCompetencia" styleClass="text-input" />
 				    <p:selectOneMenu id="areaCompetencia" value="#{resultadoEsperadoEditMB.bean.areaCompetencia}"  effect="fade" converter="ConversorAreaCompetencia">

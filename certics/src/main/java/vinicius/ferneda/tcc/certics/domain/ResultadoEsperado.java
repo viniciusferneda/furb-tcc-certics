@@ -30,6 +30,9 @@ public abstract class ResultadoEsperado implements Serializable{
 	@Column(name="ARC_DESCRICAO", nullable=false, length=8000)
 	private String descricao;
 	
+	@Column(name="ARC_DICA", nullable=false, length=8000)
+	private String dica;
+	
 	@ManyToOne(fetch=FetchType.LAZY) 
 	@JoinColumn(name="REV_ARCID", nullable=false)
 	private AreaCompetenciaEntity areaCompetencia;
@@ -64,6 +67,14 @@ public abstract class ResultadoEsperado implements Serializable{
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+	
+	public String getDica() {
+		return dica;
+	}
+
+	public void setDica(String dica) {
+		this.dica = dica;
 	}
 
 	public AreaCompetenciaEntity getAreaCompetencia() {
