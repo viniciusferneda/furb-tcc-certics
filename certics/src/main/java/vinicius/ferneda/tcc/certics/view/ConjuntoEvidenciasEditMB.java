@@ -84,7 +84,7 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 		return this.profissionalBC.getProfissionalList();
 	}
 
-	private DataModel<EvidenciaProfissionalEntity> profissionalList;
+	private DataModel<EvidenciaProfissionalEntity> lEvidenciaProfissional;
 
 	public void addEvidenciaProfissional() {
 		this.getBean().getRespostaEvidenciaAux().getProfissionais().add(this.getBean().getEvidenciaProfissionalEntity());
@@ -92,18 +92,18 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 	}
 	
 	public void deleteEvidenciaProfissional() {
-		this.getBean().getRespostaEvidenciaAux().getProfissionais().remove(getEvidenciaProfissionalList().getRowData());
+		this.getBean().getRespostaEvidenciaAux().getProfissionais().remove(getlEvidenciaProfissional().getRowData());
 	}
 	
-	public DataModel<EvidenciaProfissionalEntity> getEvidenciaProfissionalList() {
-	   if (profissionalList == null) {
+	public DataModel<EvidenciaProfissionalEntity> getlEvidenciaProfissional() {
+	   if (lEvidenciaProfissional == null) {
 		   if(this.getBean().getRespostaEvidenciaAux() == null){
-			   profissionalList = new ListDataModel<EvidenciaProfissionalEntity>();
+			   lEvidenciaProfissional = new ListDataModel<EvidenciaProfissionalEntity>();
 		   }else{
-			   profissionalList = new ListDataModel<EvidenciaProfissionalEntity>(this.getBean().getRespostaEvidenciaAux().getProfissionais());
+			   lEvidenciaProfissional = new ListDataModel<EvidenciaProfissionalEntity>(this.getBean().getRespostaEvidenciaAux().getProfissionais());
 		   }
 	   }
-	   return profissionalList;
+	   return lEvidenciaProfissional;
 	}
 	
 	private DataModel<AnexoEntity> anexoList;

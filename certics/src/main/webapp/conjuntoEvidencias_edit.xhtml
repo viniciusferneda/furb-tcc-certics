@@ -146,7 +146,7 @@
 						update=":formModalProfissionais:dtEvidenciaProfissionais"/>
 				</h:panelGrid>
 
-				<p:dataTable id="dtEvidenciaProfissionais" var="profissionais" value="#{conjuntoEvidenciasEditMB.bean.respostaEvidenciaAux.profissionais}">
+				<p:dataTable id="dtEvidenciaProfissionais" var="profissionais" value="#{conjuntoEvidenciasEditMB.lEvidenciaProfissional}">
 					<f:facet name="header">
 						#{messages['respostaEvidencia.label.profissionais']}
 					</f:facet>
@@ -166,13 +166,14 @@
 					<p:column headerText="#{messages['evidenciaProfissional.label.remover']}">
 						Remover
 					</p:column>
-					
-					<p:commandButton value="#{messages['button.save']}"
-						actionListener="#{conjuntoEvidenciasEditMB.insertEvidenciaProfissional()}"
-						update=":formRegistroEvidencias:dtEvidencias"
-						oncomplete="dialogProfissionais.hide();"/>
 						
 				</p:dataTable>
+
+				<p:commandButton value="#{messages['button.save']}"
+					actionListener="#{conjuntoEvidenciasEditMB.insertEvidenciaProfissional()}"
+					update=":formRegistroEvidencias:dtEvidencias"
+					oncomplete="dialogProfissionais.hide();"/>
+
 			</p:dialog>
 		</h:form>
 	</ui:define>
