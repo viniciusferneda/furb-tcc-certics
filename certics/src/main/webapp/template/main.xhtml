@@ -40,32 +40,31 @@
 		                	<h:commandLink value="(sair)" action="#{usuarioEditMB.logout()}" rendered="#{securityContext.loggedIn}" />
 		                </div>
 	                </div>
-	            
-	                <!-- Menu e Corpo-->
-				    <div class="content">
-				        <p:panel rendered="#{securityContext.loggedIn}">
-				            <div>
-				                <ui:include src="/menu.xhtml"/>
-				            </div>
-				            <div>
-				                <ui:insert name="crud"/>
-				            </div>
-				        </p:panel>
-				        <p:panel>
-				        	<div align="left">
-				            	<ui:insert name="body"/>
-				            </div>
-				        </p:panel>
-				    </div>
-					<!-- Rodape 
-					<div id="rodape" class="footer">
-				        <span>
-				            <a href="http://www.certics.cti.gov.br/" title="">
-				                <h:outputText value="CERTICS"/>
-				            </a>
-				        </span>
-					</div>-->
-				</h:form>
+	            </h:form>
+                <!-- Menu e Corpo-->
+			    <div class="content">
+			        <p:panel rendered="#{securityContext.loggedIn}">
+			            <div>
+			                <ui:include src="/menu.xhtml"/>
+			            </div>
+			            <div>
+			                <ui:insert name="crud"/>
+			            </div>
+			        </p:panel>
+			        <p:panel>
+			        	<div align="left">
+			            	<ui:insert name="body"/>
+			            </div>
+			        </p:panel>
+			    </div>
+				<!-- Rodape 
+				<div id="rodape" class="footer">
+			        <span>
+			            <a href="http://www.certics.cti.gov.br/" title="">
+			                <h:outputText value="CERTICS"/>
+			            </a>
+			        </span>
+				</div>-->
 			</p:layoutUnit>
 				
 			<p:growl id="messages" globalOnly="true" />			

@@ -15,6 +15,7 @@ import org.primefaces.model.TreeNode;
 import vinicius.ferneda.tcc.certics.business.AvaliacaoBC;
 import vinicius.ferneda.tcc.certics.business.ConjuntoEvidenciasBC;
 import vinicius.ferneda.tcc.certics.business.EvidenciaEntityBC;
+import vinicius.ferneda.tcc.certics.business.EvidenciaProfissionalBC;
 import vinicius.ferneda.tcc.certics.business.ProfissionalBC;
 import vinicius.ferneda.tcc.certics.business.RespostaEvidenciaBC;
 import vinicius.ferneda.tcc.certics.domain.AnexoEntity;
@@ -27,6 +28,7 @@ import vinicius.ferneda.tcc.certics.domain.RespostaEvidenciaEntity;
 import vinicius.ferneda.tcc.certics.domain.ResultadoEsperadoEntity;
 import vinicius.ferneda.tcc.certics.persistence.AreaCompetenciaDAO;
 import vinicius.ferneda.tcc.certics.persistence.ConjuntoEvidenciasDAO;
+import vinicius.ferneda.tcc.certics.persistence.EvidenciaProfissionalDAO;
 import vinicius.ferneda.tcc.certics.persistence.RespostaEvidenciaDAO;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
@@ -49,6 +51,8 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 	private ConjuntoEvidenciasBC conjuntoEvidenciasBC;
 	@Inject
 	private ProfissionalBC profissionalBC;
+	@Inject
+	private EvidenciaProfissionalBC evidenciaProfissionalBC; 
 
 	@Inject
 	private AreaCompetenciaDAO areaCompetenciaDAO;
@@ -56,7 +60,9 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 	private ConjuntoEvidenciasDAO conjuntoEvidenciasDAO;
 	@Inject
 	private RespostaEvidenciaDAO respostaEvidenciaDAO;
-
+	@Inject
+	private EvidenciaProfissionalDAO evidenciaProfissionalDAO;
+	
 	public List<SelectItem> getPontuacao() {
 		return conjuntoEvidenciasBC.getEnumPontuacaoAvaliacao();
 	}
@@ -177,6 +183,11 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 
     public void novaRespostaEvidencia(){
     	this.getBean().setRespostaEvidenciaAux(new RespostaEvidenciaEntity());
+    }
+    
+    public void novoProfissional(RespostaEvidenciaEntity respostaEvidenciaEntity){
+    	respostaEvidenciaEntity.setProfissionais(evidenciaProfissionalDAO.findByRespostaEvidenciaID(respostaEvidenciaEntity.getId()));
+    	this.getBean().setRespostaEvidenciaAux(respostaEvidenciaEntity);
     	this.getBean().setEvidenciaProfissionalEntity(new EvidenciaProfissionalEntity());
     }
     
@@ -192,6 +203,17 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 
 	public void setEvidencia(){
 		this.evidenciaBC.insert(this.getBean().getEvidenciaAux());
+	}
+
+	public void insertEvidenciaProfissional(){
+		for (EvidenciaProfissionalEntity profissional : this.getBean().getRespostaEvidenciaAux().getProfissionais()) {
+			profissional.setRespostaEvidencia(this.getBean().getRespostaEvidenciaAux());
+			if(profissional.getId() != null){
+				this.evidenciaProfissionalBC.update(profissional);
+			}else{
+				this.evidenciaProfissionalBC.insert(profissional);
+			}
+		}
 	}
 
 }

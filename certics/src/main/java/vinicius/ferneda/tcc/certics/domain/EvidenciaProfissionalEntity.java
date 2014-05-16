@@ -10,7 +10,16 @@ import javax.persistence.Table;
 @Table(name="TB_EVIDENCIA_PROFISSIONAL")
 @SequenceGenerator(name="EPR_ID", sequenceName="EPR_ID", allocationSize=1)
 @NamedQueries({
-    @NamedQuery(name="EvidenciaProfissionalEntity.findById", query="SELECT obj FROM EvidenciaProfissionalEntity obj WHERE obj.id = :id")
+    @NamedQuery(name="EvidenciaProfissionalEntity.findById", 
+    		query="SELECT obj "
+    				+ " FROM EvidenciaProfissionalEntity obj "
+    				+ " WHERE obj.id = :id"),
+    @NamedQuery(name="EvidenciaProfissionalEntity.findByRespostaEvidenciaID", 
+			query="SELECT obj "
+					+ " FROM EvidenciaProfissionalEntity obj "
+					+ " INNER JOIN obj.respostaEvidencia rev "
+					+ " WHERE rev.id = :respostaEvidenciaID"),
+    				
 })
 public class EvidenciaProfissionalEntity extends EvidenciaProfissional {
 
