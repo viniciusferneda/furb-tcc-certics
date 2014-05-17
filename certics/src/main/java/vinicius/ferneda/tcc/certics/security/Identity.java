@@ -39,7 +39,7 @@ public class Identity implements User {
 
     @Override
     public String getId() {
-        return (String) (attribute.get("username") == null ? "" : attribute.get("username"));
+        return (String) (attribute.get("id") == null ? "" : attribute.get("id").toString());
     }
 
     @Override
