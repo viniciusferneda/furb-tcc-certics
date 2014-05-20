@@ -11,10 +11,13 @@ import vinicius.ferneda.tcc.certics.business.UsuarioBC;
 import vinicius.ferneda.tcc.certics.domain.AvaliadorEntity;
 import vinicius.ferneda.tcc.certics.domain.EnderecoEntity;
 import vinicius.ferneda.tcc.certics.domain.UsuarioEntity;
+import vinicius.ferneda.tcc.certics.util.CriptografiaUtil;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
+import br.gov.frameworkdemoiselle.message.MessageContext;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
+import br.gov.frameworkdemoiselle.util.ResourceBundle;
 
 @ViewController
 @PreviousView("./avaliador_list.jsf")
@@ -24,12 +27,18 @@ public class AvaliadorEditMB extends AbstractEditPageBean<AvaliadorEntity, Long>
 
 	@Inject
 	private AvaliadorBC avaliadorBC;
-
 	@Inject
 	private EnderecoBC enderecoBC;
-	
 	@Inject
 	private UsuarioBC usuarioBC;
+
+	@Inject
+	private MessageContext messageContext;
+	@Inject
+	private ResourceBundle bundle;
+	
+	private String senhaAtual;
+	private String novaSenha;
 	
 	public List<SelectItem> getSexo() {
 		return avaliadorBC.getEnumSexo();
@@ -63,7 +72,13 @@ public class AvaliadorEditMB extends AbstractEditPageBean<AvaliadorEntity, Long>
 	@Override
 	@Transactional
 	public String update() {
-		this.avaliadorBC.update(this.getBean());
+		UsuarioEntity usuario = this.getBean().getUsuario();
+		if(usuario.getSenha().equals(CriptografiaUtil.getCodigoMd5(getSenhaAtual()))){
+			usuario.setSenha(CriptografiaUtil.getCodigoMd5(getNovaSenha()));
+			this.avaliadorBC.update(this.getBean());
+		}else{
+			messageContext.add(bundle.getString("label.senha.invalida"));
+		}
 		return getPreviousView();
 	}
 	
@@ -79,4 +94,21 @@ public class AvaliadorEditMB extends AbstractEditPageBean<AvaliadorEntity, Long>
 		avaliador.setUsuario(new UsuarioEntity());
 		return avaliador;
 	}
+
+	public String getSenhaAtual() {
+		return senhaAtual;
+	}
+
+	public void setSenhaAtual(String senhaAtual) {
+		this.senhaAtual = senhaAtual;
+	}
+
+	public String getNovaSenha() {
+		return novaSenha;
+	}
+
+	public void setNovaSenha(String novaSenha) {
+		this.novaSenha = novaSenha;
+	}
+	
 }
