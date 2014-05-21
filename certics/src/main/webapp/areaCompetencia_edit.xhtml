@@ -32,15 +32,21 @@
 					<p:message for="id" />
 						
 					<h:outputLabel value="#{messages['areaCompetencia.label.titulo']}: " for="titulo" styleClass="text-input" />
-					<h:inputText id="titulo" value="#{areaCompetenciaEditMB.bean.titulo}" title="#{messages['areaCompetencia.alt.titulo']}" />
+					<p:inputText id="titulo" value="#{areaCompetenciaEditMB.bean.titulo}" title="#{messages['areaCompetencia.alt.titulo']}" requiredMessage="#{messages['label.obrigatorio']}" size="80" maxlength="255">
+						<f:param value="#{messages['areaCompetencia.label.titulo']}"/>
+					</p:inputText>
 					<p:message for="titulo" />
 						
 					<h:outputLabel value="#{messages['areaCompetencia.label.perguntaChave']}: " for="perguntaChave" styleClass="text-input" />
-					<h:inputText id="perguntaChave" value="#{areaCompetenciaEditMB.bean.perguntaChave}" title="#{messages['areaCompetencia.alt.perguntaChave']}" />
+					<p:inputText id="perguntaChave" value="#{areaCompetenciaEditMB.bean.perguntaChave}" title="#{messages['areaCompetencia.alt.perguntaChave']}" requiredMessage="#{messages['label.obrigatorio']}" size="80" maxlength="255">
+						<f:param value="#{messages['areaCompetencia.label.perguntaChave']}"/>
+					</p:inputText>
 					<p:message for="perguntaChave" />
 						
 					<h:outputLabel value="#{messages['areaCompetencia.label.descricao']}: " for="descricao" styleClass="text-input" />
-					<h:inputText id="descricao" value="#{areaCompetenciaEditMB.bean.descricao}" title="#{messages['areaCompetencia.alt.descricao']}" />
+					<p:inputTextarea id="descricao" value="#{areaCompetenciaEditMB.bean.descricao}" title="#{messages['areaCompetencia.alt.descricao']}" requiredMessage="#{messages['label.obrigatorio']}" rows="10" cols="80" maxlength="8000" autoResize="false">
+						<f:param value="#{messages['areaCompetencia.label.descricao']}"/>
+					</p:inputTextarea>
 					<p:message for="descricao" />
 					
 					<h:outputLabel value="#{messages['areaCompetencia.label.versaoCertics']}: " styleClass="text-input" />

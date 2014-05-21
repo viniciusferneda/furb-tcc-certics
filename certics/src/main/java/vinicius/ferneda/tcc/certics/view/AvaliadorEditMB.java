@@ -62,6 +62,7 @@ public class AvaliadorEditMB extends AbstractEditPageBean<AvaliadorEntity, Long>
 		this.enderecoBC.insert(this.getBean().getEndereco());
 		
 		//grava Usuario
+		this.getBean().getUsuario().setSenha(CriptografiaUtil.getCodigoMd5(getNovaSenha()));
 		this.usuarioBC.insert(this.getBean().getUsuario());
 		
 		//grava Avaliador

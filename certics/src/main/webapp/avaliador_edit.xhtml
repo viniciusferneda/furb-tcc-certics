@@ -32,7 +32,9 @@
 					<p:message for="id" />
 						
 					<h:outputLabel value="#{messages['avaliador.label.nome']}: " for="nome" styleClass="text-input" />
-					<p:inputText id="nome" value="#{avaliadorEditMB.bean.nome}" title="#{messages['avaliador.alt.nome']}" size="50" maxlength="255"/>
+					<p:inputText id="nome" value="#{avaliadorEditMB.bean.nome}" title="#{messages['avaliador.alt.nome']}" requiredMessage="#{messages['label.obrigatorio']}" size="50" maxlength="255">
+						<f:param value="#{messages['avaliador.label.nome']}"/>
+					</p:inputText>
 					<p:message for="nome" />
 						
 					<h:outputLabel value="#{messages['avaliador.label.cpf']}: " for="cpf" styleClass="text-input" />

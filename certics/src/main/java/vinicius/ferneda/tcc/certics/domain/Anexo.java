@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
@@ -25,7 +24,6 @@ public abstract class Anexo implements Serializable{
 	@Column(name="ANE_NOME", nullable=false, length=255)
 	private String nome;
 
-	@Lob
 	@Column(name="ANE_ARQUIVO", nullable=false)
 	private byte[] arquivo;
 	

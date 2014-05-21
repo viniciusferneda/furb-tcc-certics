@@ -3,7 +3,6 @@ package vinicius.ferneda.tcc.certics.view;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.context.SessionScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.inject.Inject;
@@ -22,7 +21,6 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 @ViewController
 @PreviousView("./evidenciaEntity_list.jsf")
-@SessionScoped
 public class EvidenciaEntityEditMB extends AbstractEditPageBean<EvidenciaEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
@@ -72,14 +70,14 @@ public class EvidenciaEntityEditMB extends AbstractEditPageBean<EvidenciaEntity,
 	@Transactional
 	public String update() {
 		retiraAnexos(getBean().getAnexos());
-		this.evidenciaEntityBC.update(getBean());
 		for (AnexoEntity anexo : getlAnexosAux()) {
 			if(anexo.getId() != null){
-				this.anexoBC.insert(anexo);
-			}else{
 				this.anexoBC.update(anexo);
+			}else{
+				this.anexoBC.insert(anexo);
 			}
 		}
+		this.evidenciaEntityBC.update(getBean());
 		return getPreviousView();
 	}
 	

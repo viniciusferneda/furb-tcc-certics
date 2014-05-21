@@ -30,6 +30,17 @@
 					<h:outputLabel value="#{messages['avaliacao.label.id']}: " for="id" styleClass="text-input" />
 					<h:outputText id="id" value="#{avaliacaoEditMB.bean.id}" />
 					<p:message for="id" />
+
+					<h:outputLabel value="#{messages['avaliador.label']}: " for="avaliador" styleClass="text-input" />
+					<h:outputText id="avaliador" value="#{avaliacaoEditMB.bean.avaliador.nome}" />
+					<p:message for="avaliador" />
+
+					<h:outputLabel value="#{messages['software.label']}: " for="software" styleClass="text-input" />
+				    <p:selectOneMenu id="software" value="#{avaliacaoEditMB.bean.software}"  effect="fade" converter="ConversorSoftware">
+						<f:selectItem itemLabel="Selecione" itemValue="" />
+						<f:selectItems value="#{avaliacaoEditMB.softwareList}" var="varSoftware" itemLabel="#{varSoftware.nome}"  itemValue="#{varSoftware}" />						
+					</p:selectOneMenu>
+					<p:message for="software" />								  
 						
 					<h:outputLabel value="#{messages['avaliacao.label.versaoCertics']}: " for="versaoCertics" styleClass="text-input" />
 					<p:selectOneMenu id="versaoCertics" value="#{avaliacaoEditMB.bean.versaoCertics}"  effect="fade" converter="ConversorVersaoCertics">
@@ -43,26 +54,6 @@
 					   pattern="#{messages['label.date.pattern']}" navigator="true" showButtonPanel="true"
 					   locale="#{locales.currentLocale}" title="#{messages['avaliacao.alt.dataAvaliacao']}" />
 					<p:message for="dataAvaliacao" />
-						
-					<h:outputLabel value="#{messages['software.label']}: " for="software" styleClass="text-input" />
-				    <p:selectOneMenu id="software" value="#{avaliacaoEditMB.bean.software}"  effect="fade" converter="ConversorSoftware">
-						<f:selectItem itemLabel="Selecione" itemValue="" />
-						<f:selectItems value="#{avaliacaoEditMB.softwareList}" var="varSoftware" itemLabel="#{varSoftware.id}"  itemValue="#{varSoftware}" />						
-					</p:selectOneMenu>
-					<p:message for="software" />								  
-								 
-					<h:outputLabel value="#{messages['avaliador.label']}: " for="avaliador" styleClass="text-input" />
-				    <p:selectOneMenu id="avaliador" value="#{avaliacaoEditMB.bean.avaliador}"  effect="fade" converter="ConversorAvaliador">
-						<f:selectItem itemLabel="Selecione" itemValue="" />
-						<f:selectItems value="#{avaliacaoEditMB.avaliadorList}" var="varAvaliador" itemLabel="#{varAvaliador.id}"  itemValue="#{varAvaliador}" />						
-					</p:selectOneMenu>
-					<p:message for="avaliador" />								  
-		
-					<h:outputLabel value="#{messages['avaliacao.label.pontuacao']}: " for="pontuacao" styleClass="text-input" />
-					<p:selectOneMenu id="pontuacao" effect="fade" value="#{avaliacaoEditMB.bean.pontuacao}">
-						<f:selectItems value="#{avaliacaoEditMB.pontuacao}" />
-					</p:selectOneMenu>					
-					<p:message for="pontuacao" />
 								 
 				</h:panelGrid>
 			</p:fieldset>

@@ -3,7 +3,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
 	<ui:define name="body">
-		<h:form prependId="false">
+		<h:form prependId="false" enctype="multipart/form-data">
 			<p:toolbar>
 				<p:toolbarGroup align="left">
 					<p:commandButton value="#{messages['button.save']}" action="#{evidenciaEntityEditMB.insert}"
@@ -31,11 +31,15 @@
 					<p:message for="id" />
 					
 					<h:outputLabel value="#{messages['evidenciaEntity.label.nome']}: " for="nome" styleClass="text-input" />
-					<h:inputText id="nome" value="#{evidenciaEntityEditMB.bean.nome}" title="#{messages['evidenciaEntity.alt.nome']}" />
+					<p:inputText id="nome" value="#{evidenciaEntityEditMB.bean.nome}" title="#{messages['evidenciaEntity.alt.nome']}" requiredMessage="#{messages['label.obrigatorio']}" size="50" maxlength="255">
+						<f:param value="#{messages['evidenciaEntity.label.nome']}"/>
+					</p:inputText>
 					<p:message for="nome" />
 					
 					<h:outputLabel value="#{messages['evidenciaEntity.label.descricao']}: " for="descricao" styleClass="text-input" />
-					<h:inputText id="descricao" value="#{evidenciaEntityEditMB.bean.descricao}" title="#{messages['evidenciaEntity.alt.descricao']}" />
+					<p:inputTextarea id="descricao" value="#{evidenciaEntityEditMB.bean.descricao}" title="#{messages['evidenciaEntity.alt.descricao']}" requiredMessage="#{messages['label.obrigatorio']}" rows="10" cols="50" maxlength="8000" autoResize="false">
+						<f:param value="#{messages['evidenciaEntity.label.descricao']}"/>
+					</p:inputTextarea>
 					<p:message for="descricao" />
 				</h:panelGrid>
 			</p:fieldset>
