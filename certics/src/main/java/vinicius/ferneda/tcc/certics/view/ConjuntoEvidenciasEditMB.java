@@ -62,7 +62,7 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 	private RespostaEvidenciaDAO respostaEvidenciaDAO;
 	@Inject
 	private EvidenciaProfissionalDAO evidenciaProfissionalDAO;
-	
+
 	public List<SelectItem> getPontuacao() {
 		return conjuntoEvidenciasBC.getEnumPontuacaoAvaliacao();
 	}
@@ -182,14 +182,18 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
     	}
     }
 
-    public void novaRespostaEvidencia(){
+    public void novaRespostaEvidencia(String tipoEvidencia){
     	this.getBean().setRespostaEvidenciaAux(new RespostaEvidenciaEntity());
     }
     
     public void novoProfissional(RespostaEvidenciaEntity respostaEvidenciaEntity){
+    	carregaProfissionais(respostaEvidenciaEntity);
+    	this.getBean().setEvidenciaProfissionalEntity(new EvidenciaProfissionalEntity());
+    }
+    
+    public void carregaProfissionais(RespostaEvidenciaEntity respostaEvidenciaEntity){
     	respostaEvidenciaEntity.setProfissionais(evidenciaProfissionalDAO.findByRespostaEvidenciaID(respostaEvidenciaEntity.getId()));
     	this.getBean().setRespostaEvidenciaAux(respostaEvidenciaEntity);
-    	this.getBean().setEvidenciaProfissionalEntity(new EvidenciaProfissionalEntity());
     }
     
 	public void addRespostaEvidencia(){
