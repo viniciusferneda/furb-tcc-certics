@@ -13,13 +13,17 @@
 					<h:outputLabel value="#{messages['software.label.nome']}: " for="softwareNome" styleClass="text-input" />
 					<h:outputText id="softwareNome" value="#{conjuntoEvidenciasEditMB.bean.software.nome}" />
 					<p:message for="softwareNome" />
+
+					<h:outputLabel value="#{messages['avaliacao.label.pontuacao']}: " for="avaliacaoPontuacao" styleClass="text-input" />
+					<h:outputText id="avaliacaoPontuacao" value="#{conjuntoEvidenciasEditMB.bean.pontuacao.nome}" />
+					<p:message for="avaliacaoPontuacao" />
 				</p:layoutUnit>
 				
 				<p:layoutUnit id="treeRegistroEvidencias" position="west" resizable="true" size="20%">
 					<p:tree id="tree" value="#{conjuntoEvidenciasEditMB.root}" var="node" dynamic="true" cache="false" 
 	            		selectionMode="single" selection="#{conjuntoEvidenciasEditMB.selectedNode}" style="width:100%;height:100%">
 				        
-				        <p:ajax event="select" listener="#{conjuntoEvidenciasEditMB.onNodeSelect}" update=":formRegistroEvidencias:panelPrincipalRegistroEvidencia, :formRegistroEvidencias:dtEvidencias"/>
+				        <p:ajax event="select" listener="#{conjuntoEvidenciasEditMB.onNodeSelect}" update=":formRegistroEvidencias:panelPrincipalRegistroEvidenciaAvaliador, :formRegistroEvidencias:panelPrincipalRegistroEvidenciaAvaliado, :formRegistroEvidencias:dtEvidencias"/>
 				        
 				        <p:treeNode id="treeNode">
 				            <h:outputText id="lblNode" value="#{node.titulo}"/>
@@ -29,7 +33,7 @@
 				
 				<p:layoutUnit id="principalRegistroEvidencia" position="center" size="80%" >
 					
-					<h:panelGrid id="panelPrincipalRegistroEvidencia" columns="2" rendered="#{securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM')}">
+					<p:panelGrid  id="panelPrincipalRegistroEvidenciaAvaliador" columns="2" rendered="#{conjuntoEvidenciasEditMB.mostraConjuntoEvidenciaAvaliador()}">
 						<h:outputLabel value="#{messages['conjuntoEvidencias.label.pontuacao']}: " styleClass="text-input" />
 						<p:selectOneMenu id="pontuacao" effect="fade" value="#{conjuntoEvidenciasEditMB.bean.conjuntoEvidenciasAux.pontuacao}">
 							<f:selectItems value="#{conjuntoEvidenciasEditMB.pontuacao}" />
@@ -38,21 +42,25 @@
 						<h:outputLabel value="#{messages['conjuntoEvidencias.label.comentario']}: " for="conjuntoEvidenciasComentario" styleClass="text-input" />
 						<p:inputTextarea id="conjuntoEvidenciasComentario" value="#{conjuntoEvidenciasEditMB.bean.conjuntoEvidenciasAux.comentario}" title="#{messages['conjuntoEvidencias.alt.comentario']}" rows="10" cols="80" maxlength="8000" autoResize="false"/>
 						<p:message for="conjuntoEvidenciasComentario" />
-					</h:panelGrid>
-					
-					<p:commandButton value="#{messages['button.sim']}" 
-						immediate="true"
-						actionListener="#{conjuntoEvidenciasEditMB.novaRespostaEvidencia()}"
-						update=":formModalEvidencia:panelRegistroEvidencia" 
-						oncomplete="dialogEvidencia.show()"
-						rendered="#{securityContext.hasRole('AVALIADO') || securityContext.hasRole('ADM')}"/>
 
-					<p:commandButton value="#{messages['button.nao']}" 
-						immediate="true"
-						actionListener="#{conjuntoEvidenciasEditMB.novaRespostaEvidencia()}"
-						update=":formModalEvidenciaMotivo:panelRegistroEvidenciaMotivo" 
-						oncomplete="dialogEvidenciaMotivo.show()"
-						rendered="#{securityContext.hasRole('AVALIADO') || securityContext.hasRole('ADM')}"/>
+						<p:commandButton value="#{messages['button.save']}" actionListener="#{conjuntoEvidenciasEditMB.insertConjuntoEvidencia()}"/>
+					</p:panelGrid>
+					
+					<p:panelGrid id="panelPrincipalRegistroEvidenciaAvaliado" columns="3" rendered="#{conjuntoEvidenciasEditMB.mostraConjuntoEvidenciaAvaliado()}">
+						<p:commandButton value="#{messages['button.sim']}" 
+							immediate="true"
+							actionListener="#{conjuntoEvidenciasEditMB.novaRespostaEvidencia()}"
+							update=":formModalEvidencia:panelRegistroEvidencia" 
+							oncomplete="dialogEvidencia.show()"
+							rendered="#{securityContext.hasRole('AVALIADO') || securityContext.hasRole('ADM')}"/>
+	
+						<p:commandButton value="#{messages['button.nao']}" 
+							immediate="true"
+							actionListener="#{conjuntoEvidenciasEditMB.novaRespostaEvidencia()}"
+							update=":formModalEvidenciaMotivo:panelRegistroEvidenciaMotivo" 
+							oncomplete="dialogEvidenciaMotivo.show()"
+							rendered="#{securityContext.hasRole('AVALIADO') || securityContext.hasRole('ADM')}"/>
+					</p:panelGrid>
 
 					<p:dataTable id="dtEvidencias" var="evidencias" value="#{conjuntoEvidenciasEditMB.lRespostaEvidencias}">
 						<f:facet name="header">

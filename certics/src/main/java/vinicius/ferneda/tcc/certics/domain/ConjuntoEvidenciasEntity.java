@@ -21,7 +21,13 @@ import vinicius.ferneda.tcc.certics.constant.EnumPontuacaoEvidencia;
     		query="SELECT obj "
     				+ " FROM ConjuntoEvidenciasEntity obj "
     				+ " INNER JOIN obj.resultadoEsperado res "
-    				+ " WHERE res.id = :resultadoEsperadoID")
+    				+ " WHERE res.id = :resultadoEsperadoID"),
+    
+    @NamedQuery(name="ConjuntoEvidenciasEntity.findByAvaliacaoID",
+			query="SELECT obj "
+					+ " FROM ConjuntoEvidenciasEntity obj "
+					+ " INNER JOIN obj.avaliacao ava "
+					+ " WHERE ava.id = :avaliacaoID")
 })
 public class ConjuntoEvidenciasEntity extends ConjuntoEvidencias {
 

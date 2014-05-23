@@ -24,4 +24,10 @@ public class ConjuntoEvidenciasDAO extends JPACrud<ConjuntoEvidenciasEntity, Lon
 			return null;
 		}
     }
+	
+	@SuppressWarnings("unchecked")
+	public List<ConjuntoEvidenciasEntity> findByAvaliacaoID(Long avaliacaoID){
+		return (List<ConjuntoEvidenciasEntity>) getEntityManager().createNamedQuery("ConjuntoEvidenciasEntity.findByAvaliacaoID").setParameter("avaliacaoID", avaliacaoID);
+    }
+
 }

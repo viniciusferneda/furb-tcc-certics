@@ -18,6 +18,8 @@ import vinicius.ferneda.tcc.certics.business.EvidenciaEntityBC;
 import vinicius.ferneda.tcc.certics.business.EvidenciaProfissionalBC;
 import vinicius.ferneda.tcc.certics.business.ProfissionalBC;
 import vinicius.ferneda.tcc.certics.business.RespostaEvidenciaBC;
+import vinicius.ferneda.tcc.certics.constant.EnumPapelUsuario;
+import vinicius.ferneda.tcc.certics.constant.EnumPontuacaoAvaliacao;
 import vinicius.ferneda.tcc.certics.domain.AnexoEntity;
 import vinicius.ferneda.tcc.certics.domain.AreaCompetenciaEntity;
 import vinicius.ferneda.tcc.certics.domain.AvaliacaoEntity;
@@ -31,6 +33,7 @@ import vinicius.ferneda.tcc.certics.persistence.ConjuntoEvidenciasDAO;
 import vinicius.ferneda.tcc.certics.persistence.EvidenciaProfissionalDAO;
 import vinicius.ferneda.tcc.certics.persistence.RespostaEvidenciaDAO;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
+import br.gov.frameworkdemoiselle.security.SecurityContext;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
@@ -41,6 +44,9 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 
 	private static final long serialVersionUID = 1L;
 
+	@Inject
+    private SecurityContext securityContext;
+	
 	@Inject
 	private AvaliacaoBC avaliacaoBC;
 	@Inject
@@ -182,6 +188,22 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
     	}
     }
 
+    public boolean mostraConjuntoEvidenciaAvaliador(){
+    	if((securityContext.hasRole(EnumPapelUsuario.AVALIADOR.toString()) || securityContext.hasRole(EnumPapelUsuario.ADM.toString())) && getBean().getConjuntoEvidenciasAux() != null && getBean().getConjuntoEvidenciasAux().getId() != null){
+    		return true;
+    	}else{
+    		return false;
+    	}
+    }
+
+    public boolean mostraConjuntoEvidenciaAvaliado(){
+    	if((securityContext.hasRole(EnumPapelUsuario.AVALIADO.toString()) || securityContext.hasRole(EnumPapelUsuario.ADM.toString())) && getBean().getConjuntoEvidenciasAux() != null && getBean().getConjuntoEvidenciasAux().getId() != null){
+    		return true;
+    	}else{
+    		return false;
+    	}
+    }
+
     public void novaRespostaEvidencia(String tipoEvidencia){
     	this.getBean().setRespostaEvidenciaAux(new RespostaEvidenciaEntity());
     }
@@ -219,6 +241,40 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 				this.evidenciaProfissionalBC.insert(profissional);
 			}
 		}
+	}
+	
+	public void insertConjuntoEvidencia(){
+		this.conjuntoEvidenciasBC.update(this.getBean().getConjuntoEvidenciasAux());
+		atualizaPontuacaoAvaliacao();
+	}
+
+	private void atualizaPontuacaoAvaliacao() {
+		int qtdRespostas = 0, completamenteAtendido = 0, largamenteAtendido = 0, parcialmenteAtendido = 0, naoAtendido = 0;
+		for (ConjuntoEvidenciasEntity conjuntoEvidenciasEntity : conjuntoEvidenciasDAO.findByAvaliacaoID(getId())) {
+			qtdRespostas++;
+			if(conjuntoEvidenciasEntity.getPontuacao() != null){
+				switch (conjuntoEvidenciasEntity.getPontuacao()) {
+				case F:
+					completamenteAtendido++;
+					break;
+				case L:
+					largamenteAtendido++;
+					break;
+				case P: parcialmenteAtendido++;
+					break;
+				case N: naoAtendido++; 
+					break;
+				}
+			}
+		}
+		if(parcialmenteAtendido > 0 || naoAtendido > 0){
+			getBean().setPontuacao(EnumPontuacaoAvaliacao.REPROVADA);
+		}else if(qtdRespostas == (completamenteAtendido+largamenteAtendido)){
+			getBean().setPontuacao(EnumPontuacaoAvaliacao.APROVADA);
+		}else{
+			getBean().setPontuacao(EnumPontuacaoAvaliacao.PENDENTE);
+		}
+		update();
 	}
 
 }
