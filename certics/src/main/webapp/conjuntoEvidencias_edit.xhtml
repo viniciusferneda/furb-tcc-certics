@@ -23,7 +23,7 @@
 					<p:tree id="tree" value="#{conjuntoEvidenciasEditMB.root}" var="node" dynamic="true" cache="false" 
 	            		selectionMode="single" selection="#{conjuntoEvidenciasEditMB.selectedNode}" style="width:100%;height:100%">
 				        
-				        <p:ajax event="select" listener="#{conjuntoEvidenciasEditMB.onNodeSelect}" update=":formRegistroEvidencias:panelPrincipalRegistroEvidenciaAvaliador, :formRegistroEvidencias:panelPrincipalRegistroEvidenciaAvaliado, :formRegistroEvidencias:dtEvidencias"/>
+				        <p:ajax event="select" listener="#{conjuntoEvidenciasEditMB.onNodeSelect}" update=":formRegistroEvidencias:panelPrincipalRegistroEvidencia, :formRegistroEvidencias:panelPrincipalRegistroEvidenciaAvaliador, :formRegistroEvidencias:panelPrincipalRegistroEvidenciaAvaliado, :formRegistroEvidencias:dtEvidencias"/>
 				        
 				        <p:treeNode id="treeNode">
 				            <h:outputText id="lblNode" value="#{node.titulo}"/>
@@ -33,34 +33,36 @@
 				
 				<p:layoutUnit id="principalRegistroEvidencia" position="center" size="80%" >
 					
-					<p:panelGrid  id="panelPrincipalRegistroEvidenciaAvaliador" columns="2" rendered="#{conjuntoEvidenciasEditMB.mostraConjuntoEvidenciaAvaliador()}">
-						<h:outputLabel value="#{messages['conjuntoEvidencias.label.pontuacao']}: " styleClass="text-input" />
-						<p:selectOneMenu id="pontuacao" effect="fade" value="#{conjuntoEvidenciasEditMB.bean.conjuntoEvidenciasAux.pontuacao}">
-							<f:selectItems value="#{conjuntoEvidenciasEditMB.pontuacao}" />
-						</p:selectOneMenu>
+					<h:panelGroup id="panelPrincipalRegistroEvidencia">
+						<h:panelGrid  id="panelPrincipalRegistroEvidenciaAvaliador" columns="2" rendered="#{conjuntoEvidenciasEditMB.mostraConjuntoEvidenciaAvaliador()}">
+							<h:outputLabel value="#{messages['conjuntoEvidencias.label.pontuacao']}: " styleClass="text-input" />
+							<p:selectOneMenu id="pontuacao" effect="fade" value="#{conjuntoEvidenciasEditMB.bean.conjuntoEvidenciasAux.pontuacao}">
+								<f:selectItems value="#{conjuntoEvidenciasEditMB.pontuacao}" />
+							</p:selectOneMenu>
+		
+							<h:outputLabel value="#{messages['conjuntoEvidencias.label.comentario']}: " for="conjuntoEvidenciasComentario" styleClass="text-input" />
+							<p:inputTextarea id="conjuntoEvidenciasComentario" value="#{conjuntoEvidenciasEditMB.bean.conjuntoEvidenciasAux.comentario}" title="#{messages['conjuntoEvidencias.alt.comentario']}" rows="10" cols="80" maxlength="8000" autoResize="false"/>
+							<p:message for="conjuntoEvidenciasComentario" />
 	
-						<h:outputLabel value="#{messages['conjuntoEvidencias.label.comentario']}: " for="conjuntoEvidenciasComentario" styleClass="text-input" />
-						<p:inputTextarea id="conjuntoEvidenciasComentario" value="#{conjuntoEvidenciasEditMB.bean.conjuntoEvidenciasAux.comentario}" title="#{messages['conjuntoEvidencias.alt.comentario']}" rows="10" cols="80" maxlength="8000" autoResize="false"/>
-						<p:message for="conjuntoEvidenciasComentario" />
-
-						<p:commandButton value="#{messages['button.save']}" actionListener="#{conjuntoEvidenciasEditMB.insertConjuntoEvidencia()}"/>
-					</p:panelGrid>
-					
-					<p:panelGrid id="panelPrincipalRegistroEvidenciaAvaliado" columns="3" rendered="#{conjuntoEvidenciasEditMB.mostraConjuntoEvidenciaAvaliado()}">
-						<p:commandButton value="#{messages['button.sim']}" 
-							immediate="true"
-							actionListener="#{conjuntoEvidenciasEditMB.novaRespostaEvidencia()}"
-							update=":formModalEvidencia:panelRegistroEvidencia" 
-							oncomplete="dialogEvidencia.show()"
-							rendered="#{securityContext.hasRole('AVALIADO') || securityContext.hasRole('ADM')}"/>
-	
-						<p:commandButton value="#{messages['button.nao']}" 
-							immediate="true"
-							actionListener="#{conjuntoEvidenciasEditMB.novaRespostaEvidencia()}"
-							update=":formModalEvidenciaMotivo:panelRegistroEvidenciaMotivo" 
-							oncomplete="dialogEvidenciaMotivo.show()"
-							rendered="#{securityContext.hasRole('AVALIADO') || securityContext.hasRole('ADM')}"/>
-					</p:panelGrid>
+							<p:commandButton value="#{messages['button.save']}" actionListener="#{conjuntoEvidenciasEditMB.insertConjuntoEvidencia()}"/>
+						</h:panelGrid>
+						
+						<h:panelGrid id="panelPrincipalRegistroEvidenciaAvaliado" columns="3" rendered="#{conjuntoEvidenciasEditMB.mostraConjuntoEvidenciaAvaliado()}">
+							<p:commandButton value="#{messages['button.sim']}" 
+								immediate="true"
+								actionListener="#{conjuntoEvidenciasEditMB.novaRespostaEvidencia()}"
+								update=":formModalEvidencia:panelRegistroEvidencia" 
+								oncomplete="dialogEvidencia.show()"
+								rendered="#{securityContext.hasRole('AVALIADO') || securityContext.hasRole('ADM')}"/>
+		
+							<p:commandButton value="#{messages['button.nao']}" 
+								immediate="true"
+								actionListener="#{conjuntoEvidenciasEditMB.novaRespostaEvidencia()}"
+								update=":formModalEvidenciaMotivo:panelRegistroEvidenciaMotivo" 
+								oncomplete="dialogEvidenciaMotivo.show()"
+								rendered="#{securityContext.hasRole('AVALIADO') || securityContext.hasRole('ADM')}"/>
+						</h:panelGrid>
+					</h:panelGroup>
 
 					<p:dataTable id="dtEvidencias" var="evidencias" value="#{conjuntoEvidenciasEditMB.lRespostaEvidencias}">
 						<f:facet name="header">
@@ -68,7 +70,12 @@
 						</f:facet>
 
 						<p:column headerText="#{messages['evidenciaEntity.label.nome']}">
-							<h:outputText id="evidenciasNome" value="#{evidencias.evidencia.nome}"/>
+							<p:commandLink id="clEvidencia"
+								actionListener="#{conjuntoEvidenciasEditMB.carregarEvidencia(evidencias.evidencia)}"
+								update=":formModalDtEvidencia:modalDtEvidencia" 
+								oncomplete="dialogDtEvidencia.show()">
+								<h:outputText id="evidenciasNome" value="#{evidencias.evidencia.nome}"/>
+						    </p:commandLink>
 						</p:column>
 						
 						<p:column headerText="#{messages['respostaEvidencia.label.abrangencia']}">
@@ -242,6 +249,36 @@
 					
 					<p:column headerText="#{messages['evidenciaProfissional.label.fazParteOrganizacao']}">
 						<h:outputText id="profissionaisFazParteDaOrganizacao" value="#{profissionais.fazParteOrganizacao}"/>
+					</p:column>
+				</p:dataTable>
+			</p:dialog>
+		</h:form>
+		
+		<h:form id="formModalDtEvidencia">
+			<p:dialog id="modalDtEvidencia"
+				header="#{messages['evidenciaEntity.label']}" 
+				widgetVar="dialogDtEvidencia" 
+				width="900" height="600"
+				resizable="false"
+				closable="true">
+
+				<h:panelGrid id="panelEvidenciaDescricao" styleClass="semBorda">
+					<h:outputText id="evidenciaDescricao" value="#{conjuntoEvidenciasEditMB.bean.evidenciaAux.descricao}"/>
+				</h:panelGrid>
+				
+				<p:dataTable id="dtAnexos" var="anexos" value="#{conjuntoEvidenciasEditMB.lAnexos}">
+					<f:facet name="header">
+						#{messages['evidenciaEntity.label.anexos']}
+					</f:facet>
+
+					<p:column headerText="#{messages['anexo.label.nome']}">
+						<h:outputText id="anexoNome" value="#{anexos.nome}"/>
+					</p:column>
+						
+					<p:column headerText="#{messages['anexo.label.arquivo']}">
+						<p:commandButton value="Download" ajax="false" icon="ui-icon-arrowthick-1-s">
+					        <p:fileDownload value="#{anexos.fileAux}"/>
+					    </p:commandButton>
 					</p:column>
 				</p:dataTable>
 			</p:dialog>

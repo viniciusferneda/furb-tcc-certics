@@ -1,6 +1,8 @@
 
 package vinicius.ferneda.tcc.certics.view;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.List;
 
 import javax.faces.model.DataModel;
@@ -9,7 +11,9 @@ import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 
 import org.primefaces.event.NodeSelectEvent;
+import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.DefaultTreeNode;
+import org.primefaces.model.StreamedContent;
 import org.primefaces.model.TreeNode;
 
 import vinicius.ferneda.tcc.certics.business.AvaliacaoBC;
@@ -28,6 +32,7 @@ import vinicius.ferneda.tcc.certics.domain.EvidenciaEntity;
 import vinicius.ferneda.tcc.certics.domain.EvidenciaProfissionalEntity;
 import vinicius.ferneda.tcc.certics.domain.RespostaEvidenciaEntity;
 import vinicius.ferneda.tcc.certics.domain.ResultadoEsperadoEntity;
+import vinicius.ferneda.tcc.certics.persistence.AnexoDAO;
 import vinicius.ferneda.tcc.certics.persistence.AreaCompetenciaDAO;
 import vinicius.ferneda.tcc.certics.persistence.ConjuntoEvidenciasDAO;
 import vinicius.ferneda.tcc.certics.persistence.EvidenciaProfissionalDAO;
@@ -68,13 +73,15 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 	private RespostaEvidenciaDAO respostaEvidenciaDAO;
 	@Inject
 	private EvidenciaProfissionalDAO evidenciaProfissionalDAO;
+	@Inject
+	private AnexoDAO anexoDAO;
+	
+	private TreeNode root;
+	private TreeNode selectedNode;
 
 	public List<SelectItem> getPontuacao() {
 		return conjuntoEvidenciasBC.getEnumPontuacaoAvaliacao();
 	}
-	
-	private TreeNode root;
-	private TreeNode selectedNode;
 
 	private DataModel<RespostaEvidenciaEntity> lRespostaEvidencias;
 	
@@ -113,23 +120,17 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 	   return lEvidenciaProfissional;
 	}
 	
-	private DataModel<AnexoEntity> anexoList;
+	private DataModel<AnexoEntity> lAnexos;
 
-	public void addAnexo() {
-		this.getBean().getEvidenciaAux().getAnexos().add(new AnexoEntity());
-	}
-	public void deleteAnexo() {
-	   this.getBean().getEvidenciaAux().getAnexos().remove(getAnexoList().getRowData());
-	}
-	public DataModel<AnexoEntity> getAnexoList() {
-	   if (anexoList == null) {
-		   if(this.getBean().getEvidenciaAux() == null){
-			   anexoList = new ListDataModel<AnexoEntity>();
-		   }else{
-			   anexoList = new ListDataModel<AnexoEntity>(this.getBean().getEvidenciaAux().getAnexos());
-		   }
+	public DataModel<AnexoEntity> getlAnexos() {
+	   if (lAnexos == null) {
+		   lAnexos = new ListDataModel<AnexoEntity>();
 	   }
-	   return anexoList;
+	   
+	   if(this.getBean().getEvidenciaAux() != null && this.getBean().getEvidenciaAux().getAnexos() != null){
+			lAnexos = new ListDataModel<AnexoEntity>(this.getBean().getEvidenciaAux().getAnexos());
+	   }
+	   return lAnexos;
 	}
 	
 	@Override
@@ -204,6 +205,16 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
     	}
     }
 
+    public void carregarEvidencia(EvidenciaEntity evidenciaEntity){
+    	getBean().setEvidenciaAux(evidenciaEntity);
+    	getBean().getEvidenciaAux().setAnexos(anexoDAO.findByEvidenciaID(evidenciaEntity.getId()));
+    	for (AnexoEntity anexo : getBean().getEvidenciaAux().getAnexos()) {
+    		InputStream stream = new ByteArrayInputStream(anexo.getArquivo());
+    		StreamedContent file = new DefaultStreamedContent(stream, anexo.getNome());
+    		anexo.setFileAux(file);
+		}
+    }
+    
     public void novaRespostaEvidencia(String tipoEvidencia){
     	this.getBean().setRespostaEvidenciaAux(new RespostaEvidenciaEntity());
     }
@@ -249,7 +260,7 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 	}
 
 	private void atualizaPontuacaoAvaliacao() {
-		int qtdRespostas = 0, completamenteAtendido = 0, largamenteAtendido = 0, parcialmenteAtendido = 0, naoAtendido = 0;
+		int qtdRespostas = 0, completamenteAtendido = 0, largamenteAtendido = 0, parcialmenteAtendido = 0, naoAtendido = 0, naoRespondida = 0;
 		for (ConjuntoEvidenciasEntity conjuntoEvidenciasEntity : conjuntoEvidenciasDAO.findByAvaliacaoID(getId())) {
 			qtdRespostas++;
 			if(conjuntoEvidenciasEntity.getPontuacao() != null){
@@ -265,11 +276,14 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 				case N: naoAtendido++; 
 					break;
 				}
+			}else{
+				naoRespondida++;
 			}
 		}
-		if(parcialmenteAtendido > 0 || naoAtendido > 0){
+		
+		if(naoRespondida == 0 && (parcialmenteAtendido > 0 || naoAtendido > 0)){
 			getBean().setPontuacao(EnumPontuacaoAvaliacao.REPROVADA);
-		}else if(qtdRespostas == (completamenteAtendido+largamenteAtendido)){
+		}else if(naoRespondida == 0 && qtdRespostas == (completamenteAtendido+largamenteAtendido)){
 			getBean().setPontuacao(EnumPontuacaoAvaliacao.APROVADA);
 		}else{
 			getBean().setPontuacao(EnumPontuacaoAvaliacao.PENDENTE);
