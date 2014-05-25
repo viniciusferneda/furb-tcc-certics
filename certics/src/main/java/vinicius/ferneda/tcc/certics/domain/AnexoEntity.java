@@ -6,8 +6,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.primefaces.model.StreamedContent;
-
 @Entity
 @Table(name="TB_ANEXO")
 @SequenceGenerator(name="ANE_ID", sequenceName="ANE_ID", allocationSize=1)
@@ -34,16 +32,6 @@ public class AnexoEntity extends Anexo {
 		setNome(nome);
 		setArquivo(arquivo);
 		setEvidencia(evidencia);
-	}
-
-	private StreamedContent fileAux;
-
-	public StreamedContent getFileAux() {
-		return fileAux;
-	}
-
-	public void setFileAux(StreamedContent fileAux) {
-		this.fileAux = fileAux;
 	}
 	
 }

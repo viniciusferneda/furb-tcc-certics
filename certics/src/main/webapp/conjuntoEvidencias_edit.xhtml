@@ -23,7 +23,7 @@
 					<p:tree id="tree" value="#{conjuntoEvidenciasEditMB.root}" var="node" dynamic="true" cache="false" 
 	            		selectionMode="single" selection="#{conjuntoEvidenciasEditMB.selectedNode}" style="width:100%;height:100%">
 				        
-				        <p:ajax event="select" listener="#{conjuntoEvidenciasEditMB.onNodeSelect}" update=":formRegistroEvidencias:panelPrincipalRegistroEvidencia, :formRegistroEvidencias:panelPrincipalRegistroEvidenciaAvaliador, :formRegistroEvidencias:panelPrincipalRegistroEvidenciaAvaliado, :formRegistroEvidencias:dtEvidencias"/>
+				        <p:ajax event="select" listener="#{conjuntoEvidenciasEditMB.onNodeSelect}" update=":formRegistroEvidencias:panelPrincipalRegistroEvidencia, :formRegistroEvidencias:panelPrincipalRegistroEvidenciaAvaliador, :formRegistroEvidencias:panelPrincipalRegistroEvidenciaAvaliado, :formRegistroEvidencias:panelPrincipalComentarioAvaliador, :formRegistroEvidencias:dtEvidencias"/>
 				        
 				        <p:treeNode id="treeNode">
 				            <h:outputText id="lblNode" value="#{node.titulo}"/>
@@ -61,6 +61,18 @@
 								update=":formModalEvidenciaMotivo:panelRegistroEvidenciaMotivo" 
 								oncomplete="dialogEvidenciaMotivo.show()"
 								rendered="#{securityContext.hasRole('AVALIADO') || securityContext.hasRole('ADM')}"/>
+								
+							<p:commandButton value="#{messages['button.naosei']}" 
+								immediate="true"
+								update=":formModalDica:panelDica" 
+								oncomplete="dialogDica.show()"
+								rendered="#{securityContext.hasRole('AVALIADO') || securityContext.hasRole('ADM')}"/>
+						</h:panelGrid>
+						
+						<h:panelGrid id="panelPrincipalComentarioAvaliador" columns="3" rendered="#{conjuntoEvidenciasEditMB.mostraConjuntoEvidenciaAvaliado()}">
+							<h:outputLabel value="#{messages['conjuntoEvidencias.label.comentario']}: " for="comentarioAvaliador" styleClass="text-input" />
+							<h:outputText id="comentarioAvaliador" value="#{conjuntoEvidenciasEditMB.bean.conjuntoEvidenciasAux.comentario}" />
+							<p:message for="comentarioAvaliador" />
 						</h:panelGrid>
 					</h:panelGroup>
 
@@ -276,11 +288,26 @@
 					</p:column>
 						
 					<p:column headerText="#{messages['anexo.label.arquivo']}">
-						<p:commandButton value="Download" ajax="false" icon="ui-icon-arrowthick-1-s">
-					        <p:fileDownload value="#{anexos.fileAux}"/>
+						<p:commandButton value="Download" ajax="false" icon="ui-icon-arrowthick-1-s" actionListener="#{conjuntoEvidenciasEditMB.carregarArquivoDownload(anexos)}">
+					        <p:fileDownload value="#{conjuntoEvidenciasEditMB.file}"/>
 					    </p:commandButton>
 					</p:column>
 				</p:dataTable>
+			</p:dialog>
+		</h:form>
+		
+		<h:form id="formModalDica">
+			<p:dialog id="modalDica"
+				header="#{messages['resultadoEsperado.label.dica']}" 
+				widgetVar="dialogDica" 
+				width="600" height="200"
+				resizable="false"
+				closable="true">
+				
+		  		<h:panelGrid id="panelDica" styleClass="semBorda">
+					<h:outputText id="dica" value="#{conjuntoEvidenciasEditMB.bean.conjuntoEvidenciasAux.resultadoEsperado.dica}" />
+				</h:panelGrid>
+				
 			</p:dialog>
 		</h:form>
 		

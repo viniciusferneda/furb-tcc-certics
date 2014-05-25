@@ -78,7 +78,8 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 	
 	private TreeNode root;
 	private TreeNode selectedNode;
-
+	private StreamedContent file;
+	
 	public List<SelectItem> getPontuacao() {
 		return conjuntoEvidenciasBC.getEnumPontuacaoAvaliacao();
 	}
@@ -204,15 +205,15 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
     		return false;
     	}
     }
-
+    
     public void carregarEvidencia(EvidenciaEntity evidenciaEntity){
     	getBean().setEvidenciaAux(evidenciaEntity);
     	getBean().getEvidenciaAux().setAnexos(anexoDAO.findByEvidenciaID(evidenciaEntity.getId()));
-    	for (AnexoEntity anexo : getBean().getEvidenciaAux().getAnexos()) {
-    		InputStream stream = new ByteArrayInputStream(anexo.getArquivo());
-    		StreamedContent file = new DefaultStreamedContent(stream, anexo.getNome());
-    		anexo.setFileAux(file);
-		}
+    }
+    
+    public void carregarArquivoDownload(AnexoEntity anexo){
+    	InputStream stream = new ByteArrayInputStream(anexo.getArquivo());
+		setFile(new DefaultStreamedContent(stream, anexo.getNome(), anexo.getNome()));    	
     }
     
     public void novaRespostaEvidencia(String tipoEvidencia){
@@ -289,6 +290,14 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 			getBean().setPontuacao(EnumPontuacaoAvaliacao.PENDENTE);
 		}
 		update();
+	}
+
+	public StreamedContent getFile() {
+		return file;
+	}
+
+	public void setFile(StreamedContent file) {
+		this.file = file;
 	}
 
 }
