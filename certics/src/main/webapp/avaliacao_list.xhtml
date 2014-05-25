@@ -1,4 +1,3 @@
-
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui" xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
@@ -7,54 +6,44 @@
 		<h:form prependId="false">
 			<p:toolbar>
 				<p:toolbarGroup align="left">
-					<p:commandButton title="#{messages['button.new']}" icon="ui-icon-document" action="#{avaliacaoListMB.getNextView}"
-						actionListener="#{avaliacaoListMB.clear}" ajax="false" />
-	
-					<p:commandButton title="#{messages['button.delete']}" icon="ui-icon-trash" onclick="confirmation.show()"
-						type="button" immediate="true" ajax="false" />
-	
-					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
-						header="#{messages['label.dialog.alert']}!" severity="alert" widgetVar="confirmation">
-	
-						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{avaliacaoListMB.deleteSelection}"
-							actionListener="#{avaliacaoListMB.clear}" />
+					<p:commandButton title="#{messages['button.new']}" icon="ui-icon-document" action="#{avaliacaoListMB.getNextView}" actionListener="#{avaliacaoListMB.clear}" ajax="false" />
+					<p:commandButton title="#{messages['button.delete']}" icon="ui-icon-trash" onclick="confirmation.show()" type="button" immediate="true" ajax="false" />
+					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode" header="#{messages['label.dialog.alert']}!" severity="alert" widgetVar="confirmation">
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{avaliacaoListMB.deleteSelection}" actionListener="#{avaliacaoListMB.clear}" />
 						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
 					</p:confirmDialog>
 				</p:toolbarGroup>
 			</p:toolbar>
+			
 			<p:dataTable id="list" var="bean" value="#{avaliacaoListMB.resultList}">
 				<f:facet name="header">#{messages['avaliacao.list.table.title']}</f:facet>
 				<p:column style="width:2%;">
 					<h:selectBooleanCheckbox value="#{avaliacaoListMB.selection[bean.id]}"></h:selectBooleanCheckbox>
 				</p:column>
 				
-				<p:column style="width:5%;" sortBy="#{bean.id}">
-					<f:facet name="header">#{messages['avaliacao.label.id']}</f:facet>
-					<h:outputText value="#{bean.id}" />
+				<p:column style="width:5%;" filterBy="#{bean.id}" filterMatchMode="exact" sortBy="#{bean.id}" headerText="#{messages['avaliacao.label.id']}">
+					<h:commandLink action="#{avaliacaoListMB.getNextView}" actionListener="#{avaliacaoListMB.clear}">
+						<h:outputText value="#{bean.id}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
+				</p:column>
+				
+				<p:column width="45%" filterBy="#{bean.software.nome}" filterMatchMode="contains" sortBy="#{bean.software.nome}" headerText="#{messages['avaliacao.label.software']}">
+					<h:outputText value="#{bean.software.nome}" />
 				</p:column>
 						
-				<p:column sortBy="#{bean.versaoCertics.nome}">
-					<f:facet name="header">#{messages['avaliacao.label.versaoCertics']}</f:facet>
-					<h:commandLink action="#{avaliacaoListMB.getNextView}" actionListener="#{avaliacaoListMB.clear}">
-						<h:outputText value="#{bean.versaoCertics.nome}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
+				<p:column width="20%" filterBy="#{bean.versaoCertics.nome}" filterMatchMode="contains" sortBy="#{bean.versaoCertics.nome}" headerText="#{messages['avaliacao.label.versaoCertics']}">
+					<h:outputText value="#{bean.versaoCertics.nome}" />
 				</p:column>
 					
-				<p:column sortBy="#{bean.pontuacao}">
-					<f:facet name="header">#{messages['avaliacao.label.pontuacao']}</f:facet>
-					<h:commandLink action="#{avaliacaoListMB.getNextView}" actionListener="#{avaliacaoListMB.clear}">
-						<h:outputText value="#{bean.pontuacao.nome}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
+				<p:column width="15%" filterBy="#{bean.pontuacao}" filterMatchMode="contains" sortBy="#{bean.pontuacao}" headerText="#{messages['avaliacao.label.pontuacao']}">
+					<h:outputText value="#{bean.pontuacao.nome}" />
 				</p:column>
 					
-				<p:column sortBy="#{bean.dataAvaliacao}">
-					<f:facet name="header">#{messages['avaliacao.label.dataAvaliacao']}</f:facet>
-					<h:commandLink action="#{avaliacaoListMB.getNextView}" actionListener="#{avaliacaoListMB.clear}">
-						<h:outputText value="#{bean.dataAvaliacao}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
+				<p:column width="15%" filterBy="#{bean.dataAvaliacao}" filterMatchMode="contains" sortBy="#{bean.dataAvaliacao}" headerText="#{messages['avaliacao.label.dataAvaliacao']}">
+					<h:outputText value="#{bean.dataAvaliacao}">
+						<f:convertDateTime pattern="#{messages['label.date.pattern']}" />
+					</h:outputText>
 				</p:column>
 					
 			</p:dataTable>

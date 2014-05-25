@@ -22,31 +22,26 @@
 					</p:confirmDialog>
 				</p:toolbarGroup>
 			</p:toolbar>
+			
 			<p:dataTable id="list" var="bean" value="#{resultadoEsperadoListMB.resultList}">
 				<f:facet name="header">#{messages['resultadoEsperado.list.table.title']}</f:facet>
 				<p:column style="width:2%;">
 					<h:selectBooleanCheckbox value="#{resultadoEsperadoListMB.selection[bean.id]}"></h:selectBooleanCheckbox>
 				</p:column>
 				
-				<p:column style="width:5%;" sortBy="#{bean.id}">
-					<f:facet name="header">#{messages['resultadoEsperado.label.id']}</f:facet>
-					<h:outputText value="#{bean.id}" />
+				<p:column style="width:5%;" filterBy="#{bean.id}" filterMatchMode="exact" sortBy="#{bean.id}" headerText="#{messages['resultadoEsperado.label.id']}">
+					<h:commandLink action="#{resultadoEsperadoListMB.getNextView}" actionListener="#{resultadoEsperadoListMB.clear}">
+						<h:outputText value="#{bean.id}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
 				</p:column>
 						
-				<p:column sortBy="#{bean.titulo}">
-					<f:facet name="header">#{messages['resultadoEsperado.label.titulo']}</f:facet>
-					<h:commandLink action="#{resultadoEsperadoListMB.getNextView}" actionListener="#{resultadoEsperadoListMB.clear}">
-						<h:outputText value="#{bean.titulo}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
+				<p:column width="20%" filterBy="#{bean.titulo}" filterMatchMode="contains" sortBy="#{bean.titulo}" headerText="#{messages['resultadoEsperado.label.titulo']}">
+					<h:outputText value="#{bean.titulo}" />
 				</p:column>
 					
-				<p:column sortBy="#{bean.descricao}">
-					<f:facet name="header">#{messages['resultadoEsperado.label.descricao']}</f:facet>
-					<h:commandLink action="#{resultadoEsperadoListMB.getNextView}" actionListener="#{resultadoEsperadoListMB.clear}">
-						<h:outputText value="#{bean.descricao}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
+				<p:column width="75%" filterBy="#{bean.descricao}" filterMatchMode="contains" sortBy="#{bean.descricao}" headerText="#{messages['resultadoEsperado.label.descricao']}">
+					<h:outputText value="#{bean.descricao}" />
 				</p:column>
 					
 			</p:dataTable>

@@ -29,33 +29,23 @@
 					<h:selectBooleanCheckbox value="#{areaCompetenciaListMB.selection[bean.id]}"></h:selectBooleanCheckbox>
 				</p:column>
 				
-				<p:column style="width:5%;" sortBy="#{bean.id}">
-					<f:facet name="header">#{messages['areaCompetencia.label.id']}</f:facet>
-					<h:outputText value="#{bean.id}" />
+				<p:column style="width:5%;" filterBy="#{bean.id}" filterMatchMode="exact" sortBy="#{bean.id}" headerText="#{messages['areaCompetencia.label.id']}">
+					<h:commandLink action="#{areaCompetenciaListMB.getNextView}" actionListener="#{areaCompetenciaListMB.clear}">
+						<h:outputText value="#{bean.id}" />
+						<f:param name="id" value="#{bean.id}" />
+					</h:commandLink>
 				</p:column>
 						
-				<p:column sortBy="#{bean.titulo}">
-					<f:facet name="header">#{messages['areaCompetencia.label.titulo']}</f:facet>
-					<h:commandLink action="#{areaCompetenciaListMB.getNextView}" actionListener="#{areaCompetenciaListMB.clear}">
-						<h:outputText value="#{bean.titulo}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
+				<p:column style="width:20%" filterBy="#{bean.titulo}" filterMatchMode="contains" sortBy="#{bean.titulo}" headerText="#{messages['areaCompetencia.label.titulo']}">
+					<h:outputText value="#{bean.titulo}" />
 				</p:column>
 					
-				<p:column sortBy="#{bean.perguntaChave}">
-					<f:facet name="header">#{messages['areaCompetencia.label.perguntaChave']}</f:facet>
-					<h:commandLink action="#{areaCompetenciaListMB.getNextView}" actionListener="#{areaCompetenciaListMB.clear}">
-						<h:outputText value="#{bean.perguntaChave}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
+				<p:column style="width:20%" filterBy="#{bean.perguntaChave}" filterMatchMode="contains" sortBy="#{bean.perguntaChave}" headerText="#{messages['areaCompetencia.label.perguntaChave']}">
+					<h:outputText value="#{bean.perguntaChave}" />
 				</p:column>
 					
-				<p:column sortBy="#{bean.descricao}">
-					<f:facet name="header">#{messages['areaCompetencia.label.descricao']}</f:facet>
-					<h:commandLink action="#{areaCompetenciaListMB.getNextView}" actionListener="#{areaCompetenciaListMB.clear}">
-						<h:outputText value="#{bean.descricao}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
+				<p:column style="width:55%" filterBy="#{bean.descricao}" filterMatchMode="contains" sortBy="#{bean.descricao}" headerText="#{messages['areaCompetencia.label.descricao']}">
+					<h:outputText value="#{bean.descricao}" />
 				</p:column>
 					
 			</p:dataTable>

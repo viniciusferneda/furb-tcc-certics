@@ -6,53 +6,38 @@
 		<h:form id="formListAvaliacao">
 			<p:dataTable id="list" var="bean" value="#{conjuntoEvidenciasListMB.resultList}">
 				<f:facet name="header">#{messages['conjuntoEvidencias.list.table.title']}</f:facet>
-				<p:column style="width:2%;">
-					<h:selectBooleanCheckbox value="#{conjuntoEvidenciasListMB.selection[bean.id]}"></h:selectBooleanCheckbox>
-				</p:column>
 				
-				<p:column style="width:5%;" sortBy="#{bean.id}">
-					<f:facet name="header">#{messages['conjuntoEvidencias.label.id']}</f:facet>
-					<h:outputText value="#{bean.id}" />
-				</p:column>
-	
-				<p:column sortBy="#{bean.software.nome}">
-					<f:facet name="header">#{messages['software.label.nome']}</f:facet>
+				<p:column style="width:5%;" filterBy="#{bean.id}" filterMatchMode="exact" sortBy="#{bean.id}" headerText="#{messages['conjuntoEvidencias.label.id']}">
 					<h:commandLink action="#{conjuntoEvidenciasListMB.getNextView}" actionListener="#{conjuntoEvidenciasListMB.clear}">
-						<h:outputText value="#{bean.software.nome}" />
+						<h:outputText value="#{bean.id}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
 	
-				<p:column sortBy="#{bean.software.organizacaoSolicitante.nome}">
-					<f:facet name="header">#{messages['organizacaoSolicitante.label.nome']}</f:facet>
-					<h:commandLink action="#{conjuntoEvidenciasListMB.getNextView}" actionListener="#{conjuntoEvidenciasListMB.clear}">
-						<h:outputText value="#{bean.software.organizacaoSolicitante.nome}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
+				<p:column width="15%" filterBy="#{bean.software.nome}" filterMatchMode="contains" sortBy="#{bean.software.nome}" headerText="#{messages['software.label']}">
+					<h:outputText value="#{bean.software.nome}" />
+				</p:column>
+
+				<p:column width="25%" filterBy="#{bean.avaliador.nome}" filterMatchMode="contains" sortBy="#{bean.avaliador.nome}" headerText="#{messages['avaliador.label']}">
+					<h:outputText value="#{bean.avaliador.nome}" />
 				</p:column>
 	
-				<p:column sortBy="#{bean.versaoCertics.nome}">
-					<f:facet name="header">#{messages['avaliacao.label.versaoCertics']}</f:facet>
-					<h:commandLink action="#{conjuntoEvidenciasListMB.getNextView}" actionListener="#{conjuntoEvidenciasListMB.clear}">
-						<h:outputText value="#{bean.versaoCertics.nome}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
+				<p:column width="25%" filterBy="#{bean.software.organizacaoSolicitante.nome}" filterMatchMode="contains" sortBy="#{bean.software.organizacaoSolicitante.nome}" headerText="#{messages['organizacaoSolicitante.label']}">
+					<h:outputText value="#{bean.software.organizacaoSolicitante.nome}" />
+				</p:column>
+	
+				<p:column width="13%" filterBy="#{bean.versaoCertics.nome}" filterMatchMode="contains" sortBy="#{bean.versaoCertics.nome}" headerText="#{messages['avaliacao.label.versaoCertics']}">
+					<h:outputText value="#{bean.versaoCertics.nome}" />
 				</p:column>
 					
-				<p:column sortBy="#{bean.pontuacao.nome}">
-					<f:facet name="header">#{messages['avaliacao.label.pontuacao']}</f:facet>
-					<h:commandLink action="#{conjuntoEvidenciasListMB.getNextView}" actionListener="#{conjuntoEvidenciasListMB.clear}">
-						<h:outputText value="#{bean.pontuacao.nome}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
+				<p:column width="13%" filterBy="#{bean.pontuacao.nome}" filterMatchMode="contains" sortBy="#{bean.pontuacao.nome}" headerText="#{messages['avaliacao.label.pontuacao']}">
+					<h:outputText value="#{bean.pontuacao.nome}" />
 				</p:column>
 					
-				<p:column sortBy="#{bean.dataAvaliacao}">
-					<f:facet name="header">#{messages['avaliacao.label.dataAvaliacao']}</f:facet>
-					<h:commandLink action="#{conjuntoEvidenciasListMB.getNextView}" actionListener="#{conjuntoEvidenciasListMB.clear}">
-						<h:outputText value="#{bean.dataAvaliacao}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
+				<p:column width="10%" filterBy="#{bean.dataAvaliacao}" filterMatchMode="contains" sortBy="#{bean.dataAvaliacao}" headerText="#{messages['avaliacao.label.dataAvaliacao']}">
+					<h:outputText value="#{bean.dataAvaliacao}">
+						<f:convertDateTime pattern="#{messages['label.date.pattern']}" />
+					</h:outputText>
 				</p:column>
 					
 			</p:dataTable>

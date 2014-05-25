@@ -22,31 +22,27 @@
 					</p:confirmDialog>
 				</p:toolbarGroup>
 			</p:toolbar>
+			
 			<p:dataTable id="list" var="bean" value="#{versaoCerticsEntityListMB.resultList}">
 				<f:facet name="header">#{messages['versaoCerticsEntity.list.table.title']}</f:facet>
+				
 				<p:column style="width:1%;">
 					<h:selectBooleanCheckbox value="#{versaoCerticsEntityListMB.selection[bean.id]}"></h:selectBooleanCheckbox>
 				</p:column>
 				
-				<p:column style="width:5%;" sortBy="#{bean.id}">
-					<f:facet name="header">#{messages['versaoCerticsEntity.label.id']}</f:facet>
-					<h:outputText value="#{bean.id}" />
-				</p:column>
-						
-				<p:column sortBy="#{bean.nome}">
-					<f:facet name="header">#{messages['versaoCerticsEntity.label.nome']}</f:facet>
+				<p:column width="5%" filterBy="#{bean.id}" filterMatchMode="exact" sortBy="#{bean.id}" headerText="#{messages['versaoCerticsEntity.label.id']}">
 					<h:commandLink action="#{versaoCerticsEntityListMB.getNextView}" actionListener="#{versaoCerticsEntityListMB.clear}">
-						<h:outputText value="#{bean.nome}" />
+						<h:outputText value="#{bean.id}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
 				</p:column>
 						
-				<p:column sortBy="#{bean.descricao}">
-					<f:facet name="header">#{messages['versaoCerticsEntity.label.descricao']}</f:facet>
-					<h:commandLink action="#{versaoCerticsEntityListMB.getNextView}" actionListener="#{versaoCerticsEntityListMB.clear}">
-						<h:outputText value="#{bean.descricao}" />
-						<f:param name="id" value="#{bean.id}" />
-					</h:commandLink>
+				<p:column width="20%" filterBy="#{bean.nome}" filterMatchMode="contains" sortBy="#{bean.nome}" headerText="#{messages['versaoCerticsEntity.label.nome']}">
+					<h:outputText value="#{bean.nome}" />
+				</p:column>
+						
+				<p:column width="75%" filterBy="#{bean.descricao}" filterMatchMode="contains" sortBy="#{bean.descricao}" headerText="#{messages['versaoCerticsEntity.label.descricao']}">
+					<h:outputText value="#{bean.descricao}" />
 				</p:column>
 						
 			</p:dataTable>
