@@ -4,7 +4,19 @@
 
     <ui:define name="body">
         <h:form id="principal" styleClass="mainForm">
-        	<h:outputText value="CERTICS"/>
+            <h:panelGrid id="pgLoginSenha" columns="2" rendered="#{not securityContext.loggedIn}">
+				<h:outputText value="#{messages['login.usuario']} :"/>
+				<p:inputText id="loginUsuario" value="#{identity.emailUsuario}" size="30" maxlength="30" styleClass="validate[required,maxSize[30]]"/>
+				
+				<h:outputText value="#{messages['login.senha']} :"/>
+				<p:password id="loginPassword" value="#{identity.senha}" size="30"/>
+				
+				<p:commandButton id="login_button" value="#{messages['button.login']}" action="#{usuarioEditMB.login()}" ajax="false" />
+	        </h:panelGrid>
+        
+        	<h:panelGrid id="pgBemVindo" rendered="#{securityContext.loggedIn}">
+        		<h1><h:outputText id="bemVindo" value="Bem vindo(a) ao sistema."/></h1>
+        	</h:panelGrid>
         </h:form>
     </ui:define>
 </ui:composition>

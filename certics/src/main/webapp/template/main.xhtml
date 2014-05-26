@@ -23,18 +23,11 @@
 					</div>
 					<!-- Login -->
 					<div id="divLogin" class="userNav">
-						<div align="left">
-			                <h:commandLink  action="login.jsf" rendered="#{not securityContext.loggedIn}">
-			                    <img src="images/icons/topnav/logout.png" alt="" /><span>#{messages['login.label']}</span>
-			                </h:commandLink>
-		                </div>
-			            <div align="left">    
-			                <h:commandLink  action="lembrar.jsf" rendered="#{not securityContext.loggedIn}">
-			                    <img src="images/icons/dark/repeat.png" alt="" /><span>#{messages['button.esqueci_senha']}</span>
-			                </h:commandLink>
-		                </div>
 		                <div align="left">
-		                	<h:outputText value="#{identity.getAttribute('papel')}" rendered="#{securityContext.loggedIn}"/>
+		                	<h:commandLink action="#{usuarioEditMB.getNextView}" rendered="#{securityContext.loggedIn}">
+								<h:outputText value="#{securityContext.user.getAttribute(nome)}" />
+								<f:param name="id" value="#{securityContext.user.getAttribute(id)}" />
+							</h:commandLink>
 		                </div>
 		                <div align="right">
 		                	<h:commandLink value="(sair)" action="#{usuarioEditMB.logout()}" rendered="#{securityContext.loggedIn}" />

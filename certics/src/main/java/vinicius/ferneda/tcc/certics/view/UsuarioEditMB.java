@@ -58,7 +58,6 @@ public class UsuarioEditMB extends AbstractEditPageBean<UsuarioEntity, Long> {
         } catch (Exception e) {
             messageContext.add("Login: ", e.getMessage());
         }
-
     }
 
     public void logout() {
@@ -67,7 +66,6 @@ public class UsuarioEditMB extends AbstractEditPageBean<UsuarioEntity, Long> {
         } catch (Exception e) {
             messageContext.add("Login: ", e.getMessage());
         }
-
     }
 	
 }

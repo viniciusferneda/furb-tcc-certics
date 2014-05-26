@@ -3,42 +3,24 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets" template="/template/main.xhtml">
 
     <ui:define name="body">
-	    <h:form id="formLogin">
-	        <div class="loginWrapper">
-	            <div class="loginPanel">
-	                <div class="head">
-	                	<h5 class="iUser">#{messages['login.label']}</h5>
-	                </div>
-	                <fieldset>
-	                    <div class="loginRow noborder">
-	                        <label for="usuario">#{messages['login.usuario']} :</label>
-	                        <div class="loginInput">
-	                            <h:inputText id="usuario"
-	                                         value="#{identity.emailUsuario}"
-	                                         size="30" maxlength="30"
-	                                         styleClass="validate[required,maxSize[30]]"/>
-	                        </div>
-	                        <div class="fix"></div>
-	                    </div>
-	
-	                    <div class="loginRow">
-	                        <label for="password">#{messages['login.senha']} :</label>
-	                        <div class="loginInput">
-	                            <p:password id="password" value="#{identity.senha}"
-	                            			styleClass="validate[required]"/>
-	                        </div>
-	                        <div class="fix"></div>
-	                    </div>
-	
-	                    <p:commandButton id="login_button"
-	                                     value="#{messages['button.login']}"
-	                                     action="#{usuarioEditMB.login()}"
-	                                     styleClass="submitForm"
-	                                     ajax="false" />
-	
-	                </fieldset>
-	            </div>
-	        </div>
-       </h:form>
+        <p:fieldset legend="Autentique-se">
+			<h:form id="formLogin">
+				<h:panelGrid columns="3">
+
+					<h:outputLabel value="#{messages['login.usuario']}" for="username" styleClass="text-input" />
+					<p:inputText id="username" value="#{identity.emailUsuario}"  title="#{messages['login.usuario']}" required="true"/>
+					<p:message for="username" />
+
+					<h:outputLabel value="#{messages['login.senha']}" for="password" styleClass="text-input" />
+					<p:inputSecret id="password" value="#{identity.senha}" required="true"/>
+					<p:message for="password" />
+
+					<p:spacer />
+					<p:spacer />
+					
+					<p:commandButton id="login_button" value="#{messages['button.login']}" action="#{usuarioEditMB.login()}" ajax="false" />
+				</h:panelGrid>
+			</h:form>
+		</p:fieldset>
     </ui:define>
 </ui:composition>

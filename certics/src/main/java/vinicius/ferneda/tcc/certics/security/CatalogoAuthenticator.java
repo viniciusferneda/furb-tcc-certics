@@ -48,6 +48,7 @@ public class CatalogoAuthenticator implements Authenticator {
 	
 	        this.identity.setAttribute("id", pessoaFisica.getId());
 	        this.identity.setAttribute("username", pessoaFisica.getUsuario().getEmail());
+	        this.identity.setAttribute("nome", pessoaFisica.getNome());
 	        this.identity.setAttribute("ativo", pessoaFisica.getUsuario().getAtivo());
 	        this.identity.setAttribute("role", pessoaFisica.getUsuario().getPapelUsuario());
 	        this.identity.setAttribute("recursos_operacoes", defineRecursosOperacoes(pessoaFisica.getUsuario().getPapelUsuario()));
