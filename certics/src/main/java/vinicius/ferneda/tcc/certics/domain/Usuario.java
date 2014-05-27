@@ -40,7 +40,7 @@ public abstract class Usuario implements Serializable{
     private EnumPapelUsuario papelUsuario; 
 	
 	@Size(min=3, max = 100)
-    @Column(name="USU_AMINESIA", nullable=false, length = 100)
+    @Column(name="USU_AMINESIA", length = 100)
     private String aminesia;
 	
 	@Column(name="USU_ATIVO", nullable=false)

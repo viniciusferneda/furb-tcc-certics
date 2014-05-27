@@ -21,6 +21,16 @@ public class PessoaFisicaDAO extends JPACrud<PessoaFisicaEntity, Long>{
 	@Inject
 	private UsuarioDAO usuarioDAO;
 	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public PessoaFisicaEntity findById(Long id) throws Exception{
+    	return (PessoaFisicaEntity) getEntityManager().createNamedQuery("PessoaFisicaEntity.findById").setParameter("id", id).getSingleResult();
+    }
+	
     /**
      *
      * @param aminesia

@@ -6,16 +6,11 @@
 		<h:form prependId="false">
 			<p:toolbar>
 				<p:toolbarGroup align="left">
-					<p:commandButton value="#{messages['button.save']}" action="#{avaliadorEditMB.insert}"
-						rendered="#{!avaliadorEditMB.updateMode}" ajax="false" />
-					<p:commandButton value="#{messages['button.save']}" action="#{avaliadorEditMB.update}"
-						rendered="#{avaliadorEditMB.updateMode}" ajax="false" />
-					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()"
-						rendered="#{avaliadorEditMB.updateMode}" type="button" immediate="true" ajax="false" />
-					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
-						header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
-						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{avaliadorEditMB.delete}" immediate="true"
-							ajax="false" />
+					<p:commandButton value="#{messages['button.save']}" action="#{avaliadorEditMB.insert}" rendered="#{!avaliadorEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.save']}" action="#{avaliadorEditMB.update}" rendered="#{avaliadorEditMB.updateMode}" ajax="false" />
+					<p:commandButton value="#{messages['button.delete']}" onclick="confirmation.show()" rendered="#{avaliadorEditMB.updateMode}" type="button" immediate="true" ajax="false" />
+					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode" header="#{messages['label.dialog.delete']}" severity="alert" widgetVar="confirmation">
+						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{avaliadorEditMB.delete}" immediate="true" ajax="false" />
 						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
 					</p:confirmDialog>
 				</p:toolbarGroup>
@@ -125,11 +120,11 @@
 			        </p:inputText>
 					<p:message for="email" />
 					
-					<h:outputLabel for="senhaAtual" value="#{messages['usuario.label.senhaAtual']}: "/>
-			        <p:password id="senhaAtual" value="#{avaliadorEditMB.senhaAtual}" label="#{messages['usuario.label.senhaAtual']}" requiredMessage="#{messages['label.obrigatorio']}" size="15" maxlength="255">
+					<h:outputLabel for="senhaAtual" value="#{messages['usuario.label.senhaAtual']}: " rendered="#{avaliadorEditMB.updateMode}"/>
+			        <p:password id="senhaAtual" value="#{avaliadorEditMB.senhaAtual}" label="#{messages['usuario.label.senhaAtual']}" requiredMessage="#{messages['label.obrigatorio']}" size="15" maxlength="255" rendered="#{avaliadorEditMB.updateMode}">
 			        	<f:param value="#{messages['usuario.label.senhaAtual']}"/>
 			        </p:password>
-			 		<p:message for="senhaAtual" />
+			 		<p:message for="senhaAtual" rendered="#{avaliadorEditMB.updateMode}"/>
 			 		
 			        <h:outputLabel for="pwd1" value="#{messages['usuario.label.senha']}: "/>
 			        <p:password id="pwd1" value="#{avaliadorEditMB.novaSenha}" match="pwd2" label="#{messages['usuario.label.senha']}" required="true" validatorMessage="#{messages['label.senha.nao.confere']}" size="15" maxlength="255"/>

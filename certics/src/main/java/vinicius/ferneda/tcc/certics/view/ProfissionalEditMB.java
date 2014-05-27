@@ -9,10 +9,14 @@ import vinicius.ferneda.tcc.certics.business.EnderecoBC;
 import vinicius.ferneda.tcc.certics.business.OrganizacaoSolicitanteBC;
 import vinicius.ferneda.tcc.certics.business.ProfissionalBC;
 import vinicius.ferneda.tcc.certics.business.UsuarioBC;
+import vinicius.ferneda.tcc.certics.constant.EnumPapelUsuario;
 import vinicius.ferneda.tcc.certics.domain.EnderecoEntity;
 import vinicius.ferneda.tcc.certics.domain.OrganizacaoSolicitanteEntity;
 import vinicius.ferneda.tcc.certics.domain.ProfissionalEntity;
 import vinicius.ferneda.tcc.certics.domain.UsuarioEntity;
+import vinicius.ferneda.tcc.certics.persistence.OrganizacaoSolicitanteDAO;
+import vinicius.ferneda.tcc.certics.security.CatalogoAuthorizer;
+import vinicius.ferneda.tcc.certics.security.Identity;
 import vinicius.ferneda.tcc.certics.util.CriptografiaUtil;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
 import br.gov.frameworkdemoiselle.message.MessageContext;
@@ -35,11 +39,17 @@ public class ProfissionalEditMB extends AbstractEditPageBean<ProfissionalEntity,
 	private EnderecoBC enderecoBC;
 	@Inject
 	private UsuarioBC usuarioBC;
+	@Inject
+	private OrganizacaoSolicitanteDAO organizacaoSolicitanteDAO;
 	
 	@Inject
 	private MessageContext messageContext;
 	@Inject
 	private ResourceBundle bundle;
+	@Inject
+	private CatalogoAuthorizer catalogoAuthorizer;
+	@Inject
+	private Identity identity;
 	
 	private String senhaAtual;
 	private String novaSenha;
@@ -66,12 +76,21 @@ public class ProfissionalEditMB extends AbstractEditPageBean<ProfissionalEntity,
 	@Override
 	@Transactional
 	public String insert() {
-		//grava Endereco
-		this.enderecoBC.insert(this.getBean().getEndereco());
-				
+		try {
+			if(catalogoAuthorizer.hasRole(EnumPapelUsuario.AVALIADO.toString())){
+				this.getBean().setOrganizacaoSolicitante(organizacaoSolicitanteDAO.findById(Long.valueOf(identity.getId())));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		//grava Usuario
 		this.getBean().getUsuario().setSenha(CriptografiaUtil.getCodigoMd5(getNovaSenha()));
+		this.getBean().getUsuario().setPapelUsuario(EnumPapelUsuario.AVALIADO);
 		this.usuarioBC.insert(this.getBean().getUsuario());
+
+		//grava Endereco
+		this.enderecoBC.insert(this.getBean().getEndereco());
 				
 		//grava profissional
 		this.profissionalBC.insert(this.getBean());

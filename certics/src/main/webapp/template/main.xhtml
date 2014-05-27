@@ -23,14 +23,18 @@
 					</div>
 					<!-- Login -->
 					<div id="divLogin" class="userNav">
-		                <div align="left">
-		                	<h:commandLink action="#{usuarioEditMB.getNextView}" rendered="#{securityContext.loggedIn}">
-								<h:outputText value="#{securityContext.user.getAttribute(nome)}" />
-								<f:param name="id" value="#{securityContext.user.getAttribute(id)}" />
-							</h:commandLink>
+		                <div align="right">
+		                	<p:commandLink id="clAvaliador" action="avaliador_edit.jsf" rendered="#{securityContext.loggedIn and (securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM'))}" ajax="false">
+								<h:outputText value="#{usuarioEditMB.pessoaFisicaEntity.nome}" />
+								<f:param name="id" value="#{usuarioEditMB.pessoaFisicaEntity.id}" />
+							</p:commandLink>
+							<p:commandLink id="clAvaliado" action="profissional_edit.jsf" rendered="#{securityContext.loggedIn and securityContext.hasRole('AVALIADO')}" ajax="false">
+								<h:outputText value="#{usuarioEditMB.pessoaFisicaEntity.nome}" />
+								<f:param name="id" value="#{usuarioEditMB.pessoaFisicaEntity.id}" />
+							</p:commandLink>
 		                </div>
 		                <div align="right">
-		                	<h:commandLink value="(sair)" action="#{usuarioEditMB.logout()}" rendered="#{securityContext.loggedIn}" />
+		                	<p:commandLink id="clSair" value="(sair)" action="#{usuarioEditMB.logout()}" rendered="#{securityContext.loggedIn}" ajax="false"/>
 		                </div>
 	                </div>
 	            </h:form>

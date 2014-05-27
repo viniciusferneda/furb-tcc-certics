@@ -12,7 +12,10 @@ import vinicius.ferneda.tcc.certics.constant.EnumSexo;
 @Entity
 @Table(name="TB_PESSOA_FISICA")
 @NamedQueries({
-    @NamedQuery(name="ProfissionalEntity.findById", query="SELECT obj FROM ProfissionalEntity obj WHERE obj.id = :id")
+    @NamedQuery(name="ProfissionalEntity.findById", 
+    		query="SELECT obj "
+    				+ " FROM ProfissionalEntity obj "
+    				+ " WHERE obj.id = :id")
 })
 public class ProfissionalEntity extends Profissional {
 

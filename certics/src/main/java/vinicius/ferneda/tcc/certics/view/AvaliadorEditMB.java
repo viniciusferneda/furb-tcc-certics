@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import vinicius.ferneda.tcc.certics.business.AvaliadorBC;
 import vinicius.ferneda.tcc.certics.business.EnderecoBC;
 import vinicius.ferneda.tcc.certics.business.UsuarioBC;
+import vinicius.ferneda.tcc.certics.constant.EnumPapelUsuario;
 import vinicius.ferneda.tcc.certics.domain.AvaliadorEntity;
 import vinicius.ferneda.tcc.certics.domain.EnderecoEntity;
 import vinicius.ferneda.tcc.certics.domain.UsuarioEntity;
@@ -20,7 +21,7 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 import br.gov.frameworkdemoiselle.util.ResourceBundle;
 
 @ViewController
-@PreviousView("./avaliador_list.jsf")
+@PreviousView("./index.jsf")
 public class AvaliadorEditMB extends AbstractEditPageBean<AvaliadorEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
@@ -63,6 +64,7 @@ public class AvaliadorEditMB extends AbstractEditPageBean<AvaliadorEntity, Long>
 		
 		//grava Usuario
 		this.getBean().getUsuario().setSenha(CriptografiaUtil.getCodigoMd5(getNovaSenha()));
+		this.getBean().getUsuario().setPapelUsuario(EnumPapelUsuario.AVALIADOR);
 		this.usuarioBC.insert(this.getBean().getUsuario());
 		
 		//grava Avaliador

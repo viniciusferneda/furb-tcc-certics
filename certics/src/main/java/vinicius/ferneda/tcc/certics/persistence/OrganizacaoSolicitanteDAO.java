@@ -9,5 +9,19 @@ public class OrganizacaoSolicitanteDAO extends JPACrud<OrganizacaoSolicitanteEnt
 
 	private static final long serialVersionUID = 1L;
 	
-
+	/**
+	 * @param id
+	 * @return
+	 */
+	public OrganizacaoSolicitanteEntity findById(Long id){
+    	return (OrganizacaoSolicitanteEntity) getEntityManager().createNamedQuery("OrganizacaoSolicitanteEntity.findById").setParameter("id", id).getSingleResult();
+    }
+	
+	/**
+	 * @param profissionalID
+	 * @return
+	 */
+	public OrganizacaoSolicitanteEntity findByProfissionalID(Long profissionalID){
+    	return (OrganizacaoSolicitanteEntity) getEntityManager().createNamedQuery("OrganizacaoSolicitanteEntity.findByProfissionalID").setParameter("profissionalID", profissionalID).getSingleResult();
+    }
 }

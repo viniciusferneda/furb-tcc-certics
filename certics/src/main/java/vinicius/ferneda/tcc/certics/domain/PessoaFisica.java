@@ -2,7 +2,6 @@ package vinicius.ferneda.tcc.certics.domain;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -51,11 +50,11 @@ public abstract class PessoaFisica{
 	private String fone2;
 
 	@JoinColumn(name="PES_ENDID", nullable=false)
-	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@OneToOne(fetch=FetchType.LAZY)
 	private EnderecoEntity endereco;
 	
 	@JoinColumn(name="PES_USUID", nullable=false)
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY)
 	private UsuarioEntity usuario;
 	
 	public Long getId() {

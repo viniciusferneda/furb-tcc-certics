@@ -9,5 +9,11 @@ public class ProfissionalDAO extends JPACrud<ProfissionalEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
 	
-
+	/**
+	 * @param id
+	 * @return
+	 */
+	public ProfissionalEntity findById(Long id){
+    	return (ProfissionalEntity) getEntityManager().createNamedQuery("ProfissionalEntity.findById").setParameter("id", id).getSingleResult();
+    }
 }

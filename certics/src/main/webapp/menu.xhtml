@@ -6,10 +6,14 @@
 
 	<h:form>
 		<p:menubar id="menuPrincipal">
-			
-			<p:submenu label="#{messages['menu.avaliador']}" rendered="#{securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM')}">
-				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/avaliador_edit.jsf"></p:menuitem>
-				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/avaliador_list.jsf"></p:menuitem>
+
+			<p:submenu label="#{messages['menu.dadosCadastrais']}">
+				<p:menuitem value="#{messages['menu.menuitem.editar']}" url="/avaliador_edit.jsf" rendered="#{securityContext.loggedIn and (securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM'))}">
+					<f:param name="id" value="#{usuarioEditMB.pessoaFisicaEntity.id}" />
+				</p:menuitem>
+				<p:menuitem value="#{messages['menu.menuitem.editar']}" url="/profissional_edit.jsf" rendered="#{securityContext.loggedIn and securityContext.hasRole('AVALIADO')}">
+					<f:param name="id" value="#{usuarioEditMB.pessoaFisicaEntity.id}" />
+				</p:menuitem>
 			</p:submenu>
 
 			<p:submenu label="#{messages['menu.versaoCerticsEntity']}" rendered="#{securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM')}">
@@ -32,7 +36,7 @@
 				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/organizacaoSolicitante_list.jsf"></p:menuitem>
 			</p:submenu>
 
-			<p:submenu label="#{messages['menu.profissional']}" rendered="#{securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM')}">
+			<p:submenu label="#{messages['menu.profissional']}">
 				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/profissional_edit.jsf"></p:menuitem>
 				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/profissional_list.jsf"></p:menuitem>
 			</p:submenu>
@@ -52,7 +56,7 @@
 				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/evidenciaEntity_list.jsf"></p:menuitem>
 			</p:submenu>
 		
-			<p:submenu label="#{messages['menu.conjuntoEvidencias']}" rendered="#{securityContext.hasRole('AVALIADO') || securityContext.hasRole('ADM')}">
+			<p:submenu label="#{messages['menu.conjuntoEvidencias']}">
 				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/conjuntoEvidencias_list.jsf"></p:menuitem>
 			</p:submenu>
 			
