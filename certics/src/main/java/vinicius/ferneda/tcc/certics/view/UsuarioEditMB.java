@@ -1,5 +1,9 @@
 package vinicius.ferneda.tcc.certics.view;
 
+import java.io.IOException;
+
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import vinicius.ferneda.tcc.certics.business.UsuarioBC;
@@ -77,6 +81,24 @@ public class UsuarioEditMB extends AbstractEditPageBean<UsuarioEntity, Long> {
         } catch (Exception e) {
             messageContext.add("Login: ", e.getMessage());
         }
+    }
+
+    public void editarInformacoesAvaliador(){
+    	ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+    	try {
+    		context.redirect(context.getRequestContextPath() + "/avaliador_edit.jsf?id=" + this.identity.getId());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
+
+    public void editarInformacoesProfissional(){
+    	ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
+    	try {
+    		context.redirect(context.getRequestContextPath() + "/profissional_edit.jsf?id=" + this.identity.getId());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 
 	public PessoaFisicaEntity getPessoaFisicaEntity() {

@@ -8,7 +8,7 @@ import javax.inject.Inject;
 import vinicius.ferneda.tcc.certics.business.EvidenciaProfissionalBC;
 import vinicius.ferneda.tcc.certics.business.ProfissionalBC;
 import vinicius.ferneda.tcc.certics.business.RespostaEvidenciaBC;
-import vinicius.ferneda.tcc.certics.domain.EvidenciaProfissional;
+import vinicius.ferneda.tcc.certics.domain.EvidenciaProfissionalEntity;
 import vinicius.ferneda.tcc.certics.domain.ProfissionalEntity;
 import vinicius.ferneda.tcc.certics.domain.RespostaEvidenciaEntity;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
@@ -18,7 +18,7 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 @ViewController
 @PreviousView("./evidenciaProfissional_list.jsf")
-public class EvidenciaProfissionalEditMB extends AbstractEditPageBean<EvidenciaProfissional, Long> {
+public class EvidenciaProfissionalEditMB extends AbstractEditPageBean<EvidenciaProfissionalEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -63,7 +63,7 @@ public class EvidenciaProfissionalEditMB extends AbstractEditPageBean<EvidenciaP
 	}
 	
 	@Override
-	protected EvidenciaProfissional handleLoad(Long id) {
+	protected EvidenciaProfissionalEntity handleLoad(Long id) {
 		return this.evidenciaProfissionalBC.load(id);
 	}	
 }

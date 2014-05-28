@@ -4,13 +4,12 @@ import java.util.List;
 
 import javax.persistence.Query;
 
-import vinicius.ferneda.tcc.certics.domain.EvidenciaProfissional;
 import vinicius.ferneda.tcc.certics.domain.EvidenciaProfissionalEntity;
 import br.gov.frameworkdemoiselle.stereotype.PersistenceController;
 import br.gov.frameworkdemoiselle.template.JPACrud;
 
 @PersistenceController
-public class EvidenciaProfissionalDAO extends JPACrud<EvidenciaProfissional, Long> {
+public class EvidenciaProfissionalDAO extends JPACrud<EvidenciaProfissionalEntity, Long> {
 
 	private static final long serialVersionUID = 1L;
 	

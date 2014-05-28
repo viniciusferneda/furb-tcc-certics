@@ -87,7 +87,7 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 	private DataModel<RespostaEvidenciaEntity> lRespostaEvidencias;
 	
 	public DataModel<RespostaEvidenciaEntity> getlRespostaEvidencias(){
-		return this.lRespostaEvidencias;
+		return this.lRespostaEvidencias = new ListDataModel<RespostaEvidenciaEntity>(respostaEvidenciaDAO.findByConjuntoEvidenciaID(this.getBean().getConjuntoEvidenciasAux().getId()));
 	}
 	
 	public List<SelectItem> getEvidenciaList(){
@@ -186,7 +186,6 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
     public void onNodeSelect(NodeSelectEvent event) {
     	if("resultadoEsperado".equals(((InformacoesArvore)event.getTreeNode().getData()).getTipo())){
     		this.getBean().setConjuntoEvidenciasAux(this.conjuntoEvidenciasDAO.findByResultadoEsperadoID(((InformacoesArvore)event.getTreeNode().getData()).getId()));   		
-    		this.lRespostaEvidencias = new ListDataModel<RespostaEvidenciaEntity>(respostaEvidenciaDAO.findByConjuntoEvidenciaID(this.getBean().getConjuntoEvidenciasAux().getId())); 
     	}
     }
 
@@ -236,6 +235,23 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 		this.getBean().setRespostaEvidenciaAux(new RespostaEvidenciaEntity());
 	}
 
+	public void updateRespostaEvidencia(){
+		this.respostaEvidenciaBC.update(this.getBean().getRespostaEvidenciaAux());
+		this.getBean().setRespostaEvidenciaAux(new RespostaEvidenciaEntity());
+	}
+	
+	public void editarEvidencia(RespostaEvidenciaEntity respostaEvidenciaEntity){
+		getBean().setRespostaEvidenciaAux(respostaEvidenciaEntity);
+	}
+	
+	public void excluirEvidencia(RespostaEvidenciaEntity respostaEvidenciaEntity){
+		for (RespostaEvidenciaEntity resposta : this.lRespostaEvidencias) {
+			if(respostaEvidenciaEntity.getId().equals(resposta.getId())){
+				respostaEvidenciaBC.delete(respostaEvidenciaEntity.getId());
+			}
+		}
+	}
+
 	public void setNovaEvidencia(){
 		this.getBean().setEvidenciaAux(new EvidenciaEntity());
 	}
@@ -251,6 +267,18 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 				this.evidenciaProfissionalBC.update(profissional);
 			}else{
 				this.evidenciaProfissionalBC.insert(profissional);
+			}
+		}
+	}
+	
+	public void editarEvidenciaProfissional(EvidenciaProfissionalEntity evidenciaProfissionalEntity){
+		getBean().setEvidenciaProfissionalEntity(evidenciaProfissionalEntity);
+	}
+	
+	public void excluirEvidenciaProfissional(EvidenciaProfissionalEntity evidenciaProfissionalEntity){
+		for (EvidenciaProfissionalEntity eviProf : this.lEvidenciaProfissional) {
+			if(evidenciaProfissionalEntity.getId().equals(eviProf.getId())){
+				evidenciaProfissionalBC.delete(evidenciaProfissionalEntity.getId());
 			}
 		}
 	}

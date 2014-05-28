@@ -20,8 +20,7 @@
 				</p:layoutUnit>
 				
 				<p:layoutUnit id="treeRegistroEvidencias" position="west" resizable="true" size="20%">
-					<p:tree id="tree" value="#{conjuntoEvidenciasEditMB.root}" var="node" dynamic="true" cache="false" 
-	            		selectionMode="single" selection="#{conjuntoEvidenciasEditMB.selectedNode}" style="width:100%;height:100%">
+					<p:tree id="tree" value="#{conjuntoEvidenciasEditMB.root}" var="node" cache="false" selectionMode="single" selection="#{conjuntoEvidenciasEditMB.selectedNode}" style="width:100%;height:100%">
 				        
 				        <p:ajax event="select" listener="#{conjuntoEvidenciasEditMB.onNodeSelect}" update=":formRegistroEvidencias:panelPrincipalRegistroEvidencia, :formRegistroEvidencias:panelPrincipalRegistroEvidenciaAvaliador, :formRegistroEvidencias:panelPrincipalRegistroEvidenciaAvaliado, :formRegistroEvidencias:panelPrincipalComentarioAvaliador, :formRegistroEvidencias:dtEvidencias"/>
 				        
@@ -117,6 +116,20 @@
 								rendered="#{securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM')}"/>
 						</p:column>
 						
+						<p:column headerText="#{messages['respostaEvidencia.label.acoes']}">
+							<p:commandButton value="#{messages['button.edit']}" 
+								immediate="true"
+								actionListener="#{conjuntoEvidenciasEditMB.editarEvidencia(evidencias)}"
+								update=":formModalEditarEvidencia:panelEditarRegistroEvidencia" 
+								oncomplete="dialogEditarEvidencia.show()"
+								rendered="#{securityContext.hasRole('AVALIADO') || securityContext.hasRole('ADM')}"/>
+							<p:commandButton value="#{messages['button.delete']}" 
+								immediate="true"
+								actionListener="#{conjuntoEvidenciasEditMB.excluirEvidencia(evidencias)}"
+								update=":formRegistroEvidencias:dtEvidencias" 
+								rendered="#{securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM')}"/>
+						</p:column>
+						
 					</p:dataTable>
 				</p:layoutUnit>
 			</p:layout>
@@ -175,6 +188,44 @@
 			</p:dialog>
 		</h:form>
 		
+		<h:form id="formModalEditarEvidencia">
+			<p:dialog id="modalEditarEvidencia"
+				header="#{messages['respostaEvidencia.dialog']}" 
+				widgetVar="dialogEditarEvidencia" 
+				width="600" height="500"
+				resizable="false"
+				closable="true">
+				
+		  		<h:panelGrid id="panelEditarRegistroEvidencia" styleClass="semBorda">
+					<h:outputLabel value="#{messages['evidenciaEntity.label']}: " for="evidencia" styleClass="text-input" />
+				    <p:selectOneMenu id="evidencia" value="#{conjuntoEvidenciasEditMB.bean.respostaEvidenciaAux.evidencia}" effect="fade" converter="ConversorEvidencia">
+						<f:selectItem itemLabel="Selecione" itemValue="" />
+						<f:selectItems value="#{conjuntoEvidenciasEditMB.evidenciaList}" var="varEvidencia" itemLabel="#{varEvidencia.label}" itemValue="#{varEvidencia}" />						
+					</p:selectOneMenu>
+					<p:message for="evidencia" />
+		
+					<h:outputLabel value="#{messages['respostaEvidencia.label.abrangencia']}: " for="abrangencia" styleClass="text-input" />
+					<p:inputTextarea id="abrangencia" value="#{conjuntoEvidenciasEditMB.bean.respostaEvidenciaAux.abrangencia}" title="#{messages['respostaEvidencia.alt.abrangencia']}" rows="5" cols="50" maxlength="1000" autoResize="false"/>
+					<p:message for="abrangencia" />
+		
+					<h:outputLabel value="#{messages['respostaEvidencia.label.contribuicao']}: " for="contribuicao" styleClass="text-input" />
+					<p:inputTextarea id="contribuicao" value="#{conjuntoEvidenciasEditMB.bean.respostaEvidenciaAux.contribuicao}" title="#{messages['respostaEvidencia.alt.contribuicao']}" rows="5" cols="50" maxlength="1000" autoResize="false"/>
+					<p:message for="contribuicao" />
+
+			  		<h:panelGrid id="panelRegistroEvidenciaMotivo" styleClass="semBorda">
+						<h:outputLabel value="#{messages['respostaEvidencia.label.motivo']}: " for="motivo" styleClass="text-input" />
+						<p:inputTextarea id="motivo" value="#{conjuntoEvidenciasEditMB.bean.respostaEvidenciaAux.motivo}" title="#{messages['respostaEvidencia.alt.motivo']}" rows="5" cols="50" maxlength="1000" autoResize="false"/>
+						<p:message for="motivo" />
+					</h:panelGrid>
+				</h:panelGrid>
+				
+				<p:commandButton value="#{messages['button.save']}"
+					actionListener="#{conjuntoEvidenciasEditMB.updateRespostaEvidencia()}"
+					update=":formRegistroEvidencias:dtEvidencias"
+					oncomplete="dialogEditarEvidencia.hide();"/>
+			</p:dialog>
+		</h:form>
+
 		<h:form id="formModalProfissionais">
 			<p:dialog id="modalProfissionais"
 				header="#{messages['evidenciaProfissional.dialog']}" 
@@ -223,9 +274,18 @@
 					<p:column headerText="#{messages['evidenciaProfissional.label.fazParteOrganizacao']}">
 						<h:outputText id="profissionaisFazParteDaOrganizacao" value="#{profissionais.fazParteOrganizacao}"/>
 					</p:column>
-					
-					<p:column headerText="#{messages['evidenciaProfissional.label.remover']}">
-						Remover
+
+					<p:column headerText="#{messages['evidenciaProfissional.label.acoes']}">
+						<p:commandButton value="#{messages['button.edit']}" 
+							immediate="true"
+							actionListener="#{conjuntoEvidenciasEditMB.editarEvidenciaProfissional(profissionais)}"
+							update=":formModalProfissionais:panelProfissionais" 
+							rendered="#{securityContext.hasRole('AVALIADO') || securityContext.hasRole('ADM')}"/>
+						<p:commandButton value="#{messages['button.delete']}" 
+							immediate="true"
+							actionListener="#{conjuntoEvidenciasEditMB.excluirEvidenciaProfissional(profissionais)}"
+							update=":formModalProfissionais:dtEvidenciaProfissionais" 
+							rendered="#{securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM')}"/>
 					</p:column>
 						
 				</p:dataTable>
@@ -262,6 +322,21 @@
 					<p:column headerText="#{messages['evidenciaProfissional.label.fazParteOrganizacao']}">
 						<h:outputText id="profissionaisFazParteDaOrganizacao" value="#{profissionais.fazParteOrganizacao}"/>
 					</p:column>
+
+					<p:column headerText="#{messages['evidenciaProfissional.label.acoes']}">
+						<p:commandButton value="#{messages['button.edit']}" 
+							immediate="true"
+							actionListener="#{conjuntoEvidenciasEditMB.editarEvidenciaProfissional(profissionais)}"
+							update=":formModalProfissionais:panelProfissionais" 
+							oncomplete="dialogProfissionais.show()"
+							rendered="#{securityContext.hasRole('AVALIADO') || securityContext.hasRole('ADM')}"/>
+						<p:commandButton value="#{messages['button.delete']}" 
+							immediate="true"
+							actionListener="#{conjuntoEvidenciasEditMB.excluirEvidenciaProfissional(profissionais)}"
+							update=":formModalDtProfissionais:dtListEvidenciaProfissionais" 
+							rendered="#{securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM')}"/>
+					</p:column>
+
 				</p:dataTable>
 			</p:dialog>
 		</h:form>

@@ -37,9 +37,9 @@ public class EvidenciaProfissionalBCTest {
 	public void testInsert() {
 				
 		// modifique para inserir dados conforme o construtor
-		EvidenciaProfissional evidenciaProfissional = new EvidenciaProfissionalEntity(Integer.valueOf(1),"envolvimento",new RespostaEvidenciaEntity(),new ProfissionalEntity());
+		EvidenciaProfissionalEntity evidenciaProfissional = new EvidenciaProfissionalEntity(Integer.valueOf(1),"envolvimento",new RespostaEvidenciaEntity(),new ProfissionalEntity());
 		evidenciaProfissionalBC.insert(evidenciaProfissional);
-		List<EvidenciaProfissional> listOfEvidenciaProfissional = evidenciaProfissionalBC.findAll();
+		List<EvidenciaProfissionalEntity> listOfEvidenciaProfissional = evidenciaProfissionalBC.findAll();
 		assertNotNull(listOfEvidenciaProfissional);
 		assertEquals(1, listOfEvidenciaProfissional.size());
 	}	
@@ -48,10 +48,10 @@ public class EvidenciaProfissionalBCTest {
 	public void testDelete() {
 		
 		// modifique para inserir dados conforme o construtor
-		EvidenciaProfissional evidenciaProfissional = new EvidenciaProfissionalEntity(Integer.valueOf(1),"envolvimento",new RespostaEvidenciaEntity(),new ProfissionalEntity());
+		EvidenciaProfissionalEntity evidenciaProfissional = new EvidenciaProfissionalEntity(Integer.valueOf(1),"envolvimento",new RespostaEvidenciaEntity(),new ProfissionalEntity());
 		evidenciaProfissionalBC.insert(evidenciaProfissional);
 		
-		List<EvidenciaProfissional> listOfEvidenciaProfissional = evidenciaProfissionalBC.findAll();
+		List<EvidenciaProfissionalEntity> listOfEvidenciaProfissional = evidenciaProfissionalBC.findAll();
 		assertNotNull(listOfEvidenciaProfissional);
 		assertEquals(1, listOfEvidenciaProfissional.size());
 		
@@ -63,11 +63,11 @@ public class EvidenciaProfissionalBCTest {
 	@Test
 	public void testUpdate() {
 		// modifique para inserir dados conforme o construtor
-		EvidenciaProfissional evidenciaProfissional = new EvidenciaProfissionalEntity(Integer.valueOf(1),"envolvimento",new RespostaEvidenciaEntity(),new ProfissionalEntity());
+		EvidenciaProfissionalEntity evidenciaProfissional = new EvidenciaProfissionalEntity(Integer.valueOf(1),"envolvimento",new RespostaEvidenciaEntity(),new ProfissionalEntity());
 		evidenciaProfissionalBC.insert(evidenciaProfissional);
 		
-		List<EvidenciaProfissional> listOfEvidenciaProfissional = evidenciaProfissionalBC.findAll();
-		EvidenciaProfissional evidenciaProfissional2 = (EvidenciaProfissional)listOfEvidenciaProfissional.get(0);
+		List<EvidenciaProfissionalEntity> listOfEvidenciaProfissional = evidenciaProfissionalBC.findAll();
+		EvidenciaProfissionalEntity evidenciaProfissional2 = (EvidenciaProfissionalEntity)listOfEvidenciaProfissional.get(0);
 		assertNotNull(listOfEvidenciaProfissional);
 
 		// alterar para tratar uma propriedade existente na Entidade EvidenciaProfissional

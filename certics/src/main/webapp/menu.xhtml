@@ -8,12 +8,8 @@
 		<p:menubar id="menuPrincipal">
 
 			<p:submenu label="#{messages['menu.dadosCadastrais']}">
-				<p:menuitem value="#{messages['menu.menuitem.editar']}" url="/avaliador_edit.jsf" rendered="#{securityContext.loggedIn and (securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM'))}">
-					<f:param name="id" value="#{usuarioEditMB.pessoaFisicaEntity.id}" />
-				</p:menuitem>
-				<p:menuitem value="#{messages['menu.menuitem.editar']}" url="/profissional_edit.jsf" rendered="#{securityContext.loggedIn and securityContext.hasRole('AVALIADO')}">
-					<f:param name="id" value="#{usuarioEditMB.pessoaFisicaEntity.id}" />
-				</p:menuitem>
+				<p:menuitem value="#{messages['menu.menuitem.editar']}" actionListener="#{usuarioEditMB.editarInformacoesAvaliador()}" rendered="#{securityContext.loggedIn and (securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM'))}"/>
+				<p:menuitem value="#{messages['menu.menuitem.editar']}" actionListener="#{usuarioEditMB.editarInformacoesProfissional()}" rendered="#{securityContext.loggedIn and securityContext.hasRole('AVALIADO')}"/>
 			</p:submenu>
 
 			<p:submenu label="#{messages['menu.versaoCerticsEntity']}" rendered="#{securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM')}">
