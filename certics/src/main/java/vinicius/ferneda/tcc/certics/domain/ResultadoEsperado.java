@@ -24,17 +24,17 @@ public abstract class ResultadoEsperado implements Serializable{
 	@GeneratedValue(generator="RES_ID", strategy=GenerationType.AUTO)
 	private Long id;
 
-	@Column(name="ARC_TITULO", nullable=false, length=255)
+	@Column(name="RES_TITULO", nullable=false, length=255)
 	private String titulo;
 	
-	@Column(name="ARC_DESCRICAO", nullable=false, length=8000)
+	@Column(name="RES_DESCRICAO", nullable=false, length=8000)
 	private String descricao;
 	
-	@Column(name="ARC_DICA", nullable=false, length=8000)
+	@Column(name="RES_DICA", nullable=false, length=8000)
 	private String dica;
 	
 	@ManyToOne(fetch=FetchType.LAZY) 
-	@JoinColumn(name="REV_ARCID", nullable=false)
+	@JoinColumn(name="RES_ARCID", nullable=false)
 	private AreaCompetenciaEntity areaCompetencia;
 	
 	@OneToMany(fetch=FetchType.LAZY)
