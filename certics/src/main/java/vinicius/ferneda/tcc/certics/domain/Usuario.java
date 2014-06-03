@@ -15,7 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.Size;
 
 import vinicius.ferneda.tcc.certics.constant.EnumPapelUsuario;
 
@@ -38,10 +37,6 @@ public abstract class Usuario implements Serializable{
 	@Column(name="USU_PAPEL", nullable=false, length=50)
 	@Enumerated(EnumType.STRING)
     private EnumPapelUsuario papelUsuario; 
-	
-	@Size(min=3, max = 100)
-    @Column(name="USU_AMINESIA", length = 100)
-    private String aminesia;
 	
 	@Column(name="USU_ATIVO", nullable=false)
     private Integer ativo = 1;
@@ -80,14 +75,6 @@ public abstract class Usuario implements Serializable{
 
 	public void setPapelUsuario(EnumPapelUsuario papelUsuario) {
 		this.papelUsuario = papelUsuario;
-	}
-
-	public String getAminesia() {
-		return aminesia;
-	}
-
-	public void setAminesia(String aminesia) {
-		this.aminesia = aminesia;
 	}
 
 	public Integer getAtivo() {

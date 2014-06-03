@@ -24,12 +24,6 @@ import vinicius.ferneda.tcc.certics.constant.EnumSexo;
     			+ " FROM PessoaFisicaEntity obj "
     			+ " WHERE obj.nome = :nome"),
     	
-    @NamedQuery(name="PessoaFisicaEntity.findByAminesia",
-    	query="SELECT obj "
-    			+ " FROM PessoaFisicaEntity obj "
-    			+ " INNER JOIN FETCH obj.usuario "
-    			+ " WHERE obj.usuario.aminesia = :aminesia"),
-    	
     @NamedQuery(name="PessoaFisicaEntity.findBySenha",
     	query="SELECT obj "
     			+ " FROM PessoaFisicaEntity obj "
