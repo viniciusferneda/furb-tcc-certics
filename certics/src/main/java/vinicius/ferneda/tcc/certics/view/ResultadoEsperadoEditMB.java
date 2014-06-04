@@ -68,13 +68,35 @@ public class ResultadoEsperadoEditMB extends AbstractEditPageBean<ResultadoEsper
 	@Transactional
 	public String update() {
 		this.resultadoEsperadoBC.update(this.getBean());
+		
 		//Registra as versoes vinculadas
+		incluirVersaoCertics();
+		
+		//Exclui as versões que não estão mais vinculadas
+		excluirVersaoCertics();
+		
+		return getPreviousView();
+	}
+
+	private void incluirVersaoCertics() {
 		if(getlVersaoCertics().getTarget() != null && !getlVersaoCertics().getTarget().isEmpty()){
 			for (VersaoCerticsEntity versaoCerticsEntity : getlVersaoCertics().getTarget()) {
-				this.versaoCerticsResultadoEsperadoEntityDAO.insert(new VersaoCerticsResultadoEsperadoEntity(this.getBean(), versaoCerticsEntity));
+				if(!this.versaoCerticsResultadoEsperadoEntityDAO.possuiVersaoCertics(versaoCerticsEntity.getId(), getId())){
+					this.versaoCerticsResultadoEsperadoEntityDAO.insert(new VersaoCerticsResultadoEsperadoEntity(this.getBean(), versaoCerticsEntity));
+				}
 			}
 		}
-		return getPreviousView();
+	}
+	
+	private void excluirVersaoCertics(){
+		if(getlVersaoCertics().getSource() != null && !getlVersaoCertics().getSource().isEmpty()){
+			for (VersaoCerticsEntity versaoCerticsEntity : getlVersaoCertics().getSource()) {
+				VersaoCerticsResultadoEsperadoEntity versaoCerticsResultadoEsperadoEntity = this.versaoCerticsResultadoEsperadoEntityDAO.findByVersaoCerticsID(versaoCerticsEntity.getId(), getId());
+				if(versaoCerticsResultadoEsperadoEntity != null){
+					this.versaoCerticsResultadoEsperadoEntityDAO.delete(versaoCerticsResultadoEsperadoEntity.getId());
+				}
+			}
+		}
 	}
 	
 	@Override

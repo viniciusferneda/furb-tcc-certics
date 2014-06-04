@@ -8,12 +8,24 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="TB_VERSAO_CERTICS_RESULTADO_ESPERADO")
-@SequenceGenerator(name="VRE_ID", sequenceName="VRE_ID", allocationSize=1)
+@SequenceGenerator(name="VRE_ID", sequenceName="SEQ_VRE_ID", allocationSize=1)
 @NamedQueries({
     @NamedQuery(name="VersaoCerticsResultadoEsperadoEntity.findById", 
     		query="SELECT obj "
     				+ " FROM VersaoCerticsResultadoEsperadoEntity obj "
-    				+ " WHERE obj.id = :id")
+    				+ " WHERE obj.id = :id"),
+    				
+	@NamedQuery(name="VersaoCerticsResultadoEsperadoEntity.possuiVersaoCertics", 
+    		query="SELECT count(obj.id) "
+    				+ " FROM VersaoCerticsResultadoEsperadoEntity obj "
+    				+ " WHERE obj.versaoCertics.id = :versaoID "
+    				+ "		AND obj.resultadoEsperado.id = :resultadoEsperadoID"),
+    				
+	@NamedQuery(name="VersaoCerticsResultadoEsperadoEntity.findByVersaoCerticsID", 
+    		query="SELECT obj.id "
+    				+ " FROM VersaoCerticsResultadoEsperadoEntity obj "
+    				+ " WHERE obj.versaoCertics.id = :versaoCerticsID"
+    				+ "		AND obj.resultadoEsperado.id = :resultadoEsperadoID")
 })
 public class VersaoCerticsResultadoEsperadoEntity extends VersaoCerticsResultadoEsperado {
 

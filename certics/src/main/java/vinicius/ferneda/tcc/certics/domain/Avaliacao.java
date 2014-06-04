@@ -32,7 +32,7 @@ public abstract class Avaliacao implements Serializable{
 	@GeneratedValue(generator="AVA_ID", strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(name="AVA_PONTUACAO", nullable=false, length=10)
+	@Column(name="AVA_PONTUACAO", length=10)
 	@Enumerated(EnumType.STRING)
 	private EnumPontuacaoAvaliacao pontuacao;
 	

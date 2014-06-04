@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="TB_VERSAO_CERTICS")
-@SequenceGenerator(name="VCE_ID", sequenceName="VCE_ID", allocationSize=1)
+@SequenceGenerator(name="VCE_ID", sequenceName="SEQ_VCE_ID", allocationSize=1)
 @NamedQueries({
     @NamedQuery(name="VersaoCerticsEntity.findById", 
     		query="SELECT obj "

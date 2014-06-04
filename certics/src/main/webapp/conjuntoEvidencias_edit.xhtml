@@ -375,12 +375,12 @@
 			<p:dialog id="modalDica"
 				header="#{messages['resultadoEsperado.label.dica']}" 
 				widgetVar="dialogDica" 
-				width="600" height="200"
+				width="800" height="600"
 				resizable="false"
 				closable="true">
 				
 		  		<h:panelGrid id="panelDica" styleClass="semBorda">
-					<h:outputText id="dica" value="#{conjuntoEvidenciasEditMB.bean.conjuntoEvidenciasAux.resultadoEsperado.dica}" />
+					<h:outputText id="dica" value="#{conjuntoEvidenciasEditMB.bean.conjuntoEvidenciasAux.resultadoEsperado.dica}" escape="false"/>
 				</h:panelGrid>
 				
 			</p:dialog>

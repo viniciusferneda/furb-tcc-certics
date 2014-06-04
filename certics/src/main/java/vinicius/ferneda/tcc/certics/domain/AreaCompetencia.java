@@ -33,7 +33,7 @@ public abstract class AreaCompetencia implements Serializable{
 	private String descricao;
 	
 	@OneToMany(fetch=FetchType.LAZY)
-	@JoinColumn(name="REV_ARCID")
+	@JoinColumn(name="RES_ARCID")
 	private List<ResultadoEsperadoEntity> resultadosEsperados = new ArrayList<ResultadoEsperadoEntity>();
 	
 	@OneToMany(fetch=FetchType.LAZY)

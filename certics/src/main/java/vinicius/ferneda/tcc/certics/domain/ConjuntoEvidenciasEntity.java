@@ -10,7 +10,7 @@ import vinicius.ferneda.tcc.certics.constant.EnumPontuacaoEvidencia;
 
 @Entity
 @Table(name="TB_CONJUNTO_EVIDENCIAS")
-@SequenceGenerator(name="CEV_ID", sequenceName="CEV_ID", allocationSize=1)
+@SequenceGenerator(name="CEV_ID", sequenceName="SEQ_CEV_ID", allocationSize=1)
 @NamedQueries({
     @NamedQuery(name="ConjuntoEvidenciasEntity.findById", 
     		query="SELECT obj "

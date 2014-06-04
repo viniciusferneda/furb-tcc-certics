@@ -12,7 +12,7 @@ import vinicius.ferneda.tcc.certics.constant.EnumPontuacaoAvaliacao;
 
 @Entity
 @Table(name="TB_AVALIACAO")
-@SequenceGenerator(name="AVA_ID", sequenceName="AVA_ID", allocationSize=1)
+@SequenceGenerator(name="AVA_ID", sequenceName="SEQ_AVA_ID", allocationSize=1)
 @NamedQueries({
     @NamedQuery(name="AvaliacaoEntity.findById", 
     		query="SELECT obj "

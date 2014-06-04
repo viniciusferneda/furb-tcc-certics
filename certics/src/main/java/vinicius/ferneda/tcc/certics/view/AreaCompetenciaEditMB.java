@@ -84,12 +84,33 @@ public class AreaCompetenciaEditMB extends AbstractEditPageBean<AreaCompetenciaE
 	public String update() {
 		this.areaCompetenciaBC.update(this.getBean());
 		//Registra as versoes vinculadas
+		incluirVersaoCertics();
+		
+		//Exclui as versões que não estão mais vinculadas
+		excluirVersaoCertics();
+				
+		return getPreviousView();
+	}
+	
+	private void incluirVersaoCertics() {
 		if(getlVersaoCertics().getTarget() != null && !getlVersaoCertics().getTarget().isEmpty()){
 			for (VersaoCerticsEntity versaoCerticsEntity : getlVersaoCertics().getTarget()) {
-				this.versaoCerticsAreaCompetenciaEntityDAO.insert(new VersaoCerticsAreaCompetenciaEntity(this.getBean(), versaoCerticsEntity));
+				if(!this.versaoCerticsAreaCompetenciaEntityDAO.possuiVersaoCertics(versaoCerticsEntity.getId(), getId())){
+					this.versaoCerticsAreaCompetenciaEntityDAO.insert(new VersaoCerticsAreaCompetenciaEntity(this.getBean(), versaoCerticsEntity));
+				}
 			}
 		}
-		return getPreviousView();
+	}
+	
+	private void excluirVersaoCertics(){
+		if(getlVersaoCertics().getSource() != null && !getlVersaoCertics().getSource().isEmpty()){
+			for (VersaoCerticsEntity versaoCerticsEntity : getlVersaoCertics().getSource()) {
+				VersaoCerticsAreaCompetenciaEntity versaoCerticsAreaCompetenciaEntity = this.versaoCerticsAreaCompetenciaEntityDAO.findByVersaoCerticsID(versaoCerticsEntity.getId(), getId());
+				if(versaoCerticsAreaCompetenciaEntity != null){
+					this.versaoCerticsAreaCompetenciaEntityDAO.delete(versaoCerticsAreaCompetenciaEntity.getId());
+				}
+			}
+		}
 	}
 	
 	@Override
