@@ -215,7 +215,7 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 		setFile(new DefaultStreamedContent(stream, anexo.getNome(), anexo.getNome()));    	
     }
     
-    public void novaRespostaEvidencia(String tipoEvidencia){
+    public void novaRespostaEvidencia(){
     	this.getBean().setRespostaEvidenciaAux(new RespostaEvidenciaEntity());
     }
     
