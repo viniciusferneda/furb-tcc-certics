@@ -4,8 +4,19 @@
 
 	<ui:define name="body">
 		<h:form id="formListAvaliacao">
+			<p:toolbar>
+				<p:toolbarGroup align="left">
+					<p:commandButton title="#{messages['button.relatorio.evidencias']}" icon="ui-icon-document" action="#{conjuntoEvidenciasListMB.exibirRelatorioEvidencias()}" ajax="false" />
+					<p:commandButton title="#{messages['button.relatorio.pendencias']}" icon="ui-icon-trash" action="#{conjuntoEvidenciasListMB.exibirRelatorioPendencias()}" ajax="false" />
+				</p:toolbarGroup>
+			</p:toolbar>
+			
 			<p:dataTable id="list" var="bean" value="#{conjuntoEvidenciasListMB.resultList}">
 				<f:facet name="header">#{messages['conjuntoEvidencias.list.table.title']}</f:facet>
+				
+				<p:column style="width:2%;">
+					<h:selectBooleanCheckbox value="#{conjuntoEvidenciasListMB.selection[bean.id]}"></h:selectBooleanCheckbox>
+				</p:column>
 				
 				<p:column style="width:5%;" filterBy="#{bean.id}" filterMatchMode="exact" sortBy="#{bean.id}" headerText="#{messages['conjuntoEvidencias.label.id']}">
 					<h:commandLink action="#{conjuntoEvidenciasListMB.getNextView}" actionListener="#{conjuntoEvidenciasListMB.clear}">

@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioAvaliacaoDetalhado" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="6"/>
+	<field name="AVA_ID" class="java.lang.Long"/>
+	<field name="AVA_PONTUACAO" class="java.lang.String"/>
+	<field name="AVA_DT_AVALIACAO" class="java.util.Date"/>
+	<field name="VCE_NOME" class="java.lang.String"/>
+	<field name="SOF_ID" class="java.lang.Long"/>
+	<field name="SOF_NOME" class="java.lang.String"/>
+	<field name="PES_NOME" class="java.lang.String"/>
+	<field name="ORS_NOME" class="java.lang.String"/>
+	<field name="ARC_ID" class="java.lang.Long"/>
+	<field name="ARC_TITULO" class="java.lang.String"/>
+	<field name="RES_ID" class="java.lang.Long"/>
+	<field name="RES_TITULO" class="java.lang.String"/>
+	<field name="CEV_ID" class="java.lang.Long"/>
+	<field name="CEV_PONTUACAO" class="java.lang.String"/>
+	<field name="CEV_COMENTARIO" class="java.lang.String"/>
+	<field name="REV_ID" class="java.lang.Long"/>
+	<field name="REV_ABRANGENCIA" class="java.lang.String"/>
+	<field name="REV_MOTIVO" class="java.lang.String"/>
+	<field name="REV_CONTRIBUICAO" class="java.lang.String"/>
+	<field name="EVI_NOME" class="java.lang.String"/>
+	<field name="EVI_DESCRICAO" class="java.lang.String"/>
+	<field name="ANE_ID" class="java.lang.Long"/>
+	<field name="ANE_NOME" class="java.lang.String"/>
+	<field name="EPR_ID" class="java.lang.Long"/>
+	<field name="EPR_FAZ_PARTE_ORG" class="java.lang.String"/>
+	<field name="EPR_ENVOLVIMENTO" class="java.lang.String"/>
+	<field name="EPR_VINCULO_ATUAL" class="java.lang.String"/>
+	<field name="EPR_NOME" class="java.lang.String"/>
+	<group name="AVALIACAO">
+		<groupExpression><![CDATA[$F{AVA_ID}]]></groupExpression>
+		<groupHeader>
+			<band height="66">
+				<textField>
+					<reportElement x="562" y="40" width="240" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{AVA_PONTUACAO}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="479" y="40" width="83" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Pontuação:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="479" y="20" width="83" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Data:]]></text>
+				</staticText>
+				<textField pattern="dd/MM/yyyy">
+					<reportElement x="562" y="20" width="240" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.util.Date"><![CDATA[$F{AVA_DT_AVALIACAO}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="562" y="0" width="240" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{VCE_NOME}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="479" y="0" width="83" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Versão:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="40" width="155" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Software:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="0" width="155" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Avaliador:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="20" width="155" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Organização Solicitante:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="155" y="0" width="314" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{PES_NOME}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="155" y="20" width="314" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{ORS_NOME}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="155" y="40" width="314" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{SOF_NOME}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="60" width="802" height="1"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="AREA_COMPETENCIA">
+		<groupExpression><![CDATA[$F{ARC_ID}]]></groupExpression>
+		<groupHeader>
+			<band height="24">
+				<staticText>
+					<reportElement x="0" y="0" width="155" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Área de competência:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="155" y="0" width="647" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{ARC_TITULO}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="20" width="802" height="1"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="RESULTADO_ESPERADO">
+		<groupExpression><![CDATA[$F{RES_ID}]]></groupExpression>
+		<groupHeader>
+			<band height="25">
+				<staticText>
+					<reportElement x="0" y="0" width="155" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Resultado esperado:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="155" y="0" width="647" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{RES_TITULO}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="20" width="802" height="1"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="CONJUNTO_EVIDENCIA">
+		<groupExpression><![CDATA[$F{CEV_ID}]]></groupExpression>
+		<groupHeader>
+			<band height="45">
+				<staticText>
+					<reportElement x="0" y="0" width="155" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Pontuação:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="155" y="0" width="647" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{CEV_PONTUACAO}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="155" y="20" width="647" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{CEV_COMENTARIO}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="20" width="155" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Comentário:]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="40" width="802" height="1"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="EVIDENCIA">
+		<groupExpression><![CDATA[$F{REV_ID}]]></groupExpression>
+		<groupHeader>
+			<band height="108">
+				<textField>
+					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="155" y="41" width="647" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{REV_ABRANGENCIA}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="155" y="81" width="647" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{REV_MOTIVO}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="155" y="61" width="647" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{REV_CONTRIBUICAO}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="155" y="1" width="647" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{EVI_NOME}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="155" y="21" width="647" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{EVI_DESCRICAO}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="1" width="155" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Evidência:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="41" width="155" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Abrangência:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="21" width="155" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Descrição:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="61" width="155" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Contribuição:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="81" width="155" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Motivo:]]></text>
+				</staticText>
+				<line>
+					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="101" width="802" height="1"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="ANEXOS">
+		<groupExpression><![CDATA[$F{ANE_ID}]]></groupExpression>
+		<groupHeader>
+			<band height="25">
+				<textField>
+					<reportElement x="155" y="0" width="647" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{ANE_NOME}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="0" width="155" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Anexo:]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="20" width="802" height="1"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<group name="PROFISSIONAIS">
+		<groupExpression><![CDATA[$F{EPR_ID}]]></groupExpression>
+		<groupHeader>
+			<band height="80">
+				<staticText>
+					<reportElement x="0" y="0" width="155" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Profissional:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="155" y="0" width="647" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{EPR_NOME}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="20" width="155" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Envolvimento:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="155" y="20" width="647" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{EPR_ENVOLVIMENTO}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="155" y="40" width="647" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{EPR_VINCULO_ATUAL}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="155" y="60" width="647" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{EPR_FAZ_PARTE_ORG}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="40" width="155" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Vínculo:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="60" width="155" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Faz parte da Organização:]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="802" height="28"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de evidências]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

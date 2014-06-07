@@ -17,7 +17,23 @@ import vinicius.ferneda.tcc.certics.constant.EnumPontuacaoAvaliacao;
     @NamedQuery(name="AvaliacaoEntity.findById", 
     		query="SELECT obj "
     				+ " FROM AvaliacaoEntity obj "
-    				+ " WHERE obj.id = :id")
+    				+ " WHERE obj.id = :id"),
+    				
+    @NamedQuery(name="AvaliacaoEntity.findEvidenciasByAvaliacaoID",
+    		query="SELECT obj "
+    				+ " FROM AvaliacaoEntity obj "
+    				+ "		INNER JOIN FETCH obj.software "
+    				+ " 	INNER JOIN FETCH obj.avaliador "
+    				+ "		INNER JOIN FETCH obj.versaoCertics "
+    				+ "		INNER JOIN FETCH obj.respostas "
+    				//+ "		INNER JOIN FETCH obj.respostas.resultadoEsperado "
+    				//+ "		INNER JOIN FETCH obj.respostas.resultadoEsperado.areaCompetencia "
+    				//+ "		LEFT JOIN FETCH obj.respostas.respostas "
+    				//+ "		LEFT JOIN FETCH obj.respostas.respostas.evidencia "
+    				//+ "		LEFT JOIN FETCH obj.respostas.respostas.evidencia.anexos "
+    				//+ "		LEFT JOIN FETCH obj.respostas.respostas.profissionais "
+    				//+ "		LEFT JOIN FETCH obj.respostas.respostas.profissionais.profissional "
+    				+ " WHERE obj.id in (:avaliacaoID)")
 })
 public class AvaliacaoEntity extends Avaliacao {
 
