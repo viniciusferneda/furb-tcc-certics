@@ -12,17 +12,17 @@
 				<p:menuitem value="#{messages['menu.menuitem.editar']}" actionListener="#{usuarioEditMB.editarInformacoesProfissional()}" rendered="#{securityContext.loggedIn and securityContext.hasRole('AVALIADO')}"/>
 			</p:submenu>
 
-			<p:submenu label="#{messages['menu.versaoCerticsEntity']}" rendered="#{securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM')}">
+			<p:submenu label="#{messages['menu.versaoCerticsEntity']}" rendered="#{securityContext.hasRole('ADM')}">
 				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/versaoCerticsEntity_edit.jsf"></p:menuitem>
 				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/versaoCerticsEntity_list.jsf"></p:menuitem>
 			</p:submenu>
 
-			<p:submenu label="#{messages['menu.areaCompetencia']}" rendered="#{securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM')}">
+			<p:submenu label="#{messages['menu.areaCompetencia']}" rendered="#{securityContext.hasRole('ADM')}">
 				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/areaCompetencia_edit.jsf"></p:menuitem>
 				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/areaCompetencia_list.jsf"></p:menuitem>
 			</p:submenu>
 
-			<p:submenu label="#{messages['menu.resultadoEsperado']}" rendered="#{securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM')}">
+			<p:submenu label="#{messages['menu.resultadoEsperado']}" rendered="#{securityContext.hasRole('ADM')}">
 				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/resultadoEsperado_edit.jsf"></p:menuitem>
 				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/resultadoEsperado_list.jsf"></p:menuitem>
 			</p:submenu>

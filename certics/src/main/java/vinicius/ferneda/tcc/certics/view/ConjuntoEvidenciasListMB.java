@@ -1,23 +1,22 @@
 package vinicius.ferneda.tcc.certics.view;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
 
 import vinicius.ferneda.tcc.certics.business.AvaliacaoBC;
 import vinicius.ferneda.tcc.certics.domain.AvaliacaoEntity;
 import vinicius.ferneda.tcc.certics.persistence.AvaliacaoDAO;
+import vinicius.ferneda.tcc.certics.reports.ExportarRelatorio;
 import br.gov.frameworkdemoiselle.annotation.NextView;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
-import br.gov.frameworkdemoiselle.message.MessageContext;
-import br.gov.frameworkdemoiselle.report.Report;
-import br.gov.frameworkdemoiselle.report.Type;
-import br.gov.frameworkdemoiselle.report.annotation.Path;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractListPageBean;
-import br.gov.frameworkdemoiselle.util.FileRenderer;
-import br.gov.frameworkdemoiselle.util.ResourceBundle;
 
 @ViewController
 @NextView("./conjuntoEvidencias_edit.jsf")
@@ -31,23 +30,12 @@ public class ConjuntoEvidenciasListMB extends AbstractListPageBean<AvaliacaoEnti
 	@Inject
 	private AvaliacaoDAO avaliacaoDAO;
 	
-	@Inject
-	@Path("reports/RelatorioAvaliacaoDetalhado.jasper")
-	private Report relatorio;
-	@Inject
-	private FileRenderer renderer;
-	
-	@Inject
-	private MessageContext messageContext;
-	@Inject
-	private ResourceBundle bundle;	
-	
 	@Override
 	protected List<AvaliacaoEntity> handleResultList() {
 		return this.avaliacaoBC.findAll();
 	}
 	
-	public String exibirRelatorioEvidencias() {
+	public void exibirRelatorioEvidencias() {
 		String avaliacaoIds = null;
 		for (Iterator<Long> iter = getSelection().keySet().iterator(); iter.hasNext();) {
 			if(avaliacaoIds == null){
@@ -56,6 +44,13 @@ public class ConjuntoEvidenciasListMB extends AbstractListPageBean<AvaliacaoEnti
 				avaliacaoIds = ","+String.valueOf(iter.next());
 			}
 		}
+		Map<String, Object> mapParametros = new HashMap<String, Object>();
+		mapParametros.put("AVA_ID", avaliacaoIds);
+		
+		ExportarRelatorio relatorio = new ExportarRelatorio("reports/RelatorioAvaliacaoDetalhado.jasper");
+		relatorio.exportarRelatorioPdf(mapParametros, (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse(), "Relatório de evidências");
+		
+		/*
 		List<AvaliacaoEntity> lAvaliacoes = avaliacaoDAO.findEvidenciasByAvaliacaoID(avaliacaoIds);
 		if(lAvaliacoes != null && !lAvaliacoes.isEmpty()){
 			try {
@@ -67,7 +62,7 @@ public class ConjuntoEvidenciasListMB extends AbstractListPageBean<AvaliacaoEnti
 		}else{
 			messageContext.add(bundle.getString("label.senha.invalida"));
 		}
-		return getNextView();
+		return getNextView();*/
 	}
 	
 	public String exibirRelatorioPendencias() {

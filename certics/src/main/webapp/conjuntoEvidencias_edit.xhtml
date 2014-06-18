@@ -9,6 +9,14 @@
 					<h:outputLabel value="#{messages['conjuntoEvidencias.label.id']}: " for="id" styleClass="text-input" />
 					<h:outputText id="id" value="#{conjuntoEvidenciasEditMB.bean.id}" />
 					<p:message for="id" />
+
+					<h:outputLabel value="#{messages['avaliacao.label.avaliador']}: " for="avaliacaoAvaliador" styleClass="text-input" />
+					<h:outputText id="avaliacaoAvaliador" value="#{conjuntoEvidenciasEditMB.bean.avaliador.nome}" />
+					<p:message for="avaliacaoAvaliador" />
+
+					<h:outputLabel value="#{messages['organizacaoSolicitante.label']}: " for="avaliacaoOrganizacaoSolicitante" styleClass="text-input" />
+					<h:outputText id="avaliacaoOrganizacaoSolicitante" value="#{conjuntoEvidenciasEditMB.bean.software.organizacaoSolicitante.nome}" />
+					<p:message for="avaliacaoOrganizacaoSolicitante" />
 	
 					<h:outputLabel value="#{messages['software.label.nome']}: " for="softwareNome" styleClass="text-input" />
 					<h:outputText id="softwareNome" value="#{conjuntoEvidenciasEditMB.bean.software.nome}" />
@@ -38,7 +46,7 @@
 							<p:selectOneMenu id="pontuacao" effect="fade" value="#{conjuntoEvidenciasEditMB.bean.conjuntoEvidenciasAux.pontuacao}">
 								<f:selectItems value="#{conjuntoEvidenciasEditMB.pontuacao}" />
 							</p:selectOneMenu>
-		
+					
 							<h:outputLabel value="#{messages['conjuntoEvidencias.label.comentario']}: " for="conjuntoEvidenciasComentario" styleClass="text-input" />
 							<p:inputTextarea id="conjuntoEvidenciasComentario" value="#{conjuntoEvidenciasEditMB.bean.conjuntoEvidenciasAux.comentario}" title="#{messages['conjuntoEvidencias.alt.comentario']}" rows="10" cols="80" maxlength="8000" autoResize="false"/>
 							<p:message for="conjuntoEvidenciasComentario" />
@@ -69,6 +77,10 @@
 						</h:panelGrid>
 						
 						<h:panelGrid id="panelPrincipalComentarioAvaliador" columns="3" rendered="#{conjuntoEvidenciasEditMB.mostraConjuntoEvidenciaAvaliado()}">
+							<h:outputLabel value="#{messages['avaliacao.label.pontuacao']}: " for="evidenciaPontuacao" styleClass="text-input" />
+							<h:outputText id="evidenciaPontuacao" value="#{conjuntoEvidenciasEditMB.bean.conjuntoEvidenciasAux.pontuacao.nome}" />
+							<p:message for="evidenciaPontuacao" />
+
 							<h:outputLabel value="#{messages['conjuntoEvidencias.label.comentario']}: " for="comentarioAvaliador" styleClass="text-input" />
 							<h:outputText id="comentarioAvaliador" value="#{conjuntoEvidenciasEditMB.bean.conjuntoEvidenciasAux.comentario}" />
 							<p:message for="comentarioAvaliador" />
@@ -112,22 +124,19 @@
 								immediate="true"
 								actionListener="#{conjuntoEvidenciasEditMB.carregaProfissionais(evidencias)}"
 								update=":formModalDtProfissionais:dtListEvidenciaProfissionais" 
-								oncomplete="dialogDtProfissionais.show()"
-								rendered="#{securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM')}"/>
+								oncomplete="dialogDtProfissionais.show()"/>
 						</p:column>
 						
-						<p:column headerText="#{messages['respostaEvidencia.label.acoes']}">
+						<p:column headerText="#{messages['respostaEvidencia.label.acoes']}" rendered="#{securityContext.hasRole('AVALIADO') || securityContext.hasRole('ADM')}">
 							<p:commandButton value="#{messages['button.edit']}" 
 								immediate="true"
 								actionListener="#{conjuntoEvidenciasEditMB.editarEvidencia(evidencias)}"
 								update=":formModalEditarEvidencia:panelEditarRegistroEvidencia" 
-								oncomplete="dialogEditarEvidencia.show()"
-								rendered="#{securityContext.hasRole('AVALIADO') || securityContext.hasRole('ADM')}"/>
+								oncomplete="dialogEditarEvidencia.show()"/>
 							<p:commandButton value="#{messages['button.delete']}" 
 								immediate="true"
 								actionListener="#{conjuntoEvidenciasEditMB.excluirEvidencia(evidencias)}"
-								update=":formRegistroEvidencias:dtEvidencias" 
-								rendered="#{securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM')}"/>
+								update=":formRegistroEvidencias:dtEvidencias"/>
 						</p:column>
 						
 					</p:dataTable>
@@ -272,7 +281,8 @@
 					</p:column>
 					
 					<p:column headerText="#{messages['evidenciaProfissional.label.fazParteOrganizacao']}">
-						<h:outputText id="profissionaisFazParteDaOrganizacao" value="#{profissionais.fazParteOrganizacao}"/>
+						<h:outputText id="profissionaisFazParteDaOrganizacaoSim" value="Sim" rendered="#{profissionais.fazParteOrganizacao == 1}"/>
+						<h:outputText id="profissionaisFazParteDaOrganizacaoNao" value="Não" rendered="#{profissionais.fazParteOrganizacao != 1}"/>
 					</p:column>
 
 					<p:column headerText="#{messages['evidenciaProfissional.label.acoes']}">
@@ -320,7 +330,8 @@
 					</p:column>
 					
 					<p:column headerText="#{messages['evidenciaProfissional.label.fazParteOrganizacao']}">
-						<h:outputText id="profissionaisFazParteDaOrganizacao" value="#{profissionais.fazParteOrganizacao}"/>
+						<h:outputText id="profissionaisFazParteDaOrganizacaoSim" value="Sim" rendered="#{profissionais.fazParteOrganizacao == 1}"/>
+						<h:outputText id="profissionaisFazParteDaOrganizacaoNao" value="Não" rendered="#{profissionais.fazParteOrganizacao != 1}"/>
 					</p:column>
 
 					<p:column headerText="#{messages['evidenciaProfissional.label.acoes']}">
