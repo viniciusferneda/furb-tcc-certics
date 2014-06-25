@@ -6,6 +6,9 @@
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["C:\\Users\\Vinicius\\Google Drive\\TCC II\\Relatorios\\"]]></defaultValueExpression>
 	</parameter>
+	<parameter name="AVA_ID" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT AVR.PES_NOME, ORS.ORS_NOME, SOF.SOF_NOME, VCE.VCE_NOME,
        AVA.AVA_ID, AVA.AVA_DT_AVALIACAO, AVA.AVA_PONTUACAO,
@@ -22,7 +25,9 @@ FROM TB_RESPOSTA_EVIDENCIA REV
      INNER JOIN TB_PESSOA_FISICA AVR ON (AVA.AVA_AVRID = AVR.PES_ID)
      INNER JOIN TB_VERSAO_CERTICS VCE ON (AVA.AVA_VCEID = VCE.VCE_ID)
      INNER JOIN TB_SOFTWARE SOF ON (AVA.AVA_SOFID = SOF.SOF_ID)
-     INNER JOIN TB_ORGANIZACAO_SOLICITANTE ORS ON (SOF.SOF_ORSID = ORS.ORS_ID)]]>
+     INNER JOIN TB_ORGANIZACAO_SOLICITANTE ORS ON (SOF.SOF_ORSID = ORS.ORS_ID)
+WHERE AVA.AVA_ID IN ($P!{AVA_ID})
+ORDER BY ARC.ARC_TITULO, RES.RES_TITULO]]>
 	</queryString>
 	<field name="pes_nome" class="java.lang.String"/>
 	<field name="ors_nome" class="java.lang.String"/>
@@ -49,7 +54,7 @@ FROM TB_RESPOSTA_EVIDENCIA REV
 		<groupExpression><![CDATA[$F{ava_id}]]></groupExpression>
 		<groupHeader>
 			<band height="60">
-				<textField>
+				<textField isBlankWhenNull="true">
 					<reportElement x="562" y="40" width="240" height="20" uuid="08f109dd-eeff-40f7-b758-7e0c658328e9"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="12"/>
@@ -72,14 +77,14 @@ FROM TB_RESPOSTA_EVIDENCIA REV
 					</textElement>
 					<text><![CDATA[Data:]]></text>
 				</staticText>
-				<textField pattern="dd/MM/yyyy">
+				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
 					<reportElement x="562" y="20" width="240" height="20" uuid="d5c0d771-e377-4962-a304-1848ee516bd0"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{ava_dt_avaliacao}]]></textFieldExpression>
 				</textField>
-				<textField>
+				<textField isBlankWhenNull="true">
 					<reportElement x="562" y="0" width="240" height="20" uuid="bde680f8-ec81-4837-96dc-5ec056fd65e2"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="12"/>
@@ -114,21 +119,21 @@ FROM TB_RESPOSTA_EVIDENCIA REV
 					</textElement>
 					<text><![CDATA[Organização Solicitante:]]></text>
 				</staticText>
-				<textField>
+				<textField isBlankWhenNull="true">
 					<reportElement x="155" y="0" width="314" height="20" uuid="e5e51d03-d687-4b1b-a778-71939bf66ddc"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{pes_nome}]]></textFieldExpression>
 				</textField>
-				<textField>
+				<textField isBlankWhenNull="true">
 					<reportElement x="155" y="20" width="314" height="20" uuid="efab68a3-8420-484a-8cb3-fc3bf4ebdd75"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="12"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{ors_nome}]]></textFieldExpression>
 				</textField>
-				<textField>
+				<textField isBlankWhenNull="true">
 					<reportElement x="155" y="40" width="314" height="20" uuid="2eafbbbf-1b48-49c0-9d2a-689973cfb2bf"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="12"/>
@@ -152,7 +157,7 @@ FROM TB_RESPOSTA_EVIDENCIA REV
 					</textElement>
 					<text><![CDATA[Área de competência:]]></text>
 				</staticText>
-				<textField>
+				<textField isBlankWhenNull="true">
 					<reportElement x="155" y="0" width="647" height="20" uuid="6f7803a3-13cf-4bcb-94a1-3231eeefaef7"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="12"/>
@@ -176,7 +181,7 @@ FROM TB_RESPOSTA_EVIDENCIA REV
 					</textElement>
 					<text><![CDATA[Resultado esperado:]]></text>
 				</staticText>
-				<textField>
+				<textField isBlankWhenNull="true">
 					<reportElement x="155" y="0" width="647" height="20" uuid="90720f52-380f-4183-b34c-381a1dfb98a3"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="12"/>
@@ -200,7 +205,7 @@ FROM TB_RESPOSTA_EVIDENCIA REV
 					</textElement>
 					<text><![CDATA[Pontuação:]]></text>
 				</staticText>
-				<textField>
+				<textField isBlankWhenNull="true">
 					<reportElement x="155" y="0" width="647" height="20" uuid="97b67f3d-0595-429e-aa8e-58302ecc9e3e"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="12"/>
@@ -210,7 +215,7 @@ FROM TB_RESPOSTA_EVIDENCIA REV
 "P".equals($F{cev_pontuacao}) ? "Parcialmente atendido" :
 "N".equals($F{cev_pontuacao}) ? "Não atendido" : ""]]></textFieldExpression>
 				</textField>
-				<textField>
+				<textField isBlankWhenNull="true">
 					<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToBandHeight" x="155" y="20" width="647" height="20" uuid="71b475b3-ef48-481a-9d4c-76aaded71dd0"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="12"/>

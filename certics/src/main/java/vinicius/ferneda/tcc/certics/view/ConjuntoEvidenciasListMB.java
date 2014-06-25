@@ -35,6 +35,9 @@ public class ConjuntoEvidenciasListMB extends AbstractListPageBean<AvaliacaoEnti
 		return this.avaliacaoBC.findAll();
 	}
 	
+	/**
+	 * Método responsável por exportar o relatório das evidências registradas na avaliação selecionada 
+	 */
 	public void exibirRelatorioEvidencias() {
 		String avaliacaoIds = null;
 		for (Iterator<Long> iter = getSelection().keySet().iterator(); iter.hasNext();) {
@@ -46,26 +49,29 @@ public class ConjuntoEvidenciasListMB extends AbstractListPageBean<AvaliacaoEnti
 		}
 		Map<String, Object> mapParametros = new HashMap<String, Object>();
 		mapParametros.put("AVA_ID", avaliacaoIds);
+		mapParametros.put("SUBREPORT_DIR", "reports/relatorioavaliacaodetalhado/");
 		
-		ExportarRelatorio relatorio = new ExportarRelatorio("reports/RelatorioAvaliacaoDetalhado.jasper");
-		relatorio.exportarRelatorioPdf(mapParametros, (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse(), "Relatório de evidências");
-		
-		/*
-		List<AvaliacaoEntity> lAvaliacoes = avaliacaoDAO.findEvidenciasByAvaliacaoID(avaliacaoIds);
-		if(lAvaliacoes != null && !lAvaliacoes.isEmpty()){
-			try {
-				byte[] buffer = this.relatorio.export(getResultList(), null, Type.PDF);
-				this.renderer.render(buffer, FileRenderer.ContentType.PDF, "relatorio.pdf");
-			} catch (Exception e) {
-				messageContext.add(e.getMessage(), e);
+		ExportarRelatorio relatorio = new ExportarRelatorio("reports/relatorioavaliacaodetalhado/RelatorioAvaliacaoDetalhado.jasper");
+		relatorio.exportarRelatorioPdf(mapParametros, (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse(), "Relatorio_Evidencias");
+	}
+
+	/**
+	 * Método responsável por exportar o relatório dos resultados esperados pendentes e um gráfico com a quantidade de evidências registradas
+	 */
+	public void exibirRelatorioGraficoAtendimentoAreasCompetencia() {
+		String avaliacaoIds = null;
+		for (Iterator<Long> iter = getSelection().keySet().iterator(); iter.hasNext();) {
+			if(avaliacaoIds == null){
+				avaliacaoIds = String.valueOf(iter.next());
+			}else{
+				avaliacaoIds = ","+String.valueOf(iter.next());
 			}
-		}else{
-			messageContext.add(bundle.getString("label.senha.invalida"));
 		}
-		return getNextView();*/
+		Map<String, Object> mapParametros = new HashMap<String, Object>();
+		mapParametros.put("AVA_ID", avaliacaoIds);
+		
+		ExportarRelatorio relatorio = new ExportarRelatorio("reports/relatoriograficoatendimentoareascompetencia/RelatorioGraficoAtendimentoAreasCompetencia.jasper");
+		relatorio.exportarRelatorioPdf(mapParametros, (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse(), "Relatorio_Grafico_Atendimento_Areas_Competencia");
 	}
 	
-	public String exibirRelatorioPendencias() {
-		return getNextView();
-	}
 }
