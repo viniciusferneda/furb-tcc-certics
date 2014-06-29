@@ -20,4 +20,5 @@ public class AvaliacaoDAO extends JPACrud<AvaliacaoEntity, Long> {
 		List<AvaliacaoEntity> lAvaliacoes = query.getResultList();
 		return lAvaliacoes;
     }
+	
 }

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioAvaliacaoDetalhadoAnexos" pageWidth="802" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="f73a7cde-4e07-4c93-b670-5b28163d542c">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioAvaliacaoDetalhadoAnexos" pageWidth="802" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="EVI_ID" class="java.lang.Long">
-		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
-	</parameter>
+	<parameter name="EVI_ID" class="java.lang.Long"/>
 	<queryString>
 		<![CDATA[SELECT ANE.ANE_NOME
 FROM TB_ANEXO ANE
@@ -18,7 +16,7 @@ WHERE ANE.ANE_EVIID = $P{EVI_ID}]]>
 	<title>
 		<band height="20" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="802" height="20" uuid="49694e3b-25b5-4e1a-80ac-3d67a0c73f7d"/>
+				<reportElement x="0" y="0" width="802" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
@@ -34,12 +32,12 @@ WHERE ANE.ANE_EVIID = $P{EVI_ID}]]>
 	</columnHeader>
 	<detail>
 		<band height="20" splitType="Stretch">
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="802" height="20" uuid="dcdb8672-2272-4083-b679-75ac9565b1d7"/>
+			<textField>
+				<reportElement x="0" y="0" width="802" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{ane_nome}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ane_nome}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

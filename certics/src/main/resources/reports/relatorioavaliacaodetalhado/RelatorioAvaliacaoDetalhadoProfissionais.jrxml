@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioAvaliacaoDetalhadoProfissionais" pageWidth="802" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="6caedaf7-d5aa-4e6d-9920-e4463b1b78fc">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioAvaliacaoDetalhadoProfissionais" pageWidth="802" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="81"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="REV_ID" class="java.lang.Long"/>
 	<queryString>
@@ -20,32 +20,32 @@ WHERE EPR.EPR_REVID = $P{REV_ID}]]>
 	<title>
 		<band height="20" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="255" height="20" uuid="e843172b-2463-429e-83a1-bda9c1fef199"/>
+				<reportElement x="0" y="0" width="255" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Profissional]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="255" y="0" width="200" height="20" uuid="9a905019-2b82-460e-869e-5da540c5afac"/>
+				<reportElement x="255" y="0" width="200" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Envolvimento]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="455" y="0" width="192" height="20" uuid="7fa97e51-c354-45c6-bc20-ffcfe0592ab5"/>
+				<reportElement x="455" y="0" width="192" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Vínculo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="647" y="0" width="155" height="20" uuid="98701582-9618-4609-b13f-77f43c98bf39"/>
+				<reportElement x="647" y="0" width="155" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Faz parte da Organização]]></text>
+				<text><![CDATA[Faz parte da organização]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -57,33 +57,33 @@ WHERE EPR.EPR_REVID = $P{REV_ID}]]>
 	</columnHeader>
 	<detail>
 		<band height="20" splitType="Stretch">
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="647" y="0" width="155" height="20" uuid="8dfae718-b99c-43bc-8e85-c82cd42ac739"/>
+			<textField>
+				<reportElement x="0" y="0" width="255" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[1 == $F{epr_faz_parte_org}.intValue() ? "Sim" : "Não"]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pes_nome}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="455" y="0" width="192" height="20" uuid="e4f2cf85-2b1d-401d-a72a-ee06a5305f11"/>
+			<textField>
+				<reportElement x="255" y="0" width="200" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{pes_vinculo_atual}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{epr_envolvimento}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="255" y="0" width="200" height="20" uuid="5bf3e6bf-64ef-49e7-a5a4-3d0ef334069b"/>
+			<textField>
+				<reportElement x="455" y="0" width="192" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{epr_envolvimento}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pes_vinculo_atual}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="255" height="20" uuid="158cba66-0f05-4108-88c9-2bc49658d2a3"/>
+			<textField>
+				<reportElement x="647" y="0" width="155" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{pes_nome}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[1 == $F{epr_faz_parte_org}.intValue() ? "Sim" : "Não"]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

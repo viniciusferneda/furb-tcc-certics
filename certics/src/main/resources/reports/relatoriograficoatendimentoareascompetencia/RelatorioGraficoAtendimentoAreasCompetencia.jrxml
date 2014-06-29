@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioGraficoAtendimentoAreasCompetencia" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="22606277-799e-4589-8784-a9a1e7c12679">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioGraficoAtendimentoAreasCompetencia" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -29,103 +29,103 @@ ORDER BY ARC.ARC_TITULO, RES.RES_TITULO]]>
 	<field name="arc_id" class="java.lang.Long"/>
 	<field name="arc_titulo" class="java.lang.String"/>
 	<field name="ava_id" class="java.lang.Long"/>
-	<field name="ava_dt_avaliacao" class="java.sql.Date"/>
+	<field name="ava_dt_avaliacao" class="java.util.Date"/>
 	<field name="ava_pontuacao" class="java.lang.String"/>
 	<field name="pes_nome" class="java.lang.String"/>
 	<field name="ors_nome" class="java.lang.String"/>
 	<field name="sof_nome" class="java.lang.String"/>
 	<field name="vce_nome" class="java.lang.String"/>
 	<field name="qtd_evidencias" class="java.lang.Long"/>
-	<group name="AVALIACAO">
+	<group name="AVALICAO">
 		<groupExpression><![CDATA[$F{ava_id}]]></groupExpression>
 		<groupHeader>
 			<band height="120">
-				<textField>
-					<reportElement x="155" y="0" width="400" height="20" uuid="e386e36f-d11c-436b-9ca3-00d3a634cf7e"/>
-					<textElement verticalAlignment="Middle">
-						<font fontName="Arial" size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{pes_nome}]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement x="155" y="100" width="400" height="20" uuid="74f0682f-cf8b-4b10-9316-9bc5ec19541f"/>
-					<textElement verticalAlignment="Middle">
-						<font fontName="Arial" size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA["APROVADA".equals($F{ava_pontuacao}) ? "Aprovada" :
-"PENDENTE".equals($F{ava_pontuacao}) ? "Pendente" :
-"REPROVADA".equals($F{ava_pontuacao}) ? "Reprovada" : ""]]></textFieldExpression>
-				</textField>
 				<staticText>
-					<reportElement x="0" y="20" width="155" height="20" uuid="79fdfd1d-7d02-4bcb-90c1-7e65b799101f"/>
-					<textElement verticalAlignment="Middle">
-						<font fontName="Arial" size="12" isBold="true"/>
-					</textElement>
-					<text><![CDATA[Organização Solicitante:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="0" y="100" width="155" height="20" uuid="9b46125b-9f0e-47f8-bbf2-595aac232ea5"/>
-					<textElement verticalAlignment="Middle">
-						<font fontName="Arial" size="12" isBold="true"/>
-					</textElement>
-					<text><![CDATA[Pontuação:]]></text>
-				</staticText>
-				<textField>
-					<reportElement x="155" y="60" width="400" height="20" uuid="d94a6ddb-241e-4266-9f1e-fdbeecf310fa"/>
-					<textElement verticalAlignment="Middle">
-						<font fontName="Arial" size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{vce_nome}]]></textFieldExpression>
-				</textField>
-				<textField pattern="dd/MM/yyyy">
-					<reportElement x="155" y="80" width="400" height="20" uuid="dfd860db-bf71-4a06-9307-7b0f63bc0b48"/>
-					<textElement verticalAlignment="Middle">
-						<font fontName="Arial" size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{ava_dt_avaliacao}]]></textFieldExpression>
-				</textField>
-				<textField>
-					<reportElement x="155" y="20" width="400" height="20" uuid="2de7239b-6b38-46e7-ab85-3a9d52f09cfa"/>
-					<textElement verticalAlignment="Middle">
-						<font fontName="Arial" size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{ors_nome}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement x="0" y="60" width="155" height="20" uuid="3fdab890-d648-456a-8e98-7accb85ba26a"/>
-					<textElement verticalAlignment="Middle">
-						<font fontName="Arial" size="12" isBold="true"/>
-					</textElement>
-					<text><![CDATA[Versão:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement x="0" y="0" width="155" height="20" uuid="af2ee42f-7897-44f6-b16b-755c3ca637f1"/>
+					<reportElement x="0" y="0" width="155" height="20"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Avaliador:]]></text>
 				</staticText>
-				<textField>
-					<reportElement x="155" y="40" width="400" height="20" uuid="66ce255d-6f6d-453b-b08e-29418c9d71a3"/>
-					<textElement verticalAlignment="Middle">
-						<font fontName="Arial" size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{sof_nome}]]></textFieldExpression>
-				</textField>
 				<staticText>
-					<reportElement x="0" y="40" width="155" height="20" uuid="60bcf467-da4a-47ce-a669-548b19b64083"/>
+					<reportElement x="0" y="20" width="155" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Organização solicitante:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="40" width="155" height="20"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Software:]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="0" y="80" width="155" height="20" uuid="804c9883-ee48-4c94-a864-8ae2b417f810"/>
+					<reportElement x="0" y="60" width="155" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Versão:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="80" width="155" height="20"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Data:]]></text>
 				</staticText>
+				<staticText>
+					<reportElement x="0" y="100" width="155" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Pontuação:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="155" y="0" width="400" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{pes_nome}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="155" y="40" width="400" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{sof_nome}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="155" y="20" width="400" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{ors_nome}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="155" y="60" width="400" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{vce_nome}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+					<reportElement x="155" y="80" width="400" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.util.Date"><![CDATA[$F{ava_dt_avaliacao}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="155" y="100" width="400" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["APROVADA".equals($F{ava_pontuacao}) ? "Aprovada" :
+"PENDENTE".equals($F{ava_pontuacao}) ? "Pendente" :
+"REPROVADA".equals($F{ava_pontuacao}) ? "Reprovada" : ""]]></textFieldExpression>
+				</textField>
 			</band>
 		</groupHeader>
 	</group>
@@ -134,40 +134,47 @@ ORDER BY ARC.ARC_TITULO, RES.RES_TITULO]]>
 		<groupHeader>
 			<band height="40">
 				<staticText>
-					<reportElement x="0" y="0" width="143" height="20" uuid="c699c88a-5d79-4e9c-8dad-0a5a4a2bcc17"/>
+					<reportElement x="0" y="0" width="155" height="20"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Área de competência:]]></text>
 				</staticText>
-				<textField>
-					<reportElement x="143" y="0" width="412" height="20" uuid="e1f6090c-e2ec-4f1e-8905-a29076eea028"/>
-					<textElement verticalAlignment="Middle">
-						<font fontName="Arial" size="12"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{arc_titulo}]]></textFieldExpression>
-				</textField>
 				<staticText>
-					<reportElement x="0" y="20" width="399" height="20" uuid="45624eba-9f38-4469-aa22-3e8fb9d646c9"/>
+					<reportElement x="0" y="20" width="400" height="20"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Resultado esperado]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="399" y="20" width="156" height="20" uuid="49689f50-eaa6-42df-b580-45a1087fb15a"/>
+					<reportElement x="400" y="20" width="155" height="20"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="12" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Atendido?]]></text>
 				</staticText>
+				<textField>
+					<reportElement x="155" y="0" width="400" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{arc_titulo}]]></textFieldExpression>
+				</textField>
 			</band>
 		</groupHeader>
 		<groupFooter>
-			<band height="282">
-				<barChart>
+			<band height="278">
+				<staticText>
+					<reportElement x="0" y="0" width="555" height="23"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Arial" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Quantidade de evidências]]></text>
+				</staticText>
+				<bar3DChart>
 					<chart>
-						<reportElement x="0" y="27" width="555" height="255" uuid="378ac671-22b3-4760-abc4-b92a6f1f3447"/>
+						<reportElement x="0" y="23" width="555" height="255"/>
 						<chartTitle/>
 						<chartSubtitle/>
 						<chartLegend/>
@@ -180,24 +187,23 @@ ORDER BY ARC.ARC_TITULO, RES.RES_TITULO]]>
 							<valueExpression><![CDATA[$F{qtd_evidencias}]]></valueExpression>
 						</categorySeries>
 					</categoryDataset>
-					<barPlot>
+					<bar3DPlot>
 						<plot/>
-						<itemLabel/>
+						<itemLabel color="#000000" backgroundColor="#FFFFFF"/>
 						<categoryAxisFormat>
-							<axisFormat/>
+							<axisFormat>
+								<labelFont/>
+								<tickLabelFont/>
+							</axisFormat>
 						</categoryAxisFormat>
 						<valueAxisFormat>
-							<axisFormat/>
+							<axisFormat>
+								<labelFont/>
+								<tickLabelFont/>
+							</axisFormat>
 						</valueAxisFormat>
-					</barPlot>
-				</barChart>
-				<staticText>
-					<reportElement x="0" y="0" width="555" height="27" uuid="6aa52490-3c4c-4dd9-9812-8e250c301981"/>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Arial" size="14" isBold="true"/>
-					</textElement>
-					<text><![CDATA[Quantidade de evidências]]></text>
-				</staticText>
+					</bar3DPlot>
+				</bar3DChart>
 			</band>
 		</groupFooter>
 	</group>
@@ -205,9 +211,9 @@ ORDER BY ARC.ARC_TITULO, RES.RES_TITULO]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="36" splitType="Stretch">
+		<band height="33" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="555" height="31" uuid="deac22b5-a7fc-43b6-a2dc-a743e909a29f"/>
+				<reportElement x="0" y="0" width="555" height="27"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Arial" size="20" isBold="true"/>
 				</textElement>
@@ -223,19 +229,19 @@ ORDER BY ARC.ARC_TITULO, RES.RES_TITULO]]>
 	</columnHeader>
 	<detail>
 		<band height="20" splitType="Stretch">
-			<textField isStretchWithOverflow="true">
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="399" height="20" uuid="dea2af56-573b-4b04-b6e3-cca16bf06636"/>
+			<textField>
+				<reportElement x="0" y="0" width="400" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{res_titulo}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{res_titulo}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="399" y="0" width="156" height="20" uuid="5ffc0dff-0680-4b6e-8434-84e116d45821"/>
-				<textElement verticalAlignment="Top">
+				<reportElement x="400" y="0" width="155" height="20"/>
+				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{qtd_evidencias}.intValue() > 0 ? "Sim" : "Não"]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{qtd_evidencias} > 0 ? "Sim" : "Não"]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

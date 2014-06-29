@@ -50,7 +50,6 @@ public class ConjuntoEvidenciasListMB extends AbstractListPageBean<AvaliacaoEnti
 		Map<String, Object> mapParametros = new HashMap<String, Object>();
 		mapParametros.put("AVA_ID", avaliacaoIds);
 		mapParametros.put("SUBREPORT_DIR", "reports/relatorioavaliacaodetalhado/");
-		
 		ExportarRelatorio relatorio = new ExportarRelatorio("reports/relatorioavaliacaodetalhado/RelatorioAvaliacaoDetalhado.jasper");
 		relatorio.exportarRelatorioPdf(mapParametros, (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse(), "Relatorio_Evidencias");
 	}
@@ -69,7 +68,6 @@ public class ConjuntoEvidenciasListMB extends AbstractListPageBean<AvaliacaoEnti
 		}
 		Map<String, Object> mapParametros = new HashMap<String, Object>();
 		mapParametros.put("AVA_ID", avaliacaoIds);
-		
 		ExportarRelatorio relatorio = new ExportarRelatorio("reports/relatoriograficoatendimentoareascompetencia/RelatorioGraficoAtendimentoAreasCompetencia.jasper");
 		relatorio.exportarRelatorioPdf(mapParametros, (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse(), "Relatorio_Grafico_Atendimento_Areas_Competencia");
 	}

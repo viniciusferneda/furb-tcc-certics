@@ -1,10 +1,8 @@
 package vinicius.ferneda.tcc.certics.reports;
 
 import java.io.ByteArrayOutputStream;
-import java.sql.Connection;
 import java.util.Map;
 
-import javax.inject.Inject;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,37 +14,23 @@ import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.export.JRPdfExporterParameter;
 import net.sf.jasperreports.engine.util.JRLoader;
 import vinicius.ferneda.tcc.certics.util.ConnectionPool;
-import br.gov.frameworkdemoiselle.message.MessageContext;
-import br.gov.frameworkdemoiselle.report.internal.implementation.ReportImpl;
-import br.gov.frameworkdemoiselle.util.ResourceBundle;
 
-public class ExportarRelatorio extends ReportImpl{
+public class ExportarRelatorio{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	public ExportarRelatorio(String path) {
-		super(path);
-	}
+	private String path;
 	
-	@Inject
-	private MessageContext messageContext;
-	@Inject
-	private ResourceBundle bundle;
+	public ExportarRelatorio(String path){
+		this.path = path;
+	}
 	
 	public void exportarRelatorioPdf(Map<String, Object> parametros, HttpServletResponse response, String nomeRelatorio) {
 		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 		if (classLoader == null) {
 			classLoader = this.getClass().getClassLoader();
 		}
-		Connection conn = null;
 		try {
-			conn = ConnectionPool.getConnection(ConnectionPool.ALIAS_CERTICS);
-			
 			JasperReport relatorio = (JasperReport) JRLoader.loadObject(classLoader.getResourceAsStream(getPath()));
-			JasperPrint jPrint = JasperFillManager.fillReport(relatorio, parametros, conn);
+			JasperPrint jPrint = JasperFillManager.fillReport(relatorio, parametros, ConnectionPool.getConnection());
 			
 			ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 			JRPdfExporter exporterPDF = new JRPdfExporter();
@@ -63,11 +47,16 @@ public class ExportarRelatorio extends ReportImpl{
 			out.flush();
 			out.close();
 		} catch (Exception e) {
-			messageContext.add(e.getMessage(), e);
-			messageContext.add(bundle.getString("exportarrelatorio.error.geracaopdf"));
-		} finally {
-			ConnectionPool.closeConnection(conn, this.getClass());
+			e.printStackTrace();
 		}
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
 	}
 
 }
