@@ -70,7 +70,15 @@
 			<version>2.2.0</version>
 			<scope>compile</scope>
 		</dependency>
+		
+		<!-- MAIL -->
 
+		<dependency>
+            <groupId>br.gov.frameworkdemoiselle.component</groupId>
+            <artifactId>demoiselle-mail</artifactId>
+            <version>2.0.3-SNAPSHOT</version>
+        </dependency>
+        
 	</dependencies>
 
 	<repositories>
