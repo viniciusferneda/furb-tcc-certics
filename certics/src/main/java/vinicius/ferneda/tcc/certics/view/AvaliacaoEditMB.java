@@ -8,6 +8,7 @@ import vinicius.ferneda.tcc.certics.business.AvaliacaoBC;
 import vinicius.ferneda.tcc.certics.business.ConjuntoEvidenciasBC;
 import vinicius.ferneda.tcc.certics.business.SoftwareBC;
 import vinicius.ferneda.tcc.certics.business.VersaoCerticsEntityBC;
+import vinicius.ferneda.tcc.certics.constant.EnumPontuacaoAvaliacao;
 import vinicius.ferneda.tcc.certics.domain.AvaliacaoEntity;
 import vinicius.ferneda.tcc.certics.domain.AvaliadorEntity;
 import vinicius.ferneda.tcc.certics.domain.SoftwareEntity;
@@ -61,6 +62,7 @@ public class AvaliacaoEditMB extends AbstractEditPageBean<AvaliacaoEntity, Long>
 		//registra o avaliador da avaliação
 		AvaliadorEntity avaliadorEntity = this.avaliadorDAO.findById(Long.valueOf(identity.getId()));
 		this.getBean().setAvaliador(avaliadorEntity);
+		this.getBean().setPontuacao(EnumPontuacaoAvaliacao.PENDENTE);
 		
 		//insere o registro da avaliação
 		this.avaliacaoBC.insert(this.getBean());

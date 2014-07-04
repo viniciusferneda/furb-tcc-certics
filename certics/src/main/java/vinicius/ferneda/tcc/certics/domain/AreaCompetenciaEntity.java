@@ -26,7 +26,7 @@ import javax.persistence.Table;
     			+ "			 WHERE vac.areaCompetencia.id = obj.id"
     			+ "				AND vac.versaoCertics.id = :versaoCerticsID "
     			+ "			) > 0 "
-    			+ " GROUP BY obj.id")
+    			+ " GROUP BY obj.id ")
 })
 public class AreaCompetenciaEntity extends AreaCompetencia {
 

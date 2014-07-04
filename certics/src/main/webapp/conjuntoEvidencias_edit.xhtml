@@ -51,7 +51,7 @@
 							<p:inputTextarea id="conjuntoEvidenciasComentario" value="#{conjuntoEvidenciasEditMB.bean.conjuntoEvidenciasAux.comentario}" title="#{messages['conjuntoEvidencias.alt.comentario']}" rows="10" cols="80" maxlength="8000" autoResize="false"/>
 							<p:message for="conjuntoEvidenciasComentario" />
 	
-							<p:commandButton value="#{messages['button.save']}" actionListener="#{conjuntoEvidenciasEditMB.insertConjuntoEvidencia()}"/>
+							<p:commandButton value="#{messages['button.save']}" actionListener="#{conjuntoEvidenciasEditMB.insertConjuntoEvidencia()}" update=":formRegistroEvidencias:avaliacaoPontuacao"/>
 						</h:panelGrid>
 						
 						<h:panelGrid id="panelPrincipalRegistroEvidenciaAvaliado" columns="3" rendered="#{conjuntoEvidenciasEditMB.mostraConjuntoEvidenciaAvaliado()}">
@@ -148,7 +148,7 @@
 			<p:dialog id="modalEvidencia"
 				header="#{messages['respostaEvidencia.dialog']}" 
 				widgetVar="dialogEvidencia" 
-				width="600" height="400"
+				width="700" height="500"
 				resizable="false"
 				closable="true">
 				

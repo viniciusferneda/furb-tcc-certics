@@ -38,10 +38,12 @@ import vinicius.ferneda.tcc.certics.persistence.ConjuntoEvidenciasDAO;
 import vinicius.ferneda.tcc.certics.persistence.EvidenciaProfissionalDAO;
 import vinicius.ferneda.tcc.certics.persistence.RespostaEvidenciaDAO;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
+import br.gov.frameworkdemoiselle.message.MessageContext;
 import br.gov.frameworkdemoiselle.security.SecurityContext;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
+import br.gov.frameworkdemoiselle.util.ResourceBundle;
 
 @ViewController
 @PreviousView("./conjuntoEvidencias_list.jsf")
@@ -51,6 +53,10 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 
 	@Inject
     private SecurityContext securityContext;
+	@Inject
+	private MessageContext messageContext;
+	@Inject
+	private ResourceBundle bundle;
 	
 	@Inject
 	private AvaliacaoBC avaliacaoBC;
@@ -275,6 +281,7 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 	public void insertConjuntoEvidencia(){
 		this.conjuntoEvidenciasBC.update(this.getBean().getConjuntoEvidenciasAux());
 		atualizaPontuacaoAvaliacao();
+		messageContext.add(bundle.getString("conjuntoEvidencias.msg.pontuacao.registrada.sucesso"));
 	}
 
 	private void atualizaPontuacaoAvaliacao() {
