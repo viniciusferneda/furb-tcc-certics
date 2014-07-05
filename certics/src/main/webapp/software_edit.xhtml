@@ -39,15 +39,11 @@
 					<p:message for="organizacaoSolicitante" />
 					
 					<h:outputLabel value="#{messages['software.label.nome']}: " for="nome" styleClass="text-input" />
-					<p:inputText id="nome" value="#{softwareEditMB.bean.nome}" title="#{messages['software.alt.nome']}" requiredMessage="#{messages['label.obrigatorio']}" size="80" maxlength="255">
-						<f:param value="#{messages['software.label.nome']}"/>
-					</p:inputText>
+					<p:inputText id="nome" value="#{softwareEditMB.bean.nome}" title="#{messages['software.alt.nome']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" size="80" maxlength="255"/>
 					<p:message for="nome" />
 						
 					<h:outputLabel value="#{messages['software.label.descricao']}: " for="descricao" styleClass="text-input" />
-					<p:inputTextarea id="descricao" value="#{softwareEditMB.bean.descricao}" title="#{messages['software.alt.descricao']}" requiredMessage="#{messages['label.obrigatorio']}" rows="10" cols="80" maxlength="8000" autoResize="false">
-						<f:param value="#{messages['software.label.descricao']}"/>
-					</p:inputTextarea>
+					<p:inputTextarea id="descricao" value="#{softwareEditMB.bean.descricao}" title="#{messages['software.alt.descricao']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" rows="10" cols="80" maxlength="8000" autoResize="false"/>
 					<p:message for="descricao" />
 						
 					<h:outputLabel value="#{messages['software.label.historico']}: " for="historico" styleClass="text-input" />

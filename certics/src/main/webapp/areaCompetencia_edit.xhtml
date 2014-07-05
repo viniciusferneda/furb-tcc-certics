@@ -32,26 +32,21 @@
 					<p:message for="id" />
 						
 					<h:outputLabel value="#{messages['areaCompetencia.label.titulo']}: " for="titulo" styleClass="text-input" />
-					<p:inputText id="titulo" value="#{areaCompetenciaEditMB.bean.titulo}" title="#{messages['areaCompetencia.alt.titulo']}" requiredMessage="#{messages['label.obrigatorio']}" size="80" maxlength="255">
-						<f:param value="#{messages['areaCompetencia.label.titulo']}"/>
-					</p:inputText>
+					<p:inputText id="titulo" value="#{areaCompetenciaEditMB.bean.titulo}" title="#{messages['areaCompetencia.alt.titulo']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" size="80" maxlength="255"/>
 					<p:message for="titulo" />
 						
 					<h:outputLabel value="#{messages['areaCompetencia.label.perguntaChave']}: " for="perguntaChave" styleClass="text-input" />
-					<p:inputText id="perguntaChave" value="#{areaCompetenciaEditMB.bean.perguntaChave}" title="#{messages['areaCompetencia.alt.perguntaChave']}" requiredMessage="#{messages['label.obrigatorio']}" size="80" maxlength="255">
-						<f:param value="#{messages['areaCompetencia.label.perguntaChave']}"/>
-					</p:inputText>
+					<p:inputText id="perguntaChave" value="#{areaCompetenciaEditMB.bean.perguntaChave}" title="#{messages['areaCompetencia.alt.perguntaChave']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" size="80" maxlength="255"/>
 					<p:message for="perguntaChave" />
 						
 					<h:outputLabel value="#{messages['areaCompetencia.label.descricao']}: " for="descricao" styleClass="text-input" />
-					<p:inputTextarea id="descricao" value="#{areaCompetenciaEditMB.bean.descricao}" title="#{messages['areaCompetencia.alt.descricao']}" requiredMessage="#{messages['label.obrigatorio']}" rows="10" cols="80" maxlength="8000" autoResize="false">
-						<f:param value="#{messages['areaCompetencia.label.descricao']}"/>
-					</p:inputTextarea>
+					<p:inputTextarea id="descricao" value="#{areaCompetenciaEditMB.bean.descricao}" title="#{messages['areaCompetencia.alt.descricao']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" rows="10" cols="80" maxlength="8000" autoResize="false"/>
 					<p:message for="descricao" />
 					
-					<h:outputLabel value="#{messages['areaCompetencia.label.versaoCertics']}: " styleClass="text-input" />
-					<p:pickList id="pickList" value="#{areaCompetenciaEditMB.lVersaoCertics}" var="versaoCertics" itemLabel="#{versaoCertics.nome}" itemValue="#{versaoCertics}" converter="ConversorVersaoCertics"/>
-						
+					<h:outputLabel value="#{messages['areaCompetencia.label.versaoCertics']}: " for="pickList" styleClass="text-input" />
+					<p:pickList id="pickList" value="#{areaCompetenciaEditMB.lVersaoCertics}" var="versaoCertics" itemLabel="#{versaoCertics.nome}" itemValue="#{versaoCertics}" converter="ConversorVersaoCertics" required="true" requiredMessage="#{messages['label.obrigatorio']}"/>
+					<p:message for="pickList" />
+					
 				</h:panelGrid>
 			</p:fieldset>
 			

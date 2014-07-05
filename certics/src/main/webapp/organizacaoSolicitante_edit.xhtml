@@ -32,45 +32,31 @@
 					<p:message for="id" />
 						
 					<h:outputLabel value="#{messages['organizacaoSolicitante.label.nome']}: " for="nome" styleClass="text-input" />
-					<p:inputText id="nome" value="#{organizacaoSolicitanteEditMB.bean.nome}" title="#{messages['organizacaoSolicitante.alt.nome']}" requiredMessage="#{messages['label.obrigatorio']}" size="50" maxlength="255">
-						<f:param value="#{messages['organizacaoSolicitante.label.nome']}"/>
-					</p:inputText>
+					<p:inputText id="nome" value="#{organizacaoSolicitanteEditMB.bean.nome}" title="#{messages['organizacaoSolicitante.alt.nome']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" size="50" maxlength="255"/>
 					<p:message for="nome" />
 						
 					<h:outputLabel value="#{messages['organizacaoSolicitante.label.razaoSocial']}: " for="razaoSocial" styleClass="text-input" />
-					<p:inputText id="razaoSocial" value="#{organizacaoSolicitanteEditMB.bean.razaoSocial}" title="#{messages['organizacaoSolicitante.alt.razaoSocial']}" requiredMessage="#{messages['label.obrigatorio']}" size="50" maxlength="255">
-						<f:param value="#{messages['organizacaoSolicitante.label.razaoSocial']}"/>
-					</p:inputText>
+					<p:inputText id="razaoSocial" value="#{organizacaoSolicitanteEditMB.bean.razaoSocial}" title="#{messages['organizacaoSolicitante.alt.razaoSocial']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" size="50" maxlength="255"/>
 					<p:message for="razaoSocial" />
 						
 					<h:outputLabel value="#{messages['organizacaoSolicitante.label.cnpj']}: " for="cnpj" styleClass="text-input" />
-					<p:inputMask id="cnpj" value="#{organizacaoSolicitanteEditMB.bean.cnpj}" mask="#{messages['label.cnpj.mask']}" requiredMessage="#{messages['label.obrigatorio']}" size="15" title="#{messages['organizacaoSolicitante.alt.cnpj']}">
-						<f:param value="#{messages['organizacaoSolicitante.label.cnpj']}"/>
-					</p:inputMask>
+					<p:inputMask id="cnpj" value="#{organizacaoSolicitanteEditMB.bean.cnpj}" mask="#{messages['label.cnpj.mask']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" size="15" title="#{messages['organizacaoSolicitante.alt.cnpj']}"/>
 					<p:message for="cnpj" />
 						
 					<h:outputLabel value="#{messages['organizacaoSolicitante.label.fone1']}: " for="fone1" styleClass="text-input" />
-					<p:inputMask id="fone1" value="#{organizacaoSolicitanteEditMB.bean.fone1}" mask="#{messages['label.fone.mask']}" title="#{messages['organizacaoSolicitante.alt.fone1']}" size="15" requiredMessage="#{messages['label.obrigatorio']}">
-						<f:param value="#{messages['organizacaoSolicitante.label.fone1']}"/>
-					</p:inputMask>
+					<p:inputMask id="fone1" value="#{organizacaoSolicitanteEditMB.bean.fone1}" mask="#{messages['label.fone.mask']}" title="#{messages['organizacaoSolicitante.alt.fone1']}" size="15" required="true" requiredMessage="#{messages['label.obrigatorio']}"/>
 					<p:message for="fone1" />
 						
 					<h:outputLabel value="#{messages['organizacaoSolicitante.label.fone2']}: " for="fone2" styleClass="text-input" />
-					<p:inputMask id="fone2" value="#{organizacaoSolicitanteEditMB.bean.fone2}" mask="#{messages['label.fone.mask']}" title="#{messages['organizacaoSolicitante.alt.fone2']}" size="15" requiredMessage="#{messages['label.obrigatorio']}">
-						<f:param value="#{messages['organizacaoSolicitante.label.fone2']}"/>
-					</p:inputMask>
+					<p:inputMask id="fone2" value="#{organizacaoSolicitanteEditMB.bean.fone2}" mask="#{messages['label.fone.mask']}" title="#{messages['organizacaoSolicitante.alt.fone2']}" size="15" required="true" requiredMessage="#{messages['label.obrigatorio']}"/>
 					<p:message for="fone2" />
 						
 					<h:outputLabel value="#{messages['endereco.label.cep']}: " for="cep" styleClass="text-input" />
-					<p:inputMask id="cep" value="#{organizacaoSolicitanteEditMB.bean.endereco.cep}" mask="#{messages['label.cep.mask']}" title="#{messages['endereco.alt.cep']}" size="15" requiredMessage="#{messages['label.obrigatorio']}">
-						<f:param value="#{messages['endereco.label.cep']}"/>
-					</p:inputMask>
+					<p:inputMask id="cep" value="#{organizacaoSolicitanteEditMB.bean.endereco.cep}" mask="#{messages['label.cep.mask']}" title="#{messages['endereco.alt.cep']}" size="15" required="true" requiredMessage="#{messages['label.obrigatorio']}"/>
 					<p:message for="cep" />
 						
 					<h:outputLabel value="#{messages['endereco.label.logradouro']}: " for="logradouro" styleClass="text-input" />
-					<p:inputText id="logradouro" value="#{organizacaoSolicitanteEditMB.bean.endereco.logradouro}" title="#{messages['endereco.alt.logradouro']}" size="50" maxlength="255" requiredMessage="#{messages['label.obrigatorio']}">
-						<f:param value="#{messages['endereco.label.logradouro']}"/>
-					</p:inputText>
+					<p:inputText id="logradouro" value="#{organizacaoSolicitanteEditMB.bean.endereco.logradouro}" title="#{messages['endereco.alt.logradouro']}" size="50" maxlength="255" required="true" requiredMessage="#{messages['label.obrigatorio']}"/>
 					<p:message for="logradouro" />
 						
 					<h:outputLabel value="#{messages['endereco.label.numero']}: " for="numero" styleClass="text-input" />
@@ -86,22 +72,17 @@
 					<p:message for="bairro" />
 						
 					<h:outputLabel value="#{messages['endereco.label.cidade']}: " for="cidade" styleClass="text-input" />
-					<p:inputText id="cidade" value="#{organizacaoSolicitanteEditMB.bean.endereco.cidade}" title="#{messages['endereco.alt.cidade']}" size="50" maxlength="255" requiredMessage="#{messages['label.obrigatorio']}">
-						<f:param value="#{messages['endereco.label.cidade']}"/>
-					</p:inputText>
+					<p:inputText id="cidade" value="#{organizacaoSolicitanteEditMB.bean.endereco.cidade}" title="#{messages['endereco.alt.cidade']}" size="50" maxlength="255" required="true" requiredMessage="#{messages['label.obrigatorio']}"/>
 					<p:message for="cidade" />
 						
 					<h:outputLabel value="#{messages['endereco.label.uf']}: " for="uf" styleClass="text-input" />
-					<p:selectOneMenu id="uf" effect="fade" value="#{organizacaoSolicitanteEditMB.bean.endereco.uf}" requiredMessage="#{messages['label.obrigatorio']}">
+					<p:selectOneMenu id="uf" effect="fade" value="#{organizacaoSolicitanteEditMB.bean.endereco.uf}" required="true" requiredMessage="#{messages['label.obrigatorio']}">
 						<f:selectItems value="#{organizacaoSolicitanteEditMB.uf}" />
-						<f:param value="#{messages['endereco.label.uf']}"/>
 					</p:selectOneMenu>					
 					<p:message for="uf" />
 						
 					<h:outputLabel value="#{messages['endereco.label.pais']}: " for="pais" styleClass="text-input" />
-					<p:inputText id="pais" value="#{organizacaoSolicitanteEditMB.bean.endereco.pais}" title="#{messages['endereco.alt.pais']}" size="50" maxlength="255" requiredMessage="#{messages['label.obrigatorio']}">
-						<f:param value="#{messages['endereco.label.pais']}"/>
-					</p:inputText>
+					<p:inputText id="pais" value="#{organizacaoSolicitanteEditMB.bean.endereco.pais}" title="#{messages['endereco.alt.pais']}" size="50" maxlength="255" required="true" requiredMessage="#{messages['label.obrigatorio']}"/>
 					<p:message for="pais" />								  
 								 
 				</h:panelGrid>

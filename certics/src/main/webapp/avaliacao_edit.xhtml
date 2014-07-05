@@ -36,14 +36,14 @@
 					<p:message for="avaliador" />
 
 					<h:outputLabel value="#{messages['software.label']}: " for="software" styleClass="text-input" />
-				    <p:selectOneMenu id="software" value="#{avaliacaoEditMB.bean.software}"  effect="fade" converter="ConversorSoftware">
+				    <p:selectOneMenu id="software" value="#{avaliacaoEditMB.bean.software}"  effect="fade" converter="ConversorSoftware" required="true" requiredMessage="#{messages['label.obrigatorio']}">
 						<f:selectItem itemLabel="Selecione" itemValue="" />
 						<f:selectItems value="#{avaliacaoEditMB.softwareList}" var="varSoftware" itemLabel="#{varSoftware.nome}"  itemValue="#{varSoftware}" />						
 					</p:selectOneMenu>
 					<p:message for="software" />								  
 						
 					<h:outputLabel value="#{messages['avaliacao.label.versaoCertics']}: " for="versaoCertics" styleClass="text-input" />
-					<p:selectOneMenu id="versaoCertics" value="#{avaliacaoEditMB.bean.versaoCertics}"  effect="fade" converter="ConversorVersaoCertics">
+					<p:selectOneMenu id="versaoCertics" value="#{avaliacaoEditMB.bean.versaoCertics}"  effect="fade" converter="ConversorVersaoCertics" required="true" requiredMessage="#{messages['label.obrigatorio']}">
 						<f:selectItem itemLabel="Selecione" itemValue="" />
 						<f:selectItems value="#{avaliacaoEditMB.versaoCerticsList}" var="varVersaoCertics" itemLabel="#{varVersaoCertics.nome}"  itemValue="#{varVersaoCertics}" />						
 					</p:selectOneMenu>
@@ -52,7 +52,7 @@
 					<h:outputLabel value="#{messages['avaliacao.label.dataAvaliacao']}: " for="dataAvaliacao" styleClass="text-input" />
 					<p:calendar id="dataAvaliacao" value="#{avaliacaoEditMB.bean.dataAvaliacao}"
 					   pattern="#{messages['label.date.pattern']}" navigator="true" showButtonPanel="true"
-					   locale="#{locales.currentLocale}" title="#{messages['avaliacao.alt.dataAvaliacao']}" />
+					   locale="#{locales.currentLocale}" title="#{messages['avaliacao.alt.dataAvaliacao']}" required="true" requiredMessage="#{messages['label.obrigatorio']}"/>
 					<p:message for="dataAvaliacao" />
 								 
 				</h:panelGrid>

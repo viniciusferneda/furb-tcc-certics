@@ -26,78 +26,61 @@
 					<p:message for="id" />
 
 					<h:outputLabel value="#{messages['organizacaoSolicitante.label']}: " for="organizacaoSolicitante" styleClass="text-input" />
-				    <p:selectOneMenu id="organizacaoSolicitante" value="#{profissionalEditMB.bean.organizacaoSolicitante}"  effect="fade" converter="ConversorOrganizacaoSolicitante">
+				    <p:selectOneMenu id="organizacaoSolicitante" value="#{profissionalEditMB.bean.organizacaoSolicitante}"  effect="fade" converter="ConversorOrganizacaoSolicitante" required="true" requiredMessage="#{messages['label.obrigatorio']}">
 						<f:selectItem itemLabel="Selecione" itemValue="" />
 						<f:selectItems value="#{profissionalEditMB.organizacaoSolicitanteList}" var="varOrganizacaoSolicitante" itemLabel="#{varOrganizacaoSolicitante.nome}"  itemValue="#{varOrganizacaoSolicitante}" />						
 					</p:selectOneMenu>
 					<p:message for="organizacaoSolicitante" />								  
 				
 					<h:outputLabel value="#{messages['profissional.label.vinculoAtual']}: " for="vinculoAtual" styleClass="text-input" />
-					<p:inputText id="vinculoAtual" value="#{profissionalEditMB.bean.vinculoAtual}" title="#{messages['profissional.alt.vinculoAtual']}" requiredMessage="#{messages['label.obrigatorio']}" size="50" maxlength="255">
-						<f:param value="#{messages['profissional.label.vinculoAtual']}"/>
-					</p:inputText>
+					<p:inputText id="vinculoAtual" value="#{profissionalEditMB.bean.vinculoAtual}" title="#{messages['profissional.alt.vinculoAtual']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" size="50" maxlength="255"/>
 					<p:message for="vinculoAtual" />
 						
 					<h:outputLabel value="#{messages['profissional.label.responsavelOrganizacao']}: " for="responsavelOrganizacao" styleClass="text-input" rendered="#{securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM')}"/>
-					<p:selectOneRadio id="responsavelOrganizacao" value="#{profissionalEditMB.bean.responsavelOrganizacao}" title="#{messages['profissional.alt.responsavelOrganizacao']}" requiredMessage="#{messages['label.obrigatorio']}" rendered="#{securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM')}">
+					<p:selectOneRadio id="responsavelOrganizacao" value="#{profissionalEditMB.bean.responsavelOrganizacao}" title="#{messages['profissional.alt.responsavelOrganizacao']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" rendered="#{securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM')}">
 			            <f:selectItem itemLabel="#{messages['label.sim']}" itemValue="1" />
 			            <f:selectItem itemLabel="#{messages['label.nao']}" itemValue="0" />
 			        </p:selectOneRadio>
 					<p:message for="responsavelOrganizacao" rendered="#{securityContext.hasRole('AVALIADOR') || securityContext.hasRole('ADM')}"/>
 						
 					<h:outputLabel value="#{messages['profissional.label.nome']}: " for="nome" styleClass="text-input" />
-					<p:inputText id="nome" value="#{profissionalEditMB.bean.nome}" title="#{messages['profissional.alt.nome']}" requiredMessage="#{messages['label.obrigatorio']}" size="50" maxlength="255">
-						<f:param value="#{messages['avaliador.label.nome']}"/>
-					</p:inputText>
+					<p:inputText id="nome" value="#{profissionalEditMB.bean.nome}" title="#{messages['profissional.alt.nome']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" size="50" maxlength="255"/>
 					<p:message for="nome" />
 						
 					<h:outputLabel value="#{messages['profissional.label.cpf']}: " for="cpf" styleClass="text-input" />
-					<p:inputMask id="cpf" value="#{profissionalEditMB.bean.cpf}" mask="#{messages['label.cpf.mask']}" title="#{messages['profissional.alt.cpf']}" requiredMessage="#{messages['label.obrigatorio']}" size="15">
-						<f:param value="#{messages['avaliador.label.cpf']}"/>
-					</p:inputMask>
+					<p:inputMask id="cpf" value="#{profissionalEditMB.bean.cpf}" mask="#{messages['label.cpf.mask']}" title="#{messages['profissional.alt.cpf']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" size="15"/>
 					<p:message for="cpf" />
 						
 					<h:outputLabel value="#{messages['profissional.label.rg']}: " for="rg" styleClass="text-input" />
-					<p:inputText id="rg" value="#{profissionalEditMB.bean.rg}" title="#{messages['profissional.alt.rg']}" requiredMessage="#{messages['label.obrigatorio']}" size="15" maxlength="20">
-						<f:param value="#{messages['avaliador.label.rg']}"/>
-					</p:inputText>
+					<p:inputText id="rg" value="#{profissionalEditMB.bean.rg}" title="#{messages['profissional.alt.rg']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" size="15" maxlength="20"/>
 					<p:message for="rg" />
 						
 					<h:outputLabel value="#{messages['profissional.label.sexo']}: " for="sexo" styleClass="text-input" />
-					<p:selectOneMenu id="sexo" effect="fade" value="#{profissionalEditMB.bean.sexo}" requiredMessage="#{messages['label.obrigatorio']}">
+					<p:selectOneMenu id="sexo" effect="fade" value="#{profissionalEditMB.bean.sexo}" required="true" requiredMessage="#{messages['label.obrigatorio']}">
 						<f:selectItems value="#{profissionalEditMB.sexo}" />
-						<f:param value="#{messages['avaliador.label.sexo']}"/>
 					</p:selectOneMenu>
 					<p:message for="sexo" />
 						
 					<h:outputLabel value="#{messages['profissional.label.dataNascimento']}: " for="dataNascimento" styleClass="text-input" />
 					<p:calendar id="dataNascimento" value="#{profissionalEditMB.bean.dataNascimento}"
 					   pattern="#{messages['label.date.pattern']}" navigator="true" showButtonPanel="true"
-					   locale="#{locales.currentLocale}" title="#{messages['profissional.alt.dataNascimento']}" requiredMessage="#{messages['label.obrigatorio']}"/>
+					   locale="#{locales.currentLocale}" title="#{messages['profissional.alt.dataNascimento']}" required="true" requiredMessage="#{messages['label.obrigatorio']}"/>
 					<p:message for="dataNascimento" />
 						
 					<h:outputLabel value="#{messages['profissional.label.fone1']}: " for="fone1" styleClass="text-input" />
-					<p:inputMask id="fone1" value="#{profissionalEditMB.bean.fone1}" mask="#{messages['label.fone.mask']}" title="#{messages['profissional.alt.fone1']}" size="15" requiredMessage="#{messages['label.obrigatorio']}">
-						<f:param value="#{messages['profissional.label.fone1']}"/>
-					</p:inputMask>
+					<p:inputMask id="fone1" value="#{profissionalEditMB.bean.fone1}" mask="#{messages['label.fone.mask']}" title="#{messages['profissional.alt.fone1']}" size="15" required="true" requiredMessage="#{messages['label.obrigatorio']}"/>
 					<p:message for="fone1" />
 						
 					<h:outputLabel value="#{messages['profissional.label.fone2']}: " for="fone2" styleClass="text-input" />
-					<p:inputMask id="fone2" value="#{profissionalEditMB.bean.fone2}" mask="#{messages['label.fone.mask']}" title="#{messages['profissional.alt.fone2']}" size="15" requiredMessage="#{messages['label.obrigatorio']}">
-						<f:param value="#{messages['avaliador.label.fone2']}"/>
-					</p:inputMask>
+					<p:inputMask id="fone2" value="#{profissionalEditMB.bean.fone2}" mask="#{messages['label.fone.mask']}" title="#{messages['profissional.alt.fone2']}" size="15" required="true" requiredMessage="#{messages['label.obrigatorio']}"/>
 					<p:message for="fone2" />
 						
 					<h:outputLabel value="#{messages['endereco.label.cep']}: " for="cep" styleClass="text-input" />
-					<p:inputMask id="cep" value="#{profissionalEditMB.bean.endereco.cep}" mask="#{messages['label.cep.mask']}" title="#{messages['endereco.alt.cep']}" size="15" requiredMessage="#{messages['label.obrigatorio']}">
-						<f:param value="#{messages['endereco.label.cep']}"/>
-					</p:inputMask>
+					<p:inputMask id="cep" value="#{profissionalEditMB.bean.endereco.cep}" mask="#{messages['label.cep.mask']}" title="#{messages['endereco.alt.cep']}" size="15" required="true" requiredMessage="#{messages['label.obrigatorio']}"/>
 					<p:message for="cep" />
 						
 					<h:outputLabel value="#{messages['endereco.label.logradouro']}: " for="logradouro" styleClass="text-input" />
-					<p:inputText id="logradouro" value="#{profissionalEditMB.bean.endereco.logradouro}" title="#{messages['endereco.alt.logradouro']}" size="50" maxlength="255" requiredMessage="#{messages['label.obrigatorio']}">
-						<f:param value="#{messages['endereco.label.logradouro']}"/>
-					</p:inputText>
+					<p:inputText id="logradouro" value="#{profissionalEditMB.bean.endereco.logradouro}" title="#{messages['endereco.alt.logradouro']}" size="50" maxlength="255" required="true" requiredMessage="#{messages['label.obrigatorio']}"/>
 					<p:message for="logradouro" />
 						
 					<h:outputLabel value="#{messages['endereco.label.numero']}: " for="numero" styleClass="text-input" />
@@ -113,42 +96,33 @@
 					<p:message for="bairro" />
 						
 					<h:outputLabel value="#{messages['endereco.label.cidade']}: " for="cidade" styleClass="text-input" />
-					<p:inputText id="cidade" value="#{profissionalEditMB.bean.endereco.cidade}" title="#{messages['endereco.alt.cidade']}" size="50" maxlength="255" requiredMessage="#{messages['label.obrigatorio']}">
-						<f:param value="#{messages['endereco.label.cidade']}"/>
-					</p:inputText>
+					<p:inputText id="cidade" value="#{profissionalEditMB.bean.endereco.cidade}" title="#{messages['endereco.alt.cidade']}" size="50" maxlength="255" required="true" requiredMessage="#{messages['label.obrigatorio']}"/>
 					<p:message for="cidade" />
 						
 					<h:outputLabel value="#{messages['endereco.label.uf']}: " for="uf" styleClass="text-input" />
-					<p:selectOneMenu id="uf" effect="fade" value="#{profissionalEditMB.bean.endereco.uf}" requiredMessage="#{messages['label.obrigatorio']}">
+					<p:selectOneMenu id="uf" effect="fade" value="#{profissionalEditMB.bean.endereco.uf}" required="true" requiredMessage="#{messages['label.obrigatorio']}">
 						<f:selectItems value="#{profissionalEditMB.uf}" />
-						<f:param value="#{messages['endereco.label.uf']}"/>
 					</p:selectOneMenu>
 					<p:message for="uf" />
 						
 					<h:outputLabel value="#{messages['endereco.label.pais']}: " for="pais" styleClass="text-input" />
-					<p:inputText id="pais" value="#{profissionalEditMB.bean.endereco.pais}" title="#{messages['endereco.alt.pais']}" size="50" maxlength="255" requiredMessage="#{messages['label.obrigatorio']}">
-						<f:param value="#{messages['endereco.label.pais']}"/>
-					</p:inputText>
+					<p:inputText id="pais" value="#{profissionalEditMB.bean.endereco.pais}" title="#{messages['endereco.alt.pais']}" size="50" maxlength="255" required="true" requiredMessage="#{messages['label.obrigatorio']}"/>
 					<p:message for="pais" />
 					
 					<h:outputLabel value="#{messages['usuario.label.email']}: " for="email" styleClass="text-input" />
-					<p:inputText id="email" value="#{profissionalEditMB.bean.usuario.email}" title="#{messages['usuario.alt.email']}" size="50" maxlength="255" requiredMessage="#{messages['label.obrigatorio']}">
-			        	<f:param value="#{messages['usuario.label.email']}"/>
-			        </p:inputText>
+					<p:inputText id="email" value="#{profissionalEditMB.bean.usuario.email}" title="#{messages['usuario.alt.email']}" size="50" maxlength="255" required="true" requiredMessage="#{messages['label.obrigatorio']}"/>
 					<p:message for="email" />
 					
-					<h:outputLabel for="senhaAtual" value="#{messages['usuario.label.senhaAtual']}: "/>
-			        <p:password id="senhaAtual" value="#{profissionalEditMB.senhaAtual}" label="#{messages['usuario.label.senhaAtual']}" requiredMessage="#{messages['label.obrigatorio']}" size="15" maxlength="255">
-			        	<f:param value="#{messages['usuario.label.senhaAtual']}"/>
-			        </p:password>
-			 		<p:message for="senhaAtual" />
+					<h:outputLabel for="senhaAtual" value="#{messages['usuario.label.senhaAtual']}: " rendered="#{profissionalEditMB.updateMode}"/>
+			        <p:password id="senhaAtual" value="#{profissionalEditMB.senhaAtual}" label="#{messages['usuario.label.senhaAtual']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" size="15" maxlength="255" rendered="#{profissionalEditMB.updateMode}"/>
+			 		<p:message for="senhaAtual" rendered="#{profissionalEditMB.updateMode}"/>
 			 		
 			        <h:outputLabel for="pwd1" value="#{messages['usuario.label.senha']}: "/>
-			        <p:password id="pwd1" value="#{profissionalEditMB.novaSenha}" match="pwd2" label="#{messages['usuario.label.senha']}" required="true" validatorMessage="#{messages['label.senha.nao.confere']}" size="15" maxlength="255"/>
+			        <p:password id="pwd1" value="#{profissionalEditMB.novaSenha}" match="pwd2" label="#{messages['usuario.label.senha']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" validatorMessage="#{messages['label.senha.nao.confere']}" size="15" maxlength="255"/>
 			 		<p:message for="pwd1" />
 			 		
 			        <h:outputLabel for="pwd2" value="#{messages['usuario.label.senha2']}: "/>
-			        <p:password id="pwd2" value="#{profissionalEditMB.novaSenha}" label="#{messages['usuario.label.senha2']}" required="true" size="15" maxlength="255"/>
+			        <p:password id="pwd2" value="#{profissionalEditMB.novaSenha}" label="#{messages['usuario.label.senha2']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" size="15" maxlength="255"/>
    					<p:message for="pwd2" />
 					
 				</h:panelGrid>
