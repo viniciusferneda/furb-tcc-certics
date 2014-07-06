@@ -6,8 +6,12 @@
 		<h:form id="formListAvaliacao">
 			<p:toolbar>
 				<p:toolbarGroup align="left">
-					<p:commandButton title="#{messages['button.relatorio.evidencias']}" icon="ui-icon-document" action="#{conjuntoEvidenciasListMB.exibirRelatorioEvidencias()}" ajax="false" />
-					<p:commandButton title="#{messages['button.relatorio.pendencias']}" icon="ui-icon-trash" action="#{conjuntoEvidenciasListMB.exibirRelatorioGraficoAtendimentoAreasCompetencia()}" ajax="false" />
+					<p:commandLink actionListener="#{conjuntoEvidenciasListMB.exibirRelatorioEvidencias()}" title="#{messages['button.relatorio.evidencias']}" ajax="false">  
+					    <p:graphicImage value="images/lesson_planning_32.png"/> 
+					</p:commandLink> 
+					<p:commandLink actionListener="#{conjuntoEvidenciasListMB.exibirRelatorioGraficoAtendimentoAreasCompetencia()}" title="#{messages['button.relatorio.pendencias']}" ajax="false">  
+					    <p:graphicImage value="/images/graphic_report_32.png"/> 
+					</p:commandLink> 
 				</p:toolbarGroup>
 			</p:toolbar>
 			
