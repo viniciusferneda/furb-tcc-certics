@@ -215,11 +215,6 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
     	this.getBean().setRespostaEvidenciaAux(respostaEvidenciaEntity);
     }
 
-	public void addEvidenciaProfissional() {
-		this.getBean().getRespostaEvidenciaAux().getProfissionais().add(this.getBean().getEvidenciaProfissionalEntity());
-		this.getBean().setEvidenciaProfissionalEntity(new EvidenciaProfissionalEntity());
-	}
-	
 	public void deleteEvidenciaProfissional() {
 		this.getBean().getRespostaEvidenciaAux().getProfissionais().remove(getlEvidenciaProfissional().getRowData());
 	}
@@ -256,14 +251,14 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
 	}
 
 	public void insertEvidenciaProfissional(){
-		for (EvidenciaProfissionalEntity profissional : this.getBean().getRespostaEvidenciaAux().getProfissionais()) {
-			profissional.setRespostaEvidencia(this.getBean().getRespostaEvidenciaAux());
-			if(profissional.getId() != null){
-				this.evidenciaProfissionalBC.update(profissional);
-			}else{
-				this.evidenciaProfissionalBC.insert(profissional);
-			}
+		EvidenciaProfissionalEntity profissional = this.getBean().getEvidenciaProfissionalEntity();
+		profissional.setRespostaEvidencia(this.getBean().getRespostaEvidenciaAux());
+		if(profissional.getId() != null){
+			this.evidenciaProfissionalBC.update(profissional);
+		}else{
+			this.evidenciaProfissionalBC.insert(profissional);
 		}
+		this.getBean().setEvidenciaProfissionalEntity(new EvidenciaProfissionalEntity());
 	}
 	
 	public void editarEvidenciaProfissional(EvidenciaProfissionalEntity evidenciaProfissionalEntity){

@@ -68,10 +68,6 @@ public class AvaliacaoEditMB extends AbstractEditPageBean<AvaliacaoEntity, Long>
 	@Transactional
 	public String insert() {
 		validaInformacoes();
-		
-		//registra o avaliador da avaliação
-		AvaliadorEntity avaliadorEntity = this.avaliadorDAO.findById(Long.valueOf(identity.getId()));
-		this.getBean().setAvaliador(avaliadorEntity);
 		this.getBean().setPontuacao(EnumPontuacaoAvaliacao.PENDENTE);
 		
 		//insere o registro da avaliação
@@ -94,6 +90,15 @@ public class AvaliacaoEditMB extends AbstractEditPageBean<AvaliacaoEntity, Long>
 	@Override
 	protected AvaliacaoEntity handleLoad(Long id) {
 		return this.avaliacaoBC.load(id);
+	}
+	
+	@Override
+	protected AvaliacaoEntity createBean() {
+		AvaliacaoEntity avaliacaoEntity = super.createBean(); 
+		//registra o avaliador da avaliação
+		AvaliadorEntity avaliadorEntity = this.avaliadorDAO.findById(Long.valueOf(identity.getId()));
+		avaliacaoEntity.setAvaliador(avaliadorEntity);
+		return avaliacaoEntity;
 	}
 
 	private void validaInformacoes(){

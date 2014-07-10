@@ -31,11 +31,11 @@
 					<h:outputText id="id" value="#{versaoCerticsEntityEditMB.bean.id}" />
 					<p:message for="id" />
 					
-					<h:outputLabel value="#{messages['versaoCerticsEntity.label.nome']}: " for="nome" styleClass="text-input" />
+					<h:outputLabel value="#{messages['versaoCerticsEntity.label.nome']}: *" for="nome" styleClass="text-input" />
 					<p:inputText id="nome" value="#{versaoCerticsEntityEditMB.bean.nome}" title="#{messages['versaoCerticsEntity.alt.nome']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" size="50" maxlength="255"/>
 					<p:message for="nome" />
 					
-					<h:outputLabel value="#{messages['versaoCerticsEntity.label.descricao']}: " for="descricao" styleClass="text-input" />
+					<h:outputLabel value="#{messages['versaoCerticsEntity.label.descricao']}: *" for="descricao" styleClass="text-input" />
 					<p:inputTextarea id="descricao" value="#{versaoCerticsEntityEditMB.bean.descricao}" title="#{messages['versaoCerticsEntity.alt.descricao']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" rows="10" cols="50" maxlength="8000" autoResize="false"/>
 					<p:message for="descricao" />
 					

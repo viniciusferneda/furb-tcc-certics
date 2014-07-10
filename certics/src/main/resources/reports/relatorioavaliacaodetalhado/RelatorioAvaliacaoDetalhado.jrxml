@@ -23,7 +23,7 @@ FROM TB_RESPOSTA_EVIDENCIA REV
      INNER JOIN TB_SOFTWARE SOF ON (AVA.AVA_SOFID = SOF.SOF_ID)
      INNER JOIN TB_ORGANIZACAO_SOLICITANTE ORS ON (SOF.SOF_ORSID = ORS.ORS_ID)
 WHERE AVA.AVA_ID IN ($P!{AVA_ID})
-ORDER BY ARC.ARC_TITULO, RES.RES_TITULO]]>
+ORDER BY AVA.AVA_DT_AVALIACAO, AVA.AVA_ID, ARC.ARC_TITULO, RES.RES_TITULO]]>
 	</queryString>
 	<field name="pes_nome" class="java.lang.String"/>
 	<field name="ors_nome" class="java.lang.String"/>
@@ -260,7 +260,7 @@ ORDER BY ARC.ARC_TITULO, RES.RES_TITULO]]>
 			<band height="20">
 				<staticText>
 					<reportElement positionType="Float" stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="802" height="20" backcolor="#CCCCCC">
-						<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT}.intValue() % 2) == 0)]]></printWhenExpression>
+						<printWhenExpression><![CDATA[new Boolean(($V{REPORT_COUNT}.intValue() % 2) == 0)]]></printWhenExpression>
 					</reportElement>
 					<textElement/>
 					<text><![CDATA[]]></text>
@@ -307,8 +307,8 @@ ORDER BY ARC.ARC_TITULO, RES.RES_TITULO]]>
 	<detail>
 		<band height="20" splitType="Stretch">
 			<staticText>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="802" height="20" backcolor="#CCCCCC">
-					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT}.intValue() % 2) == 0)]]></printWhenExpression>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" mode="Opaque" x="0" y="0" width="802" height="20" backcolor="#CCCCCC">
+					<printWhenExpression><![CDATA[new Boolean(($V{REPORT_COUNT}.intValue() % 2) == 0)]]></printWhenExpression>
 				</reportElement>
 				<textElement/>
 				<text><![CDATA[]]></text>

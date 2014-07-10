@@ -31,22 +31,22 @@
 					<h:outputText id="id" value="#{licaoAprendidaEditMB.bean.id}" />
 					<p:message for="id" />
 		
-					<h:outputLabel value="#{messages['avaliacao.label']}: " for="avaliacao" styleClass="text-input" />
+					<h:outputLabel value="#{messages['avaliacao.label']}: *" for="avaliacao" styleClass="text-input" />
 				    <p:selectOneMenu id="avaliacao" value="#{licaoAprendidaEditMB.bean.avaliacao}"  effect="fade" converter="ConversorAvaliacao" required="true" requiredMessage="#{messages['label.obrigatorio']}">
 						<f:selectItem itemLabel="Selecione" itemValue="" />
 						<f:selectItems value="#{licaoAprendidaEditMB.avaliacaoList}" var="varAvaliacao" itemLabel="#{varAvaliacao.software.nome}"  itemValue="#{varAvaliacao}" />						
 					</p:selectOneMenu>
 					<p:message for="avaliacao" />								  
 						
-					<h:outputLabel value="#{messages['licaoAprendida.label.pontosPositivos']}: " for="pontosPositivos" styleClass="text-input" />
+					<h:outputLabel value="#{messages['licaoAprendida.label.pontosPositivos']}: *" for="pontosPositivos" styleClass="text-input" />
 					<p:inputTextarea id="pontosPositivos" value="#{licaoAprendidaEditMB.bean.pontosPositivos}" title="#{messages['licaoAprendida.alt.pontosPositivos']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" rows="10" cols="80" maxlength="8000" autoResize="false"/>
 					<p:message for="pontosPositivos" />
 						
-					<h:outputLabel value="#{messages['licaoAprendida.label.pontosNegativos']}: " for="pontosNegativos" styleClass="text-input" />
+					<h:outputLabel value="#{messages['licaoAprendida.label.pontosNegativos']}: *" for="pontosNegativos" styleClass="text-input" />
 					<p:inputTextarea id="pontosNegativos" value="#{licaoAprendidaEditMB.bean.pontosNegativos}" title="#{messages['licaoAprendida.alt.pontosNegativos']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" rows="10" cols="80" maxlength="8000" autoResize="false"/>
 					<p:message for="pontosNegativos" />
 						
-					<h:outputLabel value="#{messages['licaoAprendida.label.melhoria']}: " for="melhoria" styleClass="text-input" />
+					<h:outputLabel value="#{messages['licaoAprendida.label.melhoria']}: *" for="melhoria" styleClass="text-input" />
 					<p:inputTextarea id="melhoria" value="#{licaoAprendidaEditMB.bean.melhoria}" title="#{messages['licaoAprendida.alt.melhoria']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" rows="10" cols="80" maxlength="8000" autoResize="false"/>
 					<p:message for="melhoria" />
 								 

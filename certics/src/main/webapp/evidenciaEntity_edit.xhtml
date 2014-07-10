@@ -30,11 +30,11 @@
 					<h:outputText id="id" value="#{evidenciaEntityEditMB.bean.id}" />
 					<p:message for="id" />
 					
-					<h:outputLabel value="#{messages['evidenciaEntity.label.nome']}: " for="nome" styleClass="text-input" />
+					<h:outputLabel value="#{messages['evidenciaEntity.label.nome']}: *" for="nome" styleClass="text-input" />
 					<p:inputText id="nome" value="#{evidenciaEntityEditMB.bean.nome}" title="#{messages['evidenciaEntity.alt.nome']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" size="50" maxlength="255"/>
 					<p:message for="nome" />
 					
-					<h:outputLabel value="#{messages['evidenciaEntity.label.descricao']}: " for="descricao" styleClass="text-input" />
+					<h:outputLabel value="#{messages['evidenciaEntity.label.descricao']}: *" for="descricao" styleClass="text-input" />
 					<p:inputTextarea id="descricao" value="#{evidenciaEntityEditMB.bean.descricao}" title="#{messages['evidenciaEntity.alt.descricao']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" rows="10" cols="50" maxlength="8000" autoResize="false"/>
 					<p:message for="descricao" />
 				</h:panelGrid>

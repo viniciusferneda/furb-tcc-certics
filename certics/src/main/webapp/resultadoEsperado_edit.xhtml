@@ -31,26 +31,26 @@
 					<h:outputText id="id" value="#{resultadoEsperadoEditMB.bean.id}" />
 					<p:message for="id" />
 
-					<h:outputLabel value="#{messages['areaCompetencia.label']}: " for="areaCompetencia" styleClass="text-input" />
+					<h:outputLabel value="#{messages['areaCompetencia.label']}: *" for="areaCompetencia" styleClass="text-input" />
 				    <p:selectOneMenu id="areaCompetencia" value="#{resultadoEsperadoEditMB.bean.areaCompetencia}" effect="fade" converter="ConversorAreaCompetencia" required="true" requiredMessage="#{messages['label.obrigatorio']}">
 						<f:selectItem itemLabel="Selecione" itemValue="" />
 						<f:selectItems value="#{resultadoEsperadoEditMB.areaCompetenciaList}" var="varAreaCompetencia" itemLabel="#{varAreaCompetencia.titulo}"  itemValue="#{varAreaCompetencia}" />						
 					</p:selectOneMenu>
 					<p:message for="areaCompetencia" />								  
 						
-					<h:outputLabel value="#{messages['resultadoEsperado.label.titulo']}: " for="titulo" styleClass="text-input" />
+					<h:outputLabel value="#{messages['resultadoEsperado.label.titulo']}: *" for="titulo" styleClass="text-input" />
 					<p:inputText id="titulo" value="#{resultadoEsperadoEditMB.bean.titulo}" title="#{messages['resultadoEsperado.alt.titulo']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" size="80" maxlength="255"/>
 					<p:message for="titulo" />
 						
-					<h:outputLabel value="#{messages['resultadoEsperado.label.descricao']}: " for="descricao" styleClass="text-input" />
+					<h:outputLabel value="#{messages['resultadoEsperado.label.descricao']}: *" for="descricao" styleClass="text-input" />
 					<p:inputTextarea id="descricao" value="#{resultadoEsperadoEditMB.bean.descricao}" title="#{messages['resultadoEsperado.alt.descricao']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" rows="10" cols="80" maxlength="8000" autoResize="false"/>
 					<p:message for="descricao" />
 
-					<h:outputLabel value="#{messages['resultadoEsperado.label.dica']}: " for="dica" styleClass="text-input" />
+					<h:outputLabel value="#{messages['resultadoEsperado.label.dica']}: *" for="dica" styleClass="text-input" />
 					<p:editor id="dica" widgetVar="editorWidget" value="#{resultadoEsperadoEditMB.bean.dica}" width="600" maxlength="8000" required="true" requiredMessage="#{messages['label.obrigatorio']}"/>
 					<p:message for="dica" />
 								 
-					<h:outputLabel value="#{messages['resultadoEsperado.label.versaoCertics']}: " for="pickList" styleClass="text-input" />
+					<h:outputLabel value="#{messages['resultadoEsperado.label.versaoCertics']}: *" for="pickList" styleClass="text-input" />
 					<p:pickList id="pickList" value="#{resultadoEsperadoEditMB.lVersaoCertics}" var="versaoCertics" itemLabel="#{versaoCertics.nome}" itemValue="#{versaoCertics}" converter="ConversorVersaoCertics" required="true" requiredMessage="#{messages['label.obrigatorio']}"/>
 					<p:message for="pickList" />
 					

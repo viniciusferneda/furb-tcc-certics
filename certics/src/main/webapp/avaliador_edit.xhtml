@@ -25,19 +25,19 @@
 					<h:outputText id="id" value="#{avaliadorEditMB.bean.id}" />
 					<p:message for="id" />
 						
-					<h:outputLabel value="#{messages['avaliador.label.nome']}: " for="nome" styleClass="text-input" />
+					<h:outputLabel value="#{messages['avaliador.label.nome']}: *" for="nome" styleClass="text-input" />
 					<p:inputText id="nome" value="#{avaliadorEditMB.bean.nome}" title="#{messages['avaliador.alt.nome']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" size="50" maxlength="255"/>
 					<p:message for="nome" />
 						
-					<h:outputLabel value="#{messages['avaliador.label.cpf']}: " for="cpf" styleClass="text-input" />
+					<h:outputLabel value="#{messages['avaliador.label.cpf']}: *" for="cpf" styleClass="text-input" />
 					<p:inputMask id="cpf" value="#{avaliadorEditMB.bean.cpf}" mask="#{messages['label.cpf.mask']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" size="15" title="#{messages['avaliador.alt.cpf']}"/>
 					<p:message for="cpf" />
 						
-					<h:outputLabel value="#{messages['avaliador.label.rg']}: " for="rg" styleClass="text-input" />
+					<h:outputLabel value="#{messages['avaliador.label.rg']}: *" for="rg" styleClass="text-input" />
 					<p:inputText id="rg" value="#{avaliadorEditMB.bean.rg}" required="true" requiredMessage="#{messages['label.obrigatorio']}" title="#{messages['avaliador.alt.rg']}" size="15" maxlength="20"/>
 					<p:message for="rg" />
 					
-					<h:outputLabel value="#{messages['avaliador.label.sexo']}: " for="sexo" styleClass="text-input" />
+					<h:outputLabel value="#{messages['avaliador.label.sexo']}: *" for="sexo" styleClass="text-input" />
 					<p:selectOneMenu id="sexo" effect="fade" value="#{avaliadorEditMB.bean.sexo}" required="true" requiredMessage="#{messages['label.obrigatorio']}">
 						<f:selectItems value="#{avaliadorEditMB.sexo}" />
 					</p:selectOneMenu>					
@@ -46,8 +46,7 @@
 					<h:outputLabel value="#{messages['avaliador.label.dataNascimento']}: " for="dataNascimento" styleClass="text-input" />
 					<p:calendar id="dataNascimento" value="#{avaliadorEditMB.bean.dataNascimento}" size="15"
 					   pattern="#{messages['label.date.pattern']}" navigator="true" showButtonPanel="true"
-					   locale="#{locales.currentLocale}" title="#{messages['avaliador.alt.dataNascimento']}"
-					   required="true" requiredMessage="#{messages['label.obrigatorio']}"/>
+					   locale="#{locales.currentLocale}" title="#{messages['avaliador.alt.dataNascimento']}"/>
 					<p:message for="dataNascimento" />
 						
 					<p:outputLabel value="#{messages['avaliador.label.fone1']}: " for="fone1" styleClass="text-input" />
@@ -55,14 +54,14 @@
 					<p:message for="fone1" />
 						
 					<p:outputLabel value="#{messages['avaliador.label.fone2']}: " for="fone2" styleClass="text-input" />
-					<p:inputMask id="fone2" value="#{avaliadorEditMB.bean.fone2}" mask="#{messages['label.fone.mask']}" title="#{messages['avaliador.alt.fone2']}" size="15" required="true" requiredMessage="#{messages['label.obrigatorio']}"/>
+					<p:inputMask id="fone2" value="#{avaliadorEditMB.bean.fone2}" mask="#{messages['label.fone.mask']}" title="#{messages['avaliador.alt.fone2']}" size="15"/>
 					<p:message for="fone2"/>
 						
-					<h:outputLabel value="#{messages['endereco.label.cep']}: " for="cep" styleClass="text-input" />
+					<h:outputLabel value="#{messages['endereco.label.cep']}: *" for="cep" styleClass="text-input" />
 					<p:inputMask id="cep" value="#{avaliadorEditMB.bean.endereco.cep}" mask="#{messages['label.cep.mask']}" title="#{messages['endereco.alt.cep']}" size="15" required="true" requiredMessage="#{messages['label.obrigatorio']}"/>
 					<p:message for="cep" />
 						
-					<h:outputLabel value="#{messages['endereco.label.logradouro']}: " for="logradouro" styleClass="text-input" />
+					<h:outputLabel value="#{messages['endereco.label.logradouro']}: *" for="logradouro" styleClass="text-input" />
 					<p:inputText id="logradouro" value="#{avaliadorEditMB.bean.endereco.logradouro}" title="#{messages['endereco.alt.logradouro']}" size="50" maxlength="255" required="true" requiredMessage="#{messages['label.obrigatorio']}"/>
 					<p:message for="logradouro" />
 						
@@ -78,33 +77,33 @@
 					<p:inputText id="bairro" value="#{avaliadorEditMB.bean.endereco.bairro}" title="#{messages['endereco.alt.bairro']}" size="50" maxlength="255"/>
 					<p:message for="bairro" />
 						
-					<h:outputLabel value="#{messages['endereco.label.cidade']}: " for="cidade" styleClass="text-input" />
+					<h:outputLabel value="#{messages['endereco.label.cidade']}: *" for="cidade" styleClass="text-input" />
 					<p:inputText id="cidade" value="#{avaliadorEditMB.bean.endereco.cidade}" title="#{messages['endereco.alt.cidade']}" size="50" maxlength="255" required="true" requiredMessage="#{messages['label.obrigatorio']}"/>
 					<p:message for="cidade" />
 						
-					<h:outputLabel value="#{messages['endereco.label.uf']}: " for="uf" styleClass="text-input" />
+					<h:outputLabel value="#{messages['endereco.label.uf']}: *" for="uf" styleClass="text-input" />
 					<p:selectOneMenu id="uf" effect="fade" value="#{avaliadorEditMB.bean.endereco.uf}" required="true" requiredMessage="#{messages['label.obrigatorio']}">
 						<f:selectItems value="#{avaliadorEditMB.uf}" />
 					</p:selectOneMenu>					
 					<p:message for="uf" />
 						
-					<h:outputLabel value="#{messages['endereco.label.pais']}: " for="pais" styleClass="text-input" />
+					<h:outputLabel value="#{messages['endereco.label.pais']}: *" for="pais" styleClass="text-input" />
 					<p:inputText id="pais" value="#{avaliadorEditMB.bean.endereco.pais}" title="#{messages['endereco.alt.pais']}" size="50" maxlength="255" required="true" requiredMessage="#{messages['label.obrigatorio']}"/>
 					<p:message for="pais" />
 					
-					<h:outputLabel value="#{messages['usuario.label.email']}: " for="email" styleClass="text-input" />
+					<h:outputLabel value="#{messages['usuario.label.email']}: *" for="email" styleClass="text-input" />
 			        <p:inputText id="email" value="#{avaliadorEditMB.bean.usuario.email}" title="#{messages['usuario.alt.email']}" size="50" maxlength="255" required="true" requiredMessage="#{messages['label.obrigatorio']}"/>
 					<p:message for="email" />
 					
-					<h:outputLabel for="senhaAtual" value="#{messages['usuario.label.senhaAtual']}: " rendered="#{avaliadorEditMB.updateMode}"/>
+					<h:outputLabel for="senhaAtual" value="#{messages['usuario.label.senhaAtual']}: *" rendered="#{avaliadorEditMB.updateMode}"/>
 			        <p:password id="senhaAtual" value="#{avaliadorEditMB.senhaAtual}" label="#{messages['usuario.label.senhaAtual']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" size="15" maxlength="255" rendered="#{avaliadorEditMB.updateMode}"/>
 			 		<p:message for="senhaAtual" rendered="#{avaliadorEditMB.updateMode}"/>
 			 		
-			        <h:outputLabel for="pwd1" value="#{messages['usuario.label.senha']}: "/>
+			        <h:outputLabel for="pwd1" value="#{messages['usuario.label.senha']}: *"/>
 			        <p:password id="pwd1" value="#{avaliadorEditMB.novaSenha}" match="pwd2" label="#{messages['usuario.label.senha']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" validatorMessage="#{messages['label.senha.nao.confere']}" size="15" maxlength="255"/>
 			 		<p:message for="pwd1" />
 			 		
-			        <h:outputLabel for="pwd2" value="#{messages['usuario.label.senha2']}: "/>
+			        <h:outputLabel for="pwd2" value="#{messages['usuario.label.senha2']}: *"/>
 			        <p:password id="pwd2" value="#{avaliadorEditMB.novaSenha}" label="#{messages['usuario.label.senha2']}" required="true" requiredMessage="#{messages['label.obrigatorio']}" size="15" maxlength="255"/>
    					<p:message for="pwd2" />
    					
