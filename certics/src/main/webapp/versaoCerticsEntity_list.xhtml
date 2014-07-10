@@ -7,15 +7,15 @@
 		<h:form prependId="false">
 			<p:toolbar>
 				<p:toolbarGroup align="left">
+					<p:commandLink actionListener="#{versaoCerticsEntityListMB.exibirRelatorioResultadoEsperadoPorVersao()}" title="#{messages['button.relatorio.resultadoesperado']}" ajax="false">  
+					    <p:graphicImage value="images/accounting_32.png"/> 
+					</p:commandLink>
 					<p:commandButton title="#{messages['button.new']}" icon="ui-icon-document" action="#{versaoCerticsEntityListMB.getNextView}"
-						actionListener="#{versaoCerticsEntityListMB.clear}" ajax="false" />
-	
+						actionListener="#{versaoCerticsEntityListMB.clear}" ajax="false" rendered="#{securityContext.hasRole('ADM')}"/>
 					<p:commandButton title="#{messages['button.delete']}" icon="ui-icon-trash" onclick="confirmation.show()"
-						type="button" immediate="true" ajax="false" />
-	
+						type="button" immediate="true" ajax="false" rendered="#{securityContext.hasRole('ADM')}"/>
 					<p:confirmDialog message="#{messages['label.confirm.delete']}" showEffect="bounce" hideEffect="explode"
 						header="#{messages['label.dialog.alert']}!" severity="alert" widgetVar="confirmation">
-	
 						<h:commandButton value="#{messages['button.dialog.yes']}" action="#{versaoCerticsEntityListMB.deleteSelection}"
 							actionListener="#{versaoCerticsEntityListMB.clear}" />
 						<h:commandButton value="#{messages['button.dialog.no']}" onclick="confirmation.hide()" type="button" />
@@ -30,11 +30,15 @@
 					<h:selectBooleanCheckbox value="#{versaoCerticsEntityListMB.selection[bean.id]}"></h:selectBooleanCheckbox>
 				</p:column>
 				
-				<p:column width="5%" filterBy="#{bean.id}" filterMatchMode="exact" sortBy="#{bean.id}" headerText="#{messages['versaoCerticsEntity.label.id']}">
+				<p:column width="5%" filterBy="#{bean.id}" filterMatchMode="exact" sortBy="#{bean.id}" headerText="#{messages['versaoCerticsEntity.label.id']}" rendered="#{securityContext.hasRole('ADM')}">
 					<h:commandLink action="#{versaoCerticsEntityListMB.getNextView}" actionListener="#{versaoCerticsEntityListMB.clear}">
 						<h:outputText value="#{bean.id}" />
 						<f:param name="id" value="#{bean.id}" />
 					</h:commandLink>
+				</p:column>
+
+				<p:column width="5%" filterBy="#{bean.id}" filterMatchMode="exact" sortBy="#{bean.id}" headerText="#{messages['versaoCerticsEntity.label.id']}" rendered="#{securityContext.hasRole('AVALIADOR')}">
+					<h:outputText value="#{bean.id}" />
 				</p:column>
 						
 				<p:column width="20%" filterBy="#{bean.nome}" filterMatchMode="contains" sortBy="#{bean.nome}" headerText="#{messages['versaoCerticsEntity.label.nome']}">

@@ -5,17 +5,16 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  *
- * @author escritorio
  */
 public class CriptografiaUtil {
 
 	/**
      *
-     * @param mesnagem
+     * @param mensagem
      * @return
      */
-    public static String getCodigoMd5(String mesnagem) {
-		return stringHexa(gerarHash(mesnagem, "MD5"));
+    public static String getCodigoMd5(String mensagem) {
+		return stringHexa(gerarHash(mensagem, "MD5"));
 	}
 
 	/**

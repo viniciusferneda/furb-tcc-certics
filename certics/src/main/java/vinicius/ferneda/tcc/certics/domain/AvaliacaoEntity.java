@@ -23,11 +23,18 @@ import vinicius.ferneda.tcc.certics.constant.EnumPontuacaoAvaliacao;
     		query="SELECT obj "
     				+ " FROM AvaliacaoEntity obj "
     				+ " WHERE obj.avaliador.id = :avaliadorID"),
-    				
-    @NamedQuery(name="AvaliacaoEntity.findByOrganizacaoID",
+
+    @NamedQuery(name="AvaliacaoEntity.findByAvaliadorIDDataAtual",
+			query="SELECT obj "
+					+ " FROM AvaliacaoEntity obj "
+					+ " WHERE obj.avaliador.id = :avaliadorID"
+					+ "		AND obj.dataAvaliacao <= :dataInicio"),
+
+    @NamedQuery(name="AvaliacaoEntity.findByOrganizacaoIDDataAtual",
 		query="SELECT obj "
 				+ " FROM AvaliacaoEntity obj "
-				+ " WHERE obj.software.organizacaoSolicitante.id = :organizacaoID")
+				+ " WHERE obj.software.organizacaoSolicitante.id = :organizacaoID"
+				+ "		AND obj.dataAvaliacao <= :dataInicio")
 
 })
 public class AvaliacaoEntity extends Avaliacao {

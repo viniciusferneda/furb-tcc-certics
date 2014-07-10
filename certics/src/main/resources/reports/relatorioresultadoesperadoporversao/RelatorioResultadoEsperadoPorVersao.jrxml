@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioResultadoEsperadoPorVersao" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="VCE_ID" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT RES.RES_ID, RES.RES_TITULO, RES.RES_DESCRICAO,
+       ARC.ARC_ID, ARC.ARC_TITULO, ARC.ARC_DESCRICAO,
+       VCE.VCE_ID, VCE.VCE_NOME
+FROM TB_RESULTADO_ESPERADO RES
+     INNER JOIN TB_AREA_COMPETENCIA ARC ON (RES.RES_ARCID = ARC.ARC_ID)
+     INNER JOIN TB_VERSAO_CERTICS_RESULTADO_ESPERADO VRE ON (RES.RES_ID = VRE.VRE_RESID)
+     INNER JOIN TB_VERSAO_CERTICS VCE ON (VRE.VRE_VCEID = VCE.VCE_ID)
+WHERE VCE.VCE_ID IN ($P!{VCE_ID})
+ORDER BY VCE.VCE_NOME, ARC.ARC_TITULO, RES.RES_TITULO]]>
+	</queryString>
+	<field name="res_id" class="java.lang.Long"/>
+	<field name="res_titulo" class="java.lang.String"/>
+	<field name="res_descricao" class="java.lang.String"/>
+	<field name="arc_id" class="java.lang.Long"/>
+	<field name="arc_titulo" class="java.lang.String"/>
+	<field name="arc_descricao" class="java.lang.String"/>
+	<field name="vce_id" class="java.lang.Long"/>
+	<field name="vce_nome" class="java.lang.String"/>
+	<group name="VERSAO">
+		<groupExpression><![CDATA[$F{vce_id}]]></groupExpression>
+		<groupHeader>
+			<band height="20">
+				<staticText>
+					<reportElement x="0" y="0" width="130" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Versão:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="130" y="0" width="425" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{vce_nome}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="AREA_COMPETENCIA">
+		<groupExpression><![CDATA[$F{arc_id}]]></groupExpression>
+		<groupHeader>
+			<band height="61">
+				<staticText>
+					<reportElement x="0" y="1" width="130" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Área de competência:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement x="130" y="1" width="425" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{arc_titulo}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="0" y="21" width="130" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Descrição:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement positionType="Float" x="130" y="21" width="425" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{arc_descricao}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" mode="Opaque" x="0" y="41" width="250" height="20" forecolor="#FFFFFF" backcolor="#666666"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Título]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" mode="Opaque" x="250" y="41" width="305" height="20" forecolor="#FFFFFF" backcolor="#666666"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Descrição]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="0" width="555" height="1"/>
+				</line>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="RESULTADO_ESPERADO">
+		<groupExpression><![CDATA[$F{res_id}]]></groupExpression>
+		<groupHeader>
+			<band/>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="26"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Resultados Esperados]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="555" height="20" backcolor="#CCCCCC">
+					<printWhenExpression><![CDATA[new Boolean(($V{COLUMN_COUNT}.intValue() % 2) == 0)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="0" y="0" width="250" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{res_titulo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="250" y="0" width="305" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{res_descricao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

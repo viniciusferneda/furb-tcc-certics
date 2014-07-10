@@ -171,7 +171,7 @@ public class ConjuntoEvidenciasEditMB extends AbstractEditPageBean<AvaliacaoEnti
     
     public void onNodeSelect(NodeSelectEvent event) {
     	if("resultadoEsperado".equals(((InformacoesArvore)event.getTreeNode().getData()).getTipo())){
-    		this.getBean().setConjuntoEvidenciasAux(this.conjuntoEvidenciasDAO.findByResultadoEsperadoID(((InformacoesArvore)event.getTreeNode().getData()).getId()));   		
+    		this.getBean().setConjuntoEvidenciasAux(this.conjuntoEvidenciasDAO.findByResultadoEsperadoID(((InformacoesArvore)event.getTreeNode().getData()).getId(), getId()));   		
     	}
     }
 

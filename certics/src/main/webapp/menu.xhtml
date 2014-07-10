@@ -12,8 +12,8 @@
 				<p:menuitem value="#{messages['menu.menuitem.editar']}" actionListener="#{usuarioEditMB.editarInformacoesProfissional()}" rendered="#{securityContext.loggedIn and securityContext.hasRole('AVALIADO')}"/>
 			</p:submenu>
 
-			<p:submenu label="#{messages['menu.versaoCerticsEntity']}" rendered="#{securityContext.hasRole('ADM')}">
-				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/versaoCerticsEntity_edit.jsf"></p:menuitem>
+			<p:submenu label="#{messages['menu.versaoCerticsEntity']}" rendered="#{securityContext.hasRole('ADM') || securityContext.hasRole('AVALIADOR')}">
+				<p:menuitem value="#{messages['menu.menuitem.new']}" url="/versaoCerticsEntity_edit.jsf" rendered="#{securityContext.hasRole('ADM')}"></p:menuitem>
 				<p:menuitem value="#{messages['menu.menuitem.list']}" url="/versaoCerticsEntity_list.jsf"></p:menuitem>
 			</p:submenu>
 

@@ -71,7 +71,7 @@ public class UsuarioEditMB extends AbstractEditPageBean<UsuarioEntity, Long> {
         try {
             catalogoAuthenticator.login();
         } catch (Exception e) {
-            messageContext.add("Login: ", e.getMessage());
+            messageContext.add(e.getMessage(), e.getMessage());
         }
     }
 
@@ -79,7 +79,7 @@ public class UsuarioEditMB extends AbstractEditPageBean<UsuarioEntity, Long> {
         try {
              catalogoAuthenticator.logout();
         } catch (Exception e) {
-            messageContext.add("Login: ", e.getMessage());
+            messageContext.add(e.getMessage(), e.getMessage());
         }
     }
 

@@ -46,11 +46,11 @@ public class ConjuntoEvidenciasListMB extends AbstractListPageBean<AvaliacaoEnti
 	@Override
 	protected List<AvaliacaoEntity> handleResultList() {
 		if(securityContext.hasRole(EnumPapelUsuario.AVALIADOR.toString())){
-			return this.avaliacaoDAO.findByAvaliadorID(Long.valueOf(identity.getId()));
+			return this.avaliacaoDAO.findByAvaliadorIDDataAtual(Long.valueOf(identity.getId()));
 		}else if(securityContext.hasRole(EnumPapelUsuario.AVALIADO.toString())){
 			ProfissionalEntity profissionalEntity = this.profissionalDAO.findById(Long.valueOf(identity.getId()));
 			if(profissionalEntity != null && profissionalEntity.getOrganizacaoSolicitante() != null){
-				return this.avaliacaoDAO.findByOrganizacaoID(profissionalEntity.getOrganizacaoSolicitante().getId());
+				return this.avaliacaoDAO.findByOrganizacaoIDDataAtual(profissionalEntity.getOrganizacaoSolicitante().getId());
 			}else{
 				return new ArrayList<AvaliacaoEntity>();
 			}
@@ -66,14 +66,7 @@ public class ConjuntoEvidenciasListMB extends AbstractListPageBean<AvaliacaoEnti
 	 * Método responsável por exportar o relatório das evidências registradas na avaliação selecionada 
 	 */
 	public void exibirRelatorioEvidencias() {
-		String avaliacaoIds = null;
-		for (Iterator<Long> iter = getSelection().keySet().iterator(); iter.hasNext();) {
-			if(avaliacaoIds == null){
-				avaliacaoIds = String.valueOf(iter.next());
-			}else{
-				avaliacaoIds = ","+String.valueOf(iter.next());
-			}
-		}
+		String avaliacaoIds = getAvaliacaoIDs();
 		Map<String, Object> mapParametros = new HashMap<String, Object>();
 		mapParametros.put("AVA_ID", avaliacaoIds);
 		mapParametros.put("SUBREPORT_DIR", "reports/relatorioavaliacaodetalhado/");
@@ -85,18 +78,26 @@ public class ConjuntoEvidenciasListMB extends AbstractListPageBean<AvaliacaoEnti
 	 * Método responsável por exportar o relatório dos resultados esperados pendentes e um gráfico com a quantidade de evidências registradas
 	 */
 	public void exibirRelatorioGraficoAtendimentoAreasCompetencia() {
-		String avaliacaoIds = null;
-		for (Iterator<Long> iter = getSelection().keySet().iterator(); iter.hasNext();) {
-			if(avaliacaoIds == null){
-				avaliacaoIds = String.valueOf(iter.next());
-			}else{
-				avaliacaoIds = ","+String.valueOf(iter.next());
-			}
-		}
+		String avaliacaoIds = getAvaliacaoIDs();
 		Map<String, Object> mapParametros = new HashMap<String, Object>();
 		mapParametros.put("AVA_ID", avaliacaoIds);
 		ExportarRelatorio relatorio = new ExportarRelatorio("reports/relatoriograficoatendimentoareascompetencia/RelatorioGraficoAtendimentoAreasCompetencia.jasper");
 		relatorio.exportarRelatorioPdf(mapParametros, (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse(), "Relatorio_Grafico_Atendimento_Areas_Competencia");
 	}
-	
+
+	private String getAvaliacaoIDs() {
+		String avaliacaoIds = null;
+		for (Iterator<Long> iter = getSelection().keySet().iterator(); iter.hasNext();) {
+			Long id = iter.next();
+			if(getSelection().get(id)){
+				if(avaliacaoIds == null){
+					avaliacaoIds = String.valueOf(id);
+				}else{
+					avaliacaoIds += ","+String.valueOf(id);
+				}
+			}
+		}
+		return avaliacaoIds;
+	}
+
 }
