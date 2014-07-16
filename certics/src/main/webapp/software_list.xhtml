@@ -15,7 +15,7 @@
 				</p:toolbarGroup>
 			</p:toolbar>
 			
-			<p:dataTable id="list" var="bean" value="#{softwareListMB.resultList}">
+			<p:dataTable id="list" var="bean" value="#{softwareListMB.resultList}" emptyMessage="#{messages['label.naopossuiinformacoes']}">
 				<f:facet name="header">#{messages['software.list.table.title']}</f:facet>
 				<p:column style="width:2%;">
 					<h:selectBooleanCheckbox value="#{softwareListMB.selection[bean.id]}"></h:selectBooleanCheckbox>

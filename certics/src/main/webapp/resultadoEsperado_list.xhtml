@@ -23,7 +23,7 @@
 				</p:toolbarGroup>
 			</p:toolbar>
 			
-			<p:dataTable id="list" var="bean" value="#{resultadoEsperadoListMB.resultList}">
+			<p:dataTable id="list" var="bean" value="#{resultadoEsperadoListMB.resultList}" emptyMessage="#{messages['label.naopossuiinformacoes']}">
 				<f:facet name="header">#{messages['resultadoEsperado.list.table.title']}</f:facet>
 				<p:column style="width:2%;">
 					<h:selectBooleanCheckbox value="#{resultadoEsperadoListMB.selection[bean.id]}"></h:selectBooleanCheckbox>

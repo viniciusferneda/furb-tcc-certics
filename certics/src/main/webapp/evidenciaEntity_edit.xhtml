@@ -43,7 +43,7 @@
 			<p:fieldset legend="#{messages['anexo.label']}" toggleable="true" toggleSpeed="500">
 				<h:panelGrid id="fieldsanexo" columns="1"> 
 					<p:commandButton value="#{messages['button.new']}" action="#{evidenciaEntityEditMB.addAnexo}" update="listAnexo"/>
-					<p:dataTable id="listAnexo" var="anexo" value="#{evidenciaEntityEditMB.anexoList}" rowIndexVar="index">
+					<p:dataTable id="listAnexo" var="anexo" value="#{evidenciaEntityEditMB.anexoList}" rowIndexVar="index" emptyMessage="#{messages['label.naopossuiinformacoes']}">
 	
 						<p:column>
 							<f:facet name="header">#{messages['anexo.label.id']}</f:facet>

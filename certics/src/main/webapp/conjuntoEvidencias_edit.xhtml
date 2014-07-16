@@ -87,7 +87,7 @@
 						</h:panelGrid>
 					</h:panelGroup>
 
-					<p:dataTable id="dtEvidencias" var="evidencias" value="#{conjuntoEvidenciasEditMB.lRespostaEvidencias}">
+					<p:dataTable id="dtEvidencias" var="evidencias" value="#{conjuntoEvidenciasEditMB.lRespostaEvidencias}" emptyMessage="#{messages['label.naopossuiinformacoes']}">
 						<f:facet name="header">
 							#{messages['evidenciaEntity.label']}
 						</f:facet>
@@ -265,7 +265,7 @@
 						update=":formModalProfissionais:dtEvidenciaProfissionais, :formRegistroEvidencias:dtEvidencias"/>
 				</h:panelGrid>
 
-				<p:dataTable id="dtEvidenciaProfissionais" var="profissionais" value="#{conjuntoEvidenciasEditMB.lEvidenciaProfissional}">
+				<p:dataTable id="dtEvidenciaProfissionais" var="profissionais" value="#{conjuntoEvidenciasEditMB.lEvidenciaProfissional}" emptyMessage="#{messages['label.naopossuiinformacoes']}">
 					<f:facet name="header">
 						#{messages['respostaEvidencia.label.profissionais']}
 					</f:facet>
@@ -304,7 +304,7 @@
 				resizable="false"
 				closable="true">
 
-				<p:dataTable id="dtListEvidenciaProfissionais" var="profissionais" value="#{conjuntoEvidenciasEditMB.lEvidenciaProfissional}">
+				<p:dataTable id="dtListEvidenciaProfissionais" var="profissionais" value="#{conjuntoEvidenciasEditMB.lEvidenciaProfissional}" emptyMessage="#{messages['label.naopossuiinformacoes']}">
 					<f:facet name="header">
 						#{messages['respostaEvidencia.label.profissionais']}
 					</f:facet>
@@ -337,7 +337,7 @@
 					<h:outputText id="evidenciaDescricao" value="#{conjuntoEvidenciasEditMB.bean.evidenciaAux.descricao}"/>
 				</h:panelGrid>
 				
-				<p:dataTable id="dtAnexos" var="anexos" value="#{conjuntoEvidenciasEditMB.lAnexos}">
+				<p:dataTable id="dtAnexos" var="anexos" value="#{conjuntoEvidenciasEditMB.lAnexos}" emptyMessage="#{messages['label.naopossuiinformacoes']}">
 					<f:facet name="header">
 						#{messages['evidenciaEntity.label.anexos']}
 					</f:facet>
